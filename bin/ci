@@ -1,0 +1,18 @@
+#!/bin/bash
+
+set -xe
+
+COMMAND=${1:-test-app}
+case $COMMAND in
+    docs)
+        bin/docs html
+        bin/docs elasticsearch
+        ln -sfT ${WORKSPACE}/docs.zeit.de.conf $HOME/nginx.d/app-api.conf
+        sudo /etc/init.d/nginx reload
+        exit 0
+    ;;
+    *)
+        echo "Unrecognized command: $COMMAND"
+        exit 1
+    ;;
+esac

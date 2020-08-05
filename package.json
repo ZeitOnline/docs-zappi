@@ -1,0 +1,11 @@
+{
+  "name": "swagger-deployment",
+  "version": "1.0.0",
+  "description": "",
+  "dependencies": [
+    "swagger-ui-dist"
+  ],
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

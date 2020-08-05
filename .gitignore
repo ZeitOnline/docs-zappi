@@ -1,0 +1,4 @@
+.npm.success
+.pipenv.success
+htdocs/
+node_modules/
