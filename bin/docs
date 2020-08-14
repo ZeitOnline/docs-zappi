@@ -21,7 +21,7 @@ case $COMMAND in
         pipenv run sphinx-build -a -b html . htdocs
     ;;
     serve)
-        pipenv run sphinx-autobuild -b html . htdocs
+        pipenv run sphinx-autobuild -E -a -b html . htdocs
     ;;
     pdf)
         pipenv run sphinx-build -a -b latex . htdocs
