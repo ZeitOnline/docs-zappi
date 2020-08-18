@@ -18,7 +18,7 @@ fi
 COMMAND=${1:-html}
 case $COMMAND in
     html)
-        pipenv run sphinx-build -a -b html . htdocs
+        pipenv run sphinx-build -E -a -b html . htdocs
     ;;
     serve)
         pipenv run sphinx-autobuild -E -a -b html . htdocs
