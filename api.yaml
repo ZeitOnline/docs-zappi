@@ -39,8 +39,138 @@ paths:
            description: "Server Timeout"
          "403":
            description: "Access Forbidden"
+  /ressort/{id}:
+    get:
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+            example: home
+          required: true
+          description: The whole definition of the ressort
+      tags:
+        - ressort
+      summary: "Get all infos about ressorts"
+      responses:
+         "200":
+           description: "Sucessful operation"
+           content:
+             application/json:
+              schema:
+                type: object
+                properties:
+                  ressort:
+                    type: string
+                    example: "home"
+                  items:
+                    type: array
+                    items:
+                      anyOf:
+                        - $ref: '#/components/schemas/ressortDefinitionWeb'
+                        - $ref: '#/components/schemas/ressortDefinitionSection'
+                        - $ref: '#/components/schemas/ressortDefinitionTeaser'
+         "503":
+           description: "Server Timeout"
+         "403":
+           description: "Access Forbidden"
 components:
   schemas:
+    ressortDefinitionBase:
+      required:
+        - id
+        - type
+      properties:
+        id:
+           type: string
+           description: "ID of the ressort"
+           example: "justsomeuniquestring"
+    ressortDefinitionTeaser:
+      allOf:
+        - $ref: '#/components/schemas/ressortDefinitionBase'
+        - required:
+            - layoutType
+            - title
+            - url
+            - dateFirstPublished
+            - dateLastPublishedSemantic
+        - properties:
+            type:
+              type: string
+              example: teaser
+              enum:
+               - teaser
+            title:
+              type: string
+              example: "This is a teaser title"
+            supertitle: 
+              type: string
+              example: "The Kicker"
+            text:
+              type: string
+              example: "This is the teaser text"
+            image:
+              type: object
+              properties:
+                base_url:
+                  type: string
+                  format: url
+                  example: "https://img.zeit.de/2020-08/flightradar-4/cinema__"
+            dateFirstPublished:
+              type: string
+              format: date-time
+              example: "2019-12-31T13:12Z"
+            dateLastPublishedSemantic:
+              type: string
+              format: date-time
+              example: "2020-01-01T13:12Z"
+            url:
+              type: string
+              format: uri
+              example: "https://www.zeit.de/my/article"
+    ressortDefinitionWeb:
+      allOf:
+        - $ref: '#/components/schemas/ressortDefinitionBase'
+        - required:
+            - raw_content
+        - properties:
+            type:
+              type: string
+              example: web
+              enum:
+               - web
+            raw_content:
+              type: string
+              format: html
+              example: "<embed>Anything can happen here.</embed>"
+    ressortDefinitionSection:
+      allOf:
+        - $ref: '#/components/schemas/ressortDefinitionBase'
+        - required:
+            - layoutType
+            - title
+            - sectionItems
+        - properties:
+            type:
+              type: string
+              example: section
+              enum:
+               - section
+            layoutType:
+              type: string
+              example: layoutType1
+              enum:
+               - layoutType1
+               - layoutType2
+            title:
+              type: string
+              example: "This a simple title"
+            sectionItems:
+              type: array
+              items:
+                anyOf:
+                  - $ref: '#/components/schemas/ressortDefinitionWeb'
+                  - $ref: '#/components/schemas/ressortDefinitionTeaser'
     tabDefinitionBase:
       required:
         - id
@@ -49,6 +179,7 @@ components:
       properties:
         id:
            type: string
+           description: "ID of the tab"
            example: "justsomeuniquestring"
         title:
            type: string
