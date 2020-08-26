@@ -32,14 +32,14 @@ paths:
                     type: array
                     items:
                       anyOf:
-                        - $ref: '#/components/schemas/tabDefinitionRessortView'
+                        - $ref: '#/components/schemas/tabDefinitionCpView'
                         - $ref: '#/components/schemas/tabDefinitionStoryView'
                         - $ref: '#/components/schemas/tabDefinitionMenuView'
          "503":
            description: "Server Timeout"
          "403":
            description: "Access Forbidden"
-  /ressort/{id}:
+  /cp/{id}:
     get:
       parameters:
         - in: path
@@ -48,10 +48,10 @@ paths:
             type: string
             example: home
           required: true
-          description: The whole definition of the ressort
+          description: The whole definition of a centerpage (cp)
       tags:
-        - ressort
-      summary: "Get all infos about ressorts"
+        - cp
+      summary: "Get all infos about centerpages"
       responses:
          "200":
            description: "Sucessful operation"
@@ -60,34 +60,34 @@ paths:
               schema:
                 type: object
                 properties:
-                  ressort:
+                  cp:
                     type: string
                     example: "home"
                   items:
                     type: array
                     items:
                       anyOf:
-                        - $ref: '#/components/schemas/ressortDefinitionWeb'
-                        - $ref: '#/components/schemas/ressortDefinitionSection'
-                        - $ref: '#/components/schemas/ressortDefinitionTeaser'
+                        - $ref: '#/components/schemas/cpDefinitionWeb'
+                        - $ref: '#/components/schemas/cpDefinitionSection'
+                        - $ref: '#/components/schemas/cpDefinitionTeaser'
          "503":
            description: "Server Timeout"
          "403":
            description: "Access Forbidden"
 components:
   schemas:
-    ressortDefinitionBase:
+    cpDefinitionBase:
       required:
         - id
         - type
       properties:
         id:
            type: string
-           description: "ID of the ressort"
+           description: "ID of the centerpage"
            example: "justsomeuniquestring"
-    ressortDefinitionTeaser:
+    cpDefinitionTeaser:
       allOf:
-        - $ref: '#/components/schemas/ressortDefinitionBase'
+        - $ref: '#/components/schemas/cpDefinitionBase'
         - required:
             - layoutType
             - title
@@ -128,9 +128,9 @@ components:
               type: string
               format: uri
               example: "https://www.zeit.de/my/article"
-    ressortDefinitionWeb:
+    cpDefinitionWeb:
       allOf:
-        - $ref: '#/components/schemas/ressortDefinitionBase'
+        - $ref: '#/components/schemas/cpDefinitionBase'
         - required:
             - raw_content
         - properties:
@@ -143,9 +143,9 @@ components:
               type: string
               format: html
               example: "<embed>Anything can happen here.</embed>"
-    ressortDefinitionSection:
+    cpDefinitionSection:
       allOf:
-        - $ref: '#/components/schemas/ressortDefinitionBase'
+        - $ref: '#/components/schemas/cpDefinitionBase'
         - required:
             - layoutType
             - title
@@ -164,13 +164,13 @@ components:
                - layoutType2
             title:
               type: string
-              example: "This a simple title"
+              example: "This is a simple title"
             sectionItems:
               type: array
               items:
                 anyOf:
-                  - $ref: '#/components/schemas/ressortDefinitionWeb'
-                  - $ref: '#/components/schemas/ressortDefinitionTeaser'
+                  - $ref: '#/components/schemas/cpDefinitionWeb'
+                  - $ref: '#/components/schemas/cpDefinitionTeaser'
     tabDefinitionBase:
       required:
         - id
@@ -186,21 +186,21 @@ components:
            minLength: 1
            maxLength: 80
            example: "A Title"
-    tabDefinitionRessortView:
+    tabDefinitionCpView:
       allOf:
         - $ref: '#/components/schemas/tabDefinitionBase'
         - required:
-            - ressortSelection
+            - cpSelection
         - properties:
             type:
               type: string
               enum:
-               - ressortView
-              example: "ressortView"
-            ressortSelection:
+               - cpView
+              example: "cpView"
+            cpSelection:
               type: array
               items:
-                $ref: '#/components/schemas/ressortItem'
+                $ref: '#/components/schemas/cpItem'
     tabDefinitionStoryView:
       allOf:
         - $ref: '#/components/schemas/tabDefinitionBase'
@@ -225,7 +225,7 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/menuSection'
-    ressortItem:
+    cpItem:
       required:
         - uuid
       properties:
