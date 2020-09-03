@@ -39,7 +39,8 @@ paths:
               example: {tabs: [
                 {id: homepage, title: Start, type: webView, url: https://www.zeit.de/index},
                 {id: news, title: Schlagzeilen, type: cpView, cpSelection: [{id: '{urn:uuid:c8ae2aa4-ff88-4ed5-9c09-56fd00f89eb5}'}]},
-                {id: discover, title: Entdecken, type: nativeOnlyView, viewID: discover-view}
+                {id: discover, title: Entdecken, type: nativeOnlyView, viewID: discover-view},
+                {id: zplus, title: Mein Abo, type: cpView, cpSelection: [{id: '{urn:uuid:0fd9480f-1b52-4fcb-942e-8089e378102e}'}]}
               ]}
          "503":
            description: "Server Timeout"
