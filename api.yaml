@@ -40,7 +40,12 @@ paths:
                 {id: homepage, title: Start, type: webView, url: https://www.zeit.de/index},
                 {id: news, title: Schlagzeilen, type: cpView, cpSelection: [{id: '{urn:uuid:c8ae2aa4-ff88-4ed5-9c09-56fd00f89eb5}'}]},
                 {id: discover, title: Entdecken, type: nativeOnlyView, viewID: discover-view},
-                {id: zplus, title: Mein Abo, type: cpView, cpSelection: [{id: '{urn:uuid:0fd9480f-1b52-4fcb-942e-8089e378102e}'}]}
+                {id: zplus, title: Mein Abo, type: cpView, cpSelection: [{id: '{urn:uuid:0fd9480f-1b52-4fcb-942e-8089e378102e}'}]},
+                {id: menu, title: Mehr, type: menuView, sections: [{id: my-menu, entries: [
+                  {id: reading-list, title: Merkliste, targetId: native-reading-list},
+                  {id: reading-history, title: Verlauf, targetId: native-reading-history},
+                  {id: reading-history, title: Verlauf, url: https://profile.zeit.de}
+                ]}]}
               ]}
          "503":
            description: "Server Timeout"
@@ -225,6 +230,11 @@ components:
       allOf:
         - $ref: '#/components/schemas/tabDefinitionBase'
         - properties:
+            type:
+              type: string
+              enum:
+               - menuView
+              example: "menuView"
             sections:
               type: array
               items:
