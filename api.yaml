@@ -33,7 +33,7 @@ paths:
                     items:
                       anyOf:
                         - $ref: '#/components/schemas/tabDefinitionCpView'
-                        - $ref: '#/components/schemas/tabDefinitionStoryView'
+                        - $ref: '#/components/schemas/tabDefinitionWebView'
                         - $ref: '#/components/schemas/tabDefinitionMenuView'
               example: {tabs: [{id: homepage, title: Start, type: webView, url: https://www.zeit.de/index}]}
          "503":
