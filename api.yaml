@@ -1,6 +1,6 @@
 openapi: 3.0.2
 info:
-  description: "This is the API descriotion for the ZON-App (iOS and Android)"
+  description: "This is the API description for the ZON-App (iOS and Android)"
   version: "0.1.0"
   title: "ZON App API"
   termsOfService: "write me"
@@ -35,6 +35,7 @@ paths:
                         - $ref: '#/components/schemas/tabDefinitionCpView'
                         - $ref: '#/components/schemas/tabDefinitionStoryView'
                         - $ref: '#/components/schemas/tabDefinitionMenuView'
+              example: {tabs: [{id: homepage, title: Start, type: webView, url: https://www.zeit.de/index}]}
          "503":
            description: "Server Timeout"
          "403":
@@ -201,21 +202,19 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/cpItem'
-    tabDefinitionStoryView:
+    tabDefinitionWebView:
       allOf:
         - $ref: '#/components/schemas/tabDefinitionBase'
-        - required:
-            - sections
         - properties:
             type:
               type: string
               enum:
-               - storyView
-              example: "storyView"
-            storyId: 
+               - webView
+              example: "webView"
+            url: 
               type: string
               format: uri
-              example: "https://www.zeit.de/a/story"
+              example: "https://www.zeit.de/index"
     tabDefinitionMenuView:
       allOf:
         - $ref: '#/components/schemas/tabDefinitionBase'
