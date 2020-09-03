@@ -35,9 +35,11 @@ paths:
                         - $ref: '#/components/schemas/tabDefinitionCpView'
                         - $ref: '#/components/schemas/tabDefinitionWebView'
                         - $ref: '#/components/schemas/tabDefinitionMenuView'
+                        - $ref: '#/components/schemas/tabDefinitionNativeOnlyView'
               example: {tabs: [
                 {id: homepage, title: Start, type: webView, url: https://www.zeit.de/index},
-                {id: news, title: Schlagzeilen, type: cpView, cpSelection: [{id: '{urn:uuid:c8ae2aa4-ff88-4ed5-9c09-56fd00f89eb5}'}]}
+                {id: news, title: Schlagzeilen, type: cpView, cpSelection: [{id: '{urn:uuid:c8ae2aa4-ff88-4ed5-9c09-56fd00f89eb5}'}]},
+                {id: discover, title: Entdecken, type: nativeOnlyView, viewID: discover-view}
               ]}
          "503":
            description: "Server Timeout"
@@ -222,11 +224,23 @@ components:
       allOf:
         - $ref: '#/components/schemas/tabDefinitionBase'
         - properties:
-            
             sections:
               type: array
               items:
                 $ref: '#/components/schemas/menuSection'
+    tabDefinitionNativeOnlyView:
+      allOf:
+        - $ref: '#/components/schemas/tabDefinitionBase'
+        - required:
+            - viewID
+        - properties:
+          type:
+            type: string
+            enum:
+              - "nativeOnlyView"
+          viewID:
+            type: string
+            example: "discover-view"
     cpItem:
       required:
         - uuid
