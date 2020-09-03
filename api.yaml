@@ -35,7 +35,10 @@ paths:
                         - $ref: '#/components/schemas/tabDefinitionCpView'
                         - $ref: '#/components/schemas/tabDefinitionWebView'
                         - $ref: '#/components/schemas/tabDefinitionMenuView'
-              example: {tabs: [{id: homepage, title: Start, type: webView, url: https://www.zeit.de/index}]}
+              example: {tabs: [
+                {id: homepage, title: Start, type: webView, url: https://www.zeit.de/index},
+                {id: news, title: Schlagzeilen, type: cpView, cpSelection: [{id: '{urn:uuid:c8ae2aa4-ff88-4ed5-9c09-56fd00f89eb5}'}]}
+              ]}
          "503":
            description: "Server Timeout"
          "403":
