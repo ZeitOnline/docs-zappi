@@ -42,9 +42,9 @@ paths:
                 {id: discover, title: Entdecken, type: nativeOnlyView, viewID: discover-view},
                 {id: zplus, title: Mein Abo, type: cpView, cpSelection: [{id: '{urn:uuid:0fd9480f-1b52-4fcb-942e-8089e378102e}'}]},
                 {id: menu, title: Mehr, type: menuView, sections: [{id: user-menu, entries: [
-                  {id: reading-list, title: Merkliste, targetId: native-reading-list},
-                  {id: reading-history, title: Verlauf, targetId: native-reading-history},
-                  {id: comment-list, title: Kommentare, url: https://profile.zeit.de}
+                  {id: reading-list, title: Merkliste, type: menuEntryNative, targetId: native-reading-list},
+                  {id: reading-history, title: Verlauf, type: menuEntryNative, targetId: native-reading-history},
+                  {id: comment-list, title: Kommentare, type: menuEntryWeb, url: https://profile.zeit.de}
                 ]}]}
               ]}
          "503":
@@ -278,6 +278,7 @@ components:
       required:
         - id
         - title
+        - type
       properties:
         id:
           type: string
@@ -285,6 +286,12 @@ components:
         title:
           type: string
           example: "Menu Entry Title"
+        type:
+          type: string
+          enum:
+            - "menuEntryNative"
+            - "menuEntryWeb"
+            - "menuEntryBrowser"
     menuEntryNative:
       allOf:
         - $ref: '#/components/schemas/tabDefinitionBase'
@@ -294,6 +301,7 @@ components:
             targetId:
               type: string
               example: "some-native-id"
+            type: menuEntryNative
     menuEntryWeb:
       allOf:
         - $ref: '#/components/schemas/tabDefinitionBase'
@@ -303,6 +311,7 @@ components:
             url:
               type: string
               example: "https://www.zeit.de/some/webviewurl"
+            type: menuEntryWeb
     menuEntryBrowser:
       allOf:
         - $ref: '#/components/schemas/tabDefinitionBase'
@@ -312,6 +321,7 @@ components:
             url:
               type: string
               example: "https://www.zeit.de/some/browserurl"
+            type: menuEntryBrowser
   securitySchemes:
     zon_auth:
       type: oauth2
