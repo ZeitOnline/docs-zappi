@@ -82,6 +82,9 @@ paths:
                         - $ref: '#/components/schemas/cpDefinitionWeb'
                         - $ref: '#/components/schemas/cpDefinitionSection'
                         - $ref: '#/components/schemas/cpDefinitionTeaser'
+                  webtrekkContentID:
+                    type: string
+                    example: "redaktion.homepage...centerpage.zede|www.zeit.de/index"
          "503":
            description: "Server Timeout"
          "403":
