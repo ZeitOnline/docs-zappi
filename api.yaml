@@ -3,7 +3,7 @@ info:
   description: "This is the API description for the ZON-App (iOS and Android)"
   version: "0.1.0"
   title: "ZON App API"
-  termsOfService: "write me"
+  termsOfService: "https://www.zeit.de/administratives/agb-kommentare-artikel"
   contact:
     email: "internet-technik@zeit.de"
   license:
@@ -37,14 +37,14 @@ paths:
                         - $ref: '#/components/schemas/tabDefinitionMenuView'
                         - $ref: '#/components/schemas/tabDefinitionNativeOnlyView'
               example: {tabs: [
-                {id: homepage, title: Start, type: webView, url: https://www.zeit.de/index},
+                {id: homepage, title: Start, type: webView, url: "https://www.zeit.de/index"},
                 {id: news, title: Schlagzeilen, type: cpView, cpSelection: [{id: '{urn:uuid:c8ae2aa4-ff88-4ed5-9c09-56fd00f89eb5}'}]},
                 {id: discover, title: Entdecken, type: nativeOnlyView, viewID: discover-view},
                 {id: zplus, title: Mein Abo, type: cpView, cpSelection: [{id: '{urn:uuid:0fd9480f-1b52-4fcb-942e-8089e378102e}'}]},
                 {id: menu, title: Mehr, type: menuView, sections: [{id: user-menu, entries: [
                   {id: reading-list, title: Merkliste, type: menuEntryNative, targetId: native-reading-list},
                   {id: reading-history, title: Verlauf, type: menuEntryNative, targetId: native-reading-history},
-                  {id: comment-list, title: Kommentare, type: menuEntryWeb, url: https://profile.zeit.de}
+                  {id: comment-list, title: Kommentare, type: menuEntryWeb, url: "https://profile.zeit.de"}
                 ]}]}
               ]}
          "503":
@@ -242,16 +242,16 @@ components:
     tabDefinitionNativeOnlyView:
       allOf:
         - $ref: '#/components/schemas/tabDefinitionBase'
-        - required:
-            - viewID
-        - properties:
-          type:
-            type: string
-            enum:
-              - "nativeOnlyView"
-          viewID:
-            type: string
-            example: "discover-view"
+      required:
+        - viewID
+      properties:
+        type:
+          type: string
+          enum:
+            - "nativeOnlyView"
+        viewID:
+          type: string
+          example: "discover-view"
     cpItem:
       required:
         - uuid
@@ -261,8 +261,6 @@ components:
           format: uuid
           example: "{urn:uuid:d995ba5a-a7fb-401a-bdc8-86cf2cbf0cda}"
     menuSection:
-      required:
-        - uuid
       properties:
         id:
           type: string
@@ -294,17 +292,17 @@ components:
             - "menuEntryBrowser"
     menuEntryNative:
       allOf:
-        - $ref: '#/components/schemas/tabDefinitionBase'
+        - $ref: '#/components/schemas/menuEntryBase'
         - required:
-            - targetId
+          - targetId
         - properties:
             targetId:
               type: string
               example: "some-native-id"
-            type: menuEntryNative
+            type: "menuEntryNative"
     menuEntryWeb:
       allOf:
-        - $ref: '#/components/schemas/tabDefinitionBase'
+        - $ref: '#/components/schemas/menuEntryBase'
         - required:
             - url
         - properties:
@@ -314,7 +312,7 @@ components:
             type: menuEntryWeb
     menuEntryBrowser:
       allOf:
-        - $ref: '#/components/schemas/tabDefinitionBase'
+        - $ref: '#/components/schemas/menuEntryBase'
         - required:
             - url
         - properties:
