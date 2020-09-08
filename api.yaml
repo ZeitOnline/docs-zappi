@@ -177,6 +177,11 @@ components:
               enum:
                - layoutType1
                - layoutType2
+            link:
+              type: string
+              format: uri
+              description: "A section often links to topic pages etc."
+              example: "https://www.zeit.de/thema/coronavirus"
             title:
               type: string
               example: "This is a simple title"
@@ -302,7 +307,8 @@ components:
             targetId:
               type: string
               example: "some-native-id"
-            type: "menuEntryNative"
+            type: 
+              example: "menuEntryNative"
     menuEntryWeb:
       allOf:
         - $ref: '#/components/schemas/menuEntryBase'
@@ -312,7 +318,8 @@ components:
             url:
               type: string
               example: "https://www.zeit.de/some/webviewurl"
-            type: menuEntryWeb
+            type: 
+              example: "menuEntryWeb"
     menuEntryBrowser:
       allOf:
         - $ref: '#/components/schemas/menuEntryBase'
@@ -322,7 +329,8 @@ components:
             url:
               type: string
               example: "https://www.zeit.de/some/browserurl"
-            type: menuEntryBrowser
+            type:
+              example: "menuEntryBrowser"
   securitySchemes:
     zon_auth:
       type: oauth2
