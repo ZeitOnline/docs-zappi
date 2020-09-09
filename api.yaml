@@ -186,6 +186,13 @@ components:
            minLength: 1
            maxLength: 80
            example: "A Title"
+        subMenu:
+          type: array
+          items:
+            oneOf:
+              - $ref: '#/components/schemas/menuEntryNative'
+              - $ref: '#/components/schemas/menuEntryWeb'
+              - $ref: '#/components/schemas/menuEntryBrowser'          
     tabDefinitionCpView:
       allOf:
         - $ref: '#/components/schemas/tabDefinitionBase'
@@ -219,8 +226,7 @@ components:
     tabDefinitionMenuView:
       allOf:
         - $ref: '#/components/schemas/tabDefinitionBase'
-        - properties:
-            
+        - properties:            
             sections:
               type: array
               items:
