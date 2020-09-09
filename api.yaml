@@ -1,9 +1,9 @@
 openapi: 3.0.2
 info:
-  description: "This is the API descriotion for the ZON-App (iOS and Android)"
+  description: "This is the API description for the ZON-App (iOS and Android)"
   version: "0.1.0"
   title: "ZON App API"
-  termsOfService: "write me"
+  termsOfService: "https://www.zeit.de/administratives/agb-kommentare-artikel"
   contact:
     email: "internet-technik@zeit.de"
   license:
@@ -33,8 +33,20 @@ paths:
                     items:
                       anyOf:
                         - $ref: '#/components/schemas/tabDefinitionCpView'
-                        - $ref: '#/components/schemas/tabDefinitionStoryView'
+                        - $ref: '#/components/schemas/tabDefinitionWebView'
                         - $ref: '#/components/schemas/tabDefinitionMenuView'
+                        - $ref: '#/components/schemas/tabDefinitionNativeOnlyView'
+              example: {tabs: [
+                {id: homepage, title: Start, type: webView, url: "https://www.zeit.de/index"},
+                {id: news, title: Schlagzeilen, type: cpView, cpSelection: [{id: '{urn:uuid:c8ae2aa4-ff88-4ed5-9c09-56fd00f89eb5}'}]},
+                {id: discover, title: Entdecken, type: nativeOnlyView, viewID: discover-view},
+                {id: zplus, title: Mein Abo, type: cpView, cpSelection: [{id: '{urn:uuid:0fd9480f-1b52-4fcb-942e-8089e378102e}'}]},
+                {id: menu, title: Mehr, type: menuView, sections: [{id: user-menu, entries: [
+                  {id: reading-list, title: Merkliste, type: menuEntryNative, targetId: native-reading-list},
+                  {id: reading-history, title: Verlauf, type: menuEntryNative, targetId: native-reading-history},
+                  {id: comment-list, title: Kommentare, type: menuEntryWeb, url: "https://profile.zeit.de"}
+                ]}]}
+              ]}
          "503":
            description: "Server Timeout"
          "403":
@@ -70,6 +82,9 @@ paths:
                         - $ref: '#/components/schemas/cpDefinitionWeb'
                         - $ref: '#/components/schemas/cpDefinitionSection'
                         - $ref: '#/components/schemas/cpDefinitionTeaser'
+                  webtrekkContentID:
+                    type: string
+                    example: "redaktion.homepage...centerpage.zede|www.zeit.de/index"
          "503":
            description: "Server Timeout"
          "403":
@@ -162,6 +177,11 @@ components:
               enum:
                - layoutType1
                - layoutType2
+            link:
+              type: string
+              format: uri
+              description: "A section often links to topic pages etc."
+              example: "https://www.zeit.de/thema/coronavirus"
             title:
               type: string
               example: "This is a simple title"
@@ -208,29 +228,45 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/cpItem'
-    tabDefinitionStoryView:
+    tabDefinitionWebView:
       allOf:
         - $ref: '#/components/schemas/tabDefinitionBase'
-        - required:
-            - sections
         - properties:
             type:
               type: string
               enum:
-               - storyView
-              example: "storyView"
-            storyId: 
+               - webView
+              example: "webView"
+            url: 
               type: string
               format: uri
-              example: "https://www.zeit.de/a/story"
+              example: "https://www.zeit.de/index"
     tabDefinitionMenuView:
       allOf:
         - $ref: '#/components/schemas/tabDefinitionBase'
-        - properties:            
+        - properties:
+            type:
+              type: string
+              enum:
+               - menuView
+              example: "menuView"
             sections:
               type: array
               items:
                 $ref: '#/components/schemas/menuSection'
+    tabDefinitionNativeOnlyView:
+      allOf:
+        - $ref: '#/components/schemas/tabDefinitionBase'
+      required:
+        - viewID
+      properties:
+        type:
+          type: string
+          enum:
+            - "nativeOnlyView"
+        viewID:
+          type: string
+          example: "discover-view"
     cpItem:
       required:
         - uuid
@@ -240,8 +276,6 @@ components:
           format: uuid
           example: "{urn:uuid:d995ba5a-a7fb-401a-bdc8-86cf2cbf0cda}"
     menuSection:
-      required:
-        - uuid
       properties:
         id:
           type: string
@@ -257,6 +291,7 @@ components:
       required:
         - id
         - title
+        - type
       properties:
         id:
           type: string
@@ -264,33 +299,45 @@ components:
         title:
           type: string
           example: "Menu Entry Title"
+        type:
+          type: string
+          enum:
+            - "menuEntryNative"
+            - "menuEntryWeb"
+            - "menuEntryBrowser"
     menuEntryNative:
       allOf:
-        - $ref: '#/components/schemas/tabDefinitionBase'
+        - $ref: '#/components/schemas/menuEntryBase'
         - required:
-            - targetId
+          - targetId
         - properties:
             targetId:
               type: string
               example: "some-native-id"
+            type: 
+              example: "menuEntryNative"
     menuEntryWeb:
       allOf:
-        - $ref: '#/components/schemas/tabDefinitionBase'
+        - $ref: '#/components/schemas/menuEntryBase'
         - required:
             - url
         - properties:
             url:
               type: string
               example: "https://www.zeit.de/some/webviewurl"
+            type: 
+              example: "menuEntryWeb"
     menuEntryBrowser:
       allOf:
-        - $ref: '#/components/schemas/tabDefinitionBase'
+        - $ref: '#/components/schemas/menuEntryBase'
         - required:
             - url
         - properties:
             url:
               type: string
               example: "https://www.zeit.de/some/browserurl"
+            type:
+              example: "menuEntryBrowser"
   securitySchemes:
     zon_auth:
       type: oauth2
