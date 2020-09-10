@@ -211,23 +211,18 @@ components:
           items:
             oneOf:
               - $ref: '#/components/schemas/menuEntryNative'
-              - $ref: '#/components/schemas/menuEntryWeb'
-              - $ref: '#/components/schemas/menuEntryBrowser'          
+              - $ref: '#/components/schemas/menuEntryWeb'        
     tabDefinitionCpView:
       allOf:
         - $ref: '#/components/schemas/tabDefinitionBase'
         - required:
-            - cpSelection
+            - subMenu
         - properties:
             type:
               type: string
               enum:
                - cpView
               example: "cpView"
-            cpSelection:
-              type: array
-              items:
-                $ref: '#/components/schemas/cpItem'
     tabDefinitionWebView:
       allOf:
         - $ref: '#/components/schemas/tabDefinitionBase'
@@ -237,10 +232,6 @@ components:
               enum:
                - webView
               example: "webView"
-            url: 
-              type: string
-              format: uri
-              example: "https://www.zeit.de/index"
     tabDefinitionMenuView:
       allOf:
         - $ref: '#/components/schemas/tabDefinitionBase'
@@ -254,19 +245,23 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/menuSection'
-    tabDefinitionNativeOnlyView:
+    tabDefinitionStoryView:
       allOf:
         - $ref: '#/components/schemas/tabDefinitionBase'
       required:
-        - viewID
+        - targetId
       properties:
         type:
           type: string
           enum:
-            - "nativeOnlyView"
+            - "storyView"
         viewID:
           type: string
           example: "discover-view"
+        cpSelection:
+          type: array
+          items:
+            $ref: '#/components/schemas/cpItem'
     cpItem:
       required:
         - uuid
