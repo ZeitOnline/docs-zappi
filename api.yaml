@@ -35,17 +35,19 @@ paths:
                         - $ref: '#/components/schemas/tabDefinitionCpView'
                         - $ref: '#/components/schemas/tabDefinitionWebView'
                         - $ref: '#/components/schemas/tabDefinitionMenuView'
-                        - $ref: '#/components/schemas/tabDefinitionNativeOnlyView'
+                        - $ref: '#/components/schemas/tabDefinitionStoryView'
               example: {tabs: [
-                {id: homepage, title: Start, type: webView, url: "https://www.zeit.de/index"},
-                {id: news, title: Schlagzeilen, type: cpView, cpSelection: [{id: '{urn:uuid:c8ae2aa4-ff88-4ed5-9c09-56fd00f89eb5}'}]},
-                {id: discover, title: Entdecken, type: nativeOnlyView, viewID: discover-view},
-                {id: zplus, title: Mein Abo, type: cpView, cpSelection: [{id: '{urn:uuid:0fd9480f-1b52-4fcb-942e-8089e378102e}'}]},
-                {id: menu, title: Mehr, type: menuView, sections: [{id: user-menu, entries: [
-                  {id: reading-list, title: Merkliste, type: menuEntryNative, targetId: native-reading-list},
-                  {id: reading-history, title: Verlauf, type: menuEntryNative, targetId: native-reading-history},
-                  {id: comment-list, title: Kommentare, type: menuEntryWeb, url: "https://profile.zeit.de"}
-                ]}]}
+                {id: homepage, title: Start, type: webView},
+                {id: news, title: Schlagzeilen, type: cpView},
+                {id: discover, title: Entdecken, type: storyView},
+                {id: zplus, title: Mein Abo, type: cpView},
+                {id: menu, title: Mehr, type: menuView, sections: [
+                  {id: user-menu, title: "Mein Bereich", entries: [
+                    {id: reading-list, title: Merkliste, type: menuEntryNative, targetId: native-reading-list},
+                    {id: reading-history, title: Verlauf, type: menuEntryNative, targetId: native-reading-history},
+                    {id: comment-list, title: Kommentare, type: menuEntryWeb, url: "https://profile.zeit.de"}
+                  ]}
+                ]}
               ]}
          "503":
            description: "Server Timeout"
@@ -232,6 +234,10 @@ components:
               enum:
                - webView
               example: "webView"
+            url:
+              format: uri
+              type: string
+              example: "https://www.zeit.de/index"
     tabDefinitionMenuView:
       allOf:
         - $ref: '#/components/schemas/tabDefinitionBase'
@@ -248,28 +254,20 @@ components:
     tabDefinitionStoryView:
       allOf:
         - $ref: '#/components/schemas/tabDefinitionBase'
-      required:
-        - targetId
       properties:
         type:
           type: string
           enum:
             - "storyView"
-        viewID:
-          type: string
-          example: "discover-view"
-        cpSelection:
-          type: array
-          items:
-            $ref: '#/components/schemas/cpItem'
     cpItem:
       required:
-        - uuid
+        - id
       properties:
         id:
           type: string
           format: uuid
           example: "{urn:uuid:d995ba5a-a7fb-401a-bdc8-86cf2cbf0cda}"
+      example: {id: "{urn:uuid:d995ba5a-a7fb-401a-bdc8-86cf2cbf0cda}"}
     menuSection:
       properties:
         id:
@@ -311,6 +309,11 @@ components:
               example: "some-native-id"
             type: 
               example: "menuEntryNative"
+            cpSelection:
+              type: array
+              items:
+                oneOf:
+                  - $ref: '#/components/schemas/cpItem'
     menuEntryWeb:
       allOf:
         - $ref: '#/components/schemas/menuEntryBase'
@@ -319,6 +322,7 @@ components:
         - properties:
             url:
               type: string
+              format: uri
               example: "https://www.zeit.de/some/webviewurl"
             type: 
               example: "menuEntryWeb"
