@@ -213,6 +213,7 @@ components:
         - id
         - title
         - type
+        - icon
       properties:
         id:
            type: string
