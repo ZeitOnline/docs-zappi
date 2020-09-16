@@ -35,17 +35,34 @@ paths:
                         - $ref: '#/components/schemas/tabDefinitionCpView'
                         - $ref: '#/components/schemas/tabDefinitionWebView'
                         - $ref: '#/components/schemas/tabDefinitionMenuView'
-                        - $ref: '#/components/schemas/tabDefinitionNativeOnlyView'
+                        - $ref: '#/components/schemas/tabDefinitionStoryView'
               example: {tabs: [
-                {id: homepage, title: Start, type: webView, url: "https://www.zeit.de/index"},
-                {id: news, title: Schlagzeilen, type: cpView, cpSelection: [{id: '{urn:uuid:c8ae2aa4-ff88-4ed5-9c09-56fd00f89eb5}'}]},
-                {id: discover, title: Entdecken, type: nativeOnlyView, viewID: discover-view},
-                {id: zplus, title: Mein Abo, type: cpView, cpSelection: [{id: '{urn:uuid:0fd9480f-1b52-4fcb-942e-8089e378102e}'}]},
-                {id: menu, title: Mehr, type: menuView, sections: [{id: user-menu, entries: [
-                  {id: reading-list, title: Merkliste, type: menuEntryNative, targetId: native-reading-list},
-                  {id: reading-history, title: Verlauf, type: menuEntryNative, targetId: native-reading-history},
-                  {id: comment-list, title: Kommentare, type: menuEntryWeb, url: "https://profile.zeit.de"}
-                ]}]}
+                {id: start, title: Start, type: cpView, icon: iconHouse, subMenu: [
+                  {id: homepage, title: Aktuell, type: menuEntryWeb, url: "https://www.zeit.de/index"},
+                  {id: ressortPolitik, title: Politik, type: menuEntryNative, cpItem: {id: "{urn:uuid:b4d1e3b1-aac4-4a80-b820-e4093fe24a36}"} },
+                  {id: ressortGesellschaft, title: Gesellschaft, type: menuEntryNative, cpItem: {id: "{urn:uuid:c92ad9be-67e0-497d-beee-6c2e063352cc}"} },
+                  {id: ressortWirtschaft, title: Wirtschaft, type: menuEntryNative, cpItem: {id: "{urn:uuid:ea13ef02-74f3-4010-8cd7-777327fb881a}"} },
+                  {id: ressortWissen, title: Wissen, type: menuEntryNative, cpItem: {id: "{urn:uuid:c84692ca-b0c9-4772-8c6b-85e2abc446e1}"} },
+                  {id: ressortKultur, title: Kultur, type: menuEntryNative, cpItem: {id: "{urn:uuid:49b109f0-bbad-495e-8a88-ad91ec1ef8f9}"} }
+                ]},
+                {id: news, title: Schlagzeilen, type: cpView, icon: iconClock, subMenu: [
+                  {id: newsAll, title: "Alle Schlagzeilen", type: menuEntryNative, cpItem: {id: "{urn:uuid:08945d5e-483c-4e7b-9843-69a8f590ada9}"} },
+                  {id: newsMostImportant, title: "Die wichtigsten Nachrichten", type: menuEntryNative, cpItem: {id: "{urn:uuid:df60a52c-5f4d-4804-833d-ec31e24dbd43}"} },
+                  {id: newsAnalysisAndReports, title: "Analysen und Hintergründe", type: menuEntryNative, cpItem: {id: "{urn:uuid:d6913463-1804-466d-b6d0-34376ef21916}"} }
+                ]},
+                {id: discover, title: Entdecken, type: storyView, icon: iconCompass},
+                {id: zplus, title: Mein Abo, type: cpView, icon: iconZPlus, subMenu: [
+                  {id: exclusive, title: "Exklusive Artikel", type: menuEntryNative, cpItem: {id: "{urn:uuid:0fd9480f-1b52-4fcb-942e-8089e378102e}"} },
+                  {id: zeitPDFWebReader, title: "DIE ZEIT", type: menuEntryWeb, url: "https://epaper.zeit.de/abo/diezeit" },
+                  {id: wochenMarkt, title: "Wochenmarkt", type: menuEntryWeb, url: "https://www.zeit.de/wochenmarkt" }
+                ]},
+                {id: menu, title: Mehr, type: menuView, icon: iconAvatar, sections: [
+                  {id: user-menu, title: "Mein Bereich", entries: [
+                    {id: reading-list, title: Merkliste, type: menuEntryNative, targetId: native-reading-list},
+                    {id: reading-history, title: Verlauf, type: menuEntryNative, targetId: native-reading-history},
+                    {id: comment-list, title: Kommentare, type: menuEntryWeb, url: "https://profile.zeit.de"}
+                  ]}
+                ]}
               ]}
          "503":
            description: "Server Timeout"
@@ -196,6 +213,7 @@ components:
         - id
         - title
         - type
+        - icon
       properties:
         id:
            type: string
@@ -204,23 +222,28 @@ components:
         title:
            type: string
            minLength: 1
-           maxLength: 80
-           example: "A Title"
+           maxLength: 15
+           example: "Start"
+        icon:
+          type: string
+          example: iconHome        
     tabDefinitionCpView:
       allOf:
         - $ref: '#/components/schemas/tabDefinitionBase'
         - required:
-            - cpSelection
+            - subMenu
         - properties:
             type:
               type: string
               enum:
                - cpView
               example: "cpView"
-            cpSelection:
+            subMenu:
               type: array
               items:
-                $ref: '#/components/schemas/cpItem'
+                oneOf:
+                  - $ref: '#/components/schemas/menuEntryNative'
+                  - $ref: '#/components/schemas/menuEntryWeb'
     tabDefinitionWebView:
       allOf:
         - $ref: '#/components/schemas/tabDefinitionBase'
@@ -230,10 +253,16 @@ components:
               enum:
                - webView
               example: "webView"
-            url: 
-              type: string
+            url:
               format: uri
+              type: string
               example: "https://www.zeit.de/index"
+            subMenu:
+              type: array
+              items:
+                oneOf:
+                  - $ref: '#/components/schemas/menuEntryNative'
+                  - $ref: '#/components/schemas/menuEntryWeb'
     tabDefinitionMenuView:
       allOf:
         - $ref: '#/components/schemas/tabDefinitionBase'
@@ -247,27 +276,14 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/menuSection'
-    tabDefinitionNativeOnlyView:
+    tabDefinitionStoryView:
       allOf:
         - $ref: '#/components/schemas/tabDefinitionBase'
-      required:
-        - viewID
       properties:
         type:
           type: string
           enum:
-            - "nativeOnlyView"
-        viewID:
-          type: string
-          example: "discover-view"
-    cpItem:
-      required:
-        - uuid
-      properties:
-        id:
-          type: string
-          format: uuid
-          example: "{urn:uuid:d995ba5a-a7fb-401a-bdc8-86cf2cbf0cda}"
+            - "storyView"
     menuSection:
       properties:
         id:
@@ -301,14 +317,21 @@ components:
     menuEntryNative:
       allOf:
         - $ref: '#/components/schemas/menuEntryBase'
-        - required:
-          - targetId
         - properties:
             targetId:
               type: string
               example: "some-native-id"
             type: 
               example: "menuEntryNative"
+            cpItem:
+              required:
+                - id
+              properties:
+                id:
+                  type: string
+                  format: uuid
+                  example: "{urn:uuid:d995ba5a-a7fb-401a-bdc8-86cf2cbf0cda}"
+              example: {id: "{urn:uuid:d995ba5a-a7fb-401a-bdc8-86cf2cbf0cda}"}
     menuEntryWeb:
       allOf:
         - $ref: '#/components/schemas/menuEntryBase'
@@ -317,6 +340,7 @@ components:
         - properties:
             url:
               type: string
+              format: uri
               example: "https://www.zeit.de/some/webviewurl"
             type: 
               example: "menuEntryWeb"
