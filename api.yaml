@@ -96,9 +96,6 @@ paths:
                         - $ref: '#/components/schemas/cpDefinitionWeb'
                         - $ref: '#/components/schemas/cpDefinitionSection'
                         - $ref: '#/components/schemas/cpDefinitionTeaser'
-                  webtrekkContentID:
-                    type: string
-                    example: "redaktion.homepage...centerpage.zede|www.zeit.de/index"
          "404":
            description: "No centerpage found for the given uuid"
 
