@@ -3,12 +3,8 @@ info:
   description: "This is the API description for the ZON-App (iOS and Android)"
   version: "0.1.0"
   title: "ZON App API"
-  termsOfService: "https://www.zeit.de/administratives/agb-kommentare-artikel"
   contact:
     email: "internet-technik@zeit.de"
-  license:
-    name: "Apache 2.0"
-    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
 servers: 
   - url: "https://app-api.zeit.de/v.0.1.0/"
     description: "Production API"
@@ -22,7 +18,6 @@ paths:
        summary: "Get all infos about the site's structure, e.g. tabs"
        responses:
          "200":
-           description: "Sucessful operation"
            content:
              application/json:
               schema:
@@ -64,10 +59,6 @@ paths:
                   ]}
                 ]}
               ]}
-         "503":
-           description: "Server Timeout"
-         "403":
-           description: "Access Forbidden"
   /cp/{id}:
     get:
       parameters:
@@ -83,7 +74,6 @@ paths:
       summary: "Get all infos about centerpages"
       responses:
          "200":
-           description: "Sucessful operation"
            content:
              application/json:
               schema:
@@ -102,10 +92,6 @@ paths:
                   webtrekkContentID:
                     type: string
                     example: "redaktion.homepage...centerpage.zede|www.zeit.de/index"
-         "503":
-           description: "Server Timeout"
-         "403":
-           description: "Access Forbidden"
 components:
   schemas:
     cpDefinitionBase:
@@ -359,15 +345,3 @@ components:
               example: "https://www.zeit.de/some/browserurl"
             type:
               example: "menuEntryBrowser"
-  securitySchemes:
-    zon_auth:
-      type: oauth2
-      flows:
-        implicit:
-          authorizationUrl: 'https://oauth.zeit.de/oauth/authorize'
-          scopes:
-            'read:all': read your pets
-    api_key:
-      type: apiKey
-      name: api_key
-      in: header
