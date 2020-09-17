@@ -10,7 +10,9 @@ servers:
     description: "Production API"
   - url: "https://app-api.staging.zeit.de/v.0.1.0/"
     description: "Staging API"
+
 paths:
+
   /structure:
     get:
        tags:
@@ -59,16 +61,18 @@ paths:
                   ]}
                 ]}
               ]}
-  /cp/{id}:
+
+
+  /cp/{uuid}:
     get:
       parameters:
         - in: path
-          name: id
+          name: uuid
           schema:
-            type: string
-            example: home
+            $ref: "#/components/schemas/uuid"
           required: true
-          description: The whole definition of a centerpage (cp)
+          description: UUID from CMS that identifies an ICenterPage content object
+
       tags:
         - cp
       summary: "Get all infos about centerpages"
@@ -92,8 +96,19 @@ paths:
                   webtrekkContentID:
                     type: string
                     example: "redaktion.homepage...centerpage.zede|www.zeit.de/index"
+         "404":
+           description: "No centerpage found for the given uuid"
+
+
 components:
   schemas:
+    uuid:
+      type: string
+      pattern: "^\\{urn:uuid:[-a-f0-9]+\\}$"
+      description: "https://en.wikipedia.org/wiki/Universally_unique_identifier"
+      example: "{urn:uuid:d995ba5a-a7fb-401a-bdc8-86cf2cbf0cda}"
+
+
     cpDefinitionBase:
       required:
         - id
@@ -196,6 +211,8 @@ components:
                 anyOf:
                   - $ref: '#/components/schemas/cpDefinitionWeb'
                   - $ref: '#/components/schemas/cpDefinitionTeaser'
+
+
     tabDefinitionBase:
       required:
         - id
@@ -274,6 +291,8 @@ components:
           type: string
           enum:
             - "storyView"
+
+
     menuSection:
       properties:
         id:
