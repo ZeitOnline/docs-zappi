@@ -93,9 +93,9 @@ paths:
                     type: array
                     items:
                       anyOf:
-                        - $ref: '#/components/schemas/cpDefinitionWeb'
-                        - $ref: '#/components/schemas/cpDefinitionSection'
-                        - $ref: '#/components/schemas/cpDefinitionTeaser'
+                        - $ref: '#/components/schemas/CenterpageModuleTeaser'
+                        - $ref: '#/components/schemas/CenterpageModuleArea'
+                        - $ref: '#/components/schemas/CenterpageModuleWeb'
          "404":
            description: "No centerpage found for the given uuid"
 
@@ -108,23 +108,34 @@ components:
       description: "https://en.wikipedia.org/wiki/Universally_unique_identifier"
       example: "{urn:uuid:d995ba5a-a7fb-401a-bdc8-86cf2cbf0cda}"
 
+    cp_element_id:
+      type: string
+      pattern: "^id-[-a-f0-9]+$"
 
-    cpDefinitionBase:
+    cp_element_type:
+      type: string
+      enum:
+      - area
+      - teaser
+      - web
+
+    CenterpageModule:
       required:
         - id
         - type
       properties:
         id:
-           type: string
-           description: "ID of the centerpage"
-           example: "justsomeuniquestring"
+           description: "ID of the module"
+           schema:
+             $ref: "#/components/schemas/cp_element_id"
         type:
-          type: string
-    cpDefinitionTeaser:
+           schema:
+             $ref: "#/components/schemas/cp_element_type"
+    CenterpageModuleTeaser:
       allOf:
-        - $ref: '#/components/schemas/cpDefinitionBase'
+        - $ref: '#/components/schemas/CenterpageModule'
         - required:
-            - layoutType
+            - layout
             - title
             - url
             - dateFirstPublished
@@ -135,6 +146,8 @@ components:
               example: teaser
               enum:
                - teaser
+            layout:
+              type: string
             title:
               type: string
               example: "This is a teaser title"
@@ -163,9 +176,9 @@ components:
               type: string
               format: uri
               example: "https://www.zeit.de/my/article"
-    cpDefinitionWeb:
+    CenterpageModuleWeb:
       allOf:
-        - $ref: '#/components/schemas/cpDefinitionBase'
+        - $ref: '#/components/schemas/CenterpageModule'
         - required:
             - raw_content
         - properties:
@@ -178,25 +191,21 @@ components:
               type: string
               format: html
               example: "<embed>Anything can happen here.</embed>"
-    cpDefinitionSection:
+    CenterpageModuleArea:
       allOf:
-        - $ref: '#/components/schemas/cpDefinitionBase'
+        - $ref: '#/components/schemas/CenterpageModule'
         - required:
-            - layoutType
+            - layout
             - title
-            - sectionItems
+            - items
         - properties:
             type:
               type: string
-              example: section
+              example: area
               enum:
-               - section
-            layoutType:
+               - area
+            layout:
               type: string
-              example: layoutType1
-              enum:
-               - layoutType1
-               - layoutType2
             link:
               type: string
               format: uri
@@ -205,12 +214,12 @@ components:
             title:
               type: string
               example: "This is a simple title"
-            sectionItems:
+            items:
               type: array
               items:
                 anyOf:
-                  - $ref: '#/components/schemas/cpDefinitionWeb'
-                  - $ref: '#/components/schemas/cpDefinitionTeaser'
+                  - $ref: '#/components/schemas/CenterpageModuleTeaser'
+                  - $ref: '#/components/schemas/CenterpageModuleWeb'
 
 
     tabDefinitionBase:
