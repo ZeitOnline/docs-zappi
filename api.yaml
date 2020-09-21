@@ -92,10 +92,7 @@ paths:
                   items:
                     type: array
                     items:
-                      anyOf:
-                        - $ref: '#/components/schemas/CenterpageModuleTeaser'
-                        - $ref: '#/components/schemas/CenterpageModuleArea'
-                        - $ref: '#/components/schemas/CenterpageModuleWeb'
+                      $ref: '#/components/schemas/CenterpageModuleArea'
          "404":
            description: "No centerpage found for the given uuid"
 
