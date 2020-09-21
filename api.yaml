@@ -157,6 +157,10 @@ components:
             text:
               type: string
               example: "This is the teaser text"
+            url:
+              type: string
+              format: uri
+              example: "https://www.zeit.de/my/article"
             image:
               type: object
               properties:
@@ -172,10 +176,21 @@ components:
               type: string
               format: date-time
               example: "2020-01-01T13:12Z"
-            url:
+            byline:
               type: string
-              format: uri
-              example: "https://www.zeit.de/my/article"
+              example: "Eine Glosse von August Weythershaußen, Erzgebirge"
+            badges:
+              type: array
+              example: ["zplus"]
+            comments:
+              type: object
+              properties:
+                count:
+                  type: integer
+                url:
+                  type: string
+                  format: uri
+                  example: "https://www.zeit.de/my/article#comments"
     CenterpageModuleWeb:
       allOf:
         - $ref: '#/components/schemas/CenterpageModule'
