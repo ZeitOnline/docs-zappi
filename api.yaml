@@ -17,7 +17,7 @@ paths:
     get:
        tags:
          - "structure"
-       summary: "Get all infos about the site's structure, e.g. tabs"
+       summary: "Returns tab and menu/submenu configuration for the app UI"
        responses:
          "200":
            content:
@@ -71,11 +71,11 @@ paths:
           schema:
             $ref: "#/components/schemas/uuid"
           required: true
-          description: UUID from CMS that identifies an ICenterPage content object
+          description: "UUID from CMS that identifies a CenterPage content object"
 
       tags:
         - cp
-      summary: "Get all infos about centerpages"
+      summary: "Returns the teasers (i.e. content references) on a CenterPage"
       responses:
          "200":
            content:
@@ -88,11 +88,12 @@ paths:
                   url:
                     type: string
                     format: uri
+                    description: "Web URL for this CenterPage"
                     example: "https://www.zeit.de/politik/index"
                   items:
                     type: array
                     items:
-                      $ref: '#/components/schemas/CenterpageModuleArea'
+                      $ref: '#/components/schemas/CenterpageArea'
          "404":
            description: "No centerpage found for the given uuid"
 
@@ -108,6 +109,7 @@ components:
     cp_element_id:
       type: string
       pattern: "^id-[-a-f0-9]+$"
+      description: "ID of the cp element"
 
     cp_element_type:
       type: string
@@ -115,22 +117,21 @@ components:
       - area
       - teaser
       - web
+      description: "Type of the cp element"
 
-    CenterpageModule:
+    CenterpageElement:
       required:
         - id
         - type
       properties:
         id:
-           description: "ID of the module"
-           schema:
-             $ref: "#/components/schemas/cp_element_id"
+          $ref: "#/components/schemas/cp_element_id"
         type:
-           schema:
-             $ref: "#/components/schemas/cp_element_type"
+          $ref: "#/components/schemas/cp_element_type"
     CenterpageModuleTeaser:
       allOf:
-        - $ref: '#/components/schemas/CenterpageModule'
+        - description: "A teaser module references/represents a content object (article, video, etc.)"
+        - $ref: "#/components/schemas/CenterpageElement"
         - required:
             - layout
             - title
@@ -145,15 +146,19 @@ components:
                - teaser
             layout:
               type: string
+              description: "How to display this teaser (e.g large/small/no image)"
             title:
               type: string
-              example: "This is a teaser title"
+              description: "Main title of the article"
+              example: "My Article Title"
             supertitle: 
               type: string
-              example: "The Kicker"
+              description: "The supertitle/kicker are 1-2 keywords that denote the context/topic of the article"
+              example: "Olympics"
             text:
               type: string
-              example: "This is the teaser text"
+              description: "Teaser text is a few sentences that summarize/introduce the article"
+              example: "This is the teaser text\nIt may contain line breaks."
             url:
               type: string
               format: uri
@@ -168,29 +173,36 @@ components:
             dateFirstPublished:
               type: string
               format: date-time
+              description: "Timestamp when the article was published initially"
               example: "2019-12-31T13:12Z"
             dateLastPublishedSemantic:
               type: string
               format: date-time
+              description: "Timestamp of the most recent semantic/relevant update to the article"
               example: "2020-01-01T13:12Z"
             byline:
               type: string
+              description: "Ready-made string that contains the author names and maybe some more information like the article genre"
               example: "Eine Glosse von August Weythershaußen, Erzgebirge"
             badges:
               type: array
+              description: "List of icon IDs that should be displayed for this teaser"
               example: ["zplus"]
             comments:
               type: object
               properties:
                 count:
                   type: integer
+                  description: "Current count of comments for this article"
                 url:
                   type: string
                   format: uri
+                  description: "URL directly to the comment area of the article"
                   example: "https://www.zeit.de/my/article#comments"
     CenterpageModuleWeb:
       allOf:
-        - $ref: '#/components/schemas/CenterpageModule'
+        - description: "A non-native module that should be displayed via a web view"
+        - $ref: "#/components/schemas/CenterpageElement"
         - required:
             - raw_content
         - properties:
@@ -203,9 +215,10 @@ components:
               type: string
               format: html
               example: "<embed>Anything can happen here.</embed>"
-    CenterpageModuleArea:
+    CenterpageArea:
+      description: "CenterPages contain areas, which in turn contain modules"
       allOf:
-        - $ref: '#/components/schemas/CenterpageModule'
+        - $ref: "#/components/schemas/CenterpageElement"
         - required:
             - layout
             - title
