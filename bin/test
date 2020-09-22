@@ -1,0 +1,19 @@
+#!/bin/bash
+
+set -e
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+cd $DIR/..
+
+if [[ ! -e Pipfile.lock || Pipfile.lock -nt .pipenv.success ]]; then
+    pipenv install
+    touch .pipenv.success
+fi
+
+if [[ package-lock.json -nt .npm.success ]]; then
+    npm install
+    touch .npm.success
+fi
+
+bin/swagger-cli validate api.yaml
+pipenv run openapi-spec-validator api.yaml
