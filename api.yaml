@@ -1,7 +1,7 @@
 openapi: 3.0.2
 info:
   description: "This is the API description for the ZON-App (iOS and Android)"
-  version: "0.1.0"
+  version: "0.2.0"
   title: "ZON App API"
   contact:
     email: "internet-technik@zeit.de"
