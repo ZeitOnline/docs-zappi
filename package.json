@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "dependencies": [
-    "swagger-ui-dist"
+    "swagger-ui-dist",
+    "swagger-cli",
+    "openapi-types@>=7"
   ],
   "keywords": [],
   "author": "",

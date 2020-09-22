@@ -11,6 +11,9 @@ case $COMMAND in
         sudo /etc/init.d/nginx reload
         exit 0
     ;;
+    test)
+        bin/swagger-cli validate api.yaml
+    ;;
     *)
         echo "Unrecognized command: $COMMAND"
         exit 1
