@@ -20,6 +20,8 @@ paths:
        summary: "Returns tab and menu/submenu configuration for the app UI"
        responses:
          "200":
+           # XXX description is required, but really already exists in ..summary
+           description: "Success"
            content:
              application/json:
               schema:
@@ -78,6 +80,7 @@ paths:
       summary: "Returns the teasers (i.e. content references) on a CenterPage"
       responses:
          "200":
+           description: "Success"
            content:
              application/json:
               schema:
