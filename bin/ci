@@ -13,6 +13,7 @@ case $COMMAND in
     ;;
     test)
         bin/swagger-cli validate api.yaml
+        pipenv run openapi-spec-validator api.yaml
     ;;
     *)
         echo "Unrecognized command: $COMMAND"
