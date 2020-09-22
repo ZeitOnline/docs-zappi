@@ -160,6 +160,14 @@ components:
               type: string
               format: uri
               example: "https://www.zeit.de/my/article"
+    cpDefinitionGallery:
+      allOf:
+        - $ref: '#/components/schemas/cpDefinitionTeaser'
+        - properties:
+            imagecount:
+              type: integer
+              minimum: 0
+              description: number of images contained in the image gallery
     cpDefinitionWeb:
       allOf:
         - $ref: '#/components/schemas/cpDefinitionBase'
