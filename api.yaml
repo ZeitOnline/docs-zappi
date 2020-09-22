@@ -96,7 +96,7 @@ paths:
                   items:
                     type: array
                     items:
-                      $ref: '#/components/schemas/CenterpageArea'
+                      $ref: '#/components/schemas/CenterpageRegion'
          "404":
            description: "No centerpage found for the given uuid"
 
@@ -218,7 +218,7 @@ components:
               type: string
               format: html
               example: "<embed>Anything can happen here.</embed>"
-    CenterpageArea:
+    CenterpageAreaBase:
       description: "CenterPages contain areas, which in turn contain modules"
       allOf:
         - $ref: "#/components/schemas/CenterpageElement"
@@ -242,6 +242,21 @@ components:
             title:
               type: string
               example: "This is a simple title"
+            items:
+              type: array
+    CenterpageRegion:
+      allOf:
+        - $ref: "#/components/schemas/CenterpageAreaBase"
+        - properties:
+            items:
+              type: array
+              items:
+                anyOf:
+                  - $ref: '#/components/schemas/CenterpageArea'
+    CenterpageArea:
+      allOf:
+        - $ref: "#/components/schemas/CenterpageAreaBase"
+        - properties:
             items:
               type: array
               items:
