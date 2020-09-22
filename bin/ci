@@ -12,8 +12,7 @@ case $COMMAND in
         exit 0
     ;;
     test)
-        bin/swagger-cli validate api.yaml
-        pipenv run openapi-spec-validator api.yaml
+        bin/test
     ;;
     *)
         echo "Unrecognized command: $COMMAND"
