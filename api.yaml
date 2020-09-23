@@ -18,6 +18,10 @@ servers:
     variables:
       version:
         default: "0.2.0"
+  - url: "http://localhost:9090/app"
+    description: "Local development sandbox"
+  - url: "http://localhost/app"
+    description: "Unit tests"
 
 paths:
 
