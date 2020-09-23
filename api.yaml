@@ -6,14 +6,14 @@ info:
   contact:
     email: "internet-technik@zeit.de"
 servers:
-  - url: "https://app-api.zeit.de/{version}"
+  - url: "https://zappi.zeit.de/{version}"
     description: "Production"
     variables:
       version:
         default: "0.2.0"
         enum: # list older still available versions here
           - "0.2.0"
-  - url: "https://app-api.staging.zeit.de/{version}"
+  - url: "https://zappi.staging.zeit.de/{version}"
     description: "Staging"
     variables:
       version:
