@@ -153,7 +153,7 @@ components:
             - url
             - dateFirstPublished
             - dateLastPublishedSemantic
-        - properties:
+          properties:
             type:
               type: string
               example: teaser
@@ -220,7 +220,7 @@ components:
         - $ref: "#/components/schemas/CenterpageElement"
         - required:
             - raw_content
-        - properties:
+          properties:
             type:
               type: string
               example: web
@@ -238,7 +238,7 @@ components:
             - layout
             - title
             - items
-        - properties:
+          properties:
             type:
               type: string
               example: area
@@ -303,7 +303,7 @@ components:
         - $ref: '#/components/schemas/tabDefinitionBase'
         - required:
             - subMenu
-        - properties:
+          properties:
             type:
               type: string
               enum:
@@ -410,7 +410,7 @@ components:
         - $ref: '#/components/schemas/menuEntryBase'
         - required:
             - url
-        - properties:
+          properties:
             url:
               type: string
               format: uri
@@ -422,7 +422,7 @@ components:
         - $ref: '#/components/schemas/menuEntryBase'
         - required:
             - url
-        - properties:
+          properties:
             url:
               type: string
               example: "https://www.zeit.de/some/browserurl"
