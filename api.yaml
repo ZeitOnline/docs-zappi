@@ -102,7 +102,7 @@ paths:
                     $ref: "#/components/schemas/uuid"
                   url:
                     type: string
-                    format: uri
+                    # format: uri  XXX only supported in openapi-3.1
                     description: "Web URL for this CenterPage"
                     example: "https://www.zeit.de/politik/index"
                   items:
@@ -176,14 +176,14 @@ components:
               example: "This is the teaser text\nIt may contain line breaks."
             url:
               type: string
-              format: uri
+              # format: uri
               example: "https://www.zeit.de/my/article"
             image:
               type: object
               properties:
                 base_url:
                   type: string
-                  format: url
+                  # format: uri
                   example: "https://img.zeit.de/2020-08/flightradar-4/cinema__"
             dateFirstPublished:
               type: string
@@ -211,7 +211,7 @@ components:
                   description: "Current count of comments for this article"
                 url:
                   type: string
-                  format: uri
+                  # format: uri
                   description: "URL directly to the comment area of the article"
                   example: "https://www.zeit.de/my/article#comments"
     CenterpageModuleWeb:
@@ -248,7 +248,7 @@ components:
               type: string
             link:
               type: string
-              format: uri
+              # format: uri
               description: "A section often links to topic pages etc."
               example: "https://www.zeit.de/thema/coronavirus"
             title:
@@ -325,7 +325,7 @@ components:
                - webView
               example: "webView"
             url:
-              format: uri
+              # format: uri
               type: string
               example: "https://www.zeit.de/index"
             subMenu:
@@ -413,7 +413,7 @@ components:
           properties:
             url:
               type: string
-              format: uri
+              # format: uri
               example: "https://www.zeit.de/some/webviewurl"
             type: 
               example: "menuEntryWeb"
