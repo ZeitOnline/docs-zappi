@@ -129,6 +129,7 @@ components:
     cp_element_type:
       type: string
       enum:
+      - region
       - area
       - teaser
       - web
@@ -239,11 +240,6 @@ components:
             - title
             - items
           properties:
-            type:
-              type: string
-              example: area
-              enum:
-               - area
             layout:
               type: string
             link:
@@ -260,6 +256,11 @@ components:
       allOf:
         - $ref: "#/components/schemas/CenterpageAreaBase"
         - properties:
+            type:
+              type: string
+              example: region
+              enum:
+               - region
             items:
               type: array
               items:
@@ -269,6 +270,11 @@ components:
       allOf:
         - $ref: "#/components/schemas/CenterpageAreaBase"
         - properties:
+            type:
+              type: string
+              example: area
+              enum:
+               - area
             items:
               type: array
               items:
