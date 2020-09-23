@@ -166,7 +166,7 @@ components:
               type: string
               description: "Main title of the article"
               example: "My Article Title"
-            supertitle: 
+            supertitle:
               type: string
               description: "The supertitle/kicker are 1-2 keywords that denote the context/topic of the article"
               example: "Olympics"
@@ -297,7 +297,7 @@ components:
           type: string
         icon:
           type: string
-          example: iconHome        
+          example: iconHome
     tabDefinitionCpView:
       allOf:
         - $ref: '#/components/schemas/tabDefinitionBase'
@@ -394,7 +394,7 @@ components:
             targetId:
               type: string
               example: "some-native-id"
-            type: 
+            type:
               example: "menuEntryNative"
             cpItem:
               required:
@@ -415,7 +415,7 @@ components:
               type: string
               # format: uri
               example: "https://www.zeit.de/some/webviewurl"
-            type: 
+            type:
               example: "menuEntryWeb"
     menuEntryBrowser:
       allOf:
