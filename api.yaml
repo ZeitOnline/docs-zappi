@@ -144,8 +144,8 @@ components:
         type:
           $ref: "#/components/schemas/cp_element_type"
     CenterpageModuleTeaser:
+      description: "A teaser module references/represents a content object (article, video, etc.)"
       allOf:
-        - description: "A teaser module references/represents a content object (article, video, etc.)"
         - $ref: "#/components/schemas/CenterpageElement"
         - required:
             - layout
@@ -215,8 +215,8 @@ components:
                   description: "URL directly to the comment area of the article"
                   example: "https://www.zeit.de/my/article#comments"
     CenterpageModuleWeb:
+      description: "A non-native module that should be displayed via a web view"
       allOf:
-        - description: "A non-native module that should be displayed via a web view"
         - $ref: "#/components/schemas/CenterpageElement"
         - required:
             - raw_content
