@@ -169,10 +169,12 @@ components:
               example: "My Article Title"
             supertitle:
               type: string
+              nullable: true
               description: "The supertitle/kicker are 1-2 keywords that denote the context/topic of the article"
               example: "Olympics"
             text:
               type: string
+              nullable: true
               description: "Teaser text is a few sentences that summarize/introduce the article"
               example: "This is the teaser text\nIt may contain line breaks."
             url:
@@ -198,6 +200,7 @@ components:
               example: "2020-01-01T13:12Z"
             byline:
               type: string
+              nullable: true
               description: "Ready-made string that contains the author names and maybe some more information like the article genre"
               example: "Eine Glosse von August Weythershaußen, Erzgebirge"
             badges:
@@ -237,6 +240,7 @@ components:
         - $ref: "#/components/schemas/CenterpageElement"
         - required:
             - layout
+            - link
             - title
             - items
           properties:
@@ -244,11 +248,13 @@ components:
               type: string
             link:
               type: string
+              nullable: true
               # format: uri
               description: "A section often links to topic pages etc."
               example: "https://www.zeit.de/thema/coronavirus"
             title:
               type: string
+              nullable: true
               example: "This is a simple title"
             items:
               type: array
