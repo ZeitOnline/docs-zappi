@@ -186,6 +186,12 @@ components:
                   type: string
                   # format: uri
                   example: "https://img.zeit.de/2020-08/flightradar-4/cinema__"
+                ratio:
+                  type: float
+                  example: 1.7778
+                mobileRatio: # optional
+                  type: float
+                  example: 1.3333
             dateFirstPublished:
               type: string
               format: date-time
