@@ -311,6 +311,11 @@ components:
            example: "Start"
         type:
           type: string
+          enum:
+           - cpView
+           - webView
+           - menuView
+           - storyView
         icon:
           type: string
           example: iconHome
