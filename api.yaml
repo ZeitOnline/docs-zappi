@@ -160,7 +160,14 @@ components:
               example: "teaser"
             layout:
               type: string
-              description: "How to display this teaser (e.g large/small/no image)"
+              # @check https://vivi.zeit.de/repository/data/cp-layouts.xml
+              enum:
+                - zon-teaser-standard
+                - zon-teaser-wide
+                - zon-teaser-square-author
+                - zon-teaser-poster
+                # news-teaser
+              description: "How to display this teaser (e.g large/small)"
             title:
               type: string
               description: "Main title of the article"
