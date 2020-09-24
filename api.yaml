@@ -155,9 +155,9 @@ components:
           properties:
             type:
               type: string
-              example: teaser
               enum:
                - teaser
+              example: "teaser"
             layout:
               type: string
               description: "How to display this teaser (e.g large/small/no image)"
@@ -225,9 +225,9 @@ components:
           properties:
             type:
               type: string
-              example: web
               enum:
                - web
+              example: "web"
             raw_content:
               type: string
               format: html
@@ -262,9 +262,9 @@ components:
         - properties:
             type:
               type: string
-              example: region
               enum:
                - region
+              example: "region"
             items:
               type: array
               items:
@@ -276,9 +276,9 @@ components:
         - properties:
             type:
               type: string
-              example: area
               enum:
                - area
+              example: "area"
             items:
               type: array
               items:
@@ -364,7 +364,8 @@ components:
         type:
           type: string
           enum:
-            - "storyView"
+            - storyView
+          example: "storyView"
 
 
     menuSection:
@@ -394,9 +395,9 @@ components:
         type:
           type: string
           enum:
-            - "menuEntryNative"
-            - "menuEntryWeb"
-            - "menuEntryBrowser"
+            - menuEntryNative
+            - menuEntryWeb
+            - menuEntryBrowser
     menuEntryNative:
       allOf:
         - $ref: '#/components/schemas/menuEntryBase'
@@ -405,6 +406,9 @@ components:
               type: string
               example: "some-native-id"
             type:
+              type: string
+              enum:
+               - menuEntryNative
               example: "menuEntryNative"
             cpItem:
               required:
@@ -426,6 +430,9 @@ components:
               # format: uri
               example: "https://www.zeit.de/some/webviewurl"
             type:
+              type: string
+              enum:
+               - menuEntryWeb
               example: "menuEntryWeb"
     menuEntryBrowser:
       allOf:
@@ -437,6 +444,9 @@ components:
               type: string
               example: "https://www.zeit.de/some/browserurl"
             type:
+              type: string
+              enum:
+               - menuEntryBrowser
               example: "menuEntryBrowser"
 
 
