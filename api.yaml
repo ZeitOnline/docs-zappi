@@ -440,3 +440,9 @@ components:
               example: "https://www.zeit.de/some/browserurl"
             type:
               example: "menuEntryBrowser"
+
+
+  securitySchemes:
+    default:
+      type: http
+      scheme: basic
