@@ -196,12 +196,12 @@ components:
               type: string
               format: date-time
               description: "Timestamp when the article was published initially"
-              example: "2019-12-31T13:12Z"
+              example: "2019-12-31T13:12:00Z"
             dateLastPublishedSemantic:
               type: string
               format: date-time
               description: "Timestamp of the most recent semantic/relevant update to the article"
-              example: "2020-01-01T13:12Z"
+              example: "2020-01-01T13:12:00Z"
             byline:
               type: string
               nullable: true
