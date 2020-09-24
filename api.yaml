@@ -198,17 +198,6 @@ components:
               example: "2020-01-01T13:12Z"
             byline:
               type: string
-              format: uri
-              example: "https://www.zeit.de/my/article"
-    cpDefinitionGallery:
-      allOf:
-        - $ref: '#/components/schemas/cpDefinitionTeaser'
-        - properties:
-            imagecount:
-              type: integer
-              minimum: 0
-              description: number of images contained in the image gallery
-    cpDefinitionWeb:
               nullable: true
               description: "Ready-made string that contains the author names and maybe some more information like the article genre"
               example: "Eine Glosse von August Weythershaußen, Erzgebirge"
@@ -227,6 +216,14 @@ components:
                   # format: uri
                   description: "URL directly to the comment area of the article"
                   example: "https://www.zeit.de/my/article#comments"
+    cpDefinitionGallery:
+      allOf:
+        - $ref: '#/components/schemas/cpDefinitionTeaser'
+        - properties:
+            imagecount:
+              type: integer
+              minimum: 0
+              description: number of images contained in the image gallery
     CenterpageModuleWeb:
       description: "A non-native module that should be displayed via a web view"
       allOf:
