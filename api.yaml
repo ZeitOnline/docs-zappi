@@ -216,9 +216,9 @@ components:
                   # format: uri
                   description: "URL directly to the comment area of the article"
                   example: "https://www.zeit.de/my/article#comments"
-    cpDefinitionGallery:
+    CenterPageModuleImageGallery:
       allOf:
-        - $ref: '#/components/schemas/cpDefinitionTeaser'
+        - $ref: '#/components/schemas/CenterpageModuleTeaser'
         - properties:
             imagecount:
               type: integer
