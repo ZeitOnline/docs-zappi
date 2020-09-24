@@ -216,6 +216,15 @@ components:
               example: "Eine Glosse von August Weythershaußen, Erzgebirge"
             badges:
               type: array
+              items:
+                anyOf:
+                  - brandeins
+                  - liveblog
+                  - liveblog-closed
+                  - zett
+                  - zplus
+                  - zplus-register
+                  - zplus-spiele
               description: "List of icon IDs that should be displayed for this teaser"
               example: ["zplus"]
             label:
