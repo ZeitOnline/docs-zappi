@@ -211,6 +211,13 @@ components:
               type: array
               description: "List of icon IDs that should be displayed for this teaser"
               example: ["zplus"]
+            label:
+              type: string
+              enum:
+                - Anzeige
+                - Verlagsangebot
+              description: "Additional label to mark teasers with corporate advertising"
+              example: "Verlagsangebot"
             comments:
               type: object
               properties:
