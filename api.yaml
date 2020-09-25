@@ -141,7 +141,7 @@ components:
           $ref: "#/components/schemas/cp_element_id"
         type:
           $ref: "#/components/schemas/cp_element_type"
-    CenterpageModuleTeaser:
+    CenterpageTeaserBase:
       description: "A teaser module references/represents a content object (article, video, etc.)"
       allOf:
         - $ref: "#/components/schemas/CenterpageElement"
