@@ -217,7 +217,8 @@ components:
             badges:
               type: array
               items:
-                anyOf:
+                type: string
+                enum:
                   - brandeins
                   - liveblog
                   - liveblog-closed
