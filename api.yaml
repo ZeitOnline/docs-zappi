@@ -155,12 +155,19 @@ components:
           properties:
             type:
               type: string
-              example: teaser
               enum:
                - teaser
+              example: "teaser"
             layout:
               type: string
-              description: "How to display this teaser (e.g large/small/no image)"
+              # @check https://vivi.zeit.de/repository/data/cp-layouts.xml
+              enum:
+                - zon-teaser-standard
+                - zon-teaser-wide
+                - zon-teaser-square-author
+                - zon-teaser-poster
+                # news-teaser
+              description: "How to display this teaser (e.g large/small)"
             title:
               type: string
               description: "Main title of the article"
@@ -185,17 +192,23 @@ components:
                 base_url:
                   type: string
                   # format: uri
-                  example: "https://img.zeit.de/2020-08/flightradar-4/cinema__"
+                  example: "https://img.zeit.de/2020-08/flightradar-4/cinema"
+                ratio:
+                  type: number
+                  example: 1.7778
+                mobileRatio: # optional
+                  type: number
+                  example: 1.3333
             dateFirstPublished:
               type: string
               format: date-time
               description: "Timestamp when the article was published initially"
-              example: "2019-12-31T13:12Z"
+              example: "2019-12-31T13:12:00Z"
             dateLastPublishedSemantic:
               type: string
               format: date-time
               description: "Timestamp of the most recent semantic/relevant update to the article"
-              example: "2020-01-01T13:12Z"
+              example: "2020-01-01T13:12:00Z"
             byline:
               type: string
               nullable: true
@@ -203,8 +216,25 @@ components:
               example: "Eine Glosse von August Weythershaußen, Erzgebirge"
             badges:
               type: array
+              items:
+                type: string
+                enum:
+                  - brandeins
+                  - liveblog
+                  - liveblog-closed
+                  - zett
+                  - zplus
+                  - zplus-register
+                  - zplus-spiele
               description: "List of icon IDs that should be displayed for this teaser"
               example: ["zplus"]
+            label:
+              type: string
+              enum:
+                - Anzeige
+                - Verlagsangebot
+              description: "Additional label to mark teasers with corporate advertising"
+              example: "Verlagsangebot"
             comments:
               type: object
               properties:
@@ -225,9 +255,9 @@ components:
           properties:
             type:
               type: string
-              example: web
               enum:
                - web
+              example: "web"
             raw_content:
               type: string
               format: html
@@ -262,9 +292,9 @@ components:
         - properties:
             type:
               type: string
-              example: region
               enum:
                - region
+              example: "region"
             items:
               type: array
               items:
@@ -276,9 +306,9 @@ components:
         - properties:
             type:
               type: string
-              example: area
               enum:
                - area
+              example: "area"
             items:
               type: array
               items:
@@ -305,6 +335,11 @@ components:
            example: "Start"
         type:
           type: string
+          enum:
+           - cpView
+           - webView
+           - menuView
+           - storyView
         icon:
           type: string
           example: iconHome
@@ -364,7 +399,8 @@ components:
         type:
           type: string
           enum:
-            - "storyView"
+            - storyView
+          example: "storyView"
 
 
     menuSection:
@@ -394,9 +430,9 @@ components:
         type:
           type: string
           enum:
-            - "menuEntryNative"
-            - "menuEntryWeb"
-            - "menuEntryBrowser"
+            - menuEntryNative
+            - menuEntryWeb
+            - menuEntryBrowser
     menuEntryNative:
       allOf:
         - $ref: '#/components/schemas/menuEntryBase'
@@ -405,6 +441,9 @@ components:
               type: string
               example: "some-native-id"
             type:
+              type: string
+              enum:
+               - menuEntryNative
               example: "menuEntryNative"
             cpItem:
               required:
@@ -426,6 +465,9 @@ components:
               # format: uri
               example: "https://www.zeit.de/some/webviewurl"
             type:
+              type: string
+              enum:
+               - menuEntryWeb
               example: "menuEntryWeb"
     menuEntryBrowser:
       allOf:
@@ -437,6 +479,9 @@ components:
               type: string
               example: "https://www.zeit.de/some/browserurl"
             type:
+              type: string
+              enum:
+               - menuEntryBrowser
               example: "menuEntryBrowser"
 
 
