@@ -450,10 +450,7 @@ components:
                 - id
               properties:
                 id:
-                  type: string
-                  format: uuid
-                  example: "{urn:uuid:d995ba5a-a7fb-401a-bdc8-86cf2cbf0cda}"
-              example: {id: "{urn:uuid:d995ba5a-a7fb-401a-bdc8-86cf2cbf0cda}"}
+                  $ref: "#/components/schemas/uuid"
     menuEntryWeb:
       allOf:
         - $ref: '#/components/schemas/menuEntryBase'
