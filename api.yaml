@@ -132,6 +132,16 @@ components:
         - module
       description: "Type of the cp element"
 
+    cp_element_kind:
+      type: string
+      enum:
+        - article
+        - gallery
+        - video
+        - podcast
+        - html
+      description: "Kind of the cp element"
+
     CenterpageElement:
       required:
         - id
@@ -141,6 +151,8 @@ components:
           $ref: "#/components/schemas/cp_element_id"
         type:
           $ref: "#/components/schemas/cp_element_type"
+        kind:
+          $ref: "#/components/schemas/cp_element_kind"
     CenterpageTeaserBase:
       description: "A teaser module references/represents a content object (article, video, etc.)"
       allOf:
