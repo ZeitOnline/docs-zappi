@@ -26,7 +26,7 @@ paths:
   /structure:
     get:
        tags:
-         - "structure"
+         - structure
        summary: "Returns tab and menu/submenu configuration for the app UI"
        responses:
          "200":
