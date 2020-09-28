@@ -127,10 +127,10 @@ components:
     cp_element_type:
       type: string
       enum:
-      - region
-      - area
-      - teaser
-      - web
+        - region
+        - area
+        - teaser
+        - web
       description: "Type of the cp element"
 
     CenterpageElement:
@@ -156,7 +156,7 @@ components:
             type:
               type: string
               enum:
-               - teaser
+                - teaser
               example: "teaser"
             layout:
               type: string
@@ -256,7 +256,7 @@ components:
             type:
               type: string
               enum:
-               - web
+                - web
               example: "web"
             raw_content:
               type: string
@@ -293,7 +293,7 @@ components:
             type:
               type: string
               enum:
-               - region
+                - region
               example: "region"
             items:
               type: array
@@ -306,7 +306,7 @@ components:
             type:
               type: string
               enum:
-               - area
+                - area
               example: "area"
             items:
               type: array
@@ -335,10 +335,10 @@ components:
         type:
           type: string
           enum:
-           - cpView
-           - webView
-           - menuView
-           - storyView
+            - cpView
+            - webView
+            - menuView
+            - storyView
         icon:
           type: string
           example: iconHome
@@ -351,7 +351,7 @@ components:
             type:
               type: string
               enum:
-               - cpView
+                - cpView
               example: "cpView"
             subMenu:
               type: array
@@ -366,7 +366,7 @@ components:
             type:
               type: string
               enum:
-               - webView
+                - webView
               example: "webView"
             url:
               # format: uri
@@ -385,7 +385,7 @@ components:
             type:
               type: string
               enum:
-               - menuView
+                 - menuView
               example: "menuView"
             sections:
               type: array
@@ -442,7 +442,7 @@ components:
             type:
               type: string
               enum:
-               - menuEntryNative
+                - menuEntryNative
               example: "menuEntryNative"
             cpItem:
               required:
@@ -463,7 +463,7 @@ components:
             type:
               type: string
               enum:
-               - menuEntryWeb
+                - menuEntryWeb
               example: "menuEntryWeb"
     menuEntryBrowser:
       allOf:
@@ -477,7 +477,7 @@ components:
             type:
               type: string
               enum:
-               - menuEntryBrowser
+                - menuEntryBrowser
               example: "menuEntryBrowser"
 
 
