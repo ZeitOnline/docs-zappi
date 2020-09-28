@@ -135,7 +135,7 @@ components:
     cp_element_kind:
       type: string
       enum:
-        - article
+        - standard
         - gallery
         - video
         - podcast
@@ -146,6 +146,7 @@ components:
       required:
         - id
         - type
+        - kind
       properties:
         id:
           $ref: "#/components/schemas/cp_element_id"
@@ -265,7 +266,7 @@ components:
             kind:
               type: string
               enum:
-                - article
+                - standard
     CenterpageTeaserGallery:
       description: "A teaser module references/represents a gallery content object"
       allOf:
@@ -384,6 +385,10 @@ components:
               enum:
                 - region
               example: "region"
+            kind:
+              type: string
+              enum:
+                - standard
             items:
               type: array
               items:
@@ -397,6 +402,10 @@ components:
               enum:
                 - area
               example: "area"
+            kind:
+              type: string
+              enum:
+                - standard
             items:
               type: array
               items:
