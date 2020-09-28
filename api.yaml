@@ -129,8 +129,7 @@ components:
       enum:
         - region
         - area
-        - teaser
-        - web
+        - module
       description: "Type of the cp element"
 
     CenterpageElement:
@@ -156,8 +155,8 @@ components:
             type:
               type: string
               enum:
-                - teaser
-              example: "teaser"
+                - module
+              example: "module"
             layout:
               type: string
               # @check https://vivi.zeit.de/repository/data/cp-layouts.xml
@@ -256,8 +255,8 @@ components:
             type:
               type: string
               enum:
-                - web
-              example: "web"
+                - module
+              example: "module"
             raw_content:
               type: string
               format: html
