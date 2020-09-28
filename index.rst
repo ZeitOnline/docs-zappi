@@ -7,6 +7,7 @@ App-API
 
     overview
     onboarding
+    codingstyle
     operations
 
 * `API <./swagger.html>`_
