@@ -403,7 +403,7 @@ components:
               enum:
                 - region
               example: "region"
-            kind:
+            layout:
               type: string
               enum:
                 - standard
@@ -420,7 +420,7 @@ components:
               enum:
                 - area
               example: "area"
-            kind:
+            layout:
               type: string
               enum:
                 - standard
