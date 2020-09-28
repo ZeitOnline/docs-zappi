@@ -40,7 +40,7 @@ paths:
                   tabs:
                     type: array
                     items:
-                      anyOf:
+                      oneOf:
                         - $ref: '#/components/schemas/tabDefinitionCpView'
                         - $ref: '#/components/schemas/tabDefinitionWebView'
                         - $ref: '#/components/schemas/tabDefinitionMenuView'
@@ -298,8 +298,7 @@ components:
             items:
               type: array
               items:
-                anyOf:
-                  - $ref: '#/components/schemas/CenterpageArea'
+                $ref: '#/components/schemas/CenterpageArea'
     CenterpageArea:
       allOf:
         - $ref: "#/components/schemas/CenterpageAreaBase"
@@ -312,7 +311,7 @@ components:
             items:
               type: array
               items:
-                anyOf:
+                oneOf:
                   - $ref: '#/components/schemas/CenterpageModuleTeaser'
                   - $ref: '#/components/schemas/CenterpageModuleWeb'
 
