@@ -25,15 +25,15 @@ paths:
 
   /structure:
     get:
-       tags:
-         - "structure"
-       summary: "Returns tab and menu/submenu configuration for the app UI"
-       responses:
-         "200":
-           # XXX description is required, but really already exists in ..summary
-           description: "Success"
-           content:
-             application/json:
+      tags:
+        - structure
+      summary: "Returns tab and menu/submenu configuration for the app UI"
+      responses:
+        "200":
+          # XXX description is required, but really already exists in ..summary
+          description: "Success"
+          content:
+            application/json:
               schema:
                 type: object
                 properties:
@@ -41,10 +41,10 @@ paths:
                     type: array
                     items:
                       oneOf:
-                        - $ref: '#/components/schemas/tabDefinitionCpView'
-                        - $ref: '#/components/schemas/tabDefinitionWebView'
-                        - $ref: '#/components/schemas/tabDefinitionMenuView'
-                        - $ref: '#/components/schemas/tabDefinitionStoryView'
+                        - $ref: "#/components/schemas/TabDefinitionCpView"
+                        - $ref: "#/components/schemas/TabDefinitionWebView"
+                        - $ref: "#/components/schemas/TabDefinitionMenuView"
+                        - $ref: "#/components/schemas/TabDefinitionStoryView"
               example: {tabs: [
                 {id: start, title: Start, type: cpView, icon: iconHouse, subMenu: [
                   {id: homepage, title: Aktuell, type: menuEntryWeb, url: "https://www.zeit.de/index"},
@@ -89,10 +89,10 @@ paths:
         - cp
       summary: "Returns the teasers (i.e. content references) on a CenterPage"
       responses:
-         "200":
-           description: "Success"
-           content:
-             application/json:
+        "200":
+          description: "Success"
+          content:
+            application/json:
               schema:
                 type: object
                 properties:
@@ -106,9 +106,9 @@ paths:
                   items:
                     type: array
                     items:
-                      $ref: '#/components/schemas/CenterpageRegion'
-         "404":
-           description: "No centerpage found for the given uuid"
+                      $ref: "#/components/schemas/CenterpageRegion"
+        "404":
+          description: "No centerpage found for the given uuid"
 
 
 components:
@@ -127,10 +127,10 @@ components:
     cp_element_type:
       type: string
       enum:
-      - region
-      - area
-      - teaser
-      - web
+        - region
+        - area
+        - teaser
+        - web
       description: "Type of the cp element"
 
     CenterpageElement:
@@ -156,7 +156,7 @@ components:
             type:
               type: string
               enum:
-               - teaser
+                - teaser
               example: "teaser"
             layout:
               type: string
@@ -196,7 +196,7 @@ components:
                 ratio:
                   type: number
                   example: 1.7778
-                mobileRatio: # optional
+                mobile_ratio: # optional
                   type: number
                   example: 1.3333
             dateFirstPublished:
@@ -256,7 +256,7 @@ components:
             type:
               type: string
               enum:
-               - web
+                - web
               example: "web"
             raw_content:
               type: string
@@ -293,12 +293,12 @@ components:
             type:
               type: string
               enum:
-               - region
+                - region
               example: "region"
             items:
               type: array
               items:
-                $ref: '#/components/schemas/CenterpageArea'
+                $ref: "#/components/schemas/CenterpageArea"
     CenterpageArea:
       allOf:
         - $ref: "#/components/schemas/CenterpageAreaBase"
@@ -306,17 +306,17 @@ components:
             type:
               type: string
               enum:
-               - area
+                - area
               example: "area"
             items:
               type: array
               items:
                 oneOf:
-                  - $ref: '#/components/schemas/CenterpageModuleTeaser'
-                  - $ref: '#/components/schemas/CenterpageModuleWeb'
+                  - $ref: "#/components/schemas/CenterpageModuleTeaser"
+                  - $ref: "#/components/schemas/CenterpageModuleWeb"
 
 
-    tabDefinitionBase:
+    TabDefinitionBase:
       required:
         - id
         - title
@@ -324,49 +324,49 @@ components:
         - icon
       properties:
         id:
-           type: string
-           description: "ID of the tab"
-           example: "justsomeuniquestring"
+          type: string
+          description: "ID of the tab"
+          example: "justsomeuniquestring"
         title:
-           type: string
-           minLength: 1
-           maxLength: 15
-           example: "Start"
+          type: string
+          minLength: 1
+          maxLength: 15
+          example: "Start"
         type:
           type: string
           enum:
-           - cpView
-           - webView
-           - menuView
-           - storyView
+            - cpView
+            - webView
+            - menuView
+            - storyView
         icon:
           type: string
           example: iconHome
-    tabDefinitionCpView:
+    TabDefinitionCpView:
       allOf:
-        - $ref: '#/components/schemas/tabDefinitionBase'
+        - $ref: "#/components/schemas/TabDefinitionBase"
         - required:
             - subMenu
           properties:
             type:
               type: string
               enum:
-               - cpView
+                - cpView
               example: "cpView"
             subMenu:
               type: array
               items:
                 oneOf:
-                  - $ref: '#/components/schemas/menuEntryNative'
-                  - $ref: '#/components/schemas/menuEntryWeb'
-    tabDefinitionWebView:
+                  - $ref: "#/components/schemas/MenuEntryNative"
+                  - $ref: "#/components/schemas/MenuEntryWeb"
+    TabDefinitionWebView:
       allOf:
-        - $ref: '#/components/schemas/tabDefinitionBase'
+        - $ref: "#/components/schemas/TabDefinitionBase"
         - properties:
             type:
               type: string
               enum:
-               - webView
+                - webView
               example: "webView"
             url:
               # format: uri
@@ -376,24 +376,24 @@ components:
               type: array
               items:
                 oneOf:
-                  - $ref: '#/components/schemas/menuEntryNative'
-                  - $ref: '#/components/schemas/menuEntryWeb'
-    tabDefinitionMenuView:
+                  - $ref: "#/components/schemas/MenuEntryNative"
+                  - $ref: "#/components/schemas/MenuEntryWeb"
+    TabDefinitionMenuView:
       allOf:
-        - $ref: '#/components/schemas/tabDefinitionBase'
+        - $ref: "#/components/schemas/TabDefinitionBase"
         - properties:
             type:
               type: string
               enum:
-               - menuView
+                - menuView
               example: "menuView"
             sections:
               type: array
               items:
-                $ref: '#/components/schemas/menuSection'
-    tabDefinitionStoryView:
+                $ref: "#/components/schemas/MenuSection"
+    TabDefinitionStoryView:
       allOf:
-        - $ref: '#/components/schemas/tabDefinitionBase'
+        - $ref: "#/components/schemas/TabDefinitionBase"
       properties:
         type:
           type: string
@@ -402,7 +402,7 @@ components:
           example: "storyView"
 
 
-    menuSection:
+    MenuSection:
       properties:
         id:
           type: string
@@ -411,10 +411,10 @@ components:
           type: array
           items:
             oneOf:
-              - $ref: '#/components/schemas/menuEntryNative'
-              - $ref: '#/components/schemas/menuEntryWeb'
-              - $ref: '#/components/schemas/menuEntryBrowser'
-    menuEntryBase:
+              - $ref: "#/components/schemas/MenuEntryNative"
+              - $ref: "#/components/schemas/MenuEntryWeb"
+              - $ref: "#/components/schemas/MenuEntryBrowser"
+    MenuEntryBase:
       required:
         - id
         - title
@@ -432,9 +432,9 @@ components:
             - menuEntryNative
             - menuEntryWeb
             - menuEntryBrowser
-    menuEntryNative:
+    MenuEntryNative:
       allOf:
-        - $ref: '#/components/schemas/menuEntryBase'
+        - $ref: "#/components/schemas/MenuEntryBase"
         - properties:
             targetId:
               type: string
@@ -442,7 +442,7 @@ components:
             type:
               type: string
               enum:
-               - menuEntryNative
+                - menuEntryNative
               example: "menuEntryNative"
             cpItem:
               required:
@@ -450,9 +450,9 @@ components:
               properties:
                 id:
                   $ref: "#/components/schemas/uuid"
-    menuEntryWeb:
+    MenuEntryWeb:
       allOf:
-        - $ref: '#/components/schemas/menuEntryBase'
+        - $ref: "#/components/schemas/MenuEntryBase"
         - required:
             - url
           properties:
@@ -463,11 +463,11 @@ components:
             type:
               type: string
               enum:
-               - menuEntryWeb
+                - menuEntryWeb
               example: "menuEntryWeb"
-    menuEntryBrowser:
+    MenuEntryBrowser:
       allOf:
-        - $ref: '#/components/schemas/menuEntryBase'
+        - $ref: "#/components/schemas/MenuEntryBase"
         - required:
             - url
           properties:
@@ -477,7 +477,7 @@ components:
             type:
               type: string
               enum:
-               - menuEntryBrowser
+                - menuEntryBrowser
               example: "menuEntryBrowser"
 
 
