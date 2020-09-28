@@ -142,6 +142,20 @@ components:
         - html
       description: "Kind of the cp element"
 
+    audio_connection:
+      properties:
+        id:
+          type: string
+          enum:
+            - itunes
+            - spotify
+            - deezer
+            - alexa
+        url:
+          type: string
+          # format: uri
+          example: "https://podcasts.apple.com/podcast/id1279335230"
+
     CenterpageElement:
       required:
         - id
@@ -327,11 +341,15 @@ components:
                 duration:
                   type: string
                   example: "-00:05:23"
-                source:
+                url:
                   type: string
                   # format: uri
                   description: "URL directly to the audio source"
                   example: "https://cdn.podigee.com/media/podcast_17255_unter_pfarrerstochtern_episode_214511_die_opferung_des_isaak.mp3?v=1588876957&source=webplayer"
+                connections:
+                  type: array
+                  items:
+                    $ref: "#/components/schemas/audio_connection"
     CenterpageModuleWeb:
       description: "A non-native module that should be displayed via a web view"
       allOf:
