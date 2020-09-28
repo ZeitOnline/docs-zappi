@@ -196,7 +196,7 @@ components:
                 ratio:
                   type: number
                   example: 1.7778
-                mobileRatio: # optional
+                mobile_ratio: # optional
                   type: number
                   example: 1.3333
             dateFirstPublished:
