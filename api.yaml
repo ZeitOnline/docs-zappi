@@ -443,7 +443,7 @@ components:
               type: string
               enum:
                 - menuEntryNative
-              example: "MenuEntryNative"
+              example: "menuEntryNative"
             cpItem:
               required:
                 - id
@@ -478,7 +478,7 @@ components:
               type: string
               enum:
                 - menuEntryBrowser
-              example: "MenuEntryBrowser"
+              example: "menuEntryBrowser"
 
 
   securitySchemes:
