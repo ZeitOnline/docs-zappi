@@ -41,10 +41,10 @@ paths:
                     type: array
                     items:
                       oneOf:
-                        - $ref: '#/components/schemas/tabDefinitionCpView'
-                        - $ref: '#/components/schemas/tabDefinitionWebView'
-                        - $ref: '#/components/schemas/tabDefinitionMenuView'
-                        - $ref: '#/components/schemas/tabDefinitionStoryView'
+                        - $ref: "#/components/schemas/tabDefinitionCpView"
+                        - $ref: "#/components/schemas/tabDefinitionWebView"
+                        - $ref: "#/components/schemas/tabDefinitionMenuView"
+                        - $ref: "#/components/schemas/tabDefinitionStoryView"
               example: {tabs: [
                 {id: start, title: Start, type: cpView, icon: iconHouse, subMenu: [
                   {id: homepage, title: Aktuell, type: menuEntryWeb, url: "https://www.zeit.de/index"},
@@ -106,7 +106,7 @@ paths:
                   items:
                     type: array
                     items:
-                      $ref: '#/components/schemas/CenterpageRegion'
+                      $ref: "#/components/schemas/CenterpageRegion"
          "404":
            description: "No centerpage found for the given uuid"
 
@@ -298,7 +298,7 @@ components:
             items:
               type: array
               items:
-                $ref: '#/components/schemas/CenterpageArea'
+                $ref: "#/components/schemas/CenterpageArea"
     CenterpageArea:
       allOf:
         - $ref: "#/components/schemas/CenterpageAreaBase"
@@ -312,8 +312,8 @@ components:
               type: array
               items:
                 oneOf:
-                  - $ref: '#/components/schemas/CenterpageModuleTeaser'
-                  - $ref: '#/components/schemas/CenterpageModuleWeb'
+                  - $ref: "#/components/schemas/CenterpageModuleTeaser"
+                  - $ref: "#/components/schemas/CenterpageModuleWeb"
 
 
     tabDefinitionBase:
@@ -344,7 +344,7 @@ components:
           example: iconHome
     tabDefinitionCpView:
       allOf:
-        - $ref: '#/components/schemas/tabDefinitionBase'
+        - $ref: "#/components/schemas/tabDefinitionBase"
         - required:
             - subMenu
           properties:
@@ -357,11 +357,11 @@ components:
               type: array
               items:
                 oneOf:
-                  - $ref: '#/components/schemas/menuEntryNative'
-                  - $ref: '#/components/schemas/menuEntryWeb'
+                  - $ref: "#/components/schemas/menuEntryNative"
+                  - $ref: "#/components/schemas/menuEntryWeb"
     tabDefinitionWebView:
       allOf:
-        - $ref: '#/components/schemas/tabDefinitionBase'
+        - $ref: "#/components/schemas/tabDefinitionBase"
         - properties:
             type:
               type: string
@@ -376,11 +376,11 @@ components:
               type: array
               items:
                 oneOf:
-                  - $ref: '#/components/schemas/menuEntryNative'
-                  - $ref: '#/components/schemas/menuEntryWeb'
+                  - $ref: "#/components/schemas/menuEntryNative"
+                  - $ref: "#/components/schemas/menuEntryWeb"
     tabDefinitionMenuView:
       allOf:
-        - $ref: '#/components/schemas/tabDefinitionBase'
+        - $ref: "#/components/schemas/tabDefinitionBase"
         - properties:
             type:
               type: string
@@ -390,10 +390,10 @@ components:
             sections:
               type: array
               items:
-                $ref: '#/components/schemas/menuSection'
+                $ref: "#/components/schemas/menuSection"
     tabDefinitionStoryView:
       allOf:
-        - $ref: '#/components/schemas/tabDefinitionBase'
+        - $ref: "#/components/schemas/tabDefinitionBase"
       properties:
         type:
           type: string
@@ -411,9 +411,9 @@ components:
           type: array
           items:
             oneOf:
-              - $ref: '#/components/schemas/menuEntryNative'
-              - $ref: '#/components/schemas/menuEntryWeb'
-              - $ref: '#/components/schemas/menuEntryBrowser'
+              - $ref: "#/components/schemas/menuEntryNative"
+              - $ref: "#/components/schemas/menuEntryWeb"
+              - $ref: "#/components/schemas/menuEntryBrowser"
     menuEntryBase:
       required:
         - id
@@ -434,7 +434,7 @@ components:
             - menuEntryBrowser
     menuEntryNative:
       allOf:
-        - $ref: '#/components/schemas/menuEntryBase'
+        - $ref: "#/components/schemas/menuEntryBase"
         - properties:
             targetId:
               type: string
@@ -452,7 +452,7 @@ components:
                   $ref: "#/components/schemas/uuid"
     menuEntryWeb:
       allOf:
-        - $ref: '#/components/schemas/menuEntryBase'
+        - $ref: "#/components/schemas/menuEntryBase"
         - required:
             - url
           properties:
@@ -467,7 +467,7 @@ components:
               example: "menuEntryWeb"
     menuEntryBrowser:
       allOf:
-        - $ref: '#/components/schemas/menuEntryBase'
+        - $ref: "#/components/schemas/menuEntryBase"
         - required:
             - url
           properties:
