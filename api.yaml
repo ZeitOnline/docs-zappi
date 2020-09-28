@@ -257,6 +257,80 @@ components:
                   # format: uri
                   description: "URL directly to the comment area of the article"
                   example: "https://www.zeit.de/my/article#comments"
+    CenterpageTeaserArticle:
+      description: "A teaser module references/represents an article content object"
+      allOf:
+        - $ref: "#/components/schemas/CenterpageTeaserBase"
+          properties:
+            kind:
+              type: string
+              enum:
+                - article
+    CenterpageTeaserGallery:
+      description: "A teaser module references/represents a gallery content object"
+      allOf:
+        - $ref: "#/components/schemas/CenterpageTeaserBase"
+        - required:
+            - gallery
+          properties:
+            kind:
+              type: string
+              enum:
+                - gallery
+            gallery:
+              type: object
+              properties:
+                label:
+                  type: string
+                  description: "Label to display gallery content"
+                  example: "18 Bilder"
+    CenterpageTeaserVideo:
+      description: "A teaser module references/represents a video content object"
+      allOf:
+        - $ref: "#/components/schemas/CenterpageTeaserBase"
+        - required:
+            - video
+          properties:
+            kind:
+              type: string
+              enum:
+                - video
+            video:
+              type: object
+              properties:
+                id:
+                  type: string
+                  example: "6194436097001"
+                # advertising: bool
+                # provider: "brightcove"
+                # product-id:
+                # page-url:
+                # series: serienname
+    CenterpageTeaserPodcast:
+      description: "A teaser module references/represents an article content object with audio"
+      allOf:
+        - $ref: "#/components/schemas/CenterpageTeaserBase"
+        - required:
+            - audio
+          properties:
+            kind:
+              type: string
+              enum:
+               - podcast
+            audio:
+              type: object
+              properties:
+                color:
+                  type: string
+                  example: "#8ed8a6"
+                duration:
+                  type: string
+                  example: "-00:05:23"
+                source:
+                  type: string
+                  # format: uri
+                  description: "URL directly to the audio source"
+                  example: "https://cdn.podigee.com/media/podcast_17255_unter_pfarrerstochtern_episode_214511_die_opferung_des_isaak.mp3?v=1588876957&source=webplayer"
     CenterpageModuleWeb:
       description: "A non-native module that should be displayed via a web view"
       allOf:
@@ -269,6 +343,10 @@ components:
               enum:
                 - module
               example: "module"
+            kind:
+              type: string
+              enum:
+                - html
             raw_content:
               type: string
               format: html
@@ -323,7 +401,10 @@ components:
               type: array
               items:
                 oneOf:
-                  - $ref: "#/components/schemas/CenterpageModuleTeaser"
+                  - $ref: "#/components/schemas/CenterpageTeaserArticle"
+                  - $ref: "#/components/schemas/CenterpageTeaserGallery"
+                  - $ref: "#/components/schemas/CenterpageTeaserVideo"
+                  - $ref: "#/components/schemas/CenterpageTeaserPodcast"
                   - $ref: "#/components/schemas/CenterpageModuleWeb"
 
 
