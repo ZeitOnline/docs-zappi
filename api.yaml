@@ -136,6 +136,21 @@ components:
         - html
       description: "Type of the cp element"
 
+    image:
+      type: object
+      properties:
+        base_url:
+          type: string
+          # format: uri
+          example: "https://img.zeit.de/2020-08/flightradar-4/cinema"
+        ratio:
+          type: number
+          example: 1.7778
+        mobile_ratio:
+          type: number
+          nullable: true
+          example: 1.3333
+
     audio_connection:
       properties:
         id:
@@ -199,18 +214,9 @@ components:
               # format: uri
               example: "https://www.zeit.de/my/article"
             image:
-              type: object
-              properties:
-                base_url:
-                  type: string
-                  # format: uri
-                  example: "https://img.zeit.de/2020-08/flightradar-4/cinema"
-                ratio:
-                  type: number
-                  example: 1.7778
-                mobile_ratio: # optional
-                  type: number
-                  example: 1.3333
+              $ref: "#/components/schemas/image"
+            author_image:
+              $ref: "#/components/schemas/image"
             dateFirstPublished:
               type: string
               format: date-time
