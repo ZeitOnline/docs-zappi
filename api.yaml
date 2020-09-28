@@ -25,15 +25,15 @@ paths:
 
   /structure:
     get:
-       tags:
-         - structure
-       summary: "Returns tab and menu/submenu configuration for the app UI"
-       responses:
-         "200":
-           # XXX description is required, but really already exists in ..summary
-           description: "Success"
-           content:
-             application/json:
+      tags:
+        - structure
+      summary: "Returns tab and menu/submenu configuration for the app UI"
+      responses:
+        "200":
+          # XXX description is required, but really already exists in ..summary
+          description: "Success"
+          content:
+            application/json:
               schema:
                 type: object
                 properties:
@@ -89,10 +89,10 @@ paths:
         - cp
       summary: "Returns the teasers (i.e. content references) on a CenterPage"
       responses:
-         "200":
-           description: "Success"
-           content:
-             application/json:
+        "200":
+          description: "Success"
+          content:
+            application/json:
               schema:
                 type: object
                 properties:
@@ -107,8 +107,8 @@ paths:
                     type: array
                     items:
                       $ref: "#/components/schemas/CenterpageRegion"
-         "404":
-           description: "No centerpage found for the given uuid"
+        "404":
+          description: "No centerpage found for the given uuid"
 
 
 components:
@@ -324,14 +324,14 @@ components:
         - icon
       properties:
         id:
-           type: string
-           description: "ID of the tab"
-           example: "justsomeuniquestring"
+          type: string
+          description: "ID of the tab"
+          example: "justsomeuniquestring"
         title:
-           type: string
-           minLength: 1
-           maxLength: 15
-           example: "Start"
+          type: string
+          minLength: 1
+          maxLength: 15
+          example: "Start"
         type:
           type: string
           enum:
@@ -385,7 +385,7 @@ components:
             type:
               type: string
               enum:
-                 - menuView
+                - menuView
               example: "menuView"
             sections:
               type: array
