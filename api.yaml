@@ -331,7 +331,7 @@ components:
             kind:
               type: string
               enum:
-               - podcast
+                - podcast
             audio:
               type: object
               properties:
