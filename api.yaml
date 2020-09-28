@@ -129,18 +129,12 @@ components:
       enum:
         - region
         - area
-        - module
-      description: "Type of the cp element"
-
-    cp_element_kind:
-      type: string
-      enum:
-        - standard
-        - gallery
-        - video
-        - podcast
+        - teaser
+        - teaser-gallery
+        - teaser-video
+        - teaser-podcast
         - html
-      description: "Kind of the cp element"
+      description: "Type of the cp element"
 
     audio_connection:
       properties:
@@ -160,14 +154,11 @@ components:
       required:
         - id
         - type
-        - kind
       properties:
         id:
           $ref: "#/components/schemas/cp_element_id"
         type:
           $ref: "#/components/schemas/cp_element_type"
-        kind:
-          $ref: "#/components/schemas/cp_element_kind"
     CenterpageTeaserBase:
       description: "A teaser module references/represents a content object (article, video, etc.)"
       allOf:
@@ -179,11 +170,6 @@ components:
             - dateFirstPublished
             - dateLastPublishedSemantic
           properties:
-            type:
-              type: string
-              enum:
-                - module
-              example: "module"
             layout:
               type: string
               # @check https://vivi.zeit.de/repository/data/cp-layouts.xml
@@ -272,15 +258,15 @@ components:
                   # format: uri
                   description: "URL directly to the comment area of the article"
                   example: "https://www.zeit.de/my/article#comments"
-    CenterpageTeaserArticle:
+    CenterpageTeaser:
       description: "A teaser module references/represents an article content object"
       allOf:
         - $ref: "#/components/schemas/CenterpageTeaserBase"
           properties:
-            kind:
+            type:
               type: string
               enum:
-                - standard
+                - teaser
     CenterpageTeaserGallery:
       description: "A teaser module references/represents a gallery content object"
       allOf:
@@ -288,10 +274,10 @@ components:
         - required:
             - gallery
           properties:
-            kind:
+            type:
               type: string
               enum:
-                - gallery
+                - teaser-gallery
             gallery:
               type: object
               properties:
@@ -306,10 +292,10 @@ components:
         - required:
             - video
           properties:
-            kind:
+            type:
               type: string
               enum:
-                - video
+                - teaser-video
             video:
               type: object
               properties:
@@ -328,10 +314,10 @@ components:
         - required:
             - audio
           properties:
-            kind:
+            type:
               type: string
               enum:
-                - podcast
+                - teaser-podcast
             audio:
               type: object
               properties:
@@ -362,7 +348,7 @@ components:
               enum:
                 - module
               example: "module"
-            kind:
+            type:
               type: string
               enum:
                 - html
@@ -428,7 +414,7 @@ components:
               type: array
               items:
                 oneOf:
-                  - $ref: "#/components/schemas/CenterpageTeaserArticle"
+                  - $ref: "#/components/schemas/CenterpageTeaser"
                   - $ref: "#/components/schemas/CenterpageTeaserGallery"
                   - $ref: "#/components/schemas/CenterpageTeaserVideo"
                   - $ref: "#/components/schemas/CenterpageTeaserPodcast"
