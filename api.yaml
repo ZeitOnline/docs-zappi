@@ -136,7 +136,7 @@ components:
         - html
       description: "Type of the cp element"
 
-    image:
+    Image:
       type: object
       properties:
         base_url:
@@ -158,7 +158,7 @@ components:
           type: boolean
           example: false
 
-    audio_connection:
+    AudioConnection:
       properties:
         id:
           type: string
@@ -221,9 +221,9 @@ components:
               # format: uri
               example: "https://www.zeit.de/my/article"
             image:
-              $ref: "#/components/schemas/image"
+              $ref: "#/components/schemas/Image"
             author_image:
-              $ref: "#/components/schemas/image"
+              $ref: "#/components/schemas/Image"
             date_first_published:
               type: string
               format: date-time
@@ -352,7 +352,7 @@ components:
                 connections:
                   type: array
                   items:
-                    $ref: "#/components/schemas/audio_connection"
+                    $ref: "#/components/schemas/AudioConnection"
     CenterpageModuleHTML:
       description: "A non-native module that should be displayed via a web view"
       allOf:
