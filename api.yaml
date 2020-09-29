@@ -459,6 +459,8 @@ components:
         icon:
           type: string
           example: home
+        items:
+          type: array
     TabCenterpage:
       allOf:
         - $ref: "#/components/schemas/TabBase"
