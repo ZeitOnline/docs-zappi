@@ -32,7 +32,7 @@ case $COMMAND in
         pipenv run sphinx-elasticsearch index \
             --es-url=https://docs.zeit.de:443/elasticsearch/ \
             --commit=$(git show --no-patch --pretty=format:%H) \
-            --project-name=app-api htdocs/json
+            --project-name=zappi htdocs/json
     ;;
     *)
         echo "Unrecognized command: $COMMAND"
