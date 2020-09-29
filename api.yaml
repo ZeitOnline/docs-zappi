@@ -154,6 +154,9 @@ components:
           type: string
           nullable: true
           example: "8ed8a6"
+        force_mobile:
+          type: boolean
+          example: false
 
     audio_connection:
       properties:
