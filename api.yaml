@@ -81,7 +81,7 @@ paths:
         - in: path
           name: uuid
           schema:
-            $ref: "#/components/schemas/Uuid"
+            $ref: "#/components/schemas/UUID"
           required: true
           description: "UUID from CMS that identifies a CenterPage content object"
 
@@ -97,7 +97,7 @@ paths:
                 type: object
                 properties:
                   id:
-                    $ref: "#/components/schemas/Uuid"
+                    $ref: "#/components/schemas/UUID"
                   url:
                     type: string
                     # format: uri  XXX only supported in openapi-3.1
@@ -113,18 +113,18 @@ paths:
 
 components:
   schemas:
-    Uuid:
+    UUID:
       type: string
       pattern: "^(\\{urn:uuid:[-a-f0-9]+\\}|[-a-z0-9/]+)$"
       description: "CMS UUID that denotes a content object. For testing/development, a CMS path is also accepted."
       example: "{urn:uuid:d995ba5a-a7fb-401a-bdc8-86cf2cbf0cda}"
 
-    CpElementId:
+    CenterpageElementId:
       type: string
       pattern: "^id-[-a-f0-9]+$"
       description: "ID of the cp element"
 
-    CpElementType:
+    CenterpageElementType:
       type: string
       enum:
         - region
@@ -139,9 +139,9 @@ components:
         - type
       properties:
         id:
-          $ref: "#/components/schemas/CpElementId"
+          $ref: "#/components/schemas/CenterpageElementId"
         type:
-          $ref: "#/components/schemas/CpElementType"
+          $ref: "#/components/schemas/CenterpageElementType"
     CenterpageModuleTeaser:
       description: "A teaser module references/represents a content object (article, video, etc.)"
       allOf:
@@ -449,7 +449,7 @@ components:
                 - id
               properties:
                 id:
-                  $ref: "#/components/schemas/Uuid"
+                  $ref: "#/components/schemas/UUID"
     MenuEntryWeb:
       allOf:
         - $ref: "#/components/schemas/MenuEntryBase"
