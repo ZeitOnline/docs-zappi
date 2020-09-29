@@ -335,13 +335,13 @@ components:
         type:
           type: string
           enum:
-            - cpView
-            - webView
-            - menuView
-            - storyView
+            - view-cp
+            - view-web
+            - view-menu
+            - view-story
         icon:
           type: string
-          example: iconHome
+          example: home
     TabDefinitionCpView:
       allOf:
         - $ref: "#/components/schemas/TabDefinitionBase"
@@ -351,8 +351,8 @@ components:
             type:
               type: string
               enum:
-                - cpView
-              example: "cpView"
+                - view-cp
+              example: "view-cp"
             sub_menu:
               type: array
               items:
@@ -366,8 +366,8 @@ components:
             type:
               type: string
               enum:
-                - webView
-              example: "webView"
+                - view-web
+              example: "view-web"
             url:
               # format: uri
               type: string
@@ -385,8 +385,8 @@ components:
             type:
               type: string
               enum:
-                - menuView
-              example: "menuView"
+                - view-menu
+              example: "view-menu"
             sections:
               type: array
               items:
@@ -398,8 +398,8 @@ components:
         type:
           type: string
           enum:
-            - storyView
-          example: "storyView"
+            - view-story
+          example: "view-story"
 
 
     MenuSection:
@@ -429,9 +429,9 @@ components:
         type:
           type: string
           enum:
-            - menuEntryNative
-            - menuEntryWeb
-            - menuEntryBrowser
+            - menu-entry-native
+            - menu-entry-web
+            - menu-entry-browser
     MenuEntryNative:
       allOf:
         - $ref: "#/components/schemas/MenuEntryBase"
@@ -442,8 +442,8 @@ components:
             type:
               type: string
               enum:
-                - menuEntryNative
-              example: "menuEntryNative"
+                - menu-entry-native
+              example: "menu-entry-native"
             cp_item:
               required:
                 - id
@@ -463,8 +463,8 @@ components:
             type:
               type: string
               enum:
-                - menuEntryWeb
-              example: "menuEntryWeb"
+                - menu-entry-web
+              example: "menu-entry-web"
     MenuEntryBrowser:
       allOf:
         - $ref: "#/components/schemas/MenuEntryBase"
@@ -477,8 +477,8 @@ components:
             type:
               type: string
               enum:
-                - menuEntryBrowser
-              example: "menuEntryBrowser"
+                - menu-entry-browser
+              example: "menu-entry-browser"
 
 
   securitySchemes:
