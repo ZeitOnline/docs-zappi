@@ -150,8 +150,8 @@ components:
             - layout
             - title
             - url
-            - dateFirstPublished
-            - dateLastPublishedSemantic
+            - date_first_published
+            - date_last_published_semantic
           properties:
             type:
               type: string
@@ -199,12 +199,12 @@ components:
                 mobile_ratio: # optional
                   type: number
                   example: 1.3333
-            dateFirstPublished:
+            date_first_published:
               type: string
               format: date-time
               description: "Timestamp when the article was published initially"
               example: "2019-12-31T13:12:00Z"
-            dateLastPublishedSemantic:
+            date_last_published_semantic:
               type: string
               format: date-time
               description: "Timestamp of the most recent semantic/relevant update to the article"
@@ -346,14 +346,14 @@ components:
       allOf:
         - $ref: "#/components/schemas/TabDefinitionBase"
         - required:
-            - subMenu
+            - sub_menu
           properties:
             type:
               type: string
               enum:
                 - cpView
               example: "cpView"
-            subMenu:
+            sub_menu:
               type: array
               items:
                 oneOf:
@@ -372,7 +372,7 @@ components:
               # format: uri
               type: string
               example: "https://www.zeit.de/index"
-            subMenu:
+            sub_menu:
               type: array
               items:
                 oneOf:
@@ -436,7 +436,7 @@ components:
       allOf:
         - $ref: "#/components/schemas/MenuEntryBase"
         - properties:
-            targetId:
+            target_id:
               type: string
               example: "some-native-id"
             type:
@@ -444,7 +444,7 @@ components:
               enum:
                 - menuEntryNative
               example: "menuEntryNative"
-            cpItem:
+            cp_item:
               required:
                 - id
               properties:
