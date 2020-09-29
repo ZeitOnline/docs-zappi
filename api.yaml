@@ -353,7 +353,7 @@ components:
                   type: array
                   items:
                     $ref: "#/components/schemas/audio_connection"
-    CenterpageModuleWeb:
+    CenterpageModuleHTML:
       description: "A non-native module that should be displayed via a web view"
       allOf:
         - $ref: "#/components/schemas/CenterpageElement"
@@ -431,7 +431,7 @@ components:
                   - $ref: "#/components/schemas/CenterpageTeaserGallery"
                   - $ref: "#/components/schemas/CenterpageTeaserVideo"
                   - $ref: "#/components/schemas/CenterpageTeaserPodcast"
-                  - $ref: "#/components/schemas/CenterpageModuleWeb"
+                  - $ref: "#/components/schemas/CenterpageModuleHTML"
 
 
     TabDefinitionBase:
