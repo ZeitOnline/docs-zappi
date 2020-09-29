@@ -130,8 +130,47 @@ components:
         - region
         - area
         - teaser
-        - web
+        - teaser-gallery
+        - teaser-video
+        - teaser-podcast
+        - html
       description: "Type of the cp element"
+
+    image:
+      type: object
+      properties:
+        base_url:
+          type: string
+          # format: uri
+          example: "https://img.zeit.de/2020-08/flightradar-4/cinema"
+        ratio:
+          type: number
+          example: 1.7778
+        mobile_ratio:
+          type: number
+          nullable: true
+          example: 1.3333
+        fill_color:
+          type: string
+          nullable: true
+          example: "8ed8a6"
+        force_mobile:
+          type: boolean
+          example: false
+
+    audio_connection:
+      properties:
+        id:
+          type: string
+          enum:
+            - itunes
+            - spotify
+            - deezer
+            - alexa
+        url:
+          type: string
+          # format: uri
+          example: "https://podcasts.apple.com/podcast/id1279335230"
 
     CenterpageElement:
       required:
@@ -142,7 +181,7 @@ components:
           $ref: "#/components/schemas/cp_element_id"
         type:
           $ref: "#/components/schemas/cp_element_type"
-    CenterpageModuleTeaser:
+    CenterpageTeaserBase:
       description: "A teaser module references/represents a content object (article, video, etc.)"
       allOf:
         - $ref: "#/components/schemas/CenterpageElement"
@@ -153,11 +192,6 @@ components:
             - dateFirstPublished
             - dateLastPublishedSemantic
           properties:
-            type:
-              type: string
-              enum:
-                - teaser
-              example: "teaser"
             layout:
               type: string
               # @check https://vivi.zeit.de/repository/data/cp-layouts.xml
@@ -187,18 +221,9 @@ components:
               # format: uri
               example: "https://www.zeit.de/my/article"
             image:
-              type: object
-              properties:
-                base_url:
-                  type: string
-                  # format: uri
-                  example: "https://img.zeit.de/2020-08/flightradar-4/cinema"
-                ratio:
-                  type: number
-                  example: 1.7778
-                mobile_ratio: # optional
-                  type: number
-                  example: 1.3333
+              $ref: "#/components/schemas/image"
+            author_image:
+              $ref: "#/components/schemas/image"
             dateFirstPublished:
               type: string
               format: date-time
@@ -246,7 +271,89 @@ components:
                   # format: uri
                   description: "URL directly to the comment area of the article"
                   example: "https://www.zeit.de/my/article#comments"
-    CenterpageModuleWeb:
+    CenterpageTeaser:
+      description: "A teaser module references/represents an article content object"
+      allOf:
+        - $ref: "#/components/schemas/CenterpageTeaserBase"
+          properties:
+            type:
+              type: string
+              enum:
+                - teaser
+              example: "teaser"
+    CenterpageTeaserGallery:
+      description: "A teaser module references/represents a gallery content object"
+      allOf:
+        - $ref: "#/components/schemas/CenterpageTeaserBase"
+        - required:
+            - gallery
+          properties:
+            type:
+              type: string
+              enum:
+                - teaser-gallery
+              example: "teaser-gallery"
+            gallery:
+              type: object
+              properties:
+                label:
+                  type: string
+                  description: "Label to display gallery content"
+                  example: "18 Bilder"
+    CenterpageTeaserVideo:
+      description: "A teaser module references/represents a video content object"
+      allOf:
+        - $ref: "#/components/schemas/CenterpageTeaserBase"
+        - required:
+            - video
+          properties:
+            type:
+              type: string
+              enum:
+                - teaser-video
+              example: "teaser-video"
+            video:
+              type: object
+              properties:
+                id:
+                  type: string
+                  example: "6194436097001"
+                # advertising: bool
+                # provider: "brightcove"
+                # product-id:
+                # page-url:
+                # series: serienname
+    CenterpageTeaserPodcast:
+      description: "A teaser module references/represents an article content object with audio"
+      allOf:
+        - $ref: "#/components/schemas/CenterpageTeaserBase"
+        - required:
+            - audio
+          properties:
+            type:
+              type: string
+              enum:
+                - teaser-podcast
+              example: "teaser-podcast"
+            audio:
+              type: object
+              properties:
+                color:
+                  type: string
+                  example: "#8ed8a6"
+                duration:
+                  type: string
+                  example: "-00:05:23"
+                url:
+                  type: string
+                  # format: uri
+                  description: "URL directly to the audio source"
+                  example: "https://cdn.podigee.com/media/podcast_17255_unter_pfarrerstochtern_episode_214511_die_opferung_des_isaak.mp3?v=1588876957&source=webplayer"
+                connections:
+                  type: array
+                  items:
+                    $ref: "#/components/schemas/audio_connection"
+    CenterpageModuleHTML:
       description: "A non-native module that should be displayed via a web view"
       allOf:
         - $ref: "#/components/schemas/CenterpageElement"
@@ -256,8 +363,8 @@ components:
             type:
               type: string
               enum:
-                - web
-              example: "web"
+                - html
+              example: "html"
             raw_content:
               type: string
               format: html
@@ -295,6 +402,10 @@ components:
               enum:
                 - region
               example: "region"
+            layout:
+              type: string
+              enum:
+                - standard
             items:
               type: array
               items:
@@ -308,12 +419,19 @@ components:
               enum:
                 - area
               example: "area"
+            layout:
+              type: string
+              enum:
+                - standard
             items:
               type: array
               items:
                 oneOf:
-                  - $ref: "#/components/schemas/CenterpageModuleTeaser"
-                  - $ref: "#/components/schemas/CenterpageModuleWeb"
+                  - $ref: "#/components/schemas/CenterpageTeaser"
+                  - $ref: "#/components/schemas/CenterpageTeaserGallery"
+                  - $ref: "#/components/schemas/CenterpageTeaserVideo"
+                  - $ref: "#/components/schemas/CenterpageTeaserPodcast"
+                  - $ref: "#/components/schemas/CenterpageModuleHTML"
 
 
     TabDefinitionBase:
