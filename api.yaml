@@ -299,7 +299,11 @@ components:
                 label:
                   type: string
                   description: "Label to display gallery content"
-                  example: "18 Bilder"
+                  example: "Fotostrecke"
+                imagecount:
+                  type: integer
+                  minimum: 0
+                  description: number of images contained in the image gallery
     CenterpageTeaserVideo:
       description: "A teaser module references/represents a video content object"
       allOf:
