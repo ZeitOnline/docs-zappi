@@ -46,7 +46,7 @@ paths:
                         - $ref: "#/components/schemas/TabDefinitionMenuView"
                         - $ref: "#/components/schemas/TabDefinitionStoryView"
               example: {tabs: [
-                {id: start, title: Start, type: view-cp, icon: house, sub_menu: [
+                {id: start, title: Start, type: view-cp, icon: house, items: [
                   {id: homepage, title: Aktuell, type: menu-entry-web, url: "https://www.zeit.de/index"},
                   {id: ressortPolitik, title: Politik, type: menu-entry-native, cp_item: {id: "{urn:uuid:b4d1e3b1-aac4-4a80-b820-e4093fe24a36}"} },
                   {id: ressortGesellschaft, title: Gesellschaft, type: menu-entry-native, cp_item: {id: "{urn:uuid:c92ad9be-67e0-497d-beee-6c2e063352cc}"} },
@@ -54,18 +54,18 @@ paths:
                   {id: ressortWissen, title: Wissen, type: menu-entry-native, cp_item: {id: "{urn:uuid:c84692ca-b0c9-4772-8c6b-85e2abc446e1}"} },
                   {id: ressortKultur, title: Kultur, type: menu-entry-native, cp_item: {id: "{urn:uuid:49b109f0-bbad-495e-8a88-ad91ec1ef8f9}"} }
                 ]},
-                {id: news, title: Schlagzeilen, type: view-cp, icon: clock, sub_menu: [
+                {id: news, title: Schlagzeilen, type: view-cp, icon: clock, items: [
                   {id: newsAll, title: "Alle Schlagzeilen", type: menu-entry-native, cp_item: {id: "{urn:uuid:08945d5e-483c-4e7b-9843-69a8f590ada9}"} },
                   {id: newsMostImportant, title: "Die wichtigsten Nachrichten", type: menu-entry-native, cp_item: {id: "{urn:uuid:df60a52c-5f4d-4804-833d-ec31e24dbd43}"} },
                   {id: newsAnalysisAndReports, title: "Analysen und Hintergründe", type: menu-entry-native, cp_item: {id: "{urn:uuid:d6913463-1804-466d-b6d0-34376ef21916}"} }
                 ]},
-                {id: discover, title: Entdecken, type: view-story, icon: compass},
-                {id: zplus, title: Mein Abo, type: view-cp, icon: zplus, sub_menu: [
+                {id: discover, title: Entdecken, type: view-story, icon: compass, items: []},
+                {id: zplus, title: Mein Abo, type: view-cp, icon: zplus, items: [
                   {id: exclusive, title: "Exklusive Artikel", type: menu-entry-native, cp_item: {id: "{urn:uuid:0fd9480f-1b52-4fcb-942e-8089e378102e}"} },
                   {id: zeitPDFWebReader, title: "DIE ZEIT", type: menu-entry-web, url: "https://epaper.zeit.de/abo/diezeit" },
                   {id: wochenMarkt, title: "Wochenmarkt", type: menu-entry-web, url: "https://www.zeit.de/wochenmarkt" }
                 ]},
-                {id: menu, title: Mehr, type: view-menu, icon: avatar, sections: [
+                {id: menu, title: Mehr, type: view-menu, icon: avatar, items: [
                   {id: user-menu, title: "Mein Bereich", entries: [
                     {id: reading-list, title: Merkliste, type: menu-entry-native, target_id: native-reading-list},
                     {id: reading-history, title: Verlauf, type: menu-entry-native, target_id: native-reading-history},
@@ -464,14 +464,14 @@ components:
       allOf:
         - $ref: "#/components/schemas/TabDefinitionBase"
         - required:
-            - sub_menu
+            - items
           properties:
             type:
               type: string
               enum:
                 - view-cp
               example: "view-cp"
-            sub_menu:
+            items:
               type: array
               items:
                 oneOf:
@@ -490,7 +490,7 @@ components:
               # format: uri
               type: string
               example: "https://www.zeit.de/index"
-            sub_menu:
+            items:
               type: array
               items:
                 oneOf:
@@ -505,7 +505,7 @@ components:
               enum:
                 - view-menu
               example: "view-menu"
-            sections:
+            items:
               type: array
               items:
                 $ref: "#/components/schemas/MenuSection"
