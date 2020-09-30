@@ -5,7 +5,11 @@
   "dependencies": [
     "swagger-ui-dist",
     "swagger-cli",
-    "openapi-types@>=7"
+    "openapi-types@>=7",
+    "chai",
+    "chai-openapi-response-validator",
+    "axios",
+    "mocha"
   ],
   "keywords": [],
   "author": "",
