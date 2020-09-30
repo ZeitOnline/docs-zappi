@@ -243,6 +243,7 @@ components:
               type: array
               items:
                 type: string
+                # ZON-6127: disabled until the implementation catches up:
                 # enum:
                 #   - brandeins
                 #   - liveblog
@@ -255,6 +256,7 @@ components:
               example: ["zplus"]
             label:
               type: string
+              # ZON-6127: disabled until the implementation catches up:
               # enum:
               #   - Anzeige
               #   - Verlagsangebot
