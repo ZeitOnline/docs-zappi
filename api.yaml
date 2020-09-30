@@ -243,21 +243,21 @@ components:
               type: array
               items:
                 type: string
-                enum:
-                  - brandeins
-                  - liveblog
-                  - liveblog-closed
-                  - zett
-                  - zplus
-                  - zplus-register
-                  - zplus-spiele
+                # enum:
+                #   - brandeins
+                #   - liveblog
+                #   - liveblog-closed
+                #   - zett
+                #   - zplus
+                #   - zplus-register
+                #   - zplus-spiele
               description: "List of icon IDs that should be displayed for this teaser"
               example: ["zplus"]
             label:
               type: string
-              enum:
-                - Anzeige
-                - Verlagsangebot
+              # enum:
+              #   - Anzeige
+              #   - Verlagsangebot
               description: "Additional label to mark teasers with corporate advertising"
               example: "Verlagsangebot"
             comments:
