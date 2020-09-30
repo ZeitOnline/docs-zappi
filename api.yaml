@@ -511,6 +511,9 @@ components:
         id:
           type: string
           example: "menu-section-1"
+        title:
+          type: string
+          example: "My section"
         items:
           type: array
           items:
