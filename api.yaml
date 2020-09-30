@@ -501,7 +501,7 @@ components:
             items:
               type: array
               items:
-                $ref: "#/components/schemas/CenterpageModuleTeaser"
+                $ref: "#/components/schemas/CenterpageTeaser"
 
 
     MenuSection:
