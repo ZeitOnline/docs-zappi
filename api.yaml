@@ -17,10 +17,10 @@ servers:
     description: "Staging"
     variables:
       version:
-        default: "0.3.0"
+        default: "0.3.1"
         enum:
           - "0.2.0"
-          - "0.3.0"
+          - "0.3.1"
 
 paths:
 
