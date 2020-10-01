@@ -517,6 +517,7 @@ components:
           items:
             oneOf:
               - $ref: "#/components/schemas/MenuItemNative"
+              - $ref: "#/components/schemas/MenuItemApp"
               - $ref: "#/components/schemas/MenuItemWeb"
               - $ref: "#/components/schemas/MenuItemBrowser"
     MenuItemBase:
