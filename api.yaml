@@ -67,8 +67,8 @@ paths:
                 ]},
                 {id: menu, title: Mehr, type: tab-menu, icon: avatar, items: [
                   {id: user-menu, title: "Mein Bereich", items: [
-                    {id: reading-list, title: Merkliste, type: menu-item-app, target_id: native-reading-list},
-                    {id: reading-history, title: Verlauf, type: menu-item-app, target_id: native-reading-history},
+                    {id: reading-list, title: Merkliste, type: menu-item-app, targetId: native-reading-list},
+                    {id: reading-history, title: Verlauf, type: menu-item-app, targetId: native-reading-history},
                     {id: comment-list, title: Kommentare, type: menu-item-web, url: "https://profile.zeit.de"}
                   ]}
                 ]}
@@ -139,22 +139,22 @@ components:
     Image:
       type: object
       properties:
-        base_url:
+        baseUrl:
           type: string
           # format: uri
           example: "https://img.zeit.de/2020-08/flightradar-4/cinema"
         ratio:
           type: number
           example: 1.7778
-        mobile_ratio:
+        mobileRatio:
           type: number
           nullable: true
           example: 1.3333
-        fill_color:
+        fillColor:
           type: string
           nullable: true
           example: "8ed8a6"
-        force_mobile:
+        visibleMobile:
           type: boolean
           example: false
 
@@ -189,8 +189,8 @@ components:
             - layout
             - title
             - url
-            - date_first_published
-            - date_last_published_semantic
+            - dateFirstPublished
+            - dateLastPublishedSemantic
           properties:
             layout:
               type: string
@@ -222,14 +222,14 @@ components:
               example: "https://www.zeit.de/my/article"
             image:
               $ref: "#/components/schemas/Image"
-            author_image:
+            authorImage:
               $ref: "#/components/schemas/Image"
-            date_first_published:
+            dateFirstPublished:
               type: string
               format: date-time
               description: "Timestamp when the article was published initially"
               example: "2019-12-31T13:12:00Z"
-            date_last_published_semantic:
+            dateLastPublishedSemantic:
               type: string
               format: date-time
               description: "Timestamp of the most recent semantic/relevant update to the article"
@@ -360,14 +360,14 @@ components:
       allOf:
         - $ref: "#/components/schemas/CenterpageElement"
         - required:
-            - raw_content
+            - content
           properties:
             type:
               type: string
               enum:
                 - html
               example: "html"
-            raw_content:
+            content:
               type: string
               format: html
               example: "<embed>Anything can happen here.</embed>"
@@ -555,14 +555,14 @@ components:
       allOf:
         - $ref: "#/components/schemas/MenuItemBase"
         - required:
-            - target_id
+            - targetId
           properties:
             type:
               type: string
               enum:
                 - menu-item-app
               example: "menu-item-app"
-            target_id:
+            targetId:
               type: string
               example: "some-app-id"
     MenuItemWeb:
