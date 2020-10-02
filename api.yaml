@@ -481,19 +481,6 @@ components:
                 oneOf:
                   - $ref: "#/components/schemas/MenuItemNative"
                   - $ref: "#/components/schemas/MenuItemWeb"
-    TabMenu:
-      allOf:
-        - $ref: "#/components/schemas/TabBase"
-        - properties:
-            type:
-              type: string
-              enum:
-                - tab-menu
-              example: "tab-menu"
-            items:
-              type: array
-              items:
-                $ref: "#/components/schemas/MenuSection"
     TabStory:
       allOf:
         - $ref: "#/components/schemas/TabBase"
@@ -507,6 +494,19 @@ components:
               type: array
               items:
                 $ref: "#/components/schemas/MenuItemNative"
+    TabMenu:
+      allOf:
+        - $ref: "#/components/schemas/TabBase"
+        - properties:
+            type:
+              type: string
+              enum:
+                - tab-menu
+              example: "tab-menu"
+            items:
+              type: array
+              items:
+                $ref: "#/components/schemas/MenuSection"
 
     MenuSection:
       properties:
