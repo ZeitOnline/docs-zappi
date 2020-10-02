@@ -277,7 +277,7 @@ components:
       description: "A teaser module references/represents an article content object"
       allOf:
         - $ref: "#/components/schemas/CenterpageTeaserBase"
-          properties:
+        - properties:
             type:
               type: string
               enum:
