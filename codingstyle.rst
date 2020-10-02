@@ -18,7 +18,7 @@ Namen
 
 * Schema-Objekte verwenden CamelCase mit Großbuchstaben vorn
   (z.B. ``CenterpageElement``, ``TabDefinitionBase``)
-* Properties verwenden snake_case und werden klein geschrieben
-  (z.B. ``base_url``, ``date_first_published``)
+* Properties verwenden dromedaryCase (lower camel case)
+  (z.B. ``baseUrl``, ``dateFirstPublished``)
 * Identifier verwenden kebab-case und werden klein geschrieben
   (z.B. ``zplus-register``, ``menu-entry-native``)
