@@ -442,7 +442,6 @@ components:
         - title
         - type
         - icon
-        - items
       properties:
         id:
           type: string
@@ -462,12 +461,12 @@ components:
         icon:
           type: string
           example: home
-        items:
-          type: array
     TabCenterpage:
       allOf:
         - $ref: "#/components/schemas/TabBase"
-        - properties:
+        - required:
+            - items
+          properties:
             type:
               type: string
               enum:
@@ -482,7 +481,9 @@ components:
     TabMenu:
       allOf:
         - $ref: "#/components/schemas/TabBase"
-        - properties:
+        - required:
+            - items
+          properties:
             type:
               type: string
               enum:
@@ -495,7 +496,9 @@ components:
     TabStory:
       allOf:
         - $ref: "#/components/schemas/TabBase"
-        - properties:
+        - required:
+            - source
+          properties:
             type:
               type: string
               enum:
