@@ -2,11 +2,12 @@
   "name": "swagger-deployment",
   "version": "1.0.0",
   "description": "",
-  "dependencies": [
-    "swagger-ui-dist",
-    "swagger-cli",
-    "openapi-types@>=7"
-  ],
+  "private": true,
+  "dependencies": {
+    "swagger-ui-dist": "^3.34.0",
+    "swagger-cli": "^4.0.4",
+    "openapi-types": ">=7"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC"
