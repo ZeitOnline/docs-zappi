@@ -267,9 +267,10 @@ components:
             comments:
               type: object
               properties:
-                count:
-                  type: integer
-                  description: "Current count of comments for this article"
+                label:
+                  type: string
+                  description: "Descriptive label for count of comments for this article"
+                  example: "18 Kommentare"
                 url:
                   type: string
                   # format: uri
