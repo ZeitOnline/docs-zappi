@@ -345,7 +345,8 @@ components:
               properties:
                 color:
                   type: string
-                  example: "#8ed8a6"
+                  nullable: true
+                  example: "8ed8a6"
                 duration:
                   type: string
                   example: "-00:05:23"
