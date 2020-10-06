@@ -112,6 +112,31 @@ paths:
         "404":
           description: "No centerpage found for the given uuid"
 
+  /merkliste:
+    get:
+      parameters:
+        - in: ssoid
+          required: true
+          description: "SSOID from SSO to identify the user's bookmarks"
+    tags:
+      - merkliste
+    summary: "Returns the list of bookmarks"
+    responses:
+      "200":
+        description: "Success"
+          content:
+            application/json:
+              schema:
+                url:
+                  type: string
+                  description: "https://www.zeit.de/konto/listen/merkliste"
+                items:
+                  type: array
+                  items:
+                    $ref: "#/components/schemas/CenterpageRegion"
+      "404":
+        description: "No list of bookmarks found for the given user."
+
 
 components:
   schemas:
