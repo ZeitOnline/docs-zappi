@@ -140,6 +140,7 @@ components:
 
     Image:
       type: object
+      nullable: true
       properties:
         baseUrl:
           type: string
