@@ -431,6 +431,7 @@ components:
             layout:
               type: string
               enum:
+                - headed
                 - standard
             items:
               type: array
