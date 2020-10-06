@@ -202,9 +202,11 @@ components:
                 - zon-teaser-list
                 - zon-teaser-printbox
                 - zon-teaser-small
+                - zon-teaser-small-compact
                 - zon-teaser-square
-                - zon-teaser-square-author
+                - zon-teaser-square-compact
                 - zon-teaser-standard
+                - zon-teaser-standard-compact
                 - zon-teaser-wide
               description: "How to display this teaser (e.g large/small)"
             title:
@@ -431,6 +433,7 @@ components:
             layout:
               type: string
               enum:
+                - tab
                 - headed
                 - standard
             items:
