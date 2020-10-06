@@ -198,11 +198,13 @@ components:
               type: string
               # @check https://vivi.zeit.de/repository/data/cp-layouts.xml
               enum:
+                - zon-teaser-list
+                - zon-teaser-printbox
+                - zon-teaser-small
+                - zon-teaser-square
+                - zon-teaser-square-author
                 - zon-teaser-standard
                 - zon-teaser-wide
-                - zon-teaser-square-author
-                - zon-teaser-poster
-                # news-teaser
               description: "How to display this teaser (e.g large/small)"
             title:
               type: string
