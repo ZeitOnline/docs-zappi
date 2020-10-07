@@ -198,11 +198,15 @@ components:
               type: string
               # @check https://vivi.zeit.de/repository/data/cp-layouts.xml
               enum:
+                - zon-teaser-list
+                - zon-teaser-printbox
+                - zon-teaser-small
+                - zon-teaser-small-compact
+                - zon-teaser-square
+                - zon-teaser-square-compact
                 - zon-teaser-standard
+                - zon-teaser-standard-compact
                 - zon-teaser-wide
-                - zon-teaser-square-author
-                - zon-teaser-poster
-                # news-teaser
               description: "How to display this teaser (e.g large/small)"
             title:
               type: string
@@ -223,9 +227,13 @@ components:
               # format: uri
               example: "https://www.zeit.de/my/article"
             image:
-              $ref: "#/components/schemas/Image"
+              allOf:
+                - $ref: "#/components/schemas/Image"
+                - nullable: true
             authorImage:
-              $ref: "#/components/schemas/Image"
+              allOf:
+                - $ref: "#/components/schemas/Image"
+                - nullable: true
             dateFirstPublished:
               type: string
               format: date-time
@@ -245,15 +253,15 @@ components:
               type: array
               items:
                 type: string
-                # ZON-6127: disabled until the implementation catches up:
-                # enum:
-                #   - brandeins
-                #   - liveblog
-                #   - liveblog-closed
-                #   - zett
-                #   - zplus
-                #   - zplus-register
-                #   - zplus-spiele
+                enum:
+                  - brandeins
+                  - liveblog
+                  - liveblog-closed
+                  - zett
+                  - zplus
+                  - zplus-register
+                  - zplus-dynamic
+                  - zplus-spiele
               description: "List of icon IDs that should be displayed for this teaser"
               example: ["zplus"]
             label:
@@ -428,6 +436,8 @@ components:
             layout:
               type: string
               enum:
+                - tab
+                - headed
                 - standard
             items:
               type: array
