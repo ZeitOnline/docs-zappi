@@ -43,18 +43,10 @@ paths:
             schema:
               type: object
               properties:
-                total:
-                  type: integer
-                  description: "The total number of results"
-                hits:
+                items:
                   type: array
                   items:
-                    oneOf:
-                      - $ref: "#/components/schemas/CenterpageTeaser"
-                      - $ref: "#/components/schemas/CenterpageTeaserGallery"
-                      - $ref: "#/components/schemas/CenterpageTeaserVideo"
-                      - $ref: "#/components/schemas/CenterpageTeaserPodcast"
-                      - $ref: "#/components/schemas/CenterpageModuleHTML"
+                    $ref: "#/components/schemas/CenterpageRegion"
   /structure:
     get:
       tags:
