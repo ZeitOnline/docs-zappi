@@ -140,7 +140,6 @@ components:
 
     Image:
       type: object
-      nullable: true
       properties:
         baseUrl:
           type: string
@@ -228,9 +227,13 @@ components:
               # format: uri
               example: "https://www.zeit.de/my/article"
             image:
-              $ref: "#/components/schemas/Image"
+              allOf:
+                - $ref: "#/components/schemas/Image"
+                - nullable: true
             authorImage:
-              $ref: "#/components/schemas/Image"
+              allOf:
+                - $ref: "#/components/schemas/Image"
+                - nullable: true
             dateFirstPublished:
               type: string
               format: date-time
