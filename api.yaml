@@ -163,6 +163,7 @@ components:
 
     Image:
       type: object
+      nullable: true
       properties:
         baseUrl:
           type: string
@@ -250,13 +251,9 @@ components:
               # format: uri
               example: "https://www.zeit.de/my/article"
             image:
-              allOf:
-                - $ref: "#/components/schemas/Image"
-                - nullable: true
+              $ref: "#/components/schemas/Image"
             authorImage:
-              allOf:
-                - $ref: "#/components/schemas/Image"
-                - nullable: true
+              $ref: "#/components/schemas/Image"
             dateFirstPublished:
               type: string
               format: date-time

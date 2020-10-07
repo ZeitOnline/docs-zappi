@@ -2,10 +2,21 @@
 Überblick
 =========
 
-XXX writeme
+Eine REST API speziell für die aktuell von der Agentur Prepublic Entwickelte iOS und Android Anwendung.
 
-.. @@uncomment
-   .. image:: ./architecture.png
-       :alt: Architecture Overview
-       :align: center
-       :target: _images/architecture.png
+
+Prototyp der App
+----------------
+
+Der Prototyp dazu kann auf `Invision <https://projects.invisionapp.com/d/login?redir=%2Fd%2Fmain%2Fdefault%2F#/console/19528775/408224869/preview>`_ eingesehen werden.
+
+
+Prototyp des Backends
+---------------------
+
+Die jeweils aktuelle Entwicklungsversion des Backends ist unter ``https://zappi.staging.zeit.de/x.y.z`` erreichbar, wobei ``xxx`` derzeit ein beliebiger Platzhalter für die Version sein kann, der vom Backend ignoriert wird.
+Sprich, egal, welcher Wert dort steht, es wird immer die aktuellste Version ausgeliefert.
+
+Der Endpunkt ist per Basic Auth mit hardgecodeten Credentials geschützt und kann bspw. mit folgendem Befehl abgerufen werden::
+
+    http -a app:tTYhruFJ77/VmEty "https://zappi.staging.zeit.de/0.3.2/cp/{urn:uuid:b4d1e3b1-aac4-4a80-b820-e4093fe24a36}"
