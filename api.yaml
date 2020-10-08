@@ -23,7 +23,30 @@ servers:
           - "0.3.1"
 
 paths:
-
+  /search:
+   get:
+    tags:
+      - search
+    summary: "Main entry point for generic search."
+    parameters:
+      - in: query
+        name: q
+        schema:
+          type: string
+        required: true
+        description: "The term that should be searched for"
+    responses:
+      "200":
+        description: "Returns a list of results"
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                items:
+                  type: array
+                  items:
+                    $ref: "#/components/schemas/CenterpageRegion"
   /structure:
     get:
       tags:
