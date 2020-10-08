@@ -148,6 +148,7 @@ components:
       type: string
       pattern: "^id-[-a-f0-9]+$"
       description: "ID of the cp element"
+      example: "id-fcfd3deb-4c26-472b-8bdd-238372d5131b"
 
     CenterpageElementType:
       type: string
