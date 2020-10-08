@@ -17,6 +17,4 @@ Prototyp des Backends
 Die jeweils aktuelle Entwicklungsversion des Backends ist unter ``https://zappi.staging.zeit.de/x.y.z`` erreichbar, wobei ``xxx`` derzeit ein beliebiger Platzhalter für die Version sein kann, der vom Backend ignoriert wird.
 Sprich, egal, welcher Wert dort steht, es wird immer die aktuellste Version ausgeliefert.
 
-Der Endpunkt ist per Basic Auth mit hardgecodeten Credentials geschützt und kann bspw. mit folgendem Befehl abgerufen werden::
-
-    http -a app:tTYhruFJ77/VmEty "https://zappi.staging.zeit.de/0.3.2/cp/{urn:uuid:b4d1e3b1-aac4-4a80-b820-e4093fe24a36}"
+Der Endpunkt ist per Basic Auth mit hardgecodeten Credentials geschützt, die derzeit manuell an die Entwickler verteilt werden.
