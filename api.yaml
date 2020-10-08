@@ -185,6 +185,7 @@ components:
           example: false
 
     AudioConnection:
+      type: object
       properties:
         id:
           type: string
