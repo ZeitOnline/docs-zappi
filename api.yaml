@@ -439,7 +439,9 @@ components:
             layout:
               type: string
               enum:
+                - duo
                 - standard
+                - tablist
             items:
               type: array
               items:
@@ -456,9 +458,12 @@ components:
             layout:
               type: string
               enum:
-                - tab
+                - duo
                 - headed
+                - headed-light
                 - standard
+                - tab
+                - tabpanel
             items:
               type: array
               items:
