@@ -46,7 +46,13 @@ paths:
                 items:
                   type: array
                   items:
-                    $ref: "#/components/schemas/CenterpageRegion"
+                    oneOf:
+                      - $ref: "#/components/schemas/CenterpageTeaser"
+                      - $ref: "#/components/schemas/CenterpageTeaserGallery"
+                      - $ref: "#/components/schemas/CenterpageTeaserVideo"
+                      - $ref: "#/components/schemas/CenterpageTeaserPodcast"
+                      - $ref: "#/components/schemas/CenterpageModuleHTML"
+
   /structure:
     get:
       tags:
@@ -99,7 +105,6 @@ paths:
                 ]}
               ]}
 
-
   /cp/{uuid}:
     get:
       parameters:
@@ -119,19 +124,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  id:
-                    $ref: "#/components/schemas/UUID"
-                  url:
-                    type: string
-                    # format: uri  XXX only supported in openapi-3.1
-                    description: "Web URL for this CenterPage"
-                    example: "https://www.zeit.de/politik/index"
-                  items:
-                    type: array
-                    items:
-                      $ref: "#/components/schemas/CenterpageRegion"
+                $ref: "#/components/schemas/Centerpage"
         "404":
           description: "No centerpage found for the given uuid"
 
@@ -143,6 +136,28 @@ components:
       pattern: "^(\\{urn:uuid:[-a-f0-9]+\\}|[-a-z0-9/]+)$"
       description: "CMS UUID that denotes a content object. For testing/development, a CMS path is also accepted."
       example: "{urn:uuid:d995ba5a-a7fb-401a-bdc8-86cf2cbf0cda}"
+
+    Centerpage:
+      type: object
+      properties:
+        id:
+          $ref: "#/components/schemas/UUID"
+        url:
+          type: string
+          # format: uri  XXX only supported in openapi-3.1
+          description: "Web URL for this CenterPage"
+          example: "https://www.zeit.de/politik/index"
+        items:
+          type: array
+          items:
+            oneOf:
+              - $ref: "#/components/schemas/CenterpageRegion"
+              - $ref: "#/components/schemas/CenterpageArea"
+              - $ref: "#/components/schemas/CenterpageTeaser"
+              - $ref: "#/components/schemas/CenterpageTeaserGallery"
+              - $ref: "#/components/schemas/CenterpageTeaserVideo"
+              - $ref: "#/components/schemas/CenterpageTeaserPodcast"
+              - $ref: "#/components/schemas/CenterpageModuleHTML"
 
     CenterpageElementId:
       type: string
