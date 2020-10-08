@@ -8,7 +8,7 @@ Eine REST API speziell für die aktuell von der Agentur Prepublic Entwickelte iO
 Prototyp der App
 ----------------
 
-Der Prototyp dazu kann auf `Invision <https://projects.invisionapp.com/d/login?redir=%2Fd%2Fmain%2Fdefault%2F#/console/19528775/408224869/preview>`_ eingesehen werden.
+Der Prototyp dazu kann auf `Invision <https://invis.io/Z6XKZ4QM3KX>`_ eingesehen werden.
 
 
 Prototyp des Backends
