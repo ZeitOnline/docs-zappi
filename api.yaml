@@ -281,6 +281,11 @@ components:
               format: date-time
               description: "Timestamp of the most recent semantic/relevant update to the article"
               example: "2020-01-01T13:12:00Z"
+            date:
+              type: string
+              nullable: true
+              description: "Human readable relative or absolute date"
+              example: "Vor 3 Stunden"
             byline:
               type: string
               nullable: true
