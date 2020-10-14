@@ -188,6 +188,31 @@ components:
           type: string
           # format: uri
           example: "https://img.zeit.de/2020-08/flightradar-4/cinema"
+          description: |
+            The URL is a base URL, which needs to be modified with the following parameters in order to produce an actual image
+
+            The final path segment of the url denotes the socalled variant by name. It can be replaced by any of the following:
+              - cinema
+              - default
+              - narrow
+              - original
+              - panorama
+              - portrait
+              - square
+              - square
+              - standard
+              - stripe
+              - super
+              - tile
+              - wide
+
+            Additionally the following query parameters are supported:
+
+              - ``width`` and ``height`` in pixels. The returned image will fit inside the bounding box
+              - ``scale`` is a float between 0.5 and 3.0 that denotes the zoom factor by which the image is enlarged *after* the viewport and size has been determined (otherwise it could simply be replaced by requesting a larger size)
+              - ``fill`` is a string denoting a web color that transparent images will be filled with
+              - ``viewport`` is a string of either ``desktop`` or ``mobile``
+
         ratio:
           type: number
           example: 1.7778
