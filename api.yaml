@@ -191,20 +191,20 @@ components:
           description: |
             The URL is a base URL, which needs to be modified with the following parameters in order to produce an actual image
 
-            The final path segment of the url denotes the socalled variant by name. It can be replaced by any of the following:
-              - cinema
-              - default
-              - narrow
-              - original
-              - panorama
-              - portrait
-              - square
-              - square
-              - standard
-              - stripe
-              - super
-              - tile
-              - wide
+            The final path segment of the url denotes the socalled variant by name. It can be replaced by any of the [variants defined here](https://www.zeit.de/data/image-variants.xml):
+              - cinema (7:3)
+              - default (1:1)
+              - narrow (2:3)
+              - original (aspect ratio of the original image, original dimensions.)
+              - panorama (7:2)
+              - portrait (3:4)
+              - square (1:1)
+              - square-padded (1:1 - cropped with padding to be used as podcast covers)
+              - standard (4:3)
+              - stripe (49:4)
+              - super (3:2)
+              - tile (4:5)
+              - wide (16:9 - standard teaser variant)
 
             Additionally the following query parameters are supported:
 
