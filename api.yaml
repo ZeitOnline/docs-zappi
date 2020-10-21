@@ -22,7 +22,39 @@ servers:
           - "0.2.0"
           - "0.3.1"
 
+security:
+  - default: []
+
 paths:
+  /search:
+   get:
+    tags:
+      - search
+    summary: "Main entry point for generic search."
+    parameters:
+      - in: query
+        name: q
+        schema:
+          type: string
+        required: true
+        description: "The term that should be searched for"
+    responses:
+      "200":
+        description: "Returns a list of results"
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                items:
+                  type: array
+                  items:
+                    oneOf:
+                      - $ref: "#/components/schemas/CenterpageTeaser"
+                      - $ref: "#/components/schemas/CenterpageTeaserGallery"
+                      - $ref: "#/components/schemas/CenterpageTeaserVideo"
+                      - $ref: "#/components/schemas/CenterpageTeaserPodcast"
+                      - $ref: "#/components/schemas/CenterpageModuleHTML"
 
   /structure:
     get:
@@ -76,7 +108,6 @@ paths:
                 ]}
               ]}
 
-
   /cp/{uuid}:
     get:
       parameters:
@@ -96,19 +127,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  id:
-                    $ref: "#/components/schemas/UUID"
-                  url:
-                    type: string
-                    # format: uri  XXX only supported in openapi-3.1
-                    description: "Web URL for this CenterPage"
-                    example: "https://www.zeit.de/politik/index"
-                  items:
-                    type: array
-                    items:
-                      $ref: "#/components/schemas/CenterpageRegion"
+                $ref: "#/components/schemas/Centerpage"
         "404":
           description: "No centerpage found for the given uuid"
 
@@ -146,10 +165,33 @@ components:
       description: "CMS UUID that denotes a content object. For testing/development, a CMS path is also accepted."
       example: "{urn:uuid:d995ba5a-a7fb-401a-bdc8-86cf2cbf0cda}"
 
+    Centerpage:
+      type: object
+      properties:
+        id:
+          $ref: "#/components/schemas/UUID"
+        url:
+          type: string
+          # format: uri  XXX only supported in openapi-3.1
+          description: "Web URL for this CenterPage"
+          example: "https://www.zeit.de/politik/index"
+        items:
+          type: array
+          items:
+            oneOf:
+              - $ref: "#/components/schemas/CenterpageRegion"
+              - $ref: "#/components/schemas/CenterpageArea"
+              - $ref: "#/components/schemas/CenterpageTeaser"
+              - $ref: "#/components/schemas/CenterpageTeaserGallery"
+              - $ref: "#/components/schemas/CenterpageTeaserVideo"
+              - $ref: "#/components/schemas/CenterpageTeaserPodcast"
+              - $ref: "#/components/schemas/CenterpageModuleHTML"
+
     CenterpageElementId:
       type: string
       pattern: "^id-[-a-f0-9]+$"
       description: "ID of the cp element"
+      example: "id-fcfd3deb-4c26-472b-8bdd-238372d5131b"
 
     CenterpageElementType:
       type: string
@@ -165,11 +207,37 @@ components:
 
     Image:
       type: object
+      nullable: true
       properties:
         baseUrl:
           type: string
           # format: uri
           example: "https://img.zeit.de/2020-08/flightradar-4/cinema"
+          description: |
+            The URL is a base URL, which needs to be modified with the following parameters in order to produce an actual image
+
+            The final path segment of the url denotes the socalled variant by name. It can be replaced by any of the [variants defined here](https://www.zeit.de/data/image-variants.xml):
+              - cinema (7:3)
+              - default (1:1)
+              - narrow (2:3)
+              - original (aspect ratio of the original image, original dimensions.)
+              - panorama (7:2)
+              - portrait (3:4)
+              - square (1:1)
+              - square-padded (1:1 - cropped with padding to be used as podcast covers)
+              - standard (4:3)
+              - stripe (49:4)
+              - super (3:2)
+              - tile (4:5)
+              - wide (16:9 - standard teaser variant)
+
+            Additionally the following query parameters are supported:
+
+              - ``width`` and ``height`` in pixels. The returned image will fit inside the bounding box
+              - ``scale`` is a float between 0.5 and 3.0 that denotes the zoom factor by which the image is enlarged *after* the viewport and size has been determined (otherwise it could simply be replaced by requesting a larger size)
+              - ``fill`` is a string denoting a web color that transparent images will be filled with
+              - ``viewport`` is a string of either ``desktop`` or ``mobile``
+
         ratio:
           type: number
           example: 1.7778
@@ -186,6 +254,7 @@ components:
           example: false
 
     AudioConnection:
+      type: object
       properties:
         id:
           type: string
@@ -223,11 +292,15 @@ components:
               type: string
               # @check https://vivi.zeit.de/repository/data/cp-layouts.xml
               enum:
+                - zon-teaser-list
+                - zon-teaser-printbox
+                - zon-teaser-small
+                - zon-teaser-small-compact
+                - zon-teaser-square
+                - zon-teaser-square-compact
                 - zon-teaser-standard
+                - zon-teaser-standard-compact
                 - zon-teaser-wide
-                - zon-teaser-square-author
-                - zon-teaser-poster
-                # news-teaser
               description: "How to display this teaser (e.g large/small)"
             title:
               type: string
@@ -261,6 +334,11 @@ components:
               format: date-time
               description: "Timestamp of the most recent semantic/relevant update to the article"
               example: "2020-01-01T13:12:00Z"
+            date:
+              type: string
+              nullable: true
+              description: "Human readable relative or absolute date"
+              example: "Vor 3 Stunden"
             byline:
               type: string
               nullable: true
@@ -270,15 +348,15 @@ components:
               type: array
               items:
                 type: string
-                # ZON-6127: disabled until the implementation catches up:
-                # enum:
-                #   - brandeins
-                #   - liveblog
-                #   - liveblog-closed
-                #   - zett
-                #   - zplus
-                #   - zplus-register
-                #   - zplus-spiele
+                enum:
+                  - brandeins
+                  - liveblog
+                  - liveblog-closed
+                  - zett
+                  - zplus
+                  - zplus-register
+                  - zplus-dynamic
+                  - zplus-spiele
               description: "List of icon IDs that should be displayed for this teaser"
               example: ["zplus"]
             label:
@@ -436,7 +514,9 @@ components:
             layout:
               type: string
               enum:
+                - duo
                 - standard
+                - tablist
             items:
               type: array
               items:
@@ -453,7 +533,12 @@ components:
             layout:
               type: string
               enum:
+                - duo
+                - headed
+                - headed-light
                 - standard
+                - tab
+                - tabpanel
             items:
               type: array
               items:
