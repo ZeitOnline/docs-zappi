@@ -687,8 +687,7 @@ components:
                 - menu-item-browser
               example: "menu-item-browser"
 
-
   securitySchemes:
-    default:
+    basicAuth:
       type: http
       scheme: basic
