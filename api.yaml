@@ -131,32 +131,6 @@ paths:
         "404":
           description: "No centerpage found for the given uuid"
 
-  /merkliste:
-    get:
-      parameters:
-        - in: ssoid
-          required: true
-          description: "SSOID from SSO to identify the user's bookmarks"
-    tags:
-      - merkliste
-    summary: "Returns the list of bookmarks"
-    responses:
-      "200":
-        description: "Success"
-          content:
-            application/json:
-              schema:
-                url:
-                  type: string
-                  description: "https://www.zeit.de/konto/listen/merkliste"
-                items:
-                  type: array
-                  items:
-                    $ref: "#/components/schemas/CenterpageRegion"
-      "404":
-        description: "No list of bookmarks found for the given user."
-
-
 components:
   schemas:
     UUID:
@@ -164,6 +138,10 @@ components:
       pattern: "^(\\{urn:uuid:[-a-f0-9]+\\}|[-a-z0-9/]+)$"
       description: "CMS UUID that denotes a content object. For testing/development, a CMS path is also accepted."
       example: "{urn:uuid:d995ba5a-a7fb-401a-bdc8-86cf2cbf0cda}"
+
+    SSOID:
+      type: string
+      description: "Users SSOID "
 
     Centerpage:
       type: object
@@ -712,7 +690,6 @@ components:
               enum:
                 - menu-item-browser
               example: "menu-item-browser"
-
 
   securitySchemes:
     default:
