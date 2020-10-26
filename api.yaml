@@ -23,6 +23,29 @@ servers:
           - "0.3.1"
 
 paths:
+  /bookmarks/{ssoid}:
+    get:
+      parameters:
+        - in: path
+          name: ssoid
+          required: true
+          description: string ID of sso cookie to identify user
+          schema:
+            type: string
+            # $ref: "#/components/schemas/SSOID"
+      summary: "Returns the list of bookmarks"
+      tags:
+        - bookmarks
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ReadingList"
+          description: "Success"
+
+        "404":
+          description: "Page not found"
   /search:
    get:
     tags:
@@ -138,7 +161,7 @@ components:
 
     SSOID:
       type: string
-      description: "Users SSOID "
+      description: "Users SSOID equal to value of users sso-cookie value."
 
     Centerpage:
       type: object
@@ -522,6 +545,15 @@ components:
                   - $ref: "#/components/schemas/CenterpageTeaserVideo"
                   - $ref: "#/components/schemas/CenterpageTeaserPodcast"
                   - $ref: "#/components/schemas/CenterpageModuleHTML"
+    ReadingList:
+      - properties:
+          type:
+            type: string
+            enum:
+              - bookmarks
+              - history
+          items:
+            type: array
 
 
     TabBase:
