@@ -546,14 +546,15 @@ components:
                   - $ref: "#/components/schemas/CenterpageTeaserPodcast"
                   - $ref: "#/components/schemas/CenterpageModuleHTML"
     ReadingList:
-      - properties:
-          type:
-            type: string
-            enum:
-              - bookmarks
-              - history
-          items:
-            type: array
+      allOf:
+        - properties:
+            type:
+              type: string
+              enum:
+                - bookmarks
+                - history
+            items:
+              type: array
 
 
     TabBase:
