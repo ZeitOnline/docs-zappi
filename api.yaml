@@ -22,9 +22,6 @@ servers:
           - "0.2.0"
           - "0.3.1"
 
-security:
-  - default: []
-
 paths:
   /search:
    get:
@@ -190,31 +187,30 @@ components:
         baseUrl:
           type: string
           # format: uri
-          example: "https://img.zeit.de/2020-08/flightradar-4/cinema"
+          example: "https://img.zeit.de/2020-08/flightradar-4"
           description: |
-            The URL is a base URL, which needs to be modified with the following parameters in order to produce an actual image
+            The URL is a base URL, which needs to be modified with the following query parameters in order to produce an actual image:
 
-            The final path segment of the url denotes the socalled variant by name. It can be replaced by any of the [variants defined here](https://www.zeit.de/data/image-variants.xml):
-              - cinema (7:3)
-              - default (1:1)
-              - narrow (2:3)
-              - original (aspect ratio of the original image, original dimensions.)
-              - panorama (7:2)
-              - portrait (3:4)
-              - square (1:1)
-              - square-padded (1:1 - cropped with padding to be used as podcast covers)
-              - standard (4:3)
-              - stripe (49:4)
-              - super (3:2)
-              - tile (4:5)
-              - wide (16:9 - standard teaser variant)
-
-            Additionally the following query parameters are supported:
-
+              - ``variant``, required; denotes the socalled variant by name. It can be replaced by any of the [variants defined here](https://www.zeit.de/data/image-variants.xml):
+                  - cinema (7:3)
+                  - default (1:1)
+                  - narrow (2:3)
+                  - original (aspect ratio of the original image, original dimensions.)
+                  - panorama (7:2)
+                  - portrait (3:4)
+                  - square (1:1)
+                  - square-padded (1:1 - cropped with padding to be used as podcast covers)
+                  - standard (4:3)
+                  - stripe (49:4)
+                  - super (3:2)
+                  - tile (4:5)
+                  - wide (16:9 - standard teaser variant)
               - ``width`` and ``height`` in pixels. The returned image will fit inside the bounding box
               - ``scale`` is a float between 0.5 and 3.0 that denotes the zoom factor by which the image is enlarged *after* the viewport and size has been determined (otherwise it could simply be replaced by requesting a larger size)
               - ``fill`` is a string denoting a web color that transparent images will be filled with
               - ``viewport`` is a string of either ``desktop`` or ``mobile``
+
+            Note that simply calling the base url itself will return a 404 to avoid careless, accidental retrieval of the original image sizes
 
         ratio:
           type: number
