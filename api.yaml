@@ -22,9 +22,6 @@ servers:
           - "0.2.0"
           - "0.3.1"
 
-security:
-  - default: []
-
 paths:
   /search:
    get:
@@ -686,7 +683,6 @@ components:
               enum:
                 - menu-item-browser
               example: "menu-item-browser"
-
 
   securitySchemes:
     default:
