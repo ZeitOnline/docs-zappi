@@ -31,8 +31,7 @@ paths:
           required: true
           description: string ID of sso cookie to identify user
           schema:
-            type: string
-            # $ref: "#/components/schemas/SSOID"
+            $ref: "#/components/schemas/SSOID"
       summary: "Returns the list of bookmarks"
       tags:
         - bookmarks
