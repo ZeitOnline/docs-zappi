@@ -225,6 +225,13 @@ components:
         visibleMobile:
           type: boolean
           example: false
+        variant:
+          type: string
+          example: "standard"
+        mobileVariant:
+          type: string
+          nullable: true
+          example: "standard"
 
     AudioConnection:
       type: object
