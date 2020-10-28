@@ -23,10 +23,10 @@ servers:
           - "0.3.1"
 
 paths:
-  /bookmarks/{ssoid}:
+  /bookmarks:
     get:
       parameters:
-        - in: path
+        - in: header
           name: ssoid
           required: true
           description: string ID of sso cookie to identify user
@@ -45,6 +45,30 @@ paths:
 
         "404":
           description: "Page not found"
+
+  /cp/{uuid}:
+    get:
+      parameters:
+        - in: path
+          name: uuid
+          schema:
+            $ref: "#/components/schemas/UUID"
+          required: true
+          description: "UUID from CMS that identifies a CenterPage content object"
+
+      tags:
+        - cp
+      summary: "Returns the teasers (i.e. content references) on a CenterPage"
+      responses:
+        "200":
+          description: "Success"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Centerpage"
+        "404":
+          description: "No centerpage found for the given uuid"
+
   /search:
    get:
     tags:
@@ -126,29 +150,6 @@ paths:
                   ]}
                 ]}
               ]}
-
-  /cp/{uuid}:
-    get:
-      parameters:
-        - in: path
-          name: uuid
-          schema:
-            $ref: "#/components/schemas/UUID"
-          required: true
-          description: "UUID from CMS that identifies a CenterPage content object"
-
-      tags:
-        - cp
-      summary: "Returns the teasers (i.e. content references) on a CenterPage"
-      responses:
-        "200":
-          description: "Success"
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Centerpage"
-        "404":
-          description: "No centerpage found for the given uuid"
 
 components:
   schemas:
