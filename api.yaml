@@ -25,13 +25,13 @@ servers:
 paths:
   /bookmarks:
     get:
-      parameters:
-        - in: header
-          name: ssoid
-          required: true
-          description: string ID of sso cookie to identify user
-          schema:
-            $ref: "#/components/schemas/SSOID"
+      # parameters:
+      #   - in: header
+      #     name: ssoid
+      #     required: true
+      #     description: string ID of sso cookie to identify user
+      #     schema:
+      #       $ref: "#/components/schemas/SSOID"
       summary: "Returns the list of bookmarks"
       tags:
         - bookmarks
@@ -564,6 +564,8 @@ components:
                 - history
             items:
               type: array
+              items:
+                type: object
 
 
     TabBase:
