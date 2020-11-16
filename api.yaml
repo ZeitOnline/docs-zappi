@@ -23,6 +23,45 @@ servers:
           - "0.3.1"
 
 paths:
+  /bookmarks:
+    get:
+      summary: "Returns the list of bookmarks"
+      tags:
+        - bookmarks
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ReadingList"
+          description: "Success"
+
+        "404":
+          description: "Page not found"
+
+  /cp/{uuid}:
+    get:
+      parameters:
+        - in: path
+          name: uuid
+          schema:
+            $ref: "#/components/schemas/UUID"
+          required: true
+          description: "UUID from CMS that identifies a CenterPage content object"
+
+      tags:
+        - cp
+      summary: "Returns the teasers (i.e. content references) on a CenterPage"
+      responses:
+        "200":
+          description: "Success"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Centerpage"
+        "404":
+          description: "No centerpage found for the given uuid"
+
   /search:
    get:
     tags:
@@ -106,30 +145,6 @@ paths:
                   ]}
                 ]}
               ]}
-
-  /cp/{uuid}:
-    get:
-      parameters:
-        - in: path
-          name: uuid
-          schema:
-            $ref: "#/components/schemas/UUID"
-          required: true
-          description: "UUID from CMS that identifies a CenterPage content object"
-
-      tags:
-        - cp
-      summary: "Returns the teasers (i.e. content references) on a CenterPage"
-      responses:
-        "200":
-          description: "Success"
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Centerpage"
-        "404":
-          description: "No centerpage found for the given uuid"
-
 
 components:
   schemas:
@@ -528,6 +543,21 @@ components:
                   - $ref: "#/components/schemas/CenterpageTeaserVideo"
                   - $ref: "#/components/schemas/CenterpageTeaserPodcast"
                   - $ref: "#/components/schemas/CenterpageModuleHTML"
+    ReadingList:
+      allOf:
+        - properties:
+            type:
+              type: string
+              enum:
+                - bookmarks
+              example: "type: bookmarks"
+            items:
+              type: array
+              items: 
+                # ZON-6178: to be specified, when content objects layouts without teasers are solved
+                type: object
+              example: 
+                "a list of elements like CenterpageTeaser, CenterpageTeaserGallery, etc."
 
 
     TabBase:
