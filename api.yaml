@@ -408,7 +408,6 @@ components:
                   example: "6194436097001"
                 hasAdvertisement: 
                   type: boolean
-                  example: "true/false"
                 # provider: "brightcove"
                 # product-id:
                 # page-url:
