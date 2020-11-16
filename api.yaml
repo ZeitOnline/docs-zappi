@@ -479,7 +479,7 @@ components:
         - $ref: "#/components/schemas/CenterpageElement"
         - required:
             - layout
-            - link
+            eq  seds- link
             - title
             - items
           properties:
@@ -550,10 +550,12 @@ components:
               type: string
               enum:
                 - bookmarks
+              example: "type: bookmarks"
             items:
               type: array
               items:
                 type: object
+              example: "a list of elements like CenterpageTeaser, CenterpageTeaserGallery, etc."
 
 
     TabBase:
