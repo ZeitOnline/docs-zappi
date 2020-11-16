@@ -407,7 +407,7 @@ components:
                   type: string
                   example: "6194436097001"
                 hasAdvertisement: 
-                  type: bool
+                  type: boolean
                   example: "true/false"
                 # provider: "brightcove"
                 # product-id:
