@@ -555,7 +555,8 @@ components:
               type: array
               items:
                 type: object
-              example: "a list of elements like CenterpageTeaser, CenterpageTeaserGallery, etc."
+              example: 
+                "a list of elements like CenterpageTeaser, CenterpageTeaserGallery, etc."
 
 
     TabBase:
