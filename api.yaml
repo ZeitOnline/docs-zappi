@@ -406,7 +406,9 @@ components:
                 id:
                   type: string
                   example: "6194436097001"
-                  hasAdvertisement: bool
+                hasAdvertisement: 
+                  type: bool
+                  example: "true/false"
                 # provider: "brightcove"
                 # product-id:
                 # page-url:
