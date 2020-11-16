@@ -553,7 +553,8 @@ components:
               example: "type: bookmarks"
             items:
               type: array
-              items:
+              items: 
+                # ZON-6178: to be specified, when content objects layouts without teasers are solved
                 type: object
               example: 
                 "a list of elements like CenterpageTeaser, CenterpageTeaserGallery, etc."
