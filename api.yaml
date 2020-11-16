@@ -479,7 +479,7 @@ components:
         - $ref: "#/components/schemas/CenterpageElement"
         - required:
             - layout
-            eq  seds- link
+            - link
             - title
             - items
           properties:
