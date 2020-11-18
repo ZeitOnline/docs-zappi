@@ -420,7 +420,8 @@ components:
                 id:
                   type: string
                   example: "6194436097001"
-                # advertising: bool
+                hasAdvertisement: 
+                  type: boolean
                 # provider: "brightcove"
                 # product-id:
                 # page-url:
