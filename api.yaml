@@ -226,13 +226,6 @@ components:
 
             Note that simply calling the base url itself will return a 404 to avoid careless, accidental retrieval of the original image sizes
 
-        ratio:
-          type: number
-          example: 1.7778
-        mobileRatio:
-          type: number
-          nullable: true
-          example: 1.3333
         fillColor:
           type: string
           nullable: true
@@ -240,13 +233,6 @@ components:
         visibleMobile:
           type: boolean
           example: false
-        variant:
-          type: string
-          example: "standard"
-        mobileVariant:
-          type: string
-          nullable: true
-          example: "standard"
 
     AudioConnection:
       type: object
