@@ -33,7 +33,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ReadingList"
+                $ref: "#/components/schemas/Centerpage"
           description: "Success"
 
         "404":
