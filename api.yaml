@@ -529,21 +529,6 @@ components:
                   - $ref: "#/components/schemas/CenterpageTeaserVideo"
                   - $ref: "#/components/schemas/CenterpageTeaserPodcast"
                   - $ref: "#/components/schemas/CenterpageModuleHTML"
-    ReadingList:
-      allOf:
-        - properties:
-            type:
-              type: string
-              enum:
-                - bookmarks
-              example: "type: bookmarks"
-            items:
-              type: array
-              items: 
-                # ZON-6178: to be specified, when content objects layouts without teasers are solved
-                type: object
-              example: 
-                "a list of elements like CenterpageTeaser, CenterpageTeaserGallery, etc."
 
 
     TabBase:
