@@ -25,6 +25,8 @@ servers:
 paths:
   /bookmarks:
     get:
+      security:
+        - cookieAuth: []
       summary: "Returns the list of bookmarks"
       tags:
         - bookmarks
@@ -712,3 +714,7 @@ components:
     default:
       type: http
       scheme: basic
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: zeit_sso_201501
