@@ -41,6 +41,32 @@ paths:
         "404":
           description: "Page not found"
 
+  /config/{filename}:
+    get:
+      parameters:
+        - in: path
+          name: filename
+          schema:
+            type: string
+          required: true
+          description: "The filename of the configuration file"
+      summary: |
+        Provides JSON formatted configuration files. These are maintained
+        via the CMS and can change independently of API releases.
+        By convention, these reside in the folder
+        ``https://vivi.zeit.de/repository/static/zona``
+      responses:
+        "200":
+          description: "Success"
+          content:
+            application/json:
+              schema:
+                type: object
+        "400":
+          description: "No valid JSON for this resource"
+        "404":
+          description: "No such configuration file"
+
   /cp/{uuid}:
     get:
       parameters:
