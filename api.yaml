@@ -40,13 +40,11 @@ paths:
 
         "404":
           description: "Page not found"
-
-  /bookmark/{uuid}:
     post:
       security:
         - cookieAuth: []
       parameters:
-        - in: path
+        - in: body
           name: uuid
           required: true
           schema:
@@ -54,7 +52,7 @@ paths:
       responses:
         "200":
           description: "Saved bookmark to bookmarkslist"
-
+  /bookmarks/{uuid}:
     delete:
       security:
         - cookieAuth: []
