@@ -47,17 +47,26 @@ paths:
         - cookieAuth: []
       parameters:
         - in: path
+          name: uuid
           required: true
           schema:
             $ref: "#/components/schemas/UUID"
-    put:
+      responses:
+        "200":
+          description: "Saved bookmark to bookmarkslist"
+
+    delete:
       security:
         - cookieAuth: []
       parameters:
         - in: path
+          name: uuid
           required: true
           schema:
             $ref: "#/components/schemas/UUID"
+      responses:
+        "200":
+          description: "Deleted bookmark to bookmarkslist"
 
   /config/{filename}:
     get:
