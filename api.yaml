@@ -41,6 +41,24 @@ paths:
         "404":
           description: "Page not found"
 
+  /bookmark/{uuid}:
+    post:
+      security:
+        - cookieAuth: []
+      parameters:
+        - in: path
+          required: true
+          schema:
+            $ref: "#/components/schemas/UUID"
+    put:
+      security:
+        - cookieAuth: []
+      parameters:
+        - in: path
+          required: true
+          schema:
+            $ref: "#/components/schemas/UUID"
+
   /config/{filename}:
     get:
       parameters:
