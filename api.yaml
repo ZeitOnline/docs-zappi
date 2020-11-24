@@ -37,18 +37,17 @@ paths:
               schema:
                 $ref: "#/components/schemas/Centerpage"
           description: "Success"
-
         "404":
           description: "Page not found"
     post:
-      security:
-        - cookieAuth: []
-      parameters:
-        - in: body
-          name: uuid
-          required: true
-          schema:
-            $ref: "#/components/schemas/UUID"
+      summary: Add a new bookmark
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Centerpage"
+
       responses:
         "200":
           description: "Saved bookmark to bookmarkslist"
@@ -201,6 +200,13 @@ paths:
 
 components:
   schemas:
+
+    BookmarkEntry:
+      type: object
+      properties:
+        id:
+          $ref: "#/components/schemas/UUID"
+
     UUID:
       type: string
       pattern: "^(\\{urn:uuid:[-a-f0-9]+\\}|[-a-z0-9/]+)$"
