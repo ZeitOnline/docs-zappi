@@ -272,6 +272,7 @@ components:
             - spotify
             - deezer
             - alexa
+            - google
         url:
           type: string
           # format: uri
