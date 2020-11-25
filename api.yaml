@@ -46,11 +46,11 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/Centerpage"
-
+              $ref: "#/components/schemas/BookmarkEntry"
       responses:
         "200":
           description: "Saved bookmark to bookmarkslist"
+
   /bookmarks/{uuid}:
     delete:
       security:
