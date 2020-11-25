@@ -10,16 +10,15 @@ servers:
     description: "Production"
     variables:
       version:
-        default: "0.2.0"
+        default: "0.3.1"
         enum: # list older still available versions here
-          - "0.2.0"
+          - "0.3.1"
   - url: "https://zappi.staging.zeit.de/{version}"
     description: "Staging"
     variables:
       version:
         default: "0.3.1"
         enum:
-          - "0.2.0"
           - "0.3.1"
 
 paths:
