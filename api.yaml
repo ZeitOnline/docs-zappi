@@ -92,7 +92,7 @@ paths:
   /iap/:
     post:
       requestBody: {
-        $ref: "#/components/schemas/AppStoreReceipt"
+        $ref: "#/components/requestBodies/AppStoreReceipt"
       }
       responses:
         "200":
@@ -186,6 +186,14 @@ paths:
               ]}
 
 components:
+  requestBodies:
+    AppStoreReceipt:
+      content:
+        "application/json": {
+          "schema": {
+            "$ref": "#/components/schemas/AppStoreReceipt"
+          }
+        }
   schemas:
     UUID:
       type: string
