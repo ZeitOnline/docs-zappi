@@ -750,7 +750,7 @@ components:
         - type
         - payload
       properties:
-        title:
+        payload:
           type: string
           description: base64 encoded representation of the app store receipt
         type:
