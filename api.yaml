@@ -89,6 +89,11 @@ paths:
         "404":
           description: "No centerpage found for the given uuid"
 
+  /iap/:
+    post:
+      requestBody: {
+        $ref: "#/components/schemas/AppStoreReceipt"
+      }
   /search:
    get:
     tags:
@@ -725,6 +730,20 @@ components:
               enum:
                 - menu-item-browser
               example: "menu-item-browser"
+    AppStoreReceipt:
+      required:
+        - type
+        - payload
+      properties:
+        title:
+          type: string
+          description: base64 encoded representation of the app store receipt
+        type:
+          type: string
+          description: which store the receipt originated from
+          enum:
+            - apple
+            - google
 
   securitySchemes:
     default:
