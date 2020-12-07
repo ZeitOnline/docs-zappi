@@ -62,7 +62,7 @@ paths:
             $ref: "#/components/schemas/UUID"
       responses:
         "200":
-          description: "Deleted bookmark to bookmarkslist"
+          description: "Deleted bookmark from bookmarkslist"
 
   /config/{filename}:
     get:
