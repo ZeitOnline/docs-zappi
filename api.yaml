@@ -39,6 +39,8 @@ paths:
         "404":
           description: "Page not found"
     post:
+      security:
+        - cookieAuth: []
       summary: Add a new bookmark
       requestBody:
         required: true
