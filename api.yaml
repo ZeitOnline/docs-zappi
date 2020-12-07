@@ -94,6 +94,16 @@ paths:
       requestBody: {
         $ref: "#/components/requestBodies/AppStoreReceipt"
       }
+      security:
+        - cookieAuth: []
+        - {}
+      description: |
+        * If no SSO cookie is supplied, the backend will create a new specially marked "platform SSO account" and
+          set its cookie in the response
+        * If the request contains an SSO cookie and neither its account or any other account has this
+          receipt associated with it, the receipt will be associated with that account
+        * If the request contains an SSO cookie that does not have this receipt associated with it but there exists
+          a platform SSO account associated with that account, the platform account is merged into the "real" account
       responses:
         "200":
           description: "All is well. Enjoy those exclusive articles!"
