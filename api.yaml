@@ -110,8 +110,6 @@ paths:
       responses:
         "204":
           description: "All is well. Enjoy those exclusive articles!"
-        "425":
-          description: "Too early. The payment server does not know (yet) about this transaction."
         "502":
           description: "The payment server was not reachable."
   /search:
