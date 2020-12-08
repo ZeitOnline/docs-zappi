@@ -108,7 +108,7 @@ paths:
           "real" account, the response will have the cookie for that real account set. Clients are expected to notice the
           discrepancy and use the new cookie henceforth.
       responses:
-        "200":
+        "204":
           description: "All is well. Enjoy those exclusive articles!"
         "425":
           description: "Too early. The payment server does not know (yet) about this transaction."
