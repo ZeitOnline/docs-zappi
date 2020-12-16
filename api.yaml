@@ -124,6 +124,29 @@ paths:
         "404":
           description: "No centerpage found for the given uuid"
 
+  /iap:
+    post:
+      requestBody: {
+        $ref: "#/components/requestBodies/AppStoreReceipt"
+      }
+      security:
+        - cookieAuth: []
+        - {}
+      description: |
+        * If no SSO cookie is supplied, the backend will create a new specially marked "platform SSO account" and
+          set its cookie in the response
+        * If the request contains an SSO cookie and neither its account or any other account has this
+          receipt associated with it, the receipt will be associated with that account
+        * If the request contains an SSO cookie that does not have this receipt associated with it but there exists
+          a platform SSO account associated with that account, the platform account is merged into the "real" account
+        * If the request contains the SSO cookie of an existing platform account which has already been merged into a
+          "real" account, the response will have the cookie for that real account set. Clients are expected to notice the
+          discrepancy and use the new cookie henceforth.
+      responses:
+        "204":
+          description: "All is well. Enjoy those exclusive articles!"
+        "502":
+          description: "The payment server was not reachable."
   /search:
    get:
     tags:
@@ -209,7 +232,14 @@ paths:
               ]}
 
 components:
-
+  requestBodies:
+    AppStoreReceipt:
+      content:
+        "application/json": {
+          "schema": {
+            "$ref": "#/components/schemas/AppStoreReceipt"
+          }
+        }
   schemas:
 
     UUID:
@@ -762,6 +792,21 @@ components:
               enum:
                 - menu-item-browser
               example: "menu-item-browser"
+    AppStoreReceipt:
+      required:
+        - type
+        - payload
+      properties:
+        payload:
+          type: string
+          description: base64 encoded representation of the app store receipt
+        type:
+          type: string
+          description: which store the receipt originated from
+          enum:
+            - apple_appstore
+            - google_playstore
+            - dummy_appstore
 
   securitySchemes:
     default:
