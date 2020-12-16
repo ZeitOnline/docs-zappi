@@ -804,8 +804,9 @@ components:
           type: string
           description: which store the receipt originated from
           enum:
-            - apple
-            - google
+            - apple_appstore
+            - google_playstore
+            - dummy_appstore
 
   securitySchemes:
     default:
