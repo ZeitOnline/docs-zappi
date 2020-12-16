@@ -250,9 +250,9 @@ components:
 
     UUID:
       type: string
-      pattern: "^(\\{urn:uuid:[-a-f0-9]+\\}|[-a-z0-9/]+)$"
+      pattern: "^((\\{urn:uuid:)?([a-f0-9]{8})(-[a-f0-9]{4}){3}(-[a-f0-9]{12})\\}?|[-a-z0-9/]+)$"
       description: "CMS UUID that denotes a content object. For testing/development, a CMS path is also accepted."
-      example: "{urn:uuid:d995ba5a-a7fb-401a-bdc8-86cf2cbf0cda}"
+      example: "{urn:uuid:d995ba5a-a7fb-401a-bdc8-86cf2cbf0cda} or d995ba5a-a7fb-401a-bdc8-86cf2cbf0cda"
 
     Centerpage:
       type: object
