@@ -646,7 +646,25 @@ components:
                   - $ref: "#/components/schemas/CenterpageTeaserVideo"
                   - $ref: "#/components/schemas/CenterpageTeaserPodcast"
                   - $ref: "#/components/schemas/CenterpageModuleHTML"
-
+    Adplace:
+      properties:
+          type:
+            type: string
+            enum:
+              - ad
+          id:
+            type: string
+          device:
+            type: string
+            enum:
+              - desktop
+              - mobile
+          position:
+            type: string
+          layout:
+            type: string
+            enum:
+              - adplace
 
     TabBase:
       required:
