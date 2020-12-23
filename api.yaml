@@ -287,6 +287,7 @@ components:
               - $ref: "#/components/schemas/CenterpageTeaserVideo"
               - $ref: "#/components/schemas/CenterpageTeaserPodcast"
               - $ref: "#/components/schemas/CenterpageModuleHTML"
+              - $ref: "#/components/schemas/CenterpageAdplace"
 
     CenterpageElementId:
       type: string
@@ -299,6 +300,7 @@ components:
       enum:
         - region
         - area
+        - ad
         - teaser
         - teaser-gallery
         - teaser-video
@@ -370,6 +372,7 @@ components:
           $ref: "#/components/schemas/CenterpageElementId"
         type:
           $ref: "#/components/schemas/CenterpageElementType"
+
     CenterpageTeaserBase:
       description: "A teaser module references/represents a content object (article, video, etc.)"
       allOf:
@@ -646,21 +649,22 @@ components:
                   - $ref: "#/components/schemas/CenterpageTeaserVideo"
                   - $ref: "#/components/schemas/CenterpageTeaserPodcast"
                   - $ref: "#/components/schemas/CenterpageModuleHTML"
-    Adplace:
+    CenterpageAdplace:
+      description: "A place reserved an advertisement used by the iqd"
+      required:
+        - device
+        - id
       properties:
           type:
-            type: string
-            enum:
-              - ad
+            $ref: "#/components/schemas/CenterpageElementType"
           id:
+            description: "The id of the adtile"
             type: string
           device:
             type: string
             enum:
               - desktop
               - mobile
-          position:
-            type: string
           layout:
             type: string
             enum:
