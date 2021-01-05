@@ -653,12 +653,12 @@ components:
       description: "Placeholder for advertisement"
       required:
         - device
-        - id
+        - tile
       properties:
           type:
             $ref: "#/components/schemas/CenterpageElementType"
-          id:
-            description: "The id of the adtile"
+          tile:
+            description: "IQD ad tile number"
             type: string
           device:
             type: string
