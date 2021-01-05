@@ -753,6 +753,17 @@ components:
             - menu-item-app
             - menu-item-web
             - menu-item-browser
+        icon:
+          type: object
+          properties:
+            ios:
+              type: string
+              description: "SF Symbol name"
+              example: "bookmark"
+            android:
+              type: string
+              description: "Material Design Icon name"
+              example: "bookmarks"
     MenuItemNative:
       allOf:
         - $ref: "#/components/schemas/MenuItemBase"
