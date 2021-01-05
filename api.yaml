@@ -300,7 +300,7 @@ components:
       enum:
         - region
         - area
-        - ad
+        - adplace
         - teaser
         - teaser-gallery
         - teaser-video
@@ -655,8 +655,10 @@ components:
         - device
         - tile
       properties:
-          type:
-            $ref: "#/components/schemas/CenterpageElementType"
+          type: 
+            type: string
+            enum:
+              - adplace
           tile:
             description: "IQD ad tile number"
             type: string
@@ -665,10 +667,6 @@ components:
             enum:
               - desktop
               - mobile
-          layout:
-            type: string
-            enum:
-              - adplace
 
     TabBase:
       required:
