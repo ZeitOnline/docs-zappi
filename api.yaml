@@ -388,6 +388,7 @@ components:
               type: string
               # @check https://vivi.zeit.de/repository/data/cp-layouts.xml
               enum:
+                - zon-teaser-classic
                 - zon-teaser-list
                 - zon-teaser-printbox
                 - zon-teaser-small
