@@ -136,11 +136,11 @@ paths:
         "404":
           description: "No centerpage found for the given uuid"
 
-  /iap/{store}:
+  /iap/{platform}:
     post:
       parameters:
         - in: path
-          name: store
+          name: platform
           required: true
           schema:
             $ref: "#/components/schemas/AppStoreType"
