@@ -25,7 +25,8 @@ paths:
   /bookmarks:
     get:
       security:
-        - cookieAuth: []
+        - cookieAuthProduction: []
+        - cookieAuthStaging: []
       summary: "Returns the list of bookmarks"
       tags:
         - bookmarks
@@ -42,7 +43,8 @@ paths:
           description: "Unauthorized"
     post:
       security:
-        - cookieAuth: []
+        - cookieAuthProduction: []
+        - cookieAuthStaging: []
       summary: Add a new bookmark
       requestBody:
         required: true
@@ -68,7 +70,8 @@ paths:
   /bookmarks/{uuid}:
     delete:
       security:
-        - cookieAuth: []
+        - cookieAuthProduction: []
+        - cookieAuthStaging: []
       parameters:
         - in: path
           name: uuid
@@ -148,7 +151,8 @@ paths:
         $ref: "#/components/requestBodies/AppStoreReceipt"
       }
       security:
-        - cookieAuth: []
+        - cookieAuthProduction: []
+        - cookieAuthStaging: []
         - {}
       description: |
         * If no SSO cookie is supplied, the backend will create a new specially marked "platform SSO account" and
@@ -850,7 +854,11 @@ components:
     default:
       type: http
       scheme: basic
-    cookieAuth:
+    cookieAuthProduction:
       type: apiKey
       in: cookie
       name: zeit_sso_201501
+    cookieAuthStaging:
+      type: apiKey
+      in: cookie
+      name: zeit_staging_sso_201501
