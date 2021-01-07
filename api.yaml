@@ -280,6 +280,10 @@ components:
           # format: uri  XXX only supported in openapi-3.1
           description: "Web URL for this CenterPage"
           example: "https://www.zeit.de/politik/index"
+        pagetitle:
+          type: string
+        bookmarkable:
+          type: string
         items:
           type: array
           items:
