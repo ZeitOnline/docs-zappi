@@ -283,7 +283,8 @@ components:
         pagetitle:
           type: string
         bookmarkable:
-          type: string
+          type: boolean
+          example: true
         items:
           type: array
           items:
