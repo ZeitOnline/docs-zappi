@@ -139,7 +139,7 @@ paths:
         "404":
           description: "No centerpage found for the given uuid"
 
-  /iap/{platform}:
+  /iap/receipts/{platform}:
     post:
       parameters:
         - in: path
