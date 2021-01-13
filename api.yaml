@@ -257,7 +257,7 @@ components:
   requestBodies:
     AppStoreReceipt:
       content:
-        "application/json": {
+        "text/plain": {
           "schema": {
             "$ref": "#/components/schemas/AppStoreReceipt"
           }
@@ -859,12 +859,9 @@ components:
         - google_playstore
         - dummy_appstore
     AppStoreReceipt:
-      required:
-        - payload
-      properties:
-        payload:
-          type: string
-          description: base64 encoded representation of the app store receipt
+      type: string
+      description: base64 encoded representation of the app store receipt
+      format: base64
 
   securitySchemes:
     default:
