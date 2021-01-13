@@ -861,7 +861,7 @@ components:
     AppStoreReceipt:
       type: string
       description: base64 encoded representation of the app store receipt
-      format: base64
+      format: byte
 
   securitySchemes:
     default:
