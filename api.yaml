@@ -489,6 +489,9 @@ components:
                   # format: uri
                   description: "URL directly to the comment area of the article"
                   example: "https://www.zeit.de/my/article#comments"
+            bookmarkable:
+              type: boolean
+              example: true
     CenterpageTeaser:
       description: "A teaser module references/represents an article content object"
       allOf:
