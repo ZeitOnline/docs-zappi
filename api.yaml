@@ -668,7 +668,7 @@ components:
         - device
         - tile
       properties:
-          type: 
+          type:
             type: string
             enum:
               - adplace
