@@ -427,9 +427,7 @@ components:
               # format: uri
               example: "https://www.zeit.de/my/article"
             uuid:
-              type: string
-              description: "The uuid of the content object including the `{urn:uuid:}` prefix"
-              example: "{urn:uuid:26024919-417f-4952-8801-70220d489078}"
+              $ref: "#/components/schemas/UUID"
             image:
               $ref: "#/components/schemas/Image"
             authorImage:
