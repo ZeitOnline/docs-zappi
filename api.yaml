@@ -297,6 +297,7 @@ components:
               - $ref: "#/components/schemas/CenterpageTeaserPodcast"
               - $ref: "#/components/schemas/CenterpageModuleHTML"
               - $ref: "#/components/schemas/CenterpageAdplace"
+              - $ref: "#/components/schemas/CenterpageHeader"
 
     CenterpageElementId:
       type: string
@@ -315,6 +316,7 @@ components:
         - teaser-video
         - teaser-podcast
         - html
+        - header
       description: "Type of the cp element"
 
     Image:
@@ -678,6 +680,20 @@ components:
             enum:
               - desktop
               - mobile
+    CenterpageHeader:
+      description: "Header for native centerpages"
+      required:
+        - type
+        - title
+      properties:
+        type:
+          type: string
+          enum:
+            - header
+        image:
+          type: string
+        title:
+          type: string
 
     TabBase:
       required:
