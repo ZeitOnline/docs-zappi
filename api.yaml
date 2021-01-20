@@ -691,6 +691,8 @@ components:
           enum:
             - header
         image:
+          $ref: "#/components/schemas/Image"
+        supertitle:
           type: string
         title:
           type: string
