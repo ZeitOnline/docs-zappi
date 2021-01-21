@@ -258,6 +258,7 @@ paths:
       security:
         - cookieAuthProduction: []
         - cookieAuthStaging: []
+        - cookieAuthTesting: []
       tags:
         - user
       summary: "Returns information about the current user"
@@ -906,3 +907,7 @@ components:
       type: apiKey
       in: cookie
       name: zeit_staging_sso_201501
+    cookieAuthTesting:
+      type: apiKey
+      in: cookie
+      name: my_sso_cookie
