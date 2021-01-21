@@ -253,6 +253,23 @@ paths:
                 ]}
               ]}
 
+  /user:
+    get:
+      security:
+        - cookieAuthProduction: []
+        - cookieAuthStaging: []
+      tags:
+        - user
+      summary: "Returns information about the current user"
+      responses:
+        "200":
+          description: "Information about the currently logged in user"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserInfo"
+        "403":
+          description: "The user is not logged in"
 components:
   requestBodies:
     AppStoreReceipt:
@@ -863,6 +880,19 @@ components:
       type: string
       description: base64 encoded representation of the app store receipt
       format: byte
+    UserInfo:
+      properties:
+        ssoid:
+          type: integer
+        username:
+          type: string
+        firstname:
+          type: string
+        lastname:
+          type: string
+        avatar:
+          type: string
+          description: URL to the image
 
   securitySchemes:
     default:
