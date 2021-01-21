@@ -884,13 +884,6 @@ components:
       properties:
         ssoid:
           type: integer
-        status:
-          type: string
-          description: which state the user account is in
-          enum:
-            - active
-            - premod_temporary
-            - blocked
         username:
           type: string
         firstname:
@@ -900,11 +893,6 @@ components:
         avatar:
           type: string
           description: URL to the image
-        created:
-          type: string
-          format: date-time
-          description: "Timestamp when the user account has been created"
-          example: "2019-12-31T13:12:00Z"
 
   securitySchemes:
     default:
