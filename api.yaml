@@ -298,6 +298,7 @@ components:
               - $ref: "#/components/schemas/CenterpageModuleHTML"
               - $ref: "#/components/schemas/CenterpageAdplace"
               - $ref: "#/components/schemas/CenterpageHeader"
+              - $ref: "#/components/schemas/CenterpageMarkup"
 
     CenterpageElementId:
       type: string
@@ -699,7 +700,14 @@ components:
           type: string
     CenterpageMarkup:
       description: "A list of text"
+      required:
+        - type
+        - text
       properties:
+        type:
+          type: string
+          enum:
+            - 'markup'
         title:
           type: string
         text: 
