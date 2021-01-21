@@ -268,7 +268,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/UserInfo"
-        "403":
+        "401":
           description: "The user is not logged in"
 components:
   requestBodies:
