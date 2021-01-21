@@ -317,6 +317,7 @@ components:
         - teaser-podcast
         - html
         - header
+        - markup
       description: "Type of the cp element"
 
     Image:
@@ -695,6 +696,13 @@ components:
         supertitle:
           type: string
         title:
+          type: string
+    CenterpageMarkup:
+      description: "A list of text"
+      properties:
+        title:
+          type: string
+        text: 
           type: string
 
     TabBase:
