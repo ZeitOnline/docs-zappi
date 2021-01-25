@@ -894,6 +894,18 @@ components:
         avatar:
           type: string
           description: URL to the image
+        subscriptions:
+          type: array
+          description: |
+            Which subscriptions does the current user have?
+            - "pur": the user should not be tracked and should not
+              see any ads
+            - "digital": the user should be able to see all Z+ content
+          items:
+            type: string
+            enum:
+              - pur
+              - digital
 
   securitySchemes:
     default:
