@@ -303,7 +303,7 @@ components:
         bookmarkable:
           type: boolean
           example: true
-        AdControllerPageInfo:
+        adControllerPageInfo:
           $ref: "#/components/schemas/AdControllerPageInfo"
         items:
           type: array
