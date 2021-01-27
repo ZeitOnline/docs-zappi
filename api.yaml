@@ -351,6 +351,7 @@ components:
           example: "deutschland"
         keywords:
           type: string
+          example: "zeitonline,coronavirus,frankreich,lockdown"
 
 
     Image:
