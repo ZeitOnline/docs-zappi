@@ -339,7 +339,6 @@ components:
 
     AdControllerPageInfo:
       type: object
-      nullable: true
       properties:
         level2:
           description: "Level2 property ressort for adplacement"
