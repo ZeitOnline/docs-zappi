@@ -344,7 +344,7 @@ components:
         level2:
           description: "Level2 property ressort for adplacement"
           type: string
-          example: "politik, wissen, podcasts, news"
+          example: "politik"
         level3:
           description: "Level3 property subressort, name of podcast or series for adplacement"
           type: string
