@@ -303,16 +303,8 @@ components:
         bookmarkable:
           type: boolean
           example: true
-        level2:
-          description: "Level2 property ressort for adplacement"
-          type: string
-          example: "politik, wissen, podcasts, news"
-        level3:
-          description: "Level3 property subressort, name of podcast or series for adplacement"
-          type: string
-          example: "deutschland, gesundheit, was_jetzt"
-        keywords:
-          type: string
+        AdControllerPageInfo:
+          $ref: "#/components/schemas/AdControllerPageInfo"
         items:
           type: array
           items:
@@ -344,6 +336,22 @@ components:
         - teaser-podcast
         - html
       description: "Type of the cp element"
+
+    AdControllerPageInfo:
+      type: object
+      nullable: true
+      properties:
+        level2:
+          description: "Level2 property ressort for adplacement"
+          type: string
+          example: "politik, wissen, podcasts, news"
+        level3:
+          description: "Level3 property subressort, name of podcast or series for adplacement"
+          type: string
+          example: "deutschland, gesundheit, was_jetzt"
+        keywords:
+          type: string
+
 
     Image:
       type: object
