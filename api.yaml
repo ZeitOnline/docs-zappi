@@ -348,7 +348,7 @@ components:
         level3:
           description: "Level3 property subressort, name of podcast or series for adplacement"
           type: string
-          example: "deutschland, gesundheit, was_jetzt"
+          example: "deutschland"
         keywords:
           type: string
 
