@@ -303,6 +303,8 @@ components:
         bookmarkable:
           type: boolean
           example: true
+        adControllerPageInfo:
+          $ref: "#/components/schemas/AdControllerPageInfo"
         items:
           type: array
           items:
@@ -338,6 +340,22 @@ components:
         - header
         - markup
       description: "Type of the cp element"
+
+    AdControllerPageInfo:
+      type: object
+      properties:
+        level2:
+          description: "Level2 property ressort for adplacement"
+          type: string
+          example: "politik"
+        level3:
+          description: "Level3 property subressort, name of podcast or series for adplacement"
+          type: string
+          example: "deutschland"
+        keywords:
+          type: string
+          example: "zeitonline,coronavirus,frankreich,lockdown"
+
 
     Image:
       type: object
