@@ -746,7 +746,7 @@ components:
             - 'markup'
         title:
           type: string
-        text: 
+        text:
           type: string
 
     TabBase:
