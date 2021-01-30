@@ -305,6 +305,8 @@ components:
           example: true
         adControllerPageInfo:
           $ref: "#/components/schemas/AdControllerPageInfo"
+        trackingData:
+          $ref: "#/components/schemas/TrackingData"
         items:
           type: array
           items:
@@ -396,6 +398,120 @@ components:
         visibleMobile:
           type: boolean
           example: false
+
+    TrackingData:
+      type: object
+      properties:
+        contentId:
+          type: string
+          description: "Content-ID"
+          example: "redaktion.politik.deutschland..centerpage.zede|www.zeit.de/politik/deutschland/index"
+        contentGroup:
+          $ref: "#/components/schemas/TrackingContentGroup"
+        customParameter:
+          $ref: "#/components/schemas/TrackingCustomParameter"
+
+    TrackingContentGroup:
+      type: object
+      description: "Content groups for aggregation"
+      properties:
+        1:
+          type: string
+          description: "Unit"
+          example: "redaktion"
+        2:
+          type: string
+          description: "Pagetype"
+          example: "centerpage"
+        3:
+          type: string
+          description: "Ressort"
+          example: "politik"
+        4:
+          type: string
+          description: "Sourcetype"
+          example: "zede"
+        5:
+          type: string
+          description: "Subressort"
+          example: "deutschland"
+        6:
+          type: string
+          description: "Cluster"
+          example: ""
+        7:
+          type: string
+          description: "Basename"
+          example: "index"
+        8:
+          type: string
+          description: "Banner-Channel"
+          example: "politik/deutschland/centerpage"
+        9:
+          type: string
+          description: "Date first released"
+          example: "2019-06-12"
+
+    TrackingCustomParameter:
+      type: object
+      description: "Custom page parameter"
+      properties:
+        2:
+          type: string
+          description: "IVW-Code"
+          example: "politik/deutschland/bild-text"
+        3:
+          type: string
+          description: "Pagination"
+          example: "1/1"
+        4:
+          type: string
+          description: "Keywords"
+          example: "politik;deutschland"
+        5:
+          type: string
+          description: "Date last published"
+          example: "2019-06-12 15:21:44.350769+02:00"
+        8:
+          type: string
+          description: "Product-ID"
+          example: "zede"
+        9:
+          type: string
+          description: "Banner-Channel"
+          example: "politik/deutschland/centerpage"
+        10:
+          type: string
+          description: "Banner active"
+          example: "yes"
+        25:
+          type: string
+          description: "Plattform"
+          example: "original"
+        26:
+          type: string
+          description: "Detailed Content-Type"
+          example: "centerpage.centerpage"
+        28:
+          type: string
+          description: "Access"
+          example: "free"
+        29:
+          type: string
+          description: "First Click Free"
+          example: "unfeasible"
+        30:
+          type: string
+          description: "Paywall Status"
+          example: "open"
+        32:
+          type: string
+          description: "Protocol"
+          example: "https"
+        38:
+          type: string
+          description: "Channels"
+          example: "podcast;kultur;film"
 
     AudioConnection:
       type: object
