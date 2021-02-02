@@ -484,8 +484,8 @@ components:
           type: string
           description: "Banner active (advertising enabled)"
           enum:
-            - yes
-            - no
+            - "yes"
+            - "no"
           example: "yes"
         25:
           type: string
@@ -508,8 +508,8 @@ components:
           type: string
           description: "First Click Free"
           enum:
-            - yes
-            - no
+            - "yes"
+            - "no"
             - unfeasible
           example: "unfeasible"
         30:
