@@ -404,7 +404,7 @@ components:
       properties:
         contentId:
           type: string
-          description: "Content-ID"
+          description: "Content-ID containing [Unit].[Ressort].[Subressort].[Cluster].[Pagetype].[Sourcetype]|[URL without protocol]"
           example: "redaktion.politik.deutschland..centerpage.zede|www.zeit.de/politik/deutschland/index"
         contentGroup:
           $ref: "#/components/schemas/TrackingContentGroup"
