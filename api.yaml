@@ -466,7 +466,7 @@ components:
           example: "1/1"
         4:
           type: string
-          description: "Keywords"
+          description: "Keywords separated by semicolons"
           example: "politik;deutschland"
         5:
           type: string
@@ -482,7 +482,10 @@ components:
           example: "politik/deutschland/centerpage"
         10:
           type: string
-          description: "Banner active"
+          description: "Banner active (advertising enabled)"
+          enum:
+            - yes
+            - no
           example: "yes"
         25:
           type: string
@@ -495,14 +498,28 @@ components:
         28:
           type: string
           description: "Access"
+          enum:
+            - free
+            - registration
+            - dynamic
+            - abo
           example: "free"
         29:
           type: string
           description: "First Click Free"
+          enum:
+            - yes
+            - no
+            - unfeasible
           example: "unfeasible"
         30:
           type: string
           description: "Paywall Status"
+          enum:
+            - open
+            - register
+            - metered
+            - paid
           example: "open"
         32:
           type: string
@@ -510,7 +527,7 @@ components:
           example: "https"
         38:
           type: string
-          description: "Channels"
+          description: "Channels separated by semicolons"
           example: "podcast;kultur;film"
 
     AudioConnection:
