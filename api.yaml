@@ -437,8 +437,8 @@ components:
           example: "deutschland"
         6:
           type: string
-          description: "Cluster"
-          example: ""
+          description: "Cluster (series name)"
+          example: "allesgesagt?"
         7:
           type: string
           description: "Basename"
