@@ -223,32 +223,35 @@ paths:
                         - $ref: "#/components/schemas/TabMenu"
                         - $ref: "#/components/schemas/TabStory"
               example: {tabs: [
-                {id: start, title: Start, type: tab-centerpage, icon: home, items: [
-                  {id: homepage, title: Aktuell, type: menu-item-web, url: "https://www.zeit.de/index"},
-                  {id: ressortPolitik, title: Politik, type: menu-item-native, source: "{urn:uuid:b4d1e3b1-aac4-4a80-b820-e4093fe24a36}"},
-                  {id: ressortGesellschaft, title: Gesellschaft, type: menu-item-native, source: "{urn:uuid:c92ad9be-67e0-497d-beee-6c2e063352cc}"},
-                  {id: ressortWirtschaft, title: Wirtschaft, type: menu-item-native, source: "{urn:uuid:ea13ef02-74f3-4010-8cd7-777327fb881a}"},
-                  {id: ressortWissen, title: Wissen, type: menu-item-native, source: "{urn:uuid:c84692ca-b0c9-4772-8c6b-85e2abc446e1}"},
-                  {id: ressortKultur, title: Kultur, type: menu-item-native, source: "{urn:uuid:49b109f0-bbad-495e-8a88-ad91ec1ef8f9}"}
+                {"id": "start", title: "Start", type: "tab-centerpage", icon: "home", "items": [
+                  {"id": homepage, title: Aktuell, type: menu-item-web, url: "https://www.zeit.de/index"},
+                  {"id": ressortPolitik, title: Politik, type: menu-item-native, source: "{urn:uuid:b4d1e3b1-aac4-4a80-b820-e4093fe24a36}"},
+                  {"id": ressortGesellschaft, title: Gesellschaft, type: menu-item-native, source: "{urn:uuid:c92ad9be-67e0-497d-beee-6c2e063352cc}"},
+                  {"id": ressortWirtschaft, title: Wirtschaft, type: menu-item-native, source: "{urn:uuid:ea13ef02-74f3-4010-8cd7-777327fb881a}"},
+                  {"id": ressortWissen, title: Wissen, type: menu-item-native, source: "{urn:uuid:c84692ca-b0c9-4772-8c6b-85e2abc446e1}"},
+                  {"id": ressortKultur, title: Kultur, type: menu-item-native, source: "{urn:uuid:49b109f0-bbad-495e-8a88-ad91ec1ef8f9}"}
                 ]},
-                {id: news, title: Schlagzeilen, type: tab-centerpage, icon: clock, items: [
-                  {id: newsAll, title: "Alle Schlagzeilen", type: menu-item-native, source: "{urn:uuid:08945d5e-483c-4e7b-9843-69a8f590ada9}"},
-                  {id: newsMostImportant, title: "Die wichtigsten Nachrichten", type: menu-item-native, source: "{urn:uuid:df60a52c-5f4d-4804-833d-ec31e24dbd43}"},
-                  {id: newsAnalysisAndReports, title: "Analysen und Hintergründe", type: menu-item-native, source: "{urn:uuid:d6913463-1804-466d-b6d0-34376ef21916}"}
+                {"id": news, title: Schlagzeilen, type: tab-centerpage, icon: clock, items: [
+                  {"id": newsAll, title: "Alle Schlagzeilen", type: menu-item-native, source: "{urn:uuid:08945d5e-483c-4e7b-9843-69a8f590ada9}"},
+                  {"id": newsMostImportant, title: "Die wichtigsten Nachrichten", type: menu-item-native, source: "{urn:uuid:df60a52c-5f4d-4804-833d-ec31e24dbd43}"},
+                  {"id": newsAnalysisAndReports, title: "Analysen und Hintergründe", type: menu-item-native, source: "{urn:uuid:d6913463-1804-466d-b6d0-34376ef21916}"}
                 ]},
-                {id: explore, title: Entdecken, type: tab-story, icon: compass, items: [
-                  {id: explore-all, title: Entdecken, type: menu-item-native, source: "{urn:uuid:99ae6607-fe0f-44ad-97fb-00dd0d852c30}"},
+                {"id": explore, title: Entdecken, type: tab-story, icon: compass, items: [
+                  {"id": explore-all, title: Entdecken, type: menu-item-native, source: "{urn:uuid:99ae6607-fe0f-44ad-97fb-00dd0d852c30}"},
                 ]},
-                {id: zplus, title: Mein Abo, type: tab-centerpage, icon: zplus, items: [
-                  {id: exclusive, title: "Exklusive Artikel", type: menu-item-native, source: "{urn:uuid:0fd9480f-1b52-4fcb-942e-8089e378102e}"},
-                  {id: zeitPDFWebReader, title: "DIE ZEIT", type: menu-item-web, url: "https://epaper.zeit.de/abo/diezeit"},
-                  {id: wochenMarkt, title: "Wochenmarkt", type: menu-item-web, url: "https://www.zeit.de/wochenmarkt"}
+                {"id": zplus, title: Mein Abo, type: tab-centerpage, icon: zplus, items: [
+                  {"id": exclusive, title: "Exklusive Artikel", type: menu-item-native, source: "{urn:uuid:0fd9480f-1b52-4fcb-942e-8089e378102e}"},
+                  {"id": zeitPDFWebReader, title: "DIE ZEIT", type: menu-item-web, url: "https://epaper.zeit.de/abo/diezeit"},
+                  {"id": wochenMarkt, title: "Wochenmarkt", type: menu-item-web, url: "https://www.zeit.de/wochenmarkt"}
                 ]},
-                {id: menu, title: Mehr, type: tab-menu, icon: avatar, items: [
-                  {id: user-menu, title: "Mein Bereich", items: [
-                    {id: reading-list, title: Merkliste, type: menu-item-app, targetId: native-reading-list},
-                    {id: reading-history, title: Verlauf, type: menu-item-app, targetId: native-reading-history},
-                    {id: comment-list, title: Kommentare, type: menu-item-web, url: "https://profile.zeit.de"}
+                {"id": menu, title: Mehr, type: tab-menu, icon: avatar, items: [
+                  {"id": user-menu, title: "Mein Bereich", items: [
+                    {"id": reading-list, title: Merkliste, type: menu-item-app, targetId: native-reading-list},
+                    {"id": reading-history, title: Verlauf, type: menu-item-app, targetId: native-reading-history},
+                    {"id": comment-list, title: Kommentare, type: menu-item-web, url: "https://profile.zeit.de"}
+                  ]},
+                  {"id": angebote, title: "Angebote", items: [
+                    {"id": anzeigen, title: Anzeigen, type: menu-item-submenu, targetId: native-reading-list}
                   ]}
                 ]}
               ]}
