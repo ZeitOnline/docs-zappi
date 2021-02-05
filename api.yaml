@@ -346,6 +346,15 @@ components:
     AdControllerPageInfo:
       type: object
       properties:
+        doc:
+          type: string
+          description: "page type"
+          enum:
+            - homepage
+            - index
+            - artikel
+            - bildgal
+          example: "index"
         level2:
           description: "Level2 property ressort for adplacement"
           type: string
