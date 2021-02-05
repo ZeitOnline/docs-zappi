@@ -348,12 +348,14 @@ components:
       properties:
         doc:
           type: string
+          nullable: true
           description: "page type"
           enum:
             - homepage
             - index
             - artikel
             - bildgal
+            - null
           example: "index"
         level2:
           description: "Level2 property ressort for adplacement"
