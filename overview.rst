@@ -18,3 +18,9 @@ Die jeweils aktuelle Entwicklungsversion des Backends ist unter ``https://zappi.
 Sprich, egal, welcher Wert dort steht, es wird immer die aktuellste Version ausgeliefert.
 
 Der Endpunkt ist per Basic Auth mit hardgecodeten Credentials geschützt, die derzeit manuell an die Entwickler verteilt werden.
+
+
+Auslieferung
+------------
+
+Zappi liefert Inhalte in Form von json aus, die von der App nativ gerendert werden. Das Backend baut hierzu auf dem Framework von `zeit.web.site` auf. Aus diesem Grund werden spezielle Anpassungen aus den Vertikals nicht unterstützt. 
