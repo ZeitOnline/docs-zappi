@@ -254,10 +254,11 @@ paths:
                     {"id": "anzeigen", "title": "Anzeigen", "type": "menu-item-submenu", "items": [
                       {"id": "ad1", "title": "Werbung", "type": "menu-item-web", "url": "https://www.werbung.de"},
                       {"id": "ad2", "title": "Anzeige", "type": "menu-item-web", "url": "https://www.werbung.de"},
-                      {"id": "ad3", "title": "Promo", "type": "menu-item-web", "url": "https://www.werbung.de"}}
+                      {"id": "ad3", "title": "Promo", "type": "menu-item-web", "url": "https://www.werbung.de"}
                     ]}
                   ]}
                 ]}
+              ]}
 
   /user:
     get:
