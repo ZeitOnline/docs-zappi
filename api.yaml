@@ -868,6 +868,8 @@ components:
         - type
         - title
       properties:
+        id:
+          $ref: "#/components/schemas/CenterpageElementId"
         type:
           type: string
           enum:
@@ -885,6 +887,8 @@ components:
         - type
         - text
       properties:
+        id:
+          $ref: "#/components/schemas/CenterpageElementId"
         type:
           type: string
           enum:
