@@ -876,6 +876,7 @@ components:
           $ref: "#/components/schemas/Image"
         supertitle:
           type: string
+          nullable: true
         title:
           type: string
     CenterpageMarkup:
