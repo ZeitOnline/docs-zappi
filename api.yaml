@@ -868,6 +868,8 @@ components:
         - type
         - title
       properties:
+        id:
+          $ref: "#/components/schemas/CenterpageElementId"
         type:
           type: string
           enum:
@@ -876,6 +878,7 @@ components:
           $ref: "#/components/schemas/Image"
         supertitle:
           type: string
+          nullable: true
         title:
           type: string
     CenterpageMarkup:
@@ -884,6 +887,8 @@ components:
         - type
         - text
       properties:
+        id:
+          $ref: "#/components/schemas/CenterpageElementId"
         type:
           type: string
           enum:
