@@ -241,11 +241,11 @@ paths:
                 ]},
                 {id: zplus, title: Mein Abo, type: tab-centerpage, icon: zplus, items: [
                   {id: exclusive, title: "Exklusive Artikel", type: menu-item-native, source: "{urn:uuid:0fd9480f-1b52-4fcb-942e-8089e378102e}"},
-                  {id: zeitPDFWebReader, title: "DIE ZEIT", type: menu-item-web, url: "https://epaper.zeit.de/abo/diezeit",
+                  {id: zeitPDFWebReader, title: "DIE ZEIT", type: menu-item-web, url: "https://epaper.zeit.de/abo/diezeit"},
                   {id: wochenMarkt, title: "Wochenmarkt", type: menu-item-web, url: "https://www.zeit.de/wochenmarkt"}
                 ]},
                 {id: menu, title: Mehr, type: tab-menu, icon: avatar, items: [
-                  {id: user-menu, title: Mein Bereich, items: [
+                  {id: user-menu, title: "Mein Bereich", items: [
                     {id: reading-list, title: Merkliste, type: menu-item-app, targetId: native-reading-list},
                     {id: reading-history, title: Verlauf, type: menu-item-app, targetId: native-reading-history},
                     {id: comment-list, title: Kommentare, type: menu-item-web, url: "https://profile.zeit.de"}
