@@ -237,7 +237,7 @@ paths:
                   {id: newsAnalysisAndReports, title: "Analysen und Hintergründe", type: menu-item-native, source: "{urn:uuid:d6913463-1804-466d-b6d0-34376ef21916}"}
                 ]},
                 {id: explore, title: Entdecken, type: tab-story, icon: compass, items: [
-                  {id: explore-all, title: Entdecken, type: menu-item-native, source: "{urn:uuid:99ae6607-fe0f-44ad-97fb-00dd0d852c30}"},
+                  {id: explore-all, title: Entdecken, type: menu-item-native, source: "{urn:uuid:99ae6607-fe0f-44ad-97fb-00dd0d852c30}"}
                 ]},
                 {id: zplus, title: Mein Abo, type: tab-centerpage, icon: zplus, items: [
                   {id: exclusive, title: "Exklusive Artikel", type: menu-item-native, source: "{urn:uuid:0fd9480f-1b52-4fcb-942e-8089e378102e}"},
@@ -249,6 +249,13 @@ paths:
                     {id: reading-list, title: Merkliste, type: menu-item-app, targetId: native-reading-list},
                     {id: reading-history, title: Verlauf, type: menu-item-app, targetId: native-reading-history},
                     {id: comment-list, title: Kommentare, type: menu-item-web, url: "https://profile.zeit.de"}
+                  ]},
+                  {id: angebote, title: Angebote, items: [
+                    {id: anzeigen, title: Anzeigen, type: menu-item-submenu, items: [
+                      {id: ad1, title: Werbung, type: menu-item-web, url: "https://www.werbung.de"},
+                      {id: ad2, title: Anzeige, type: menu-item-web, url: "https://www.werbung.de"},
+                      {id: ad3, title: Promo, type: menu-item-web, url: "https://www.werbung.de"}
+                    ]}
                   ]}
                 ]}
               ]}
@@ -984,6 +991,8 @@ components:
               - $ref: "#/components/schemas/MenuItemApp"
               - $ref: "#/components/schemas/MenuItemWeb"
               - $ref: "#/components/schemas/MenuItemBrowser"
+              - $ref: "#/components/schemas/MenuItemSubMenu"
+
     MenuItemBase:
       required:
         - id
@@ -1003,6 +1012,7 @@ components:
             - menu-item-app
             - menu-item-web
             - menu-item-browser
+            - menu-item-submenu
         icon:
           type: object
           properties:
@@ -1071,6 +1081,25 @@ components:
               enum:
                 - menu-item-browser
               example: "menu-item-browser"
+    MenuItemSubMenu:
+      allOf:
+        - $ref: "#/components/schemas/MenuItemBase"
+        - required:
+            - items
+          properties:
+            type:
+              type: string
+              enum:
+                - menu-item-submenu
+            items:
+              type: array
+              items:
+                oneOf:
+                  - $ref: "#/components/schemas/MenuItemNative"
+                  - $ref: "#/components/schemas/MenuItemApp"
+                  - $ref: "#/components/schemas/MenuItemWeb"
+                  - $ref: "#/components/schemas/MenuItemBrowser"
+
     AppStoreType:
       type: string
       description: which store the receipt originated from
