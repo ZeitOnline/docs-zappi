@@ -1118,7 +1118,6 @@ components:
     AppStoreReceipt:
       type: string
       description: base64 encoded representation of the app store receipt
-      format: byte
     UserInfo:
       properties:
         ssoid:
