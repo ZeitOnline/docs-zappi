@@ -38,7 +38,7 @@ paths:
                 $ref: "#/components/schemas/Centerpage"
           description: "Success"
         "400":
-          description: "Bad Request"
+          description: "Something was wrong with the request. Check the body for error messages."
         "401":
           description: "Unauthorized"
     post:
@@ -59,7 +59,7 @@ paths:
         "204":
           description: "Saved entry to bookmarks"
         "400":
-          description: "Bad Request"
+          description: "Something was wrong with the request. Check the body for error messages."
         "401":
           description: "Unauthorized"
         "403":
@@ -82,7 +82,7 @@ paths:
         "204":
           description: "Deleted entry from bookmarks"
         "400":
-          description: "Bad Request"
+          description: "Something was wrong with the request. Check the body for error messages."
         "401":
           description: "Unauthorized"
         "403":
@@ -136,6 +136,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Centerpage"
+        "400":
+          description: "Something was wrong with the request. Check the body for error messages."
         "404":
           description: "No centerpage found for the given uuid"
 
@@ -167,6 +169,8 @@ paths:
       responses:
         "204":
           description: "All is well. Enjoy those exclusive articles!"
+        "400":
+          description: "Something was wrong with the request. Check the body for error messages."
         "502":
           description: "The payment server was not reachable."
   /search:
@@ -259,6 +263,8 @@ paths:
                   ]}
                 ]}
               ]}
+        "400":
+          description: "Something was wrong with the request. Check the body for error messages."
 
   /user:
     get:
@@ -276,6 +282,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/UserInfo"
+        "400":
+          description: "Something was wrong with the request. Check the body for error messages."
         "401":
           description: "The user is not logged in"
 components:
