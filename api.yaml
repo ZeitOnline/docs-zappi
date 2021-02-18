@@ -885,6 +885,11 @@ components:
                   - $ref: "#/components/schemas/CenterpageTeaserVideo"
                   - $ref: "#/components/schemas/CenterpageTeaserPodcast"
                   - $ref: "#/components/schemas/CenterpageModuleHTML"
+            trackingData:
+              type: object
+              properties:
+                customClickParameter:
+                  $ref: "#/components/schemas/CustomClickParameter"
     CenterpageAdplace:
       description: "Placeholder for advertisement"
       required:
