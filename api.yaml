@@ -556,6 +556,27 @@ components:
           description: "Channels separated by semicolons"
           example: "podcast;kultur;film"
 
+    CustomClickParameter:
+      type: object
+      description: "Custom click parameter"
+      properties:
+        5:
+          type: string
+          description: "Area"
+          example: "headed-zplus"
+        6:
+          type: string
+          description: "Row"
+          example: "1"
+        7:
+          type: string
+          description: "Column"
+          example: "4"
+        8:
+          type: string
+          description: "Subcolumn"
+          example: "zon-teaser-standard"
+
     AudioConnection:
       type: object
       properties:
@@ -689,6 +710,11 @@ components:
             bookmarkable:
               type: boolean
               example: true
+            trackingData:
+              type: object
+              properties:
+                customClickParameter:
+                  $ref: "#/components/schemas/CustomClickParameter"
     CenterpageTeaser:
       description: "A teaser module references/represents an article content object"
       allOf:
