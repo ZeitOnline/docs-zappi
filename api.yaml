@@ -680,6 +680,7 @@ components:
                   - brandeins
                   - liveblog
                   - liveblog-closed
+                  - wiwo
                   - zett
                   - zplus
                   - zplus-register
