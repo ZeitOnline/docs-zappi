@@ -547,10 +547,6 @@ components:
             - metered
             - paid
           example: "open"
-        32:
-          type: string
-          description: "Protocol"
-          example: "https"
         38:
           type: string
           description: "Channels separated by semicolons"
