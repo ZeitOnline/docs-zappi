@@ -1145,7 +1145,17 @@ components:
         - dummy_appstore
     AppStoreReceipt:
       type: string
-      description: base64 encoded representation of the app store receipt
+      description: |
+        base64 encoded representation of the app store receipt.
+        In the case of the Apple Appstore, this is simply the verbatim token that the Client
+        has received from the store.
+        In the case of the Google Playstore clients must send the base64 encoded representation
+        of a JSON array with the following key/values:
+          - ``original_json``: a JSON string of the verbatim result of calling the ``getOriginalJson()``
+            method on the receipt object that the Android API provides as return value for the transaction
+            of buying a product in the Google Playstore.
+          - ``signature``: a base64 encoded String that represents the output of calling ``getSignature()``
+            on the abovementioned object.
     UserInfo:
       properties:
         ssoid:
