@@ -193,10 +193,13 @@ paths:
             schema:
               type: object
               properties:
+                adControllerPageInfo:
+                  $ref: "#/components/schemas/AdControllerPageInfo"
                 items:
                   type: array
                   items:
                     oneOf:
+                      - $ref: "#/components/schemas/CenterpageAdplace"
                       - $ref: "#/components/schemas/CenterpageTeaser"
                       - $ref: "#/components/schemas/CenterpageTeaserGallery"
                       - $ref: "#/components/schemas/CenterpageTeaserVideo"
