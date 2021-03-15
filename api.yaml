@@ -1197,6 +1197,10 @@ components:
             Extra parameter to identify
             - "iqdpremium": user has abo
             - "iqdpremium_registered": user is registered user
+        c1AccessGroup:
+          type: string
+          nullable: true
+          description: CeleraOne access group
 
   securitySchemes:
     default:
