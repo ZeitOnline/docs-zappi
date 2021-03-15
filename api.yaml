@@ -1163,17 +1163,23 @@ components:
       properties:
         ssoid:
           type: integer
-        username:
+        name:
           type: string
+          description: username
+          nullable: true
         firstname:
           type: string
+          nullable: true
         lastname:
           type: string
+          nullable: true
         avatar:
           type: string
           description: URL to the image
+          nullable: true
         subscriptions:
           type: array
+          nullable: true
           description: |
             Which subscriptions does the current user have?
             - "pur": the user should not be tracked and should not
@@ -1184,6 +1190,13 @@ components:
             enum:
               - pur
               - digital
+        adControllerUserGroup:
+          type: string
+          nullable: true
+          description: |
+            Extra parameter to identify
+            - "iqdpremium": user has abo
+            - "iqdpremium_registered": user is registered user
 
   securitySchemes:
     default:
