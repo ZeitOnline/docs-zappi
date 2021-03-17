@@ -1198,9 +1198,11 @@ components:
             - "iqdpremium": user has abo
             - "iqdpremium_registered": user is registered user
         c1AccessGroup:
-          type: string
+          type: array
           nullable: true
           description: CeleraOne access group
+          items:
+            type: string
 
   securitySchemes:
     default:
