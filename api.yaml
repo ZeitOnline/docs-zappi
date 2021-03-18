@@ -205,6 +205,8 @@ paths:
                       - $ref: "#/components/schemas/CenterpageTeaserVideo"
                       - $ref: "#/components/schemas/CenterpageTeaserPodcast"
                       - $ref: "#/components/schemas/CenterpageModuleHTML"
+                trackingData:
+                  $ref: "#/components/schemas/TrackingData"
       "400":
         description: "Invalid query, see response body for details."
 
