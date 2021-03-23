@@ -970,8 +970,16 @@ components:
             - tab-menu
             - tab-story
         icon:
-          type: string
-          example: home
+          type: object
+          properties:
+            ios:
+              type: string
+              description: "SF Symbol name"
+              example: "bookmark"
+            android:
+              type: string
+              description: "Material Design Icon name"
+              example: "bookmarks"
         items:
           type: array
     TabCenterpage:
