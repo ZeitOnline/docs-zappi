@@ -877,6 +877,7 @@ components:
                 - headed
                 - headed-light
                 - standard
+                - story
                 - tab
                 - tabpanel
             items:
