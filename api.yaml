@@ -621,6 +621,7 @@ components:
                 - zon-teaser-classic
                 - zon-teaser-list
                 - zon-teaser-printbox
+                - zon-teaser-upright
                 - zon-teaser-small
                 - zon-teaser-small-compact
                 - zon-teaser-square
