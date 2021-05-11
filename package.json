@@ -4,9 +4,9 @@
   "description": "",
   "private": true,
   "dependencies": {
-    "swagger-ui-dist": "^3.34.0",
+    "openapi-types": ">=7",
     "swagger-cli": "^4.0.4",
-    "openapi-types": ">=7"
+    "swagger-ui-dist": "^3.34.0"
   },
   "keywords": [],
   "author": "",
