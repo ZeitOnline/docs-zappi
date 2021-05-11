@@ -772,7 +772,7 @@ components:
                 # page-url:
                 # series: serienname
     CenterpageTeaserPodcast:
-      description: "A teaser module references/represents an article content object with audio"
+      description: "A teaser module references/represents an article content object with audio (podigee podcast)"
       allOf:
         - $ref: "#/components/schemas/CenterpageTeaserBase"
         - required:
