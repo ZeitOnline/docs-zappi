@@ -204,6 +204,7 @@ paths:
                       - $ref: "#/components/schemas/CenterpageTeaserGallery"
                       - $ref: "#/components/schemas/CenterpageTeaserVideo"
                       - $ref: "#/components/schemas/CenterpageTeaserPodcast"
+                      - $ref: "#/components/schemas/CenterpageTeaserAudio"
                       - $ref: "#/components/schemas/CenterpageModuleHTML"
                 trackingData:
                   $ref: "#/components/schemas/TrackingData"
@@ -337,6 +338,7 @@ components:
               - $ref: "#/components/schemas/CenterpageTeaserGallery"
               - $ref: "#/components/schemas/CenterpageTeaserVideo"
               - $ref: "#/components/schemas/CenterpageTeaserPodcast"
+              - $ref: "#/components/schemas/CenterpageTeaserAudio"
               - $ref: "#/components/schemas/CenterpageModuleHTML"
               - $ref: "#/components/schemas/CenterpageAdplace"
               - $ref: "#/components/schemas/CenterpageHeader"
@@ -358,6 +360,7 @@ components:
         - teaser-gallery
         - teaser-video
         - teaser-podcast
+        - teaser-audio
         - html
         - header
         - markup
@@ -772,7 +775,7 @@ components:
                 # page-url:
                 # series: serienname
     CenterpageTeaserPodcast:
-      description: "A teaser module references/represents an article content object with audio"
+      description: "A teaser module references/represents an article content object with audio (podigee podcast)"
       allOf:
         - $ref: "#/components/schemas/CenterpageTeaserBase"
         - required:
@@ -802,6 +805,33 @@ components:
                   type: array
                   items:
                     $ref: "#/components/schemas/AudioConnection"
+    CenterpageTeaserAudio:
+      description: "A teaser module references/represents an article content object with premium audio"
+      allOf:
+        - $ref: "#/components/schemas/CenterpageTeaserBase"
+        - required:
+            - audio
+          properties:
+            type:
+              type: string
+              enum:
+                - teaser-audio
+              example: "teaser-audio"
+            audio:
+              type: object
+              properties:
+                color:
+                  type: string
+                  nullable: true
+                  example: "b91109"
+                duration:
+                  type: string
+                  example: "-00:05:23"
+                url:
+                  type: string
+                  # format: uri
+                  description: "URL directly to the audio source"
+                  example: "https://premium.zeit.de/system/files/DZ/2021/19/audio/19_italien_8842307_8635853_dl.mp3"
     CenterpageModuleHTML:
       description: "A non-native module that should be displayed via a web view"
       allOf:
@@ -888,6 +918,7 @@ components:
                   - $ref: "#/components/schemas/CenterpageTeaserGallery"
                   - $ref: "#/components/schemas/CenterpageTeaserVideo"
                   - $ref: "#/components/schemas/CenterpageTeaserPodcast"
+                  - $ref: "#/components/schemas/CenterpageTeaserAudio"
                   - $ref: "#/components/schemas/CenterpageModuleHTML"
             trackingData:
               type: object
