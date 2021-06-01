@@ -171,6 +171,8 @@ paths:
           description: "All is well. Enjoy those exclusive articles!"
         "400":
           description: "Something was wrong with the request. Check the body for error messages."
+        "401":
+          description: "No valid identities were found in the receipt."
         "502":
           description: "The payment server was not reachable."
   /search:
