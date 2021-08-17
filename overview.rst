@@ -17,7 +17,7 @@ Prototyp des Backends
 Die jeweils aktuelle Entwicklungsversion des Backends ist unter ``https://zappi.staging.zeit.de/x.y.z`` erreichbar, wobei ``xxx`` derzeit ein beliebiger Platzhalter für die Version sein kann, der vom Backend ignoriert wird.
 Sprich, egal, welcher Wert dort steht, es wird immer die aktuellste Version ausgeliefert.
 
-Der Endpunkt ist per Basic Auth mit hardgecodeten Credentials geschützt, die derzeit manuell an die Entwickler verteilt werden.
+Der Endpunkt ist per Basic Auth mit hardgecodeten Credentials geschützt, die `im Vault liegen <https://vault.ops.zeit.de/ui/vault/secrets/zon%2Fv1/show/zappi/production/fastly-basic-auth>`_.
 
 
 Auslieferung
