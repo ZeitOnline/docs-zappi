@@ -684,7 +684,6 @@ components:
               items:
                 type: string
                 enum:
-                  - brandeins
                   - liveblog
                   - liveblog-closed
                   - wiwo
