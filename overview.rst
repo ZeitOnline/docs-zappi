@@ -20,6 +20,12 @@ Sprich, egal, welcher Wert dort steht, es wird immer die aktuellste Version ausg
 Der Endpunkt ist per Basic Auth mit hardgecodeten Credentials geschützt, die `im Vault liegen <https://vault.ops.zeit.de/ui/vault/secrets/zon%2Fv1/show/zappi/production/fastly-basic-auth>`_.
 
 
+Versionierung
+-------------
+
+Bisher ist keine echte Versionierung der API erfolgt, allerdings wird die Version in Fastly in den Backend Request Header geschrieben `x-zappi-version=major.minor.patch`. Diese Version wird bei Requests an die `app_structure` und `app_config` Endpunkte genutzt, um unterschiedliche Versionen der Dateien ausliefern zu können. 
+Die Dateien liegen in Ordnern in vivi folgen dem Format: /major-minor-patch/{filename}. Sollte die angefragte Version nicht zur Verfügung stehen, wird die `/default-version/{filename}` ausgegeben.
+
 Auslieferung
 ------------
 
