@@ -686,6 +686,7 @@ components:
                 enum:
                   - liveblog
                   - liveblog-closed
+                  - livestream
                   - wiwo
                   - zett
                   - zplus
