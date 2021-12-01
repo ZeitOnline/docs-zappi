@@ -908,6 +908,7 @@ components:
                 - duo
                 - headed
                 - headed-light
+                - headed-fixed-height
                 - standard
                 - story
                 - tab
