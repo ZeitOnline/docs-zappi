@@ -633,6 +633,7 @@ components:
                 - zon-teaser-square-compact
                 - zon-teaser-standard
                 - zon-teaser-standard-compact
+                - zon-teaser-stripe
                 - zon-teaser-wide
               description: "How to display this teaser (e.g large/small)"
             title:
