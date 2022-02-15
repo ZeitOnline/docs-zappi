@@ -624,6 +624,9 @@ components:
               # @check https://vivi.zeit.de/repository/data/cp-layouts.xml
               enum:
                 - zon-teaser-classic
+                - zon-teaser-cover
+                - headerimage
+                - zon-teaser-link-list-item
                 - zon-teaser-list
                 - zon-teaser-printbox
                 - zon-teaser-upright
@@ -918,6 +921,8 @@ components:
                 - headed
                 - headed-light
                 - headed-fixed-height
+                - link-list
+                - podcast-grid
                 - standard
                 - story
                 - tab
