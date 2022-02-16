@@ -628,6 +628,7 @@ components:
                 - headerimage
                 - zon-teaser-link-list-item
                 - zon-teaser-list
+                - zon-teaser-podcast-small
                 - zon-teaser-printbox
                 - zon-teaser-upright
                 - zon-teaser-small
