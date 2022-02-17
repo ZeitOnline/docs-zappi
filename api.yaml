@@ -626,7 +626,7 @@ components:
                 - zon-teaser-classic
                 - zon-teaser-cover
                 - headerimage
-                - zon-teaser-link-list-item
+                - zon-teaser-link
                 - zon-teaser-list
                 - zon-teaser-podcast-small
                 - zon-teaser-printbox
