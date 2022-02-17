@@ -625,6 +625,7 @@ components:
               enum:
                 - zon-teaser-classic
                 - zon-teaser-list
+                - zon-teaser-podcast-small-plus
                 - zon-teaser-printbox
                 - zon-teaser-upright
                 - zon-teaser-small
@@ -918,6 +919,7 @@ components:
                 - headed
                 - headed-light
                 - headed-fixed-height
+                - podcast-episode-list
                 - standard
                 - story
                 - tab
