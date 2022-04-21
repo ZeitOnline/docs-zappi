@@ -294,6 +294,34 @@ paths:
           description: "Something was wrong with the request. Check the body for error messages."
         "401":
           description: "The user is not logged in"
+  /validate/{filename}:
+    get:
+      summary: "Endpoint to validate app structure file"
+      parameters:
+        - in: path
+          name: filename
+          schema:
+            type: string
+          required: true
+          description: "The filepath of the app structure file eg. data/app/1-2-3/test-structure"
+      responses:
+        "200":
+          description: "Success"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  tabs:
+                    type: array
+                    items:
+                      oneOf:
+                        - $ref: "#/components/schemas/TabCenterpage"
+                        - $ref: "#/components/schemas/TabMenu"
+                        - $ref: "#/components/schemas/TabStory"
+        "400":
+          description: "Something was wrong with the request. Check the body for error messages."
+
 components:
   requestBodies:
     AppStoreReceipt:
