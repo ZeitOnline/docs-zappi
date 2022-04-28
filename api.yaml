@@ -311,6 +311,17 @@ components:
       description: "CMS UUID that denotes a content object. For testing/development, a CMS path is also accepted."
       example: "{urn:uuid:d995ba5a-a7fb-401a-bdc8-86cf2cbf0cda} or d995ba5a-a7fb-401a-bdc8-86cf2cbf0cda"
 
+    Structure:
+      type: object
+      properties:
+        tabs:
+          type: array
+          items:
+            oneOf:
+              - $ref: "#/components/schemas/TabCenterpage"
+              - $ref: "#/components/schemas/TabMenu"
+              - $ref: "#/components/schemas/TabStory"
+
     Centerpage:
       type: object
       properties:
