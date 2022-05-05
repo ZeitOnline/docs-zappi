@@ -225,15 +225,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  tabs:
-                    type: array
-                    items:
-                      oneOf:
-                        - $ref: "#/components/schemas/TabCenterpage"
-                        - $ref: "#/components/schemas/TabMenu"
-                        - $ref: "#/components/schemas/TabStory"
+                $ref: "#/components/schemas/Structure"
               example: {tabs: [
                 {id: start, title: Start, type: tab-centerpage, icon: home, items: [
                   {id: homepage, title: Aktuell, type: menu-item-web, url: "https://www.zeit.de/index"},
