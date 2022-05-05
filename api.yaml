@@ -225,15 +225,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  tabs:
-                    type: array
-                    items:
-                      oneOf:
-                        - $ref: "#/components/schemas/TabCenterpage"
-                        - $ref: "#/components/schemas/TabMenu"
-                        - $ref: "#/components/schemas/TabStory"
+                $ref: "#/components/schemas/Structure"
               example: {tabs: [
                 {id: start, title: Start, type: tab-centerpage, icon: home, items: [
                   {id: homepage, title: Aktuell, type: menu-item-web, url: "https://www.zeit.de/index"},
@@ -310,6 +302,17 @@ components:
       pattern: "^((\\{urn:uuid:)?([a-f0-9]{8})(-[a-f0-9]{4}){3}(-[a-f0-9]{12})\\}?|[-a-z0-9/]+)$"
       description: "CMS UUID that denotes a content object. For testing/development, a CMS path is also accepted."
       example: "{urn:uuid:d995ba5a-a7fb-401a-bdc8-86cf2cbf0cda} or d995ba5a-a7fb-401a-bdc8-86cf2cbf0cda"
+
+    Structure:
+      type: object
+      properties:
+        tabs:
+          type: array
+          items:
+            oneOf:
+              - $ref: "#/components/schemas/TabCenterpage"
+              - $ref: "#/components/schemas/TabMenu"
+              - $ref: "#/components/schemas/TabStory"
 
     Centerpage:
       type: object
