@@ -90,6 +90,26 @@ paths:
         "502":
           description: "Bad gateway"
 
+  /bookmarks/ids:
+    get:
+      security:
+        - cookieAuthProduction: []
+        - cookieAuthStaging: []
+      summary: "Returns the list of bookmarked ids"
+      tags:
+        - bookmarks
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UUIDList"
+          description: "Success"
+        "400":
+          description: "Something was wrong with the request. Check the body for error messages."
+        "401":
+          description: "Unauthorized"
+
   /config/{filename}:
     get:
       parameters:
@@ -302,6 +322,11 @@ components:
       pattern: "^((\\{urn:uuid:)?([a-f0-9]{8})(-[a-f0-9]{4}){3}(-[a-f0-9]{12})\\}?|[-a-z0-9/]+)$"
       description: "CMS UUID that denotes a content object. For testing/development, a CMS path is also accepted."
       example: "{urn:uuid:d995ba5a-a7fb-401a-bdc8-86cf2cbf0cda} or d995ba5a-a7fb-401a-bdc8-86cf2cbf0cda"
+
+    UUIDList:
+      type: array
+      items:
+        $ref: "#/components/schemas/UUID"
 
     Structure:
       type: object
