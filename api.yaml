@@ -1063,6 +1063,14 @@ components:
               example: "bookmarks"
         items:
           type: array
+        visible-from:
+          type: string
+          description: "Time when the tab becomes visible in the app in ical rules format"
+          example: "FREQ=WEEKLY;BYDAY=FR;INTERVAL=1;BYHOUR=17"
+        visible-to:
+          type: string
+          description: "Time when the tab becomes invisible in the app in ical rules format"
+          example: "FREQ=WEEKLY;BYDAY=MO;INTERVAL=1;BYHOUR=0"
     TabCenterpage:
       allOf:
         - $ref: "#/components/schemas/TabBase"
