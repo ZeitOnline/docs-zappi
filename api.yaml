@@ -1061,6 +1061,19 @@ components:
               type: string
               description: "Material Design Icon name"
               example: "bookmarks"
+        visible-from:
+          type: string
+          description: "Time when the tab becomes visible in the app"
+          example: "DAY=MO;TIME=00:00:00"
+          maxLength: 20
+          pattern: "ˆDAY=(MO|DI|MI|DO|FR|SA|SO);TIME=\d{2}:\d{2}:\d{2}$"
+
+        visible-to:
+          type: string
+          description: "Time when the tab becomes invisible in the app"
+          example: "DAY=FR;TIME=16:00:00"
+          maxLength: 20
+          pattern: "ˆDAY=(MO|DI|MI|DO|FR|SA|SO);TIME=\d{2}:\d{2}:\d{2}$"
         items:
           type: array
     TabCenterpage:
