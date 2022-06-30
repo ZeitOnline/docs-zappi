@@ -1061,8 +1061,6 @@ components:
               type: string
               description: "Material Design Icon name"
               example: "bookmarks"
-        items:
-          type: array
         visible-from:
           type: string
           description: "Time when the tab becomes visible in the app"
@@ -1071,6 +1069,8 @@ components:
           type: string
           description: "Time when the tab becomes invisible in the app"
           example: "DAY=FR;TIME=16:00:00"
+        items:
+          type: array
     TabCenterpage:
       allOf:
         - $ref: "#/components/schemas/TabBase"
