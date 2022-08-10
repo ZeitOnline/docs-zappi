@@ -1,4 +1,4 @@
 .npm.success
-.pipenv.success
-htdocs/
+**/.pipenv.success
+**/htdocs/
 node_modules/
