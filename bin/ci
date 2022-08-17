@@ -4,13 +4,6 @@ set -xe
 
 COMMAND=${1:-test-app}
 case $COMMAND in
-    docs)
-        bin/docs html
-        bin/docs elasticsearch
-        ln -sfT ${WORKSPACE}/docs/docs.zeit.de.conf $HOME/nginx.d/zappi.conf
-        sudo /etc/init.d/nginx reload
-        exit 0
-    ;;
     test)
         bin/test
     ;;
