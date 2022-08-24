@@ -1,13 +1,14 @@
 #!/bin/bash
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-cd "$DIR/../docs"
+cd "$DIR/../docs/api"
 
 if [[ package-lock.json -nt .npm.success ]]; then
     npm install
     touch .npm.success
 fi
 
+cd "$DIR/../docs"
 COMMAND=${1:-html}
 case $COMMAND in
     html)
