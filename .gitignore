@@ -1,3 +1,3 @@
-.npm.success
 **/htdocs/
-node_modules/
+/docs/.npm.success
+/docs/node_modules/
