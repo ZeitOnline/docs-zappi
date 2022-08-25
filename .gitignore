@@ -1,3 +1,4 @@
+.DS_Store
 **/htdocs/
-/docs/.npm.success
-/docs/node_modules/
+**/.npm.success
+**/node_modules/

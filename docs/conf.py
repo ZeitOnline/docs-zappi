@@ -10,5 +10,5 @@ html_theme_options = {
         'https://github.com/ZeitOnline/docs-zappi/edit/master/{page}')
 }
 html_last_updated_fmt = '%b %d, %Y'
-html_extra_path = ['api.yaml', 'swagger.html']
-html_static_path = ['node_modules/swagger-ui-dist']
+html_extra_path = ['api/api.yaml', 'api/swagger.html']
+html_static_path = ['api/node_modules/swagger-ui-dist']

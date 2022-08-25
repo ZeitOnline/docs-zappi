@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'docs/**'
+      - '!docs/api/**'
       - '.github/workflows/docs-trigger-build.yaml'
 
 jobs:
