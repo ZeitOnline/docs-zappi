@@ -6,7 +6,7 @@
   "dependencies": {
     "openapi-types": ">=7",
     "swagger-cli": "^4.0.4",
-    "swagger-ui-dist": "^3.34.0"
+    "swagger-ui-dist": "^4.1.3"
   },
   "keywords": [],
   "author": "",
