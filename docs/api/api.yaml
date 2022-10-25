@@ -955,6 +955,7 @@ components:
                 - podcast-episode-list
                 - podcast-grid
                 - standard
+                - standard-headed
                 - story
                 - tab
                 - tabpanel
