@@ -619,7 +619,6 @@ components:
           enum:
             - itunes
             - spotify
-            - deezer
             - alexa
             - google
         url:
