@@ -621,6 +621,7 @@ components:
             - spotify
             - alexa
             - google
+            - zeitaudio
         url:
           type: string
           # format: uri
