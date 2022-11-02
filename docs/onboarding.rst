@@ -10,6 +10,8 @@ und mit dem swagger-ui HTML/JS daraus direkt angezeigt.
 
 Wegen CORS&Co muss man lokal immer ``bin/docs serve`` verwenden.
 
+Die Doku der API findet man lokal unter ``http://0.0.0.0:8000/swagger.html``
+
 
 API validieren
 ==============
