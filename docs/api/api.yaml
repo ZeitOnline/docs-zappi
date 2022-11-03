@@ -892,6 +892,15 @@ components:
               type: string
               format: html
               example: "<embed>Anything can happen here.</embed>"
+    CenterpageTeaserAuthor:
+      description: "A teaser module references/represents an author content object"
+      allOf:
+        - $ref: "#/components/schemas/CenterpageTeaserBase"
+        - properties:
+            type:
+              type: string
+              enum:
+                - teaser-author
     CenterpageAreaBase:
       description: "CenterPages contain areas, which in turn contain modules"
       allOf:
