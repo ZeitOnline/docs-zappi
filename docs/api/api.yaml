@@ -223,6 +223,7 @@ paths:
                     oneOf:
                       - $ref: "#/components/schemas/CenterpageAdplace"
                       - $ref: "#/components/schemas/CenterpageTeaser"
+                      - $ref: "#/components/schemas/CenterpageTeaserAuthor"
                       - $ref: "#/components/schemas/CenterpageTeaserGallery"
                       - $ref: "#/components/schemas/CenterpageTeaserVideo"
                       - $ref: "#/components/schemas/CenterpageTeaserPodcast"
@@ -365,6 +366,7 @@ components:
               - $ref: "#/components/schemas/CenterpageRegion"
               - $ref: "#/components/schemas/CenterpageArea"
               - $ref: "#/components/schemas/CenterpageTeaser"
+              - $ref: "#/components/schemas/CenterpageTeaserAuthor"
               - $ref: "#/components/schemas/CenterpageTeaserGallery"
               - $ref: "#/components/schemas/CenterpageTeaserVideo"
               - $ref: "#/components/schemas/CenterpageTeaserPodcast"
@@ -387,6 +389,7 @@ components:
         - area
         - adplace
         - teaser
+        - teaser-author
         - teaser-gallery
         - teaser-video
         - teaser-podcast
@@ -973,6 +976,7 @@ components:
               items:
                 oneOf:
                   - $ref: "#/components/schemas/CenterpageTeaser"
+                  - $ref: "#/components/schemas/CenterpageTeaserAuthor"
                   - $ref: "#/components/schemas/CenterpageTeaserGallery"
                   - $ref: "#/components/schemas/CenterpageTeaserVideo"
                   - $ref: "#/components/schemas/CenterpageTeaserPodcast"
