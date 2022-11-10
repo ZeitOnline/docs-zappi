@@ -223,6 +223,7 @@ paths:
                     oneOf:
                       - $ref: "#/components/schemas/CenterpageAdplace"
                       - $ref: "#/components/schemas/CenterpageTeaser"
+                      - $ref: "#/components/schemas/CenterpageTeaserAuthor"
                       - $ref: "#/components/schemas/CenterpageTeaserGallery"
                       - $ref: "#/components/schemas/CenterpageTeaserVideo"
                       - $ref: "#/components/schemas/CenterpageTeaserPodcast"
@@ -365,6 +366,7 @@ components:
               - $ref: "#/components/schemas/CenterpageRegion"
               - $ref: "#/components/schemas/CenterpageArea"
               - $ref: "#/components/schemas/CenterpageTeaser"
+              - $ref: "#/components/schemas/CenterpageTeaserAuthor"
               - $ref: "#/components/schemas/CenterpageTeaserGallery"
               - $ref: "#/components/schemas/CenterpageTeaserVideo"
               - $ref: "#/components/schemas/CenterpageTeaserPodcast"
@@ -387,6 +389,7 @@ components:
         - area
         - adplace
         - teaser
+        - teaser-author
         - teaser-gallery
         - teaser-video
         - teaser-podcast
@@ -892,6 +895,15 @@ components:
               type: string
               format: html
               example: "<embed>Anything can happen here.</embed>"
+    CenterpageTeaserAuthor:
+      description: "A teaser module references/represents an author content object"
+      allOf:
+        - $ref: "#/components/schemas/CenterpageTeaserBase"
+        - properties:
+            type:
+              type: string
+              enum:
+                - teaser-author
     CenterpageAreaBase:
       description: "CenterPages contain areas, which in turn contain modules"
       allOf:
@@ -964,6 +976,7 @@ components:
               items:
                 oneOf:
                   - $ref: "#/components/schemas/CenterpageTeaser"
+                  - $ref: "#/components/schemas/CenterpageTeaserAuthor"
                   - $ref: "#/components/schemas/CenterpageTeaserGallery"
                   - $ref: "#/components/schemas/CenterpageTeaserVideo"
                   - $ref: "#/components/schemas/CenterpageTeaserPodcast"
