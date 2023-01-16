@@ -1173,6 +1173,7 @@ components:
             - menu-item-web
             - menu-item-browser
             - menu-item-submenu
+            - menu-item-tab-start
         icon:
           type: object
           properties:
