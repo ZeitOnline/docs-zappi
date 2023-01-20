@@ -1108,6 +1108,7 @@ components:
                 oneOf:
                   - $ref: "#/components/schemas/MenuItemNative"
                   - $ref: "#/components/schemas/MenuItemWeb"
+                  - $ref: "#/components/schemas/MenuItemTabStart"
     TabStory:
       allOf:
         - $ref: "#/components/schemas/TabBase"
@@ -1152,6 +1153,7 @@ components:
               - $ref: "#/components/schemas/MenuItemWeb"
               - $ref: "#/components/schemas/MenuItemBrowser"
               - $ref: "#/components/schemas/MenuItemSubMenu"
+              - $ref: "#/components/schemas/MenuItemTabStart"
 
     MenuItemBase:
       required:
@@ -1173,6 +1175,7 @@ components:
             - menu-item-web
             - menu-item-browser
             - menu-item-submenu
+            - menu-item-tab-start
         icon:
           type: object
           properties:
@@ -1241,6 +1244,21 @@ components:
               enum:
                 - menu-item-browser
               example: "menu-item-browser"
+    MenuItemTabStart:
+      allOf:
+        - $ref: "#/components/schemas/MenuItemBase"
+        - required:
+            - url
+          properties:
+            url:
+              type: string
+              # format: uri
+              example: "https://www.zeit.de/some/webviewurl"
+            type:
+              type: string
+              enum:
+                - menu-item-tab-start
+              example: "menu-item-tab-start"
     MenuItemSubMenu:
       allOf:
         - $ref: "#/components/schemas/MenuItemBase"
