@@ -347,6 +347,12 @@ components:
               - $ref: "#/components/schemas/TabCenterpage"
               - $ref: "#/components/schemas/TabMenu"
               - $ref: "#/components/schemas/TabStory"
+        navigations:
+          type: array
+          items:
+            oneOf:
+              - $ref: "#/components/schemas/MainNavigation"
+              - $ref: "#/components/schemas/AccountNavigation"
 
     Centerpage:
       type: object
@@ -1135,6 +1141,95 @@ components:
               type: array
               items:
                 $ref: "#/components/schemas/MenuSection"
+
+    NavigationBase:
+      required:
+        - id
+        - title
+        - type
+        - icon
+        - items
+      properties:
+        id:
+          type: string
+          description: "ID of the navigation"
+          example: "justsomeuniquestring"
+        title:
+          type: string
+          minLength: 1
+          maxLength: 15
+          example: "Start"
+        type:
+          type: string
+          enum:
+            - main-navigation
+            - account-navigation
+        icon:
+          type: object
+          properties:
+            ios:
+              type: string
+              description: "SF Symbol name"
+              example: "bookmark"
+            android:
+              type: string
+              description: "Material Design Icon name"
+              example: "bookmarks"
+        items:
+          type: array
+    MainNavigation:
+      allOf:
+        - $ref: "#/components/schemas/NavigationBase"
+        - properties:
+            type:
+              type: string
+              enum:
+                - main-navigation
+              example: "main-navigation"
+            items:
+              type: array
+              items:
+                $ref: "#/components/schemas/NavigationSection"
+    AccountNavigation:
+      allOf:
+        - $ref: "#/components/schemas/NavigationBase"
+        - properties:
+            type:
+              type: string
+              enum:
+                - account-navigation
+              example: "account-navigation"
+            items:
+              type: array
+              items:
+                $ref: "#/components/schemas/NavigationSection"
+
+    NavigationSection:
+      properties:
+        id:
+          type: string
+          example: "nav-section-ressorts"
+        title:
+          type: string
+          example: "My section"
+        split:
+          type: boolean
+          example: false
+        border:
+          type: boolean
+          example: true
+        collapsed:
+          type: boolean
+          example: false
+        items:
+          type: array
+          items:
+            oneOf:
+              - $ref: "#/components/schemas/MenuItemNative"
+              - $ref: "#/components/schemas/MenuItemApp"
+              - $ref: "#/components/schemas/MenuItemWeb"
+              - $ref: "#/components/schemas/MenuItemBrowser"
+              - $ref: "#/components/schemas/MenuItemTabStart"
 
     MenuSection:
       properties:
