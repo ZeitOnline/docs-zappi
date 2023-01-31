@@ -347,12 +347,12 @@ components:
               - $ref: "#/components/schemas/TabCenterpage"
               - $ref: "#/components/schemas/TabMenu"
               - $ref: "#/components/schemas/TabStory"
-        navigations:
+        menus:
           type: array
           items:
             oneOf:
-              - $ref: "#/components/schemas/MainNavigation"
-              - $ref: "#/components/schemas/AccountNavigation"
+              - $ref: "#/components/schemas/ContentMenu"
+              - $ref: "#/components/schemas/UserMenu"
 
     Centerpage:
       type: object
@@ -1142,7 +1142,7 @@ components:
               items:
                 $ref: "#/components/schemas/MenuSection"
 
-    NavigationBase:
+    MenuBase:
       required:
         - id
         - title
@@ -1156,14 +1156,12 @@ components:
           example: "justsomeuniquestring"
         title:
           type: string
-          minLength: 1
-          maxLength: 15
-          example: "Start"
+          example: "Menü"
         type:
           type: string
           enum:
-            - main-navigation
-            - account-navigation
+            - content-menu
+            - user-menu
         icon:
           type: object
           properties:
@@ -1177,38 +1175,38 @@ components:
               example: "bookmarks"
         items:
           type: array
-    MainNavigation:
+    ContentMenu:
       allOf:
-        - $ref: "#/components/schemas/NavigationBase"
+        - $ref: "#/components/schemas/MenuBase"
         - properties:
             type:
               type: string
               enum:
-                - main-navigation
-              example: "main-navigation"
+                - content-menu
+              example: "content-menu"
             items:
               type: array
               items:
-                $ref: "#/components/schemas/NavigationSection"
-    AccountNavigation:
+                $ref: "#/components/schemas/MenuSection"
+    UserMenu:
       allOf:
-        - $ref: "#/components/schemas/NavigationBase"
+        - $ref: "#/components/schemas/MenuBase"
         - properties:
             type:
               type: string
               enum:
-                - account-navigation
-              example: "account-navigation"
+                - user-menu
+              example: "user-menu"
             items:
               type: array
               items:
-                $ref: "#/components/schemas/NavigationSection"
+                $ref: "#/components/schemas/MenuSection"
 
-    NavigationSection:
+    MenuSection:
       properties:
         id:
           type: string
-          example: "nav-section-ressorts"
+          example: "menu-section-1"
         title:
           type: string
           example: "My section"
@@ -1221,24 +1219,6 @@ components:
         collapsed:
           type: boolean
           example: false
-        items:
-          type: array
-          items:
-            oneOf:
-              - $ref: "#/components/schemas/MenuItemNative"
-              - $ref: "#/components/schemas/MenuItemApp"
-              - $ref: "#/components/schemas/MenuItemWeb"
-              - $ref: "#/components/schemas/MenuItemBrowser"
-              - $ref: "#/components/schemas/MenuItemTabStart"
-
-    MenuSection:
-      properties:
-        id:
-          type: string
-          example: "menu-section-1"
-        title:
-          type: string
-          example: "My section"
         items:
           type: array
           items:
