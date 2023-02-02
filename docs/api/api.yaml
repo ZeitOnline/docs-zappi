@@ -1097,6 +1097,14 @@ components:
           type: string
           description: "Time when the tab becomes invisible in the app"
           example: "DAY=FR;TIME=16:00:00"
+        menu-left:
+          type: string
+          enum:
+            - content-menu
+        menu-right:
+          type: string
+          enum:
+            - user-menu
         items:
           type: array
     TabCenterpage:
