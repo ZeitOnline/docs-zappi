@@ -347,6 +347,12 @@ components:
               - $ref: "#/components/schemas/TabCenterpage"
               - $ref: "#/components/schemas/TabMenu"
               - $ref: "#/components/schemas/TabStory"
+        menus:
+          type: array
+          items:
+            oneOf:
+              - $ref: "#/components/schemas/ContentMenu"
+              - $ref: "#/components/schemas/UserMenu"
 
     Centerpage:
       type: object
@@ -1091,6 +1097,14 @@ components:
           type: string
           description: "Time when the tab becomes invisible in the app"
           example: "DAY=FR;TIME=16:00:00"
+        menu-left:
+          type: string
+          enum:
+            - content-menu
+        menu-right:
+          type: string
+          enum:
+            - user-menu
         items:
           type: array
     TabCenterpage:
@@ -1136,6 +1150,66 @@ components:
               items:
                 $ref: "#/components/schemas/MenuSection"
 
+    MenuBase:
+      required:
+        - id
+        - title
+        - type
+        - icon
+        - items
+      properties:
+        id:
+          type: string
+          description: "ID of the navigation"
+          example: "justsomeuniquestring"
+        title:
+          type: string
+          example: "Menü"
+        type:
+          type: string
+          enum:
+            - content-menu
+            - user-menu
+        icon:
+          type: object
+          properties:
+            ios:
+              type: string
+              description: "SF Symbol name"
+              example: "bookmark"
+            android:
+              type: string
+              description: "Material Design Icon name"
+              example: "bookmarks"
+        items:
+          type: array
+    ContentMenu:
+      allOf:
+        - $ref: "#/components/schemas/MenuBase"
+        - properties:
+            type:
+              type: string
+              enum:
+                - content-menu
+              example: "content-menu"
+            items:
+              type: array
+              items:
+                $ref: "#/components/schemas/MenuSection"
+    UserMenu:
+      allOf:
+        - $ref: "#/components/schemas/MenuBase"
+        - properties:
+            type:
+              type: string
+              enum:
+                - user-menu
+              example: "user-menu"
+            items:
+              type: array
+              items:
+                $ref: "#/components/schemas/MenuSection"
+
     MenuSection:
       properties:
         id:
@@ -1144,6 +1218,15 @@ components:
         title:
           type: string
           example: "My section"
+        split:
+          type: boolean
+          example: false
+        border:
+          type: boolean
+          example: true
+        collapsed:
+          type: boolean
+          example: false
         items:
           type: array
           items:
