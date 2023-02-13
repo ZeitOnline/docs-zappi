@@ -4,7 +4,7 @@ copyright = 'ZEIT ONLINE'
 source_suffix = '.rst'
 master_doc = 'index'
 
-html_theme = "sphinx_zon_theme"
+html_theme = "zondocs_theme"
 html_theme_options = {
     'editme_link': (
         'https://github.com/ZeitOnline/docs-zappi/edit/master/{page}')
