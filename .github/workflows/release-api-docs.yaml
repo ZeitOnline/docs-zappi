@@ -3,7 +3,7 @@ name: Release api docs
 on:
   push:
     branches:
-      - master
+      - main
     paths:
       - 'docs/api/**'
       - '.github/workflows/release-api-docs.yaml'
