@@ -862,6 +862,10 @@ components:
               $ref: "#/components/schemas/Image"
             seriesImage:
               $ref: "#/components/schemas/Image"
+            seriesUrl:
+              type: string
+              example: "https://www.zeit.de/serie/alles-gesagt"
+              description: "An URL to the series if podcast is episode of it"
     CenterpageTeaserAudio:
       description: "A teaser module references/represents an article content object with premium audio"
       allOf:
@@ -893,6 +897,10 @@ components:
               $ref: "#/components/schemas/Image"
             seriesImage:
               $ref: "#/components/schemas/Image"
+            volumeUrl:
+              type: string
+              example: "https://www.zeit.de/2023/12"
+              description: "An URL to the volume which includes the audio"
     CenterpageModuleHTML:
       description: "A non-native module that should be displayed via a web view"
       allOf:
