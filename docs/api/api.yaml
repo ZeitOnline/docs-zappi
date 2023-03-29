@@ -1099,12 +1099,12 @@ components:
           example: "DAY=FR;TIME=16:00:00"
         menu-left:
           type: string
-          enum:
-            - content-menu
+          description: "The ID of the menu, which should be shown in the upper left of a tab."
+          example: "navigation_main"
         menu-right:
           type: string
-          enum:
-            - user-menu
+          description: "The ID of the menu, which should be shown in the upper right of a tab."
+          example: "navigation_account"
         items:
           type: array
     TabCenterpage:
