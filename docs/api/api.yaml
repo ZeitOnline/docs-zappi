@@ -109,7 +109,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/UUIDList"
+                $ref: "#/components/schemas/BookmarkIds"
           description: "Success"
         "400":
           description: "Something was wrong with the request. Check the body for error messages."
@@ -336,6 +336,11 @@ components:
       type: array
       items:
         $ref: "#/components/schemas/UUID"
+
+    BookmarkIds:
+      type: object
+      items:
+        $ref: "#/components/schemas/UUIDList"
 
     Structure:
       type: object
