@@ -237,6 +237,17 @@ paths:
                       - $ref: "#/components/schemas/CenterpageTeaserPodcast"
                       - $ref: "#/components/schemas/CenterpageTeaserAudio"
                       - $ref: "#/components/schemas/CenterpageModuleHTML"
+                    discriminator:
+                      propertyName: type
+                      mapping:
+                        adplace: "#/components/schemas/CenterpageAdplace"
+                        teaser: "#/components/schemas/CenterpageTeaser"
+                        teaser-author: "#/components/schemas/CenterpageTeaserAuthor"
+                        teaser-gallery: "#/components/schemas/CenterpageTeaserGallery"
+                        teaser-video: "#/components/schemas/CenterpageTeaserVideo"
+                        teaser-podcast: "#/components/schemas/CenterpageTeaserPodcast"
+                        teaser-audio: "#/components/schemas/CenterpageTeaserAudio"
+                        html: "#/components/schemas/CenterpageModuleHTML"
                 trackingData:
                   $ref: "#/components/schemas/TrackingData"
       "400":
@@ -352,12 +363,23 @@ components:
               - $ref: "#/components/schemas/TabCenterpage"
               - $ref: "#/components/schemas/TabMenu"
               - $ref: "#/components/schemas/TabStory"
+            discriminator:
+              propertyName: type
+              mapping:
+                tab-centerpage: "#/components/schemas/TabCenterpage"
+                tab-menu: "#/components/schemas/TabMenu"
+                tab-story: "#/components/schemas/TabStory"
         menus:
           type: array
           items:
             oneOf:
               - $ref: "#/components/schemas/ContentMenu"
               - $ref: "#/components/schemas/UserMenu"
+            discriminator:
+              propertyName: type
+              mapping:
+                content-menu: "#/components/schemas/ContentMenu"
+                user-menu: "#/components/schemas/UserMenu"
 
     Centerpage:
       type: object
@@ -394,6 +416,21 @@ components:
               - $ref: "#/components/schemas/CenterpageAdplace"
               - $ref: "#/components/schemas/CenterpageHeader"
               - $ref: "#/components/schemas/CenterpageMarkup"
+            discriminator:
+              propertyName: type
+              mapping:
+                region: "#/components/schemas/CenterpageRegion"
+                area: "#/components/schemas/CenterpageArea"
+                teaser: "#/components/schemas/CenterpageTeaser"
+                teaser-author: "#/components/schemas/CenterpageTeaserAuthor"
+                teaser-gallery: "#/components/schemas/CenterpageTeaserGallery"
+                teaser-video: "#/components/schemas/CenterpageTeaserVideo"
+                teaser-podcast: "#/components/schemas/CenterpageTeaserPodcast"
+                teaser-audio: "#/components/schemas/CenterpageTeaserAudio"
+                html: "#/components/schemas/CenterpageModuleHTML"
+                adplace: "#/components/schemas/CenterpageAdplace"
+                header: "#/components/schemas/CenterpageHeader"
+                markup: "#/components/schemas/CenterpageMarkup"
 
     CenterpageElementId:
       type: string
@@ -1013,6 +1050,16 @@ components:
                   - $ref: "#/components/schemas/CenterpageTeaserPodcast"
                   - $ref: "#/components/schemas/CenterpageTeaserAudio"
                   - $ref: "#/components/schemas/CenterpageModuleHTML"
+                discriminator:
+                  propertyName: type
+                  mapping:
+                    teaser: "#/components/schemas/CenterpageTeaser"
+                    teaser-author: "#/components/schemas/CenterpageTeaserAuthor"
+                    teaser-gallery: "#/components/schemas/CenterpageTeaserGallery"
+                    teaser-video: "#/components/schemas/CenterpageTeaserVideo"
+                    teaser-podcast: "#/components/schemas/CenterpageTeaserPodcast"
+                    teaser-audio: "#/components/schemas/CenterpageTeaserAudio"
+                    html: "#/components/schemas/CenterpageModuleHTML"
             trackingData:
               type: object
               properties:
@@ -1140,6 +1187,13 @@ components:
                   - $ref: "#/components/schemas/MenuItemNative"
                   - $ref: "#/components/schemas/MenuItemWeb"
                   - $ref: "#/components/schemas/MenuItemTabStart"
+                discriminator:
+                  propertyName: type
+                  mapping:
+                    menu-item-native: "#/components/schemas/MenuItemNative"
+                    menu-item-web: "#/components/schemas/MenuItemWeb"
+                    menu-item-tab-start: "#/components/schemas/MenuItemTabStart"
+
     TabStory:
       allOf:
         - $ref: "#/components/schemas/TabBase"
@@ -1254,6 +1308,15 @@ components:
               - $ref: "#/components/schemas/MenuItemBrowser"
               - $ref: "#/components/schemas/MenuItemSubMenu"
               - $ref: "#/components/schemas/MenuItemTabStart"
+            discriminator:
+              propertyName: type
+              mapping:
+                menu-item-native: "#/components/schemas/MenuItemNative"
+                menu-item-app: "#/components/schemas/MenuItemApp"
+                menu-item-web: "#/components/schemas/MenuItemWeb"
+                menu-item-browser: "#/components/schemas/MenuItemBrowser"
+                menu-item-submenu: "#/components/schemas/MenuItemSubMenu"
+                menu-item-tab-start: "#/components/schemas/MenuItemTabStart"
 
     MenuItemBase:
       required:
@@ -1377,6 +1440,13 @@ components:
                   - $ref: "#/components/schemas/MenuItemApp"
                   - $ref: "#/components/schemas/MenuItemWeb"
                   - $ref: "#/components/schemas/MenuItemBrowser"
+                discriminator:
+                  propertyName: type
+                  mapping:
+                    menu-item-native: "#/components/schemas/MenuItemNative"
+                    menu-item-app: "#/components/schemas/MenuItemApp"
+                    menu-item-web: "#/components/schemas/MenuItemWeb"
+                    menu-item-browser: "#/components/schemas/MenuItemBrowser"
 
     AppStoreType:
       type: string
