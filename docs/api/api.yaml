@@ -5,6 +5,7 @@ info:
   title: "ZON App API"
   contact:
     email: "internet-technik@zeit.de"
+
 servers:
   - url: "https://zappi.zeit.de/{version}"
     description: "Production"
@@ -203,6 +204,7 @@ paths:
           description: "No valid identities were found in the receipt."
         "502":
           description: "The payment server was not reachable."
+
   /search:
    get:
     tags:
@@ -326,6 +328,7 @@ paths:
           description: "Something was wrong with the request. Check the body for error messages."
         "401":
           description: "The user is not logged in"
+
 components:
   requestBodies:
     AppStoreReceipt:
@@ -335,8 +338,8 @@ components:
             "$ref": "#/components/schemas/AppStoreReceipt"
           }
         }
-  schemas:
 
+  schemas:
     UUID:
       type: string
       pattern: "^((\\{urn:uuid:)?([a-f0-9]{8})(-[a-f0-9]{4}){3}(-[a-f0-9]{12})\\}?|[-a-z0-9/]+)$"
@@ -480,7 +483,6 @@ components:
         keywords:
           type: string
           example: "zeitonline,coronavirus,frankreich,lockdown"
-
 
     Image:
       type: object
@@ -820,6 +822,7 @@ components:
               properties:
                 customClickParameter:
                   $ref: "#/components/schemas/CustomClickParameter"
+
     CenterpageTeaser:
       description: "A teaser module references/represents an article content object"
       allOf:
@@ -830,6 +833,7 @@ components:
               enum:
                 - teaser
               example: "teaser"
+
     CenterpageTeaserGallery:
       description: "A teaser module references/represents a gallery content object"
       allOf:
@@ -849,6 +853,7 @@ components:
                   type: string
                   description: "Label to display gallery content"
                   example: "18 Bilder"
+
     CenterpageTeaserVideo:
       description: "A teaser module references/represents a video content object"
       allOf:
@@ -873,6 +878,7 @@ components:
                 # product-id:
                 # page-url:
                 # series: serienname
+
     CenterpageTeaserPodcast:
       description: "A teaser module references/represents an article content object with audio (podigee podcast)"
       allOf:
@@ -912,6 +918,7 @@ components:
               type: string
               example: "https://www.zeit.de/serie/alles-gesagt"
               description: "An URL to the series if podcast is episode of it"
+
     CenterpageTeaserAudio:
       description: "A teaser module references/represents an article content object with premium audio"
       allOf:
@@ -947,6 +954,7 @@ components:
               type: string
               example: "https://www.zeit.de/2023/12"
               description: "An URL to the volume which includes the audio"
+
     CenterpageModuleHTML:
       description: "A non-native module that should be displayed via a web view"
       allOf:
@@ -963,6 +971,7 @@ components:
               type: string
               format: html
               example: "<embed>Anything can happen here.</embed>"
+
     CenterpageTeaserAuthor:
       description: "A teaser module references/represents an author content object"
       allOf:
@@ -972,6 +981,7 @@ components:
               type: string
               enum:
                 - teaser-author
+
     CenterpageAreaBase:
       description: "CenterPages contain areas, which in turn contain modules"
       allOf:
@@ -996,6 +1006,7 @@ components:
               example: "This is a simple title"
             items:
               type: array
+
     CenterpageRegion:
       allOf:
         - $ref: "#/components/schemas/CenterpageAreaBase"
@@ -1015,6 +1026,7 @@ components:
               type: array
               items:
                 $ref: "#/components/schemas/CenterpageArea"
+
     CenterpageArea:
       allOf:
         - $ref: "#/components/schemas/CenterpageAreaBase"
@@ -1065,6 +1077,7 @@ components:
               properties:
                 customClickParameter:
                   $ref: "#/components/schemas/CustomClickParameter"
+
     CenterpageAdplace:
       description: "Placeholder for advertisement"
       required:
@@ -1083,6 +1096,7 @@ components:
             enum:
               - desktop
               - mobile
+
     CenterpageHeader:
       description: "Header for native centerpages"
       required:
@@ -1102,6 +1116,7 @@ components:
           nullable: true
         title:
           type: string
+
     CenterpageMarkup:
       description: "A list of text"
       required:
@@ -1171,6 +1186,7 @@ components:
           example: "navigation_account"
         items:
           type: array
+
     TabCenterpage:
       allOf:
         - $ref: "#/components/schemas/TabBase"
@@ -1207,6 +1223,7 @@ components:
               type: array
               items:
                 $ref: "#/components/schemas/MenuItemNative"
+
     TabMenu:
       allOf:
         - $ref: "#/components/schemas/TabBase"
@@ -1254,6 +1271,7 @@ components:
               example: "bookmarks"
         items:
           type: array
+
     ContentMenu:
       allOf:
         - $ref: "#/components/schemas/MenuBase"
@@ -1267,6 +1285,7 @@ components:
               type: array
               items:
                 $ref: "#/components/schemas/MenuSection"
+
     UserMenu:
       allOf:
         - $ref: "#/components/schemas/MenuBase"
@@ -1350,6 +1369,7 @@ components:
               type: string
               description: "Material Design Icon name"
               example: "bookmarks"
+
     MenuItemNative:
       allOf:
         - $ref: "#/components/schemas/MenuItemBase"
@@ -1363,6 +1383,7 @@ components:
               example: "menu-item-native"
             source:
               $ref: "#/components/schemas/UUID"
+
     MenuItemApp:
       allOf:
         - $ref: "#/components/schemas/MenuItemBase"
@@ -1377,6 +1398,7 @@ components:
             targetId:
               type: string
               example: "some-app-id"
+
     MenuItemWeb:
       allOf:
         - $ref: "#/components/schemas/MenuItemBase"
@@ -1392,6 +1414,7 @@ components:
               enum:
                 - menu-item-web
               example: "menu-item-web"
+
     MenuItemBrowser:
       allOf:
         - $ref: "#/components/schemas/MenuItemBase"
@@ -1407,6 +1430,7 @@ components:
               enum:
                 - menu-item-browser
               example: "menu-item-browser"
+
     MenuItemTabStart:
       allOf:
         - $ref: "#/components/schemas/MenuItemBase"
@@ -1422,6 +1446,7 @@ components:
               enum:
                 - menu-item-tab-start
               example: "menu-item-tab-start"
+
     MenuItemSubMenu:
       allOf:
         - $ref: "#/components/schemas/MenuItemBase"
@@ -1455,6 +1480,7 @@ components:
         - apple_appstore
         - google_playstore
         - dummy_appstore
+
     AppStoreReceipt:
       type: string
       description: |
@@ -1468,6 +1494,7 @@ components:
             of buying a product in the Google Playstore.
           - ``signature``: a base64 encoded String that represents the output of calling ``getSignature()``
             on the abovementioned object.
+
     UserInfo:
       properties:
         ssoid:
