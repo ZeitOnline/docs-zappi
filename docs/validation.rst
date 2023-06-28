@@ -16,7 +16,9 @@ Zusätzlich für die großen Structure-Dokumente der API wurde eine weitere Vali
 
 Für die meisten JSON Dateien im Vivi gibt es solche eine Validierung nicht, da sind diese Felder dann leer. Für API-Strukturen (Navigation z.B.) ist das Feld gesetzt. Die Werte werden gespeichert. Also wird zukünftig bei jedem Einchecken eines Dokuments gegen das Schema validiert.
 
-Achtung: bei einer Schema-Änderung, die zum Beispiel nur auf Staging liegt, muss dann auch die Staging-Adresse der Spec eingetragen werden (solange diese neue Spec noch nicht nach Production deployed wurde).
+Achtung: bei einer Schema-Änderung, die zum Beispiel nur auf Staging liegt, muss dann auch die Staging-Adresse der Spec eingetragen werden (solange diese neue Spec noch nicht nach Production deployed wurde). Die wird beim Sync von Production nach Staging ggf überschrieben.
+
+Zur Einordnung: das ist kein Zappi-Feature, sondern in Vivi eingebaut, dass man JSON nur als JSON validiert, oder gegen ein konkretes Schema. Aber weil das Feature ausschließlich für die Validierung der App-Navigation gegen das Zappi-Schema genutzt wird, steht es hier.
 
 
 Validierung in der API
