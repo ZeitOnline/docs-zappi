@@ -9,5 +9,6 @@ Zappi (ZON-App-API)
     onboarding
     codingstyle
     operations
+    validation
 
 * `API <./swagger.html>`_
