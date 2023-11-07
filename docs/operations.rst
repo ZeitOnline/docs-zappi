@@ -12,6 +12,9 @@ Prozesssteuerung
 
 Das Repo ist in zeit.web als submodule eingebunden. Wenn man die API-Spezifikation ändern möchte, muss man einen eigenen PR in zeit.web stellen und dort das Submodule updaten.
 
+Monitoring/Observability
+========================
 
-Log-Dateien
-===========
+- `Dashboard <https://grafana.ops.zeit.de/d/6pGBoElMz/zappi?orgId=1&from=now-24h&to=now>`_
+- `Honeycomb <https://ui.honeycomb.io/zeit-online/datasets/www/result/8EnYuw8S38w>`_ ``service.name == fastly.zappi``
+- `Kibana <https://kibana.ops.zeit.de/app/r/s/GkTB1>`_ ``dataview=gke-main-production`` und ``kubernetes.labels.app == zappi``
