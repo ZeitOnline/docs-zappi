@@ -10,7 +10,7 @@ on:
 jobs:
   trigger:
     name: Trigger
-    runs-on: [self-hosted, x64, linux, ephemeral, zon-image-latest]
+    runs-on: zon-ubuntu-general-dind
     if: contains(github.repository, 'ZeitOnline')
 
     steps:
@@ -21,4 +21,3 @@ jobs:
           repository: ZeitOnline/docs
           event-type: module-commit
           client-payload: '{"repo": "${{ github.repository }}", "ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
-

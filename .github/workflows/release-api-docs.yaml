@@ -11,7 +11,7 @@ on:
 jobs:
   release:
     name: Release Swagger
-    runs-on: [self-hosted, x64, linux, ephemeral, zon-image-latest]
+    runs-on: zon-ubuntu-general-dind
     if: contains(github.repository, 'ZeitOnline')
     env:
       RELEASE_TAG: api-docs-latest
@@ -57,7 +57,7 @@ jobs:
 
   trigger:
     name: Trigger main docs build
-    runs-on: [self-hosted, x64, linux, ephemeral, zon-image-latest]
+    runs-on: zon-ubuntu-general-dind
     if: contains(github.repository, 'ZeitOnline')
     needs: release
 
