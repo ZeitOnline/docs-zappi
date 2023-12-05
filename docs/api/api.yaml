@@ -169,6 +169,7 @@ paths:
           description: "Something was wrong with the request. Check the body for error messages."
         "404":
           description: "No centerpage found for the given uuid"
+
   /freebies:
     get:
       security:
@@ -188,6 +189,8 @@ paths:
           description: "Something was wrong with the request. Check the body for error messages."
         "401":
           description: "Unauthorized"
+        "500":
+          description: "Internal server error"
         "503":
           description: "Service unavailable"
     post:
@@ -219,6 +222,29 @@ paths:
           description: "Bad gateway"
         "503":
           description: "Service unavailable"
+
+  /freebies/allowance:
+    get:
+      security:
+        - cookieAuthProduction: []
+        - cookieAuthStaging: []
+      summary: "Returns the list of allowance"
+      tags:
+        - freebies
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Allowance"
+          description: "Success"
+        "400":
+          description: "Something was wrong with the request. Check the body for error messages."
+        "401":
+          description: "Unauthorized"
+        "503":
+          description: "Service unavailable"
+
   /iap/receipts/{platform}:
     post:
       parameters:
@@ -381,13 +407,6 @@ paths:
 components:
   requestBodies:
     AppStoreReceipt:
-      content:
-        "text/plain": {
-          "schema": {
-            "$ref": "#/components/schemas/AppStoreReceipt"
-          }
-        }
-    FreebiePayload:
       content:
         "text/plain": {
           "schema": {
@@ -1592,10 +1611,21 @@ components:
 
     Freebie:
       properties:
+        token:
+          type: string
         content:
           $ref: "#/components/schemas/UUID"
         path:
           type: string
+        created:
+          type: string
+
+    Allowance:
+      properties:
+        allowance:
+          type: integer
+        used:
+          type: integer
 
   securitySchemes:
     default:
