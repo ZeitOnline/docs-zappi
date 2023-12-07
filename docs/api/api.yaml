@@ -274,6 +274,49 @@ paths:
         "500":
           description: "Internal server error"
 
+  /freebies/rpc/check:
+    post:
+      summary: "Validate a freebie"
+      operationId: checkFreebie
+      tags:
+        - freebies
+      requestBody:
+        required: true
+        content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - token
+                  - path
+                properties:
+                  token:
+                    type: string
+                    example: "8116c8ea"
+                  path:
+                    type: string
+                    example: "/2023/33/lithium-vorkommen-deutschland-e-autos-vulcan-energy-resources"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - accessed
+                  - content
+                properties:
+                  accessed:
+                    type: integer
+                    example: 1
+                  content:
+                    $ref: "#/components/schemas/UUID"
+          description: "Success"
+        "400":
+          description: "Bad Request"
+        "404":
+          description: "Expired or non-existing freebie"
+
   /iap/receipts/{platform}:
     post:
       parameters:
