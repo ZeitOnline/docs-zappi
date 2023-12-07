@@ -183,7 +183,26 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Freebie"
+                type: array
+                items:
+                  type: object
+                  required:
+                    - token
+                    - content
+                    - path
+                    - created
+                  properties:
+                    token:
+                      type: string
+                      example: "8116c8ea"
+                    content:
+                      $ref: "#/components/schemas/UUID"
+                    path:
+                      type: string
+                      example: "/2023/33/lithium-vorkommen-deutschland-e-autos-vulcan-energy-resources"
+                    created:
+                      type: string
+                      example: "2023-11-29T11:42:32.452605+00:00"
           description: "Success"
         "400":
           description: "Bad Request"
@@ -201,7 +220,16 @@ paths:
         content:
             application/json:
               schema:
-                $ref: "#/components/schemas/FreebiePost"
+                type: object
+                required:
+                  - content
+                  - path
+                properties:
+                  content:
+                    $ref: "#/components/schemas/UUID"
+                  path:
+                    type: string
+                    example: "/2023/33/lithium-vorkommen-deutschland-e-autos-vulcan-energy-resources"
       responses:
         "201":
           description: "Saved entry to freebies"
@@ -225,7 +253,19 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Allowance"
+                type: array
+                items:
+                  type: object
+                  required:
+                    - allowance
+                    - used
+                  properties:
+                    allowance:
+                      type: integer
+                      example: 100
+                    used:
+                      type: integer
+                      example: 2
           description: "Success"
         "400":
           description: "Bad Request"
@@ -1597,55 +1637,6 @@ components:
             Extra parameter to identify
             - "iqdpremium": user has abo
             - "iqdpremium_registered": user is registered user
-
-    Freebie:
-      type: array
-      items:
-        type: object
-        required:
-          - token
-          - content
-          - path
-          - created
-        properties:
-          token:
-            type: string
-            example: "8116c8ea"
-          content:
-            $ref: "#/components/schemas/UUID"
-          path:
-            type: string
-            example: "/2023/33/lithium-vorkommen-deutschland-e-autos-vulcan-energy-resources"
-          created:
-            type: string
-            example: "2023-11-29T11:42:32.452605+00:00"
-
-    FreebiePost:
-      type: object
-      required:
-        - content
-        - path
-      properties:
-        content:
-          $ref: "#/components/schemas/UUID"
-        path:
-          type: string
-          example: "/2023/33/lithium-vorkommen-deutschland-e-autos-vulcan-energy-resources"
-
-    Allowance:
-      type: array
-      items:
-        type: object
-        required:
-          - allowance
-          - used
-        properties:
-          allowance:
-            type: integer
-            example: 100
-          used:
-            type: integer
-            example: 2
 
   securitySchemes:
     default:
