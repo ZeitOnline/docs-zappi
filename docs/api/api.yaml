@@ -170,12 +170,18 @@ paths:
         "404":
           description: "No centerpage found for the given uuid"
 
-  /freebies:
+  /freebies/{path}:
     get:
+      parameters:
+        - in: path
+          name: path
+          required: true
+          schema:
+            type: string
       security:
         - cookieAuthProduction: []
         - cookieAuthStaging: []
-      summary: "Returns the list of freebies"
+      summary: "Returns the list of items"
       tags:
         - freebies
       responses:
@@ -183,7 +189,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Freebie"
+                oneOf:
+                  - $ref: "#/components/schemas/Freebie"
+                  - $ref: "#/components/schemas/Allowance"
           description: "Success"
         "400":
           description: "Bad Request"
@@ -192,6 +200,12 @@ paths:
         "500":
           description: "Internal server error"
     post:
+      parameters:
+        - in: path
+          name: path
+          required: true
+          schema:
+            type: string
       security:
         - cookieAuthProduction: []
         - cookieAuthStaging: []
@@ -199,39 +213,12 @@ paths:
       requestBody:
         required: true
         content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                content:
-                  $ref:   "#/components/schemas/UUID"
-                path:
-                  type: string
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FreebiePost"
       responses:
         "201":
           description: "Saved entry to freebies"
-        "400":
-          description: "Bad Request"
-        "401":
-          description: "Unauthorized"
-        "500":
-          description: "Internal server error"
-
-  /freebies/allowance:
-    get:
-      security:
-        - cookieAuthProduction: []
-        - cookieAuthStaging: []
-      summary: "Returns the list of allowance"
-      tags:
-        - freebies
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Allowance"
-          description: "Success"
         "400":
           description: "Bad Request"
         "401":
@@ -1604,22 +1591,53 @@ components:
             - "iqdpremium_registered": user is registered user
 
     Freebie:
+      type: array
+      items:
+        type: object
+        required:
+          - token
+          - content
+          - path
+          - created
+        properties:
+          token:
+            type: string
+            example: "8116c8ea"
+          content:
+            $ref: "#/components/schemas/UUID"
+          path:
+            type: string
+            example: "/2023/33/lithium-vorkommen-deutschland-e-autos-vulcan-energy-resources"
+          created:
+            type: string
+            example: "2023-11-29T11:42:32.452605+00:00"
+
+    FreebiePost:
+      type: object
+      required:
+        - content
+        - path
       properties:
-        token:
-          type: string
         content:
           $ref: "#/components/schemas/UUID"
         path:
           type: string
-        created:
-          type: string
+          example: "/2023/33/lithium-vorkommen-deutschland-e-autos-vulcan-energy-resources"
 
     Allowance:
-      properties:
-        allowance:
-          type: integer
-        used:
-          type: integer
+      type: array
+      items:
+        type: object
+        required:
+          - allowance
+          - used
+        properties:
+          allowance:
+            type: integer
+            example: 100
+          used:
+            type: integer
+            example: 2
 
   securitySchemes:
     default:
