@@ -176,6 +176,7 @@ paths:
         - cookieAuthProduction: []
         - cookieAuthStaging: []
       summary: "Returns the list of freebies"
+      operationId: getFreebies
       tags:
         - freebies
       responses:
@@ -215,6 +216,9 @@ paths:
         - cookieAuthProduction: []
         - cookieAuthStaging: []
       summary: Add a new freebie
+      operationId: generateFreebie
+      tags:
+        - freebies
       requestBody:
         required: true
         content:
@@ -246,6 +250,7 @@ paths:
         - cookieAuthProduction: []
         - cookieAuthStaging: []
       summary: "Returns the list of allowance"
+      operationId: getMonthlyAllowance
       tags:
         - freebies
       responses:
@@ -1697,3 +1702,9 @@ components:
       type: apiKey
       in: cookie
       name: my_sso_cookie
+
+tags:
+  - name: freebies
+    description: API to share articles
+    externalDocs:
+      url: https://docs.zeit.de/freebies/
