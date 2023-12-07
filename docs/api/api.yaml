@@ -209,8 +209,6 @@ paths:
           description: "Bad Request"
         "401":
           description: "Unauthorized"
-        "500":
-          description: "Internal server error"
     post:
       security:
         - cookieAuthProduction: []
@@ -241,8 +239,8 @@ paths:
           description: "Bad Request"
         "401":
           description: "Unauthorized"
-        "500":
-          description: "Internal server error"
+        "429":
+          description: "Monthly limit exceeded"
 
   /freebies/allowance:
     get:
@@ -276,8 +274,6 @@ paths:
           description: "Bad Request"
         "401":
           description: "Unauthorized"
-        "500":
-          description: "Internal server error"
 
   /freebies/rpc/check:
     post:
