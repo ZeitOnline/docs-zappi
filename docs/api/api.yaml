@@ -170,6 +170,154 @@ paths:
         "404":
           description: "No centerpage found for the given uuid"
 
+  /freebies/freebies:
+    get:
+      security:
+        - cookieAuthProduction: []
+        - cookieAuthStaging: []
+      summary: "Returns the list of freebies"
+      operationId: getFreebies
+      tags:
+        - freebies
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  required:
+                    - token
+                    - content
+                    - path
+                    - created
+                  properties:
+                    token:
+                      type: string
+                      example: "8116c8ea"
+                    content:
+                      $ref: "#/components/schemas/UUID"
+                    path:
+                      type: string
+                      example: "/2023/33/lithium-vorkommen-deutschland-e-autos-vulcan-energy-resources"
+                    created:
+                      type: string
+                      example: "2023-11-29T11:42:32.452605+00:00"
+          description: "Success"
+        "400":
+          description: "Bad Request"
+        "401":
+          description: "Unauthorized"
+    post:
+      security:
+        - cookieAuthProduction: []
+        - cookieAuthStaging: []
+      summary: Add a new freebie
+      operationId: generateFreebie
+      tags:
+        - freebies
+      requestBody:
+        required: true
+        content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - content
+                  - path
+                properties:
+                  content:
+                    $ref: "#/components/schemas/UUID"
+                  path:
+                    type: string
+                    example: "/2023/33/lithium-vorkommen-deutschland-e-autos-vulcan-energy-resources"
+      responses:
+        "201":
+          description: "Saved entry to freebies"
+        "400":
+          description: "Bad Request"
+        "401":
+          description: "Unauthorized"
+        "429":
+          description: "Monthly limit exceeded"
+
+  /freebies/allowance:
+    get:
+      security:
+        - cookieAuthProduction: []
+        - cookieAuthStaging: []
+      summary: "Returns the list of allowance"
+      operationId: getMonthlyAllowance
+      tags:
+        - freebies
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  required:
+                    - allowance
+                    - used
+                  properties:
+                    allowance:
+                      type: integer
+                      example: 100
+                    used:
+                      type: integer
+                      example: 2
+          description: "Success"
+        "400":
+          description: "Bad Request"
+        "401":
+          description: "Unauthorized"
+
+  /freebies/rpc/check:
+    post:
+      summary: "Validate a freebie"
+      operationId: checkFreebie
+      tags:
+        - freebies
+      requestBody:
+        required: true
+        content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - token
+                  - path
+                properties:
+                  token:
+                    type: string
+                    example: "8116c8ea"
+                  path:
+                    type: string
+                    example: "/2023/33/lithium-vorkommen-deutschland-e-autos-vulcan-energy-resources"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - accessed
+                  - content
+                properties:
+                  accessed:
+                    type: integer
+                    example: 1
+                  content:
+                    $ref: "#/components/schemas/UUID"
+          description: "Success"
+        "400":
+          description: "Bad Request"
+        "404":
+          description: "Expired or non-existing freebie"
+
   /iap/receipts/{platform}:
     post:
       parameters:
@@ -1550,3 +1698,9 @@ components:
       type: apiKey
       in: cookie
       name: my_sso_cookie
+
+tags:
+  - name: freebies
+    description: API to share articles
+    externalDocs:
+      url: https://docs.zeit.de/freebies/
