@@ -1191,6 +1191,7 @@ components:
                 - headed
                 - headed-light
                 - headed-fixed-height
+                - lead
                 - link-list
                 - podcast-episode-list
                 - podcast-grid
