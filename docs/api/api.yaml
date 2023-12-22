@@ -930,8 +930,6 @@ components:
                   - liveblog
                   - liveblog-closed
                   - livestream
-                  - wiwo
-                  - zett
                   - zplus
                   - zplus-register
                   - zplus-dynamic
