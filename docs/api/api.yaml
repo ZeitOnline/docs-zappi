@@ -928,11 +928,8 @@ components:
                 type: string
                 enum:
                   - liveblog
-                  - liveblog-closed
                   - livestream
                   - zplus
-                  - zplus-register
-                  - zplus-dynamic
                   - zplus-spiele
               description: "List of icon IDs that should be displayed for this teaser"
               example: ["zplus"]
