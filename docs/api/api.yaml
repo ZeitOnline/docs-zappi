@@ -72,6 +72,36 @@ paths:
         "503":
           description: "Service unavailable"
 
+  /bookmarks/category/{category}:
+    get:
+      security:
+        - cookieAuthProduction: []
+        - cookieAuthStaging: []
+      parameters:
+        - in: path
+          name: category
+          schema:
+            type: string
+          required: true
+          description: "The category name to filter bookmarks"
+      summary: "Returns the list of bookmarks for a category"
+      tags:
+        - bookmarks
+      operationId: getBoomarksForCategory
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Centerpage"
+          description: "Success"
+        "400":
+          description: "Something was wrong with the request. Check the body for error messages."
+        "401":
+          description: "Unauthorized"
+        "503":
+          description: "Service unavailable"
+
   /bookmarks/{uuid}:
     delete:
       security:
