@@ -125,6 +125,7 @@ paths:
         - cookieAuthProduction: []
         - cookieAuthStaging: []
       summary: "Returns all categories of bookmarked documents for the user"
+      operationId: getBoomarkCategories
       tags:
         - bookmarks
       responses:
