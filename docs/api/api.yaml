@@ -1182,8 +1182,10 @@ components:
             layout:
               type: string
               enum:
+                - dossier
                 - duo
                 - headed
+                - headed-carousel
                 - headed-light
                 - headed-fixed-height
                 - lead
