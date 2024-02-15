@@ -1023,7 +1023,7 @@ components:
                 # series: serienname
 
     CenterpageTeaserPodcast:
-      description: "A teaser module references/represents an article content object with audio (podigee podcast)"
+      description: "A teaser module references/represents an article content object with audio (simplecast podcast)"
       allOf:
         - $ref: "#/components/schemas/CenterpageTeaserBase"
         - required:
@@ -1048,7 +1048,13 @@ components:
                   type: string
                   # format: uri
                   description: "URL directly to the audio source"
-                  example: "https://cdn.podigee.com/media/podcast_17255_unter_pfarrerstochtern_episode_214511_die_opferung_des_isaak.mp3?v=1588876957&source=webplayer"
+                  example: "https://injector.simplecastaudio.com/60989a9e-80b6-4f17-979a-fc949043cf6b/episodes/0d4af84d-a3b9-4373-8c99-c20fe3c16345/audio/128/default.mp3?awCollectionId=60989a9e-80b6-4f17-979a-fc949043cf6b&amp;awEpisodeId=0d4af84d-a3b9-4373-8c99-c20fe3c16345"
+                ad-free-url:
+                  type: string
+                  nullable: true
+                  # format: uri
+                  description: "Adfree URL directly to the audio source"
+                  example: "https://cdn.simplecast.com/audio/60989a9e-80b6-4f17-979a-fc949043cf6b/episodes/0d4af84d-a3b9-4373-8c99-c20fe3c16345/audio/16a0ad94-096b-42b6-b7a2-c02f15fe9085/default_tc.mp3"
                 connections:
                   type: array
                   items:
