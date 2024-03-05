@@ -59,6 +59,8 @@ paths:
                 id:
                   $ref:   "#/components/schemas/UUID"
       responses:
+        "201":
+          description: "Saved entry to bookmarks"
         "204":
           description: "Saved entry to bookmarks"
         "400":
