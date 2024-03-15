@@ -342,23 +342,22 @@ paths:
                 items:
                   type: object
                   required:
-                    - token
-                    - content
-                    - path
+                    - id
+                    - summary
                     - created
+                    - config
                   properties:
                     id:
                       $ref: "#/components/schemas/UUID"
                     summary:
-                      format: text
                       type: string
                       example: Ein lustige Zusammenfassung
                     created:
-                      format: timestamp with time zone
                       type: string
                       example: 2024-02-09T17:48:39.27587+00:00
                     config:
-                      format: jsonb
+                      type: integer
+                      example: 1
 
   /iap/receipts/{platform}:
     post:
