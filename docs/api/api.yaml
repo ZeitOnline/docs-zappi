@@ -320,6 +320,46 @@ paths:
         "404":
           description: "Expired or non-existing freebie"
 
+  /summy/summaries:
+    get:
+      tags:
+        - summaries
+      parameters:
+        - in: query
+          name: id
+          schema:
+            type: string
+            pattern: '^eq.[-a-f0-9]+$'
+          required: true
+          description: "The UUID for the summary"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  required:
+                    - token
+                    - content
+                    - path
+                    - created
+                  properties:
+                    id:
+                      $ref: "#/components/schemas/UUID"
+                    summary:
+                      format: text
+                      type: string
+                      example: Ein lustige Zusammenfassung
+                    created:
+                      format: timestamp with time zone
+                      type: string
+                      example: 2024-02-09T17:48:39.27587+00:00
+                    config:
+                      format: jsonb
+
   /iap/receipts/{platform}:
     post:
       parameters:
