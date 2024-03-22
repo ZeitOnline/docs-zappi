@@ -1150,13 +1150,31 @@ components:
               nullable: true
               # format: uri
               description: "A section often links to topic pages etc."
-              example: "https://www.zeit.de/thema/coronavirus"
+              example: "https://www.zeit.de/thema/hamburg"
             title:
               type: string
               nullable: true
               example: "This is a simple title"
             items:
               type: array
+            topiclinks:
+              nullable: true
+              items:
+                $ref: "#/components/schemas/CenterpageAreaTopicLink"
+
+    CenterpageAreaTopicLink:
+      description: "Links to topicpage"
+      type: object
+      required:
+        - label
+        - link
+      properties:
+        label:
+          type: string
+          example: "Hongkong"
+        link:
+          type: string
+          example: https://www.zeit.de/schlagworte/orte/hongkong/index"
 
     CenterpageRegion:
       allOf:
