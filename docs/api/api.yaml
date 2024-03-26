@@ -320,6 +320,42 @@ paths:
         "404":
           description: "Expired or non-existing freebie"
 
+  /summy/summaries:
+    get:
+      operationId: getSummary
+      description: Get a summary
+      tags:
+        - summaries
+      parameters:
+        - $ref: '#/components/parameters/rowFilter.summaries.id'
+        - $ref: '#/components/parameters/select'
+      responses:
+        "200":
+          description: return summaries
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/summaries'
+
+  /summy/feedback:
+    post:
+      operationId: postFeedback
+      description: Saves a feedback
+      tags:
+        - feedback
+      summary: Add a new feedback to the database
+      requestBody:
+        description: A feedback to a summary
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/feedback'
+      responses:
+        '201':
+          description: Created.
+
   /iap/receipts/{platform}:
     post:
       parameters:
@@ -1705,6 +1741,67 @@ components:
             Extra parameter to identify
             - "iqdpremium": user has abo
             - "iqdpremium_registered": user is registered user
+
+    summaries:
+      description: properties of "summary" row
+      type: object
+      properties:
+        id:
+          description: |-
+            Note:
+            This is a Primary Key.<pk/>
+          format: uuid
+          type: string
+        summary:
+          format: text
+          type: string
+          example: Ein lustige Zusammenfassung
+        created:
+          format: timestamp with time zone
+          type: string
+          example: 2024-02-09T17:48:39.27587+00:00
+        config:
+          format: jsonb
+
+    feedback:
+      description: properties of "feedback" row
+      type: object
+      required:
+        - summary_id
+        - feedback
+      properties:
+        summary_id:
+          type: integer
+        ssoid:
+          type: integer
+        feedback:
+          type: string
+          enum: [like, dislike]
+        text:
+          format: text
+          type: string
+          example: Das ist fantastisch zusammengefasst
+        created:
+          format: timestamp with time zone
+          type: string
+          example: 2024-03-09T07:48:39.27587+00:00
+
+  parameters:
+    select:
+      name: select
+      description: select output columns
+      required: false
+      in: query
+      schema:
+        type: string
+    rowFilter.summaries.id:
+      name: rowFilter.summaries.id
+      description: filter Columns by "summary" id
+      required: false
+      in: query
+      schema:
+        type: string
+        pattern: '^eq.[-a-f0-9]+$'
 
   securitySchemes:
     default:
