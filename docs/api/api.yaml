@@ -1191,6 +1191,10 @@ components:
               type: string
               nullable: true
               example: "This is a simple title"
+            supertitle:
+              type: string
+              nullable: true
+              example: "Das Beste aus Z+"
             items:
               type: array
             topiclinks:
