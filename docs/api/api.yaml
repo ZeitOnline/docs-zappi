@@ -327,8 +327,13 @@ paths:
       tags:
         - summaries
       parameters:
-        - $ref: '#/components/parameters/rowFilter.summaries.id'
-        - $ref: '#/components/parameters/select'
+        - name: uuid
+          description: filter columns by "summary" uuid
+          required: false
+          in: query
+          schema:
+            type: string
+            pattern: '^eq.[-a-f0-9]+$'
       responses:
         "200":
           description: return summaries
@@ -1787,23 +1792,6 @@ components:
           format: timestamp with time zone
           type: string
           example: 2024-03-09T07:48:39.27587+00:00
-
-  parameters:
-    select:
-      name: select
-      description: select output columns
-      required: false
-      in: query
-      schema:
-        type: string
-    rowFilter.summaries.id:
-      name: rowFilter.summaries.id
-      description: filter Columns by "summary" id
-      required: false
-      in: query
-      schema:
-        type: string
-        pattern: '^eq.[-a-f0-9]+$'
 
   securitySchemes:
     default:
