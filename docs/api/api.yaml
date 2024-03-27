@@ -1759,12 +1759,19 @@ components:
           description: Primärschlüssel der Zusammenfassung
           type: integer
           example: 4711
+        uuid:
+          format: uuid
+          type: string
+          example: d5bc4106-b70b-4bd6-9bd5-4054e15647eb
         summary:
           type: string
           example: Ein lustige Zusammenfassung
         created:
           type: string
           example: 2024-02-09T17:48:39.27587+00:00
+        text:
+          type: integer
+          example: 3
         config:
           type: integer
           example: 2342
