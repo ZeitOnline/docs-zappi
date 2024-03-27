@@ -1760,15 +1760,14 @@ components:
           type: integer
           example: 4711
         summary:
-          format: text
           type: string
           example: Ein lustige Zusammenfassung
         created:
-          format: timestamp with time zone
           type: string
           example: 2024-02-09T17:48:39.27587+00:00
         config:
-          format: jsonb
+          type: integer
+          example: 2342
 
     feedback:
       description: properties of "feedback" row
@@ -1785,11 +1784,9 @@ components:
           type: string
           enum: [like, dislike]
         text:
-          format: text
           type: string
           example: Das ist fantastisch zusammengefasst
         created:
-          format: timestamp with time zone
           type: string
           example: 2024-03-09T07:48:39.27587+00:00
 
