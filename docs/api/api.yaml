@@ -1748,8 +1748,8 @@ components:
           nullable: true
           description: |
             Extra parameter to identify
-            - "iqdpremium": user has abo
-            - "iqdpremium_registered": user is registered user
+            - "iqdpaid": user has abo
+            - "iqdlogin": user is registered user
 
     summaries:
       description: properties of "summary" row
