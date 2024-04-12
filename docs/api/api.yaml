@@ -1206,6 +1206,10 @@ components:
               nullable: true
               items:
                 $ref: "#/components/schemas/CenterpageAreaTopicLink"
+            readmore:
+              type: string
+              nullable: true
+              example: "Mehr zum Thema Simple Title"
 
     CenterpageAreaTopicLink:
       description: "Links to topicpage"
