@@ -879,6 +879,76 @@ components:
           # format: uri
           example: "https://podcasts.apple.com/podcast/id1279335230"
 
+    Audio:
+      type: object
+      nullable: true
+      required:
+        - audioType
+        - audioDuration
+        - url
+      properties:
+        audioType:
+          type: string
+          enum: [podcast, premium, tts]
+          description: "type of audio source"
+        access:
+          type: string
+          nullable: true
+          enum: [abo, registration, dynamic]
+          description: "content access restriction"
+        audioDuration:
+          type: integer
+          description: "total duration of the audio in seconds"
+        url:
+          type: string
+          # format: uri
+          description: "URL directly to the audio source"
+          example: "https://injector.simplecastaudio.com/60989a9e-80b6-4f17-979a-fc949043cf6b/episodes/0d4af84d-a3b9-4373-8c99-c20fe3c16345/audio/128/default.mp3?awCollectionId=60989a9e-80b6-4f17-979a-fc949043cf6b&amp;awEpisodeId=0d4af84d-a3b9-4373-8c99-c20fe3c16345"
+
+    PodcastAudio:
+      allOf:
+        - $ref: "#/components/schemas/Audio"
+        - required:
+            - duration
+          properties:
+            color:
+              type: string
+              nullable: true
+              example: "8ed8a6"
+            duration:
+              type: string
+              example: "-00:05:23"
+            ad-free-url:
+              type: string
+              nullable: true
+              # format: uri
+              description: "Adfree URL directly to the audio source"
+              example: "https://cdn.simplecast.com/audio/60989a9e-80b6-4f17-979a-fc949043cf6b/episodes/0d4af84d-a3b9-4373-8c99-c20fe3c16345/audio/16a0ad94-096b-42b6-b7a2-c02f15fe9085/default_tc.mp3"
+            connections:
+              type: array
+              items:
+                $ref: "#/components/schemas/AudioConnection"
+
+    Volume:
+      type: object
+      nullable: true
+      required:
+        - volumeLabel
+      properties:
+        volumeImage:
+          $ref: "#/components/schemas/Image"
+        volumeLabel:
+          type: string
+          description: "label for for volume"
+          example: "Aus der ZEIT Nr. 12/2023"
+        volumeUrl:
+          type: string
+          nullable: true
+          # format: uri
+          description: "An URL to the volume which includes the audio"
+          example: "https://www.zeit.de/2023/12"
+
+
     CenterpageElement:
       required:
         - type
@@ -984,6 +1054,10 @@ components:
               #   - Verlagsangebot
               description: "Additional label to mark teasers with corporate advertising"
               example: "Verlagsangebot"
+            audio:
+              $ref: "#/components/schemas/Audio"
+            volume:
+              $ref: "#/components/schemas/Volume"
             comments:
               type: object
               properties:
@@ -1078,30 +1152,7 @@ components:
                 - teaser-podcast
               example: "teaser-podcast"
             audio:
-              type: object
-              properties:
-                color:
-                  type: string
-                  nullable: true
-                  example: "8ed8a6"
-                duration:
-                  type: string
-                  example: "-00:05:23"
-                url:
-                  type: string
-                  # format: uri
-                  description: "URL directly to the audio source"
-                  example: "https://injector.simplecastaudio.com/60989a9e-80b6-4f17-979a-fc949043cf6b/episodes/0d4af84d-a3b9-4373-8c99-c20fe3c16345/audio/128/default.mp3?awCollectionId=60989a9e-80b6-4f17-979a-fc949043cf6b&amp;awEpisodeId=0d4af84d-a3b9-4373-8c99-c20fe3c16345"
-                ad-free-url:
-                  type: string
-                  nullable: true
-                  # format: uri
-                  description: "Adfree URL directly to the audio source"
-                  example: "https://cdn.simplecast.com/audio/60989a9e-80b6-4f17-979a-fc949043cf6b/episodes/0d4af84d-a3b9-4373-8c99-c20fe3c16345/audio/16a0ad94-096b-42b6-b7a2-c02f15fe9085/default_tc.mp3"
-                connections:
-                  type: array
-                  items:
-                    $ref: "#/components/schemas/AudioConnection"
+              $ref: "#/components/schemas/PodcastAudio"
             episodeImage:
               $ref: "#/components/schemas/Image"
             seriesImage:
@@ -1124,28 +1175,9 @@ components:
                 - teaser-audio
               example: "teaser-audio"
             audio:
-              type: object
-              properties:
-                color:
-                  type: string
-                  nullable: true
-                  example: "b91109"
-                duration:
-                  type: string
-                  example: "-00:05:23"
-                url:
-                  type: string
-                  # format: uri
-                  description: "URL directly to the audio source"
-                  example: "https://premium.zeit.de/system/files/DZ/2021/19/audio/19_italien_8842307_8635853_dl.mp3"
-            episodeImage:
-              $ref: "#/components/schemas/Image"
-            seriesImage:
-              $ref: "#/components/schemas/Image"
-            volumeUrl:
-              type: string
-              example: "https://www.zeit.de/2023/12"
-              description: "An URL to the volume which includes the audio"
+              $ref: "#/components/schemas/Audio"
+            volume:
+              $ref: "#/components/schemas/Volume"
 
     CenterpageModuleHTML:
       description: "A non-native module that should be displayed via a web view"
