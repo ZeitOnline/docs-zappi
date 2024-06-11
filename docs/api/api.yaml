@@ -884,7 +884,7 @@ components:
       nullable: true
       required:
         - audioType
-        - audioDuration
+        - duration
         - url
       properties:
         audioType:
@@ -896,7 +896,11 @@ components:
           nullable: true
           enum: [abo, registration, dynamic]
           description: "content access restriction"
-        audioDuration:
+        color:
+          type: string
+          nullable: true
+          example: "8ed8a6"
+        duration:
           type: integer
           description: "total duration of the audio in seconds"
         url:
@@ -904,30 +908,43 @@ components:
           # format: uri
           description: "URL directly to the audio source"
           example: "https://injector.simplecastaudio.com/60989a9e-80b6-4f17-979a-fc949043cf6b/episodes/0d4af84d-a3b9-4373-8c99-c20fe3c16345/audio/128/default.mp3?awCollectionId=60989a9e-80b6-4f17-979a-fc949043cf6b&amp;awEpisodeId=0d4af84d-a3b9-4373-8c99-c20fe3c16345"
+        ad-free-url:
+          type: string
+          nullable: true
+          # format: uri
+          description: "Adfree URL directly to the audio source"
+          example: "https://cdn.simplecast.com/audio/60989a9e-80b6-4f17-979a-fc949043cf6b/episodes/0d4af84d-a3b9-4373-8c99-c20fe3c16345/audio/16a0ad94-096b-42b6-b7a2-c02f15fe9085/default_tc.mp3"
 
     PodcastAudio:
-      allOf:
-        - $ref: "#/components/schemas/Audio"
-        - required:
-            - duration
-          properties:
-            color:
-              type: string
-              nullable: true
-              example: "8ed8a6"
-            duration:
-              type: string
-              example: "-00:05:23"
-            ad-free-url:
-              type: string
-              nullable: true
-              # format: uri
-              description: "Adfree URL directly to the audio source"
-              example: "https://cdn.simplecast.com/audio/60989a9e-80b6-4f17-979a-fc949043cf6b/episodes/0d4af84d-a3b9-4373-8c99-c20fe3c16345/audio/16a0ad94-096b-42b6-b7a2-c02f15fe9085/default_tc.mp3"
-            connections:
-              type: array
-              items:
-                $ref: "#/components/schemas/AudioConnection"
+      type: object
+      description: "Legacy audio object for CenterpageTeaserPodcast"
+      nullable: true
+      required:
+        - duration
+        - url
+      properties:
+        color:
+          type: string
+          nullable: true
+          example: "8ed8a6"
+        duration:
+          type: string
+          example: "-00:05:23"
+        url:
+          type: string
+          # format: uri
+          description: "URL directly to the audio source"
+          example: "https://injector.simplecastaudio.com/60989a9e-80b6-4f17-979a-fc949043cf6b/episodes/0d4af84d-a3b9-4373-8c99-c20fe3c16345/audio/128/default.mp3?awCollectionId=60989a9e-80b6-4f17-979a-fc949043cf6b&amp;awEpisodeId=0d4af84d-a3b9-4373-8c99-c20fe3c16345"
+        ad-free-url:
+          type: string
+          nullable: true
+          # format: uri
+          description: "Adfree URL directly to the audio source"
+          example: "https://cdn.simplecast.com/audio/60989a9e-80b6-4f17-979a-fc949043cf6b/episodes/0d4af84d-a3b9-4373-8c99-c20fe3c16345/audio/16a0ad94-096b-42b6-b7a2-c02f15fe9085/default_tc.mp3"
+        connections:
+          type: array
+          items:
+            $ref: "#/components/schemas/AudioConnection"
 
     Volume:
       type: object
@@ -1054,7 +1071,7 @@ components:
               #   - Verlagsangebot
               description: "Additional label to mark teasers with corporate advertising"
               example: "Verlagsangebot"
-            audio:
+            audioInfo:
               $ref: "#/components/schemas/Audio"
             volume:
               $ref: "#/components/schemas/Volume"
@@ -1145,6 +1162,7 @@ components:
         - $ref: "#/components/schemas/CenterpageTeaserBase"
         - required:
             - audio
+            - audioInfo
           properties:
             type:
               type: string
@@ -1153,6 +1171,8 @@ components:
               example: "teaser-podcast"
             audio:
               $ref: "#/components/schemas/PodcastAudio"
+            audioInfo:
+              $ref: "#/components/schemas/Audio"
             episodeImage:
               $ref: "#/components/schemas/Image"
             seriesImage:
@@ -1167,14 +1187,14 @@ components:
       allOf:
         - $ref: "#/components/schemas/CenterpageTeaserBase"
         - required:
-            - audio
+            - audioInfo
           properties:
             type:
               type: string
               enum:
                 - teaser-audio
               example: "teaser-audio"
-            audio:
+            audioInfo:
               $ref: "#/components/schemas/Audio"
             volume:
               $ref: "#/components/schemas/Volume"
