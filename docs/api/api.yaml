@@ -894,7 +894,7 @@ components:
         access:
           type: string
           nullable: true
-          enum: [abo, registration, dynamic]
+          enum: [abo, registration, dynamic, null]
           description: "content access restriction"
         color:
           type: string
