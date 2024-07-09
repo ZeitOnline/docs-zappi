@@ -902,6 +902,7 @@ components:
           example: "8ed8a6"
         duration:
           type: integer
+          nullable: true
           description: "total duration of the audio in seconds"
         url:
           type: string
