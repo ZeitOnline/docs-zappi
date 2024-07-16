@@ -991,6 +991,10 @@ components:
               type: string
               # @check https://vivi.zeit.de/repository/data/cp-layouts.xml
               enum:
+                - zon-teaser-audio-xl
+                - zon-teaser-audio-l
+                - zon-teaser-audio-m
+                - zon-teaser-audio-s
                 - zon-teaser-classic
                 - zon-teaser-cover
                 - zon-teaser-panorama
