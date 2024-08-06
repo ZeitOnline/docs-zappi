@@ -1100,6 +1100,26 @@ components:
               properties:
                 customClickParameter:
                   $ref: "#/components/schemas/CustomClickParameter"
+            liveblogPosts:
+              nullable: true
+              type: array
+              items:
+                type: object
+                properties:
+                  title:
+                    type: string
+                    description: "Title of the liveblog entry"
+                    example: "Ereignisse haben stattgefunden"
+                  url:
+                    type: string
+                    # format: uri
+                    description: "URL directly to the liveblog entry"
+                    example: "https://www.zeit.de/politik/ausland/2023-12/news-live#tickaroo_event_id=xxx"
+                  date:
+                    type: string
+                    description: "A nice description of the datetime the liveblog entry was posted"
+                    example: "Gestern, 16:45 Uhr"
+              description: "List of liveblog posts that should be displayed for this teaser"
 
     CenterpageTeaser:
       description: "A teaser module references/represents an article content object"
