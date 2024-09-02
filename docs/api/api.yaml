@@ -54,7 +54,7 @@ paths:
           description: "Not found"
         "503":
           description: "Service unavailable"
-      
+
   /merkl/bookmarks:
     get:
       security:
@@ -82,8 +82,8 @@ paths:
             application/json:
               schema:
                 anyOf:
-                  - $ref: "#/components/schemas/BOOKMARK"
-                  - $ref: "#/components/schemas/CATEGORY"
+                  - $ref: "#/components/schemas/Bookmark"
+                  - $ref: "#/components/schemas/Category"
           description: "Success"
         "400":
           description: "Something was wrong with the request to get bookmarks. Check the body for error messages."
@@ -94,7 +94,7 @@ paths:
     post:
       security:
         - cookieAuthProduction: []
-        - cookieAuthStaging: []  
+        - cookieAuthStaging: []
       operationId: postBookmark
       description: Add a new bookmark
       tags:
@@ -141,7 +141,7 @@ paths:
           name: uuid
           required: false
           schema:
-            $ref: "#/components/schemas/UUIDFILTER"
+            $ref: "#/components/schemas/UUIDFilter"
           description: UUID of an article
       responses:
         "204":
@@ -221,7 +221,7 @@ paths:
               type: object
               properties:
                 id:
-                  $ref:   "#/components/schemas/UUID"
+                  $ref: "#/components/schemas/UUID"
       responses:
         "201":
           description: "Saved entry to bookmarks"
@@ -706,13 +706,13 @@ components:
       items:
         $ref: "#/components/schemas/UUID"
 
-    UUIDFILTER:
+    UUIDFilter:
       type: string
       pattern: ^[eq\.]+(([a-f0-9]{8})(-[a-f0-9]{4}){3}(-[a-f0-9]{12})\\}?|[-a-z0-9/]+)$
       description: Postgrest equal filter function
       example: "eq.d995ba5a-a7fb-401a-bdc8-86cf2cbf0cda"
 
-    BOOKMARK:
+    Bookmark:
       type: array
       description: Describes a bookmark item
       items:
@@ -727,7 +727,7 @@ components:
           uuid:
             $ref: "#/components/schemas/UUID"
 
-    CATEGORY:
+    Category:
       description: Describes a filtered list of UUIDs
       type: array
       items:
