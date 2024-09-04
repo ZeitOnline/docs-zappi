@@ -1183,6 +1183,11 @@ components:
               type: string
               # @check https://vivi.zeit.de/repository/data/cp-layouts.xml
               enum:
+                - audio-poster-m
+                - audio-poster-l
+                - audio-tile-s-collapsed
+                - audio-tile-m-collapsed
+                - audio-listitem-s-expanded
                 - zon-teaser-classic
                 - zon-teaser-cover
                 - zon-teaser-panorama
