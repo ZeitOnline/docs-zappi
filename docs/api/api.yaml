@@ -87,9 +87,9 @@ paths:
         "400":
           description: "Something was wrong with the request to get bookmarks. Check the body for error messages."
         "401":
-          description: "Unauthorized to get filtered bookmarks"
+          description: "Unauthorized (to get bookmarks)"
         "503":
-          description: "Service unavailable to get filtered bookmarks"
+          description: "Service unavailable (when getting bookmarks)"
     post:
       security:
         - cookieAuthProduction: []
@@ -113,29 +113,31 @@ paths:
               additionalProperties: false
       responses:
         "201":
-          description: "Saved entry to bookmarks (201)"
+          description: "Saved entry to bookmarks (returning it)"
         "204":
-          description: "Saved entry to bookmarks (204)"
+          description: "Saved entry to bookmarks (without returning it)"
         "400":
-          description: "Something was wrong with the request. Check the body for error messages."
+          description: "Something went wrong with the request to save bookmark. Check the body for error messages."
         "401":
-          description: "Unauthorized"
+          description: "Unauthorized (to save bookmark)"
         "403":
-          description: "Forbidden"
+          description: "Forbidden (to save bookmark)"
         "502":
-          description: "Bad gateway"
+          description: "Bad gateway (when saving bookmark)"
         "503":
-          description: "Service unavailable"
+          description: "Service unavailable (when saving bookmark)"
     delete:
       security:
         - cookieAuthProduction: []
         - cookieAuthStaging: []
-      operationId: deleteRpcBookmark
+      operationId: deleteBookmark
       description:
-        Delete one or all bookmarks:<br>
-        <b>delete one bookmark:</b> If you want to delete one specific bookmark/UUID,<br>
-        you have to set its UUID as a parameters.<br>
-        <b>delete all bookmarks:</b> To delete all bookmarks, call this endpoint without parameters.
+        <dl>
+          <dt>Delete one bookmark:</dt>
+          <dd>If you want to delete one specific bookmark, you have to pass its UUID as a parameter.</dd>
+          <dt>Delete all bookmarks:</dt>
+          <dd>To delete all bookmarks, call this endpoint without parameters.</dd>
+        </dl>
       tags:
         - bookmarks
       parameters:
@@ -149,15 +151,15 @@ paths:
         "204":
           description: "Deleted entry from bookmarks or delete all bookmarks, respectively"
         "400":
-          description: "Something was wrong with the request to delete a bookmark. Check the body for error messages."
+          description: "Something went wrong with the request to delete a bookmark. Check the body for error messages."
         "401":
-          description: "Unauthorized to delete a bookmark"
+          description: "Unauthorized (to delete bookmark)"
         "403":
-          description: "Forbidden from deleting a bookmark"
+          description: "Forbidden (to delete bookmark)"
         "502":
           description: "Bad gateway to delete a bookmark"
         "503":
-          description: "Service unavailable for deleting bookmarks"
+          description: "Service unavailable (when deleting bookmarks)"
 
   /merkl/categories:
     get:
@@ -188,11 +190,11 @@ paths:
                   additionalProperties: false
           description: "Success getting each category name with count of its bookmarks"
         "400":
-          description: "Something was wrong with the request to get categories. Check the body for error messages."
+          description: "Something went wrong with the request to get categories. Check the body for error messages."
         "401":
-          description: "Unauthorized to get categories"
+          description: "Unauthorized (to get categories)"
         "503":
-          description: "Service unavailable for getting categories"
+          description: "Service unavailable (when getting categories)"
 
   /bookmarks:
     get:
