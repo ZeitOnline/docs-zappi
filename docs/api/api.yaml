@@ -85,7 +85,7 @@ paths:
                 $ref: "#/components/schemas/bookmark"
           description: "Return list of bookmarks, optionally filtered by category"
         "400":
-          description: "Something was wrong with the request to get bookmarks. Check the body for error messages."
+          description: "Something went wrong with the request to get bookmarks. Check the body for error messages."
         "401":
           description: "Unauthorized (to get bookmarks)"
         "503":
@@ -99,7 +99,7 @@ paths:
       tags:
         - bookmarks
       requestBody:
-        description: Save new bookmark bookmarks endpoint, UUID is required.
+        description: Add the given UUID to bookmarks
         required: true
         content:
           application/json:
@@ -157,7 +157,7 @@ paths:
         "403":
           description: "Forbidden (to delete bookmark)"
         "502":
-          description: "Bad gateway to delete a bookmark"
+          description: "Bad gateway (when deleting bookmark)"
         "503":
           description: "Service unavailable (when deleting bookmarks)"
 
@@ -166,7 +166,8 @@ paths:
       security:
         - cookieAuthProduction: []
         - cookieAuthStaging: []
-      summary: "Returns the bookmark categories"
+      operationId: getCategories
+      description: Return list of all bookmark categories
       tags:
         - categories
       responses:
