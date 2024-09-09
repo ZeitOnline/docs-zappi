@@ -60,6 +60,7 @@ paths:
       security:
         - cookieAuthProduction: []
         - cookieAuthStaging: []
+      operationId: getBookmarks
       description:
         Returns list of bookmarks, optionally filtered by category.<br>
         Calling this endpoint without parameters returns all bookmarks.<br>
@@ -81,16 +82,14 @@ paths:
           content:
             application/json:
               schema:
-                anyOf:
-                  - $ref: "#/components/schemas/Bookmark"
-                  - $ref: "#/components/schemas/Category"
-          description: "Success"
+                $ref: "#/components/schemas/bookmark"
+          description: "Return list of bookmarks, optionally filtered by category"
         "400":
-          description: "Something was wrong with the request to get bookmarks. Check the body for error messages."
+          description: "Something went wrong with the request to get bookmarks. Check the body for error messages."
         "401":
-          description: "Unauthorized to get bookmarks"
+          description: "Unauthorized (to get bookmarks)"
         "503":
-          description: "Service unavailable to get bookmarks"
+          description: "Service unavailable (when getting bookmarks)"
     post:
       security:
         - cookieAuthProduction: []
@@ -100,7 +99,7 @@ paths:
       tags:
         - bookmarks
       requestBody:
-        description: Adds the given UUID at bookmarklist
+        description: Add the given UUID to bookmarks
         required: true
         content:
           application/json:
@@ -109,31 +108,36 @@ paths:
               properties:
                 uuid:
                   $ref: "#/components/schemas/UUID"
+              required:
+                - uuid
+              additionalProperties: false
       responses:
         "201":
-          description: "Saved entry to bookmarks (201)"
+          description: "Saved entry to bookmarks (returning it)"
         "204":
-          description: "Saved entry to bookmarks (204)"
+          description: "Saved entry to bookmarks (without returning it)"
         "400":
-          description: "Something was wrong with the request. Check the body for error messages."
+          description: "Something went wrong with the request to save bookmark. Check the body for error messages."
         "401":
-          description: "Unauthorized"
+          description: "Unauthorized (to save bookmark)"
         "403":
-          description: "Forbidden"
+          description: "Forbidden (to save bookmark)"
         "502":
-          description: "Bad gateway"
+          description: "Bad gateway (when saving bookmark)"
         "503":
-          description: "Service unavailable"
+          description: "Service unavailable (when saving bookmark)"
     delete:
       security:
         - cookieAuthProduction: []
         - cookieAuthStaging: []
-      operationId: deleteRpcBookmark
+      operationId: deleteBookmark
       description:
-        Delete one or all bookmarks:<br>
-        <b>delete one bookmark:</b> If you want to delete one specific bookmark/UUID,<br>
-        you have to set its UUID as a parameters.<br>
-        <b>delete all bookmarks:</b> To delete all bookmarks, call this endpoint without parameters.
+        <dl>
+          <dt>Delete one bookmark:</dt>
+          <dd>If you want to delete one specific bookmark, you have to pass its UUID as a parameter.</dd>
+          <dt>Delete all bookmarks:</dt>
+          <dd>To delete all bookmarks, call this endpoint without parameters.</dd>
+        </dl>
       tags:
         - bookmarks
       parameters:
@@ -141,28 +145,29 @@ paths:
           name: uuid
           required: false
           schema:
-            $ref: "#/components/schemas/UUIDFilter"
+            $ref: "#/components/schemas/uuidfilter"
           description: UUID of an article
       responses:
         "204":
           description: "Deleted entry from bookmarks or delete all bookmarks, respectively"
         "400":
-          description: "Something was wrong with the request to delete a bookmark. Check the body for error messages."
+          description: "Something went wrong with the request to delete a bookmark. Check the body for error messages."
         "401":
-          description: "Unauthorized to delete a bookmark"
+          description: "Unauthorized (to delete bookmark)"
         "403":
-          description: "Forbidden from deleting a bookmark"
+          description: "Forbidden (to delete bookmark)"
         "502":
-          description: "Bad gateway to delete a bookmark"
+          description: "Bad gateway (when deleting bookmark)"
         "503":
-          description: "Service unavailable for deleting bookmarks"
+          description: "Service unavailable (when deleting bookmarks)"
 
   /merkl/categories:
     get:
       security:
         - cookieAuthProduction: []
         - cookieAuthStaging: []
-      summary: "Returns the bookmark categories"
+      operationId: getCategories
+      description: Return list of all bookmark categories
       tags:
         - categories
       responses:
@@ -174,18 +179,23 @@ paths:
                 items:
                   type: object
                   properties:
-                    ssoid:
+                    name:
+                      type: string
+                      example: artikel
+                    count:
                       type: integer
-                      example: 54
-                    uuid:
-                      $ref: "#/components/schemas/UUID"
-          description: "Success getting categories"
+                      example: 8
+                  required:
+                    - count
+                    - name
+                  additionalProperties: false
+          description: "Success getting each category name with count of its bookmarks"
         "400":
-          description: "Something was wrong with the request to get categories. Check the body for error messages."
+          description: "Something went wrong with the request to get categories. Check the body for error messages."
         "401":
-          description: "Unauthorized to get categories"
+          description: "Unauthorized (to get categories)"
         "503":
-          description: "Service unavailable for getting categories"
+          description: "Service unavailable (when getting categories)"
 
   /bookmarks:
     get:
@@ -706,13 +716,13 @@ components:
       items:
         $ref: "#/components/schemas/UUID"
 
-    UUIDFilter:
+    uuidfilter:
       type: string
       pattern: ^[eq\.]+(([a-f0-9]{8})(-[a-f0-9]{4}){3}(-[a-f0-9]{12})\\}?|[-a-z0-9/]+)$
       description: Postgrest equal filter function
       example: "eq.d995ba5a-a7fb-401a-bdc8-86cf2cbf0cda"
 
-    Bookmark:
+    bookmark:
       type: array
       description: Describes a bookmark item
       items:
@@ -726,13 +736,11 @@ components:
             example: 42
           uuid:
             $ref: "#/components/schemas/UUID"
-
-    Category:
-      description: Describes a filtered list of UUIDs
-      type: array
-      items:
-        type: string
-        example: "d995ba5a-a7fb-401a-bdc8-86cf2cbf0cda"
+        required:
+          - created
+          - ssoid
+          - uuid
+        additionalProperties: false
 
     BookmarkIds:
       type: object
