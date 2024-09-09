@@ -1188,6 +1188,7 @@ components:
                 - audio-tile-s-collapsed
                 - audio-tile-m-collapsed
                 - audio-listitem-s-expanded
+                - audio-listitem-m-expanded
                 - zon-teaser-classic
                 - zon-teaser-cover
                 - zon-teaser-panorama
