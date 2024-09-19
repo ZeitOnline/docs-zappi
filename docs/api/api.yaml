@@ -1582,7 +1582,6 @@ components:
       description: "Header for native centerpages"
       required:
         - type
-        - title
       properties:
         id:
           $ref: "#/components/schemas/CenterpageElementId"
