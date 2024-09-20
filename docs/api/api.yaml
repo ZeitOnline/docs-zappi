@@ -1151,21 +1151,30 @@ components:
       type: object
       nullable: true
       required:
-        - volumeLabel
+        - label
+        - year
+        - number
       properties:
-        volumeImage:
+        image:
           $ref: "#/components/schemas/Image"
-        volumeLabel:
+        label:
           type: string
           description: "label for for volume"
-          example: "Aus der ZEIT Nr. 12/2023"
-        volumeUrl:
+          example: "DIE ZEIT 12/2023"
+        url:
           type: string
           nullable: true
           # format: uri
-          description: "An URL to the volume which includes the audio"
-          example: "https://www.zeit.de/2023/12"
-
+          description: "An URL to the volume"
+          example: "https://www.zeit.de/2023/12/index"
+        year:
+          type: integer
+        number:
+          type: integer
+        datePublished:
+          type: string
+          description: "Formatted date of publication"
+          example: "25. Januar 2024"
 
     CenterpageElement:
       required:
