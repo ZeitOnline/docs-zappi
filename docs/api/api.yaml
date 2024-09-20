@@ -1450,8 +1450,11 @@ components:
               # format: uri
               description: "A section often links to topic pages etc."
               example: "https://www.zeit.de/thema/hamburg"
-            linked-uuid:
+            linkedUuid:
               $ref: "#/components/schemas/UUID"
+              nullable: true
+              description: "The UUID of the link, if given"
+              example: "977ff669-b044-4a1b-b444-00c1d717905f"
             title:
               type: string
               nullable: true
