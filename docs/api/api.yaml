@@ -1148,21 +1148,30 @@ components:
       type: object
       nullable: true
       required:
-        - volumeLabel
+        - label
+        - year
+        - number
       properties:
-        volumeImage:
+        image:
           $ref: "#/components/schemas/Image"
-        volumeLabel:
+        label:
           type: string
           description: "label for for volume"
-          example: "Aus der ZEIT Nr. 12/2023"
-        volumeUrl:
+          example: "DIE ZEIT 12/2023"
+        url:
           type: string
           nullable: true
           # format: uri
-          description: "An URL to the volume which includes the audio"
-          example: "https://www.zeit.de/2023/12"
-
+          description: "An URL to the volume"
+          example: "https://www.zeit.de/2023/12/index"
+        year:
+          type: integer
+        number:
+          type: integer
+        datePublished:
+          type: string
+          description: "Formatted date of publication"
+          example: "25. Januar 2024"
 
     CenterpageElement:
       required:
@@ -1447,8 +1456,11 @@ components:
               # format: uri
               description: "A section often links to topic pages etc."
               example: "https://www.zeit.de/thema/hamburg"
-            linked-uuid:
+            linkedUuid:
               $ref: "#/components/schemas/UUID"
+              nullable: true
+              description: "The UUID of the link, if given"
+              example: "977ff669-b044-4a1b-b444-00c1d717905f"
             title:
               type: string
               nullable: true
