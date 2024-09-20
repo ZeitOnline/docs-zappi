@@ -25,9 +25,6 @@ servers:
 paths:
   /teaser/{uuid}:
     get:
-      security:
-          - cookieAuthProduction: []
-          - cookieAuthStaging: []
       description: Returns a single teaser element
       parameters:
         - in: path
