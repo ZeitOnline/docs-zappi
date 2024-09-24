@@ -1148,13 +1148,13 @@ components:
       type: object
       nullable: true
       required:
-        - label
+        - volumeLabel
         - year
         - number
       properties:
-        image:
+        volumeImage:
           $ref: "#/components/schemas/Image"
-        label:
+        volumeLabel:
           type: string
           description: "label for for volume"
           example: "DIE ZEIT 12/2023"
