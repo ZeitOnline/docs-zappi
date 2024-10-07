@@ -1203,8 +1203,12 @@ components:
                 - audio-tile-m-collapsed
                 - audio-listitem-s-expanded
                 - audio-listitem-m-expanded
+                - audio-playlist-header
+                - audio-playlist-header-cover
                 - audio-playlist-m
                 - audio-playlist-m-cover
+                - audio-playlist-tile-l
+                - audio-playlist-tile-l-cover
                 - zon-teaser-classic
                 - zon-teaser-cover
                 - zon-teaser-panorama
