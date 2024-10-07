@@ -1,28 +1,18 @@
 #!/bin/bash
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-cd "$DIR/../docs/api"
+cd "$DIR/.."
+zon_mkdocs_image="europe-west3-docker.pkg.dev/zeitonline-engineering/docker-zon/zon-mkdocs:latest"
 
-if [[ package-lock.json -nt .npm.success ]]; then
-    npm install
-    touch .npm.success
-fi
+docker pull $zon_mkdocs_image
 
-cd "$DIR/../docs"
 COMMAND=${1:-html}
 case $COMMAND in
-    html)
-        docker run --rm \
-          -v $(pwd)/:/docs/ \
-          europe-west3-docker.pkg.dev/zeitonline-engineering/docker-zon/sphinx-zon:latest \
-          sphinx-build -j auto -a -b html . ./htdocs
-    ;;
     serve)
-        docker run --rm \
-          -v $(pwd)/:/docs/ \
-          -p 8000:8000 \
-          europe-west3-docker.pkg.dev/zeitonline-engineering/docker-zon/sphinx-zon:latest \
-          sphinx-autobuild --host 0.0.0.0 -j auto -a -b html . ./htdocs
+        docker run --rm -it -p 8000:8000 -v ${PWD}:/docs $zon_mkdocs_image
+    ;;
+    html)
+        docker run --rm -v ${PWD}:/docs $zon_mkdocs_image build --site-dir public
     ;;
     *)
         echo "Unrecognized command: $COMMAND"

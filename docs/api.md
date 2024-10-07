@@ -1,0 +1,1 @@
+<swagger-ui src="https://zappi.staging.zeit.de/1.0.0/openapi.yaml"/>
