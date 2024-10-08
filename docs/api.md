@@ -1,1 +1,1 @@
-<swagger-ui src="https://zappi.zeit.de/1.0.0/openapi.yaml"/>
+<swagger-ui src="api/api.yaml"/>
