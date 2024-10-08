@@ -23,7 +23,7 @@ servers:
           - "0.3.1"
 
 paths:
-  /teaser/{uuid}:
+  /content/teaser/{uuid}:
     get:
       description: Returns a single teaser element
       parameters:
