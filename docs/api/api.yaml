@@ -1203,6 +1203,7 @@ components:
                 - audio-tile-m-collapsed
                 - audio-listitem-s-expanded
                 - audio-listitem-m-expanded
+                - audio-moderation
                 - audio-playlist-header
                 - audio-playlist-header-cover
                 - audio-playlist-m
