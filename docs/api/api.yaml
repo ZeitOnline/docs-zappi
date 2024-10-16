@@ -1086,7 +1086,7 @@ components:
       properties:
         audioType:
           type: string
-          enum: [podcast, premium, tts]
+          enum: [custom, podcast, premium, tts]
           description: "type of audio source"
         access:
           type: string
