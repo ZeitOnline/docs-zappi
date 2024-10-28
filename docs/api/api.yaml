@@ -1158,6 +1158,13 @@ components:
           type: string
           description: "label for for volume"
           example: "DIE ZEIT 12/2023"
+        volumeColor:
+          type: string
+          description: "Hex value of background color of the volume without #"
+          example: "2e8b57"
+          minLength: 6
+          maxLength: 6
+          nullable: true
         url:
           type: string
           nullable: true
