@@ -1,5 +1,5 @@
 INHERIT: /zon/common_config.yaml
-site_name: Zappi (ZON-App-API)
+site_name: zappi
 repo_url: https://github.com/ZeitOnline/docs-zappi
 
 nav:
