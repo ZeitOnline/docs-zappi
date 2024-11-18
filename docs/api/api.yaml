@@ -119,6 +119,8 @@ paths:
           description: "Unauthorized (to save bookmark)"
         "403":
           description: "Forbidden (to save bookmark)"
+        "409":
+          description: "Bookmark already exists. You can't bookmark the same document twice."
         "502":
           description: "Bad gateway (when saving bookmark)"
         "503":
