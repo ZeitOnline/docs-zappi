@@ -39,6 +39,7 @@ paths:
               schema:
                 oneOf:
                   - $ref: "#/components/schemas/CenterpageTeaser"
+                  - $ref: "#/components/schemas/CenterpageTeaserGallery"
                   - $ref: "#/components/schemas/CenterpageTeaserVideo"
                   - $ref: "#/components/schemas/CenterpageTeaserPodcast"
                   - $ref: "#/components/schemas/CenterpageTeaserAudio"
