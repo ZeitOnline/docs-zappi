@@ -33,10 +33,11 @@ jobs:
 
       - run: bin/test
 
-      - uses: slackapi/slack-github-action@v1.24.0
+      - uses: slackapi/slack-github-action@v2.0.0
         if: failure() && github.ref_name == 'main'
         with:
-          channel-id: "${{secrets.SLACK_TEAM_CONTENT_CHANNEL_ID}}"
-          slack-message: ":small_red_triangle_down: <${{env.BUILD_URL}}|${{env.PROJECT}}> tests failed"
-        env:
-          SLACK_BOT_TOKEN: ${{secrets.SLACK_BOT_TOKEN}}
+          method: chat.postMessage
+          token: ${{ secrets.SLACK_BOT_TOKEN }}
+          payload: |
+            channel: ${{secrets.SLACK_TEAM_CONTENT_CHANNEL_ID}}
+            text: ":small_red_triangle_down: <${{env.BUILD_URL}}|${{env.PROJECT}}> tests failed"
