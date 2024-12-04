@@ -2051,6 +2051,7 @@ components:
             enum:
               - adfree
               - podcast
+              - registration
               - spiele
               - wochenmarkt
               - zplus
@@ -2061,6 +2062,9 @@ components:
             (Example: A user can access content that accepts ["wochenmarkt", "zplus"],
             if the user has at least either the "wochenmarkt" or "zplus" entitlement )
             The entitlement identifiers are owned by https://premium.zeit.de/api/0/entitlements
+            (except for "registration", which is a synthetic entitlement that all users have,
+            to model access to content that requires only a registration, but no actual subscription)
+
         subscriptions:
           type: array
           description: |
