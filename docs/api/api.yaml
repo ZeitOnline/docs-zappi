@@ -2025,24 +2025,46 @@ components:
       properties:
         ssoid:
           type: integer
+        anonymous:
+          type: boolean
+          description: Does this account from an in-app purchase?
         name:
           type: string
-          description: username
           nullable: true
+          description: Nickname (from profile.zeit.de)
         firstname:
           type: string
           nullable: true
+          description: First name (from profile.zeit.de)
         lastname:
           type: string
           nullable: true
+          description: Last name (from profile.zeit.de)
         avatar:
           type: string
-          description: URL to the image
           nullable: true
+          description: URL to avatar image (from profile.zeit.de)
+        entitlements:
+          type: array
+          items:
+            type: string
+            enum:
+              - adfree
+              - podcast
+              - spiele
+              - wochenmarkt
+              - zplus
+          description: |
+            List of entitlements granted to the user.
+            Access to content is granted, if the entitlements required/accepted by the content
+            overlap with the entitlements granted to the user.
+            (Example: A user can access content that accepts ["wochenmarkt", "zplus"],
+            if the user has at least either the "wochenmarkt" or "zplus" entitlement )
+            The entitlement identifiers are owned by https://premium.zeit.de/api/0/entitlements
         subscriptions:
           type: array
-          nullable: true
           description: |
+            DEPRECATED, use `entitlements` instead.
             Which subscriptions does the current user have?
             - "pur": the user should not be tracked and should not
               see any ads
