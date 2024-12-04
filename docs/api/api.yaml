@@ -2041,7 +2041,6 @@ components:
           nullable: true
         subscriptions:
           type: array
-          nullable: true
           description: |
             Which subscriptions does the current user have?
             - "pur": the user should not be tracked and should not
