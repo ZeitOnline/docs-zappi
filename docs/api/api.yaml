@@ -2025,6 +2025,9 @@ components:
       properties:
         ssoid:
           type: integer
+        anonymous:
+          type: boolean
+          description: Does this account from an in-app purchase?
         name:
           type: string
           nullable: true
