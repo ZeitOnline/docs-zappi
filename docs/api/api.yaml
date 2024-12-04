@@ -2027,18 +2027,20 @@ components:
           type: integer
         name:
           type: string
-          description: username
           nullable: true
+          description: Nickname (from profile.zeit.de)
         firstname:
           type: string
           nullable: true
+          description: First name (from profile.zeit.de)
         lastname:
           type: string
           nullable: true
+          description: Last name (from profile.zeit.de)
         avatar:
           type: string
-          description: URL to the image
           nullable: true
+          description: URL to avatar image (from profile.zeit.de)
         subscriptions:
           type: array
           description: |
