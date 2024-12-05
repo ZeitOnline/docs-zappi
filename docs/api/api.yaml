@@ -747,6 +747,19 @@ components:
       items:
         $ref: "#/components/schemas/UUIDList"
 
+    ContentEntitlements:
+      type: array
+      items:
+        type: string
+        enum:
+          - podcast
+          - registration
+          - wochenmarkt
+          - zplus
+      description: |
+        List of entitlements that a content object accepts to grant access.
+        Access to content is granted, if the user has at least one of these.
+
     Structure:
       type: object
       properties:
@@ -1095,7 +1108,9 @@ components:
           type: string
           nullable: true
           enum: [abo, registration, dynamic, null]
-          description: "content access restriction"
+          description: "DEPRECATED use `entitlements` instead"
+        entitlements:
+          $ref: "#/components/schemas/ContentEntitlements"
         color:
           type: string
           nullable: true
@@ -1277,6 +1292,8 @@ components:
               nullable: true
               description: "Human readable relative or absolute date"
               example: "Vor 3 Stunden"
+            entitlements:
+              $ref: "#/components/schemas/ContentEntitlements"
             byline:
               type: string
               nullable: true
