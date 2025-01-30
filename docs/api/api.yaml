@@ -1661,6 +1661,7 @@ components:
           nullable: true
         title:
           type: string
+          nullable: true
 
     CenterpageMarkup:
       description: "A list of text"
