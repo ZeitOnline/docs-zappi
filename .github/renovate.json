@@ -1,0 +1,24 @@
+{
+	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
+	"dependencyDashboard": true,
+	"commitMessagePrefix": "MAINT: ",
+	"schedule": ["before 8am on wednesday"],
+	"enabledManagers": ["github-actions", "npm", "pipenv"],
+	"packageRules": [
+		{
+			"groupName": "All minor github-actions changes",
+			"matchManagers": ["github-actions"],
+			"matchUpdateTypes": ["minor", "patch"]
+		},
+		{
+			"groupName": "All minor npm changes",
+			"matchManagers": ["npm"],
+			"matchUpdateTypes": ["minor", "patch"]
+		},
+		{
+			"groupName": "All minor pipenv changes",
+			"matchManagers": ["pipenv"],
+			"matchUpdateTypes": ["minor", "patch"]
+		}
+	]
+}
