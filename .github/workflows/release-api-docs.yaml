@@ -17,16 +17,16 @@ jobs:
       RELEASE_TAG: api-docs-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4.2.2
 
       - name: Setup Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v4.2.0
         with:
           node-version: '14'
 
       - name: Cache dependencies
         id: cache
-        uses: actions/cache@v2
+        uses: actions/cache@v4.2.0
         with:
           path: ./docs/api/node_modules
           key: modules-${{ hashFiles('docs/api/package-lock.json') }}
@@ -49,7 +49,7 @@ jobs:
           git push origin ${{ env.RELEASE_TAG }}
 
       - name: Release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2.2.1
         with:
           tag_name: ${{ env.RELEASE_TAG }}
           files: swagger-api-docs.tar.gz
@@ -63,7 +63,7 @@ jobs:
 
     steps:
       - name: Trigger Repository Dispatch in docs
-        uses: peter-evans/repository-dispatch@v2
+        uses: peter-evans/repository-dispatch@v3.0.0
         with:
           token: ${{ secrets.PRIVATE_REPO_ACCESS_PAT }}
           repository: ZeitOnline/docs
