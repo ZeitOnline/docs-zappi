@@ -1,12 +1,12 @@
 INHERIT: /zon/common_config.yaml
-site_name: zappi
-repo_url: https://github.com/ZeitOnline/docs-zappi
-
 nav:
-    - index.md
-    - overview.md
-    - onboarding.md
-    - codingstyle.md
-    - operations.md
-    - validation.md
-    - API: api.md
+- index.md
+- overview.md
+- onboarding.md
+- codingstyle.md
+- operations.md
+- validation.md
+- API: api.md
+repo_url: https://github.com/ZeitOnline/docs-zappi
+site_name: zappi
+team: team-content
