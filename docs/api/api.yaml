@@ -864,6 +864,7 @@ components:
         - html
         - header
         - markup
+        - cpextra
       description: "Type of the cp element"
 
     AdControllerPageInfo:
@@ -1610,6 +1611,7 @@ components:
                   - $ref: "#/components/schemas/CenterpageTeaserPodcast"
                   - $ref: "#/components/schemas/CenterpageTeaserAudio"
                   - $ref: "#/components/schemas/CenterpageModuleHTML"
+                  - $ref: "#/components/schemas/CenterpageExtra"
                 discriminator:
                   propertyName: type
                   mapping:
@@ -1686,17 +1688,15 @@ components:
     CenterpageExtra:
       description: "CPExtra: additional content block for centerpages that can contain anything"
       required:
-        - id
         - type
       properties:
+        id:
+          $ref: "#/components/schemas/CenterpageElementId"
         type:
           type: string
           enum:
             - cpextra
-        id:
-          description: "Unique ID of the CPExtra"
-          type: string
-        value:
+        cpextra:
           description: "The content type this CPExtra represents"
           type: string
 
