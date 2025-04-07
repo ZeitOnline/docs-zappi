@@ -825,6 +825,7 @@ components:
               - $ref: "#/components/schemas/CenterpageAdplace"
               - $ref: "#/components/schemas/CenterpageHeader"
               - $ref: "#/components/schemas/CenterpageMarkup"
+              - $ref: "#/components/schemas/CenterpageExtra"
             discriminator:
               propertyName: type
               mapping:
@@ -840,6 +841,7 @@ components:
                 adplace: "#/components/schemas/CenterpageAdplace"
                 header: "#/components/schemas/CenterpageHeader"
                 markup: "#/components/schemas/CenterpageMarkup"
+                cpextra: "#/components/schemas/CenterpageExtra"
 
     CenterpageElementId:
       type: string
@@ -1618,6 +1620,7 @@ components:
                     teaser-podcast: "#/components/schemas/CenterpageTeaserPodcast"
                     teaser-audio: "#/components/schemas/CenterpageTeaserAudio"
                     html: "#/components/schemas/CenterpageModuleHTML"
+                    cpextra: "#/components/schemas/CenterpageExtra"
             trackingData:
               type: object
               properties:
@@ -1678,6 +1681,23 @@ components:
         title:
           type: string
         text:
+          type: string
+
+    CenterpageExtra:
+      description: "CPExtra: additional content block for centerpages that can contain anything"
+      required:
+        - id
+        - type
+      properties:
+        type:
+          type: string
+          enum:
+            - cpextra
+        id:
+          description: "Unique ID of the CPExtra"
+          type: string
+        value:
+          description: "The content type this CPExtra represents"
           type: string
 
     TabBase:
