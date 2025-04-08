@@ -825,6 +825,7 @@ components:
               - $ref: "#/components/schemas/CenterpageAdplace"
               - $ref: "#/components/schemas/CenterpageHeader"
               - $ref: "#/components/schemas/CenterpageMarkup"
+              - $ref: "#/components/schemas/CenterpageExtra"
             discriminator:
               propertyName: type
               mapping:
@@ -840,6 +841,7 @@ components:
                 adplace: "#/components/schemas/CenterpageAdplace"
                 header: "#/components/schemas/CenterpageHeader"
                 markup: "#/components/schemas/CenterpageMarkup"
+                cpextra: "#/components/schemas/CenterpageExtra"
 
     CenterpageElementId:
       type: string
@@ -862,6 +864,7 @@ components:
         - html
         - header
         - markup
+        - cpextra
       description: "Type of the cp element"
 
     AdControllerPageInfo:
@@ -1608,6 +1611,7 @@ components:
                   - $ref: "#/components/schemas/CenterpageTeaserPodcast"
                   - $ref: "#/components/schemas/CenterpageTeaserAudio"
                   - $ref: "#/components/schemas/CenterpageModuleHTML"
+                  - $ref: "#/components/schemas/CenterpageExtra"
                 discriminator:
                   propertyName: type
                   mapping:
@@ -1618,6 +1622,7 @@ components:
                     teaser-podcast: "#/components/schemas/CenterpageTeaserPodcast"
                     teaser-audio: "#/components/schemas/CenterpageTeaserAudio"
                     html: "#/components/schemas/CenterpageModuleHTML"
+                    cpextra: "#/components/schemas/CenterpageExtra"
             trackingData:
               type: object
               properties:
@@ -1678,6 +1683,22 @@ components:
         title:
           type: string
         text:
+          type: string
+
+    CenterpageExtra:
+      description: "CPExtra: additional content block for centerpages that can contain anything"
+      required:
+        - type
+        - cpextra
+      properties:
+        id:
+          $ref: "#/components/schemas/CenterpageElementId"
+        type:
+          type: string
+          enum:
+            - cpextra
+        cpextra:
+          description: "The content type this CPExtra represents"
           type: string
 
     TabBase:
