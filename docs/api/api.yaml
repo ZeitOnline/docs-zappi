@@ -1689,6 +1689,7 @@ components:
       description: "CPExtra: additional content block for centerpages that can contain anything"
       required:
         - type
+        - cpextra
       properties:
         id:
           $ref: "#/components/schemas/CenterpageElementId"
