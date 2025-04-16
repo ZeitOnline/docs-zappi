@@ -1,26 +1,26 @@
 openapi: 3.0.2
 info:
-  description: "This is the API description for the ZON-App (iOS and Android)"
-  version: "0.3.1"
-  title: "ZON App API"
+  description: 'This is the API description for the ZON-App (iOS and Android)'
+  version: '0.3.1'
+  title: 'ZON App API'
   contact:
-    email: "internet-technik@zeit.de"
+    email: 'internet-technik@zeit.de'
 
 servers:
-  - url: "https://zappi.zeit.de/{version}"
-    description: "Production"
+  - url: 'https://zappi.zeit.de/{version}'
+    description: 'Production'
     variables:
       version:
-        default: "0.3.1"
+        default: '0.3.1'
         enum: # list older still available versions here
-          - "0.3.1"
-  - url: "https://zappi.staging.zeit.de/{version}"
-    description: "Staging"
+          - '0.3.1'
+  - url: 'https://zappi.staging.zeit.de/{version}'
+    description: 'Staging'
     variables:
       version:
-        default: "0.3.1"
+        default: '0.3.1'
         enum:
-          - "0.3.1"
+          - '0.3.1'
 
 paths:
   /content/teaser/{uuid}:
@@ -31,27 +31,27 @@ paths:
           name: uuid
           required: true
           schema:
-            $ref: "#/components/schemas/UUID"
+            $ref: '#/components/schemas/UUID'
       responses:
-        "200":
+        '200':
           content:
             application/json:
               schema:
                 oneOf:
-                  - $ref: "#/components/schemas/CenterpageTeaser"
-                  - $ref: "#/components/schemas/CenterpageTeaserGallery"
-                  - $ref: "#/components/schemas/CenterpageTeaserVideo"
-                  - $ref: "#/components/schemas/CenterpageTeaserPodcast"
-                  - $ref: "#/components/schemas/CenterpageTeaserAudio"
-          description: "Success"
-        "400":
-          description: "Something was wrong. Check the body for error messages."
-        "401":
-          description: "Unauthorized to get teaser"
-        "404":
-          description: "Not found"
-        "503":
-          description: "Service unavailable"
+                  - $ref: '#/components/schemas/CenterpageTeaser'
+                  - $ref: '#/components/schemas/CenterpageTeaserGallery'
+                  - $ref: '#/components/schemas/CenterpageTeaserVideo'
+                  - $ref: '#/components/schemas/CenterpageTeaserPodcast'
+                  - $ref: '#/components/schemas/CenterpageTeaserAudio'
+          description: 'Success'
+        '400':
+          description: 'Something was wrong. Check the body for error messages.'
+        '401':
+          description: 'Unauthorized to get teaser'
+        '404':
+          description: 'Not found'
+        '503':
+          description: 'Service unavailable'
 
   /merkl/bookmarks:
     get:
@@ -59,8 +59,7 @@ paths:
         - cookieAuthProduction: []
         - cookieAuthStaging: []
       operationId: getBookmarks
-      description:
-        Returns list of bookmarks, optionally filtered by category.<br>
+      description: Returns list of bookmarks, optionally filtered by category.<br>
         Calling this endpoint without parameters returns all bookmarks.<br>
         To get only bookmarks by a given category, call this endpoint with the `category` parameter.
       parameters:
@@ -70,24 +69,24 @@ paths:
           schema:
             type: string
             description: Category
-            example: "podcast"
+            example: 'podcast'
           description: category to filter list of bookmarks
-          example: "?category=podcast"
+          example: '?category=podcast'
       tags:
         - bookmarks
       responses:
-        "200":
+        '200':
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/bookmark"
-          description: "Return list of bookmarks, optionally filtered by category"
-        "400":
-          description: "Something went wrong with the request to get bookmarks. Check the body for error messages."
-        "401":
-          description: "Unauthorized (to get bookmarks)"
-        "503":
-          description: "Service unavailable (when getting bookmarks)"
+                $ref: '#/components/schemas/bookmark'
+          description: 'Return list of bookmarks, optionally filtered by category'
+        '400':
+          description: 'Something went wrong with the request to get bookmarks. Check the body for error messages.'
+        '401':
+          description: 'Unauthorized (to get bookmarks)'
+        '503':
+          description: 'Service unavailable (when getting bookmarks)'
     post:
       security:
         - cookieAuthProduction: []
@@ -105,38 +104,37 @@ paths:
               type: object
               properties:
                 uuid:
-                  $ref: "#/components/schemas/UUID"
+                  $ref: '#/components/schemas/UUID'
               required:
                 - uuid
               additionalProperties: false
       responses:
-        "201":
-          description: "Saved entry to bookmarks (returning it)"
-        "204":
-          description: "Saved entry to bookmarks (without returning it)"
-        "400":
-          description: "Something went wrong with the request to save bookmark. Check the body for error messages."
-        "401":
-          description: "Unauthorized (to save bookmark)"
-        "403":
-          description: "Forbidden (to save bookmark)"
-        "409":
+        '201':
+          description: 'Saved entry to bookmarks (returning it)'
+        '204':
+          description: 'Saved entry to bookmarks (without returning it)'
+        '400':
+          description: 'Something went wrong with the request to save bookmark. Check the body for error messages.'
+        '401':
+          description: 'Unauthorized (to save bookmark)'
+        '403':
+          description: 'Forbidden (to save bookmark)'
+        '409':
           description: "Bookmark already exists. You can't bookmark the same document twice."
-        "502":
-          description: "Bad gateway (when saving bookmark)"
-        "503":
-          description: "Service unavailable (when saving bookmark)"
+        '502':
+          description: 'Bad gateway (when saving bookmark)'
+        '503':
+          description: 'Service unavailable (when saving bookmark)'
     delete:
       security:
         - cookieAuthProduction: []
         - cookieAuthStaging: []
       operationId: deleteBookmark
-      description:
-        <dl>
-          <dt>Delete one bookmark:</dt>
-          <dd>If you want to delete one specific bookmark, you have to pass its UUID as a parameter.</dd>
-          <dt>Delete all bookmarks:</dt>
-          <dd>To delete all bookmarks, call this endpoint without parameters.</dd>
+      description: <dl>
+        <dt>Delete one bookmark:</dt>
+        <dd>If you want to delete one specific bookmark, you have to pass its UUID as a parameter.</dd>
+        <dt>Delete all bookmarks:</dt>
+        <dd>To delete all bookmarks, call this endpoint without parameters.</dd>
         </dl>
       tags:
         - bookmarks
@@ -145,21 +143,21 @@ paths:
           name: uuid
           required: false
           schema:
-            $ref: "#/components/schemas/uuidfilter"
+            $ref: '#/components/schemas/uuidfilter'
           description: UUID of an article
       responses:
-        "204":
-          description: "Deleted entry from bookmarks or delete all bookmarks, respectively"
-        "400":
-          description: "Something went wrong with the request to delete a bookmark. Check the body for error messages."
-        "401":
-          description: "Unauthorized (to delete bookmark)"
-        "403":
-          description: "Forbidden (to delete bookmark)"
-        "502":
-          description: "Bad gateway (when deleting bookmark)"
-        "503":
-          description: "Service unavailable (when deleting bookmarks)"
+        '204':
+          description: 'Deleted entry from bookmarks or delete all bookmarks, respectively'
+        '400':
+          description: 'Something went wrong with the request to delete a bookmark. Check the body for error messages.'
+        '401':
+          description: 'Unauthorized (to delete bookmark)'
+        '403':
+          description: 'Forbidden (to delete bookmark)'
+        '502':
+          description: 'Bad gateway (when deleting bookmark)'
+        '503':
+          description: 'Service unavailable (when deleting bookmarks)'
 
   /merkl/categories:
     get:
@@ -171,7 +169,7 @@ paths:
       tags:
         - categories
       responses:
-        "200":
+        '200':
           content:
             application/json:
               schema:
@@ -189,35 +187,35 @@ paths:
                     - count
                     - name
                   additionalProperties: false
-          description: "Success getting each category name with count of its bookmarks"
-        "400":
-          description: "Something went wrong with the request to get categories. Check the body for error messages."
-        "401":
-          description: "Unauthorized (to get categories)"
-        "503":
-          description: "Service unavailable (when getting categories)"
+          description: 'Success getting each category name with count of its bookmarks'
+        '400':
+          description: 'Something went wrong with the request to get categories. Check the body for error messages.'
+        '401':
+          description: 'Unauthorized (to get categories)'
+        '503':
+          description: 'Service unavailable (when getting categories)'
 
   /bookmarks:
     get:
       security:
         - cookieAuthProduction: []
         - cookieAuthStaging: []
-      summary: "Returns the list of bookmarks"
+      summary: 'Returns the list of bookmarks'
       tags:
         - bookmarks
       responses:
-        "200":
+        '200':
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Centerpage"
-          description: "Success"
-        "400":
-          description: "Something was wrong with the request. Check the body for error messages."
-        "401":
-          description: "Unauthorized"
-        "503":
-          description: "Service unavailable"
+                $ref: '#/components/schemas/Centerpage'
+          description: 'Success'
+        '400':
+          description: 'Something was wrong with the request. Check the body for error messages.'
+        '401':
+          description: 'Unauthorized'
+        '503':
+          description: 'Service unavailable'
     post:
       security:
         - cookieAuthProduction: []
@@ -231,22 +229,22 @@ paths:
               type: object
               properties:
                 id:
-                  $ref: "#/components/schemas/UUID"
+                  $ref: '#/components/schemas/UUID'
       responses:
-        "201":
-          description: "Saved entry to bookmarks"
-        "204":
-          description: "Saved entry to bookmarks"
-        "400":
-          description: "Something was wrong with the request. Check the body for error messages."
-        "401":
-          description: "Unauthorized"
-        "403":
-          description: "Forbidden"
-        "502":
-          description: "Bad gateway"
-        "503":
-          description: "Service unavailable"
+        '201':
+          description: 'Saved entry to bookmarks'
+        '204':
+          description: 'Saved entry to bookmarks'
+        '400':
+          description: 'Something was wrong with the request. Check the body for error messages.'
+        '401':
+          description: 'Unauthorized'
+        '403':
+          description: 'Forbidden'
+        '502':
+          description: 'Bad gateway'
+        '503':
+          description: 'Service unavailable'
 
   /bookmarks/{uuid}:
     delete:
@@ -258,42 +256,42 @@ paths:
           name: uuid
           required: true
           schema:
-            $ref: "#/components/schemas/UUID"
+            $ref: '#/components/schemas/UUID'
       responses:
-        "204":
-          description: "Deleted entry from bookmarks"
-        "400":
-          description: "Something was wrong with the request. Check the body for error messages."
-        "401":
-          description: "Unauthorized"
-        "403":
-          description: "Forbidden"
-        "502":
-          description: "Bad gateway"
-        "503":
-          description: "Service unavailable"
+        '204':
+          description: 'Deleted entry from bookmarks'
+        '400':
+          description: 'Something was wrong with the request. Check the body for error messages.'
+        '401':
+          description: 'Unauthorized'
+        '403':
+          description: 'Forbidden'
+        '502':
+          description: 'Bad gateway'
+        '503':
+          description: 'Service unavailable'
 
   /bookmarks/ids:
     get:
       security:
         - cookieAuthProduction: []
         - cookieAuthStaging: []
-      summary: "Returns the list of bookmarked ids"
+      summary: 'Returns the list of bookmarked ids'
       tags:
         - bookmarks
       responses:
-        "200":
+        '200':
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/BookmarkIds"
-          description: "Success"
-        "400":
-          description: "Something was wrong with the request. Check the body for error messages."
-        "401":
-          description: "Unauthorized"
-        "503":
-          description: "Service unavailable"
+                $ref: '#/components/schemas/BookmarkIds'
+          description: 'Success'
+        '400':
+          description: 'Something was wrong with the request. Check the body for error messages.'
+        '401':
+          description: 'Unauthorized'
+        '503':
+          description: 'Service unavailable'
 
   /config/{filename}:
     get:
@@ -303,23 +301,23 @@ paths:
           schema:
             type: string
           required: true
-          description: "The filename of the configuration file"
+          description: 'The filename of the configuration file'
       summary: |
         Provides JSON formatted configuration files. These are maintained
         via the CMS and can change independently of API releases.
         By convention, these reside in the folder
         ``https://vivi.zeit.de/repository/static/zona``
       responses:
-        "200":
-          description: "Success"
+        '200':
+          description: 'Success'
           content:
             application/json:
               schema:
                 type: object
-        "400":
-          description: "No valid JSON for this resource"
-        "404":
-          description: "No such configuration file"
+        '400':
+          description: 'No valid JSON for this resource'
+        '404':
+          description: 'No such configuration file'
 
   /cp/{uuid}:
     get:
@@ -327,36 +325,36 @@ paths:
         - in: path
           name: uuid
           schema:
-            $ref: "#/components/schemas/UUID"
+            $ref: '#/components/schemas/UUID'
           required: true
-          description: "UUID from CMS that identifies a CenterPage content object"
+          description: 'UUID from CMS that identifies a CenterPage content object'
 
       tags:
         - cp
-      summary: "Returns the teasers (i.e. content references) on a CenterPage"
+      summary: 'Returns the teasers (i.e. content references) on a CenterPage'
       responses:
-        "200":
-          description: "Success"
+        '200':
+          description: 'Success'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Centerpage"
-        "400":
-          description: "Something was wrong with the request. Check the body for error messages."
-        "404":
-          description: "No centerpage found for the given uuid"
+                $ref: '#/components/schemas/Centerpage'
+        '400':
+          description: 'Something was wrong with the request. Check the body for error messages.'
+        '404':
+          description: 'No centerpage found for the given uuid'
 
   /freebies/freebies:
     get:
       security:
         - cookieAuthProduction: []
         - cookieAuthStaging: []
-      summary: "Returns the list of freebies"
+      summary: 'Returns the list of freebies'
       operationId: getFreebies
       tags:
         - freebies
       responses:
-        "200":
+        '200':
           content:
             application/json:
               schema:
@@ -371,20 +369,20 @@ paths:
                   properties:
                     token:
                       type: string
-                      example: "8116c8ea"
+                      example: '8116c8ea'
                     content:
-                      $ref: "#/components/schemas/UUID"
+                      $ref: '#/components/schemas/UUID'
                     path:
                       type: string
-                      example: "/2023/33/lithium-vorkommen-deutschland-e-autos-vulcan-energy-resources"
+                      example: '/2023/33/lithium-vorkommen-deutschland-e-autos-vulcan-energy-resources'
                     created:
                       type: string
-                      example: "2023-11-29T11:42:32.452605+00:00"
-          description: "Success"
-        "400":
-          description: "Bad Request"
-        "401":
-          description: "Unauthorized"
+                      example: '2023-11-29T11:42:32.452605+00:00'
+          description: 'Success'
+        '400':
+          description: 'Bad Request'
+        '401':
+          description: 'Unauthorized'
     post:
       security:
         - cookieAuthProduction: []
@@ -396,41 +394,41 @@ paths:
       requestBody:
         required: true
         content:
-            application/json:
-              schema:
-                type: object
-                required:
-                  - content
-                  - path
-                properties:
-                  content:
-                    $ref: "#/components/schemas/UUID"
-                  path:
-                    type: string
-                    example: "/2023/33/lithium-vorkommen-deutschland-e-autos-vulcan-energy-resources"
+          application/json:
+            schema:
+              type: object
+              required:
+                - content
+                - path
+              properties:
+                content:
+                  $ref: '#/components/schemas/UUID'
+                path:
+                  type: string
+                  example: '/2023/33/lithium-vorkommen-deutschland-e-autos-vulcan-energy-resources'
       responses:
-        "201":
-          description: "Saved entry to freebies"
-        "400":
-          description: "Bad Request"
-        "401":
-          description: "Unauthorized"
-        "403":
-          description: "Forbidden"
-        "429":
-          description: "Monthly limit exceeded"
+        '201':
+          description: 'Saved entry to freebies'
+        '400':
+          description: 'Bad Request'
+        '401':
+          description: 'Unauthorized'
+        '403':
+          description: 'Forbidden'
+        '429':
+          description: 'Monthly limit exceeded'
 
   /freebies/allowance:
     get:
       security:
         - cookieAuthProduction: []
         - cookieAuthStaging: []
-      summary: "Returns the list of allowance"
+      summary: 'Returns the list of allowance'
       operationId: getMonthlyAllowance
       tags:
         - freebies
       responses:
-        "200":
+        '200':
           content:
             application/json:
               schema:
@@ -447,36 +445,36 @@ paths:
                     used:
                       type: integer
                       example: 2
-          description: "Success"
-        "400":
-          description: "Bad Request"
-        "401":
-          description: "Unauthorized"
+          description: 'Success'
+        '400':
+          description: 'Bad Request'
+        '401':
+          description: 'Unauthorized'
 
   /freebies/rpc/check:
     post:
-      summary: "Validate a freebie"
+      summary: 'Validate a freebie'
       operationId: checkFreebie
       tags:
         - freebies
       requestBody:
         required: true
         content:
-            application/json:
-              schema:
-                type: object
-                required:
-                  - token
-                  - path
-                properties:
-                  token:
-                    type: string
-                    example: "8116c8ea"
-                  path:
-                    type: string
-                    example: "/2023/33/lithium-vorkommen-deutschland-e-autos-vulcan-energy-resources"
+          application/json:
+            schema:
+              type: object
+              required:
+                - token
+                - path
+              properties:
+                token:
+                  type: string
+                  example: '8116c8ea'
+                path:
+                  type: string
+                  example: '/2023/33/lithium-vorkommen-deutschland-e-autos-vulcan-energy-resources'
       responses:
-        "200":
+        '200':
           content:
             application/json:
               schema:
@@ -489,12 +487,12 @@ paths:
                     type: integer
                     example: 1
                   content:
-                    $ref: "#/components/schemas/UUID"
-          description: "Success"
-        "400":
-          description: "Bad Request"
-        "404":
-          description: "Expired or non-existing freebie"
+                    $ref: '#/components/schemas/UUID'
+          description: 'Success'
+        '400':
+          description: 'Bad Request'
+        '404':
+          description: 'Expired or non-existing freebie'
 
   /summy/summaries:
     get:
@@ -511,7 +509,7 @@ paths:
             type: string
             pattern: '^eq.[-a-f0-9]+$'
       responses:
-        "200":
+        '200':
           description: return summaries
           content:
             application/json:
@@ -544,10 +542,8 @@ paths:
           name: platform
           required: true
           schema:
-            $ref: "#/components/schemas/AppStoreType"
-      requestBody: {
-        $ref: "#/components/requestBodies/AppStoreReceipt"
-      }
+            $ref: '#/components/schemas/AppStoreType'
+      requestBody: { $ref: '#/components/requestBodies/AppStoreReceipt' }
       security:
         - cookieAuthProduction: []
         - cookieAuthStaging: []
@@ -563,117 +559,267 @@ paths:
           "real" account, the response will have the cookie for that real account set. Clients are expected to notice the
           discrepancy and use the new cookie henceforth.
       responses:
-        "204":
-          description: "All is well. Enjoy those exclusive articles!"
-        "400":
-          description: "Something was wrong with the request. Check the body for error messages."
-        "401":
-          description: "No valid identities were found in the receipt."
-        "502":
-          description: "The payment server was not reachable."
+        '204':
+          description: 'All is well. Enjoy those exclusive articles!'
+        '400':
+          description: 'Something was wrong with the request. Check the body for error messages.'
+        '401':
+          description: 'No valid identities were found in the receipt.'
+        '502':
+          description: 'The payment server was not reachable.'
 
   /search:
-   get:
-    tags:
-      - search
-    summary: "Main entry point for generic search."
-    parameters:
-      - in: query
-        name: q
-        schema:
-          type: string
-        required: true
-        description: "The term that should be searched for"
-    responses:
-      "200":
-        description: "Returns a list of results"
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                adControllerPageInfo:
-                  $ref: "#/components/schemas/AdControllerPageInfo"
-                items:
-                  type: array
+    get:
+      tags:
+        - search
+      summary: 'Main entry point for generic search.'
+      parameters:
+        - in: query
+          name: q
+          schema:
+            type: string
+          required: true
+          description: 'The term that should be searched for'
+      responses:
+        '200':
+          description: 'Returns a list of results'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  adControllerPageInfo:
+                    $ref: '#/components/schemas/AdControllerPageInfo'
                   items:
-                    oneOf:
-                      - $ref: "#/components/schemas/CenterpageAdplace"
-                      - $ref: "#/components/schemas/CenterpageTeaser"
-                      - $ref: "#/components/schemas/CenterpageTeaserAuthor"
-                      - $ref: "#/components/schemas/CenterpageTeaserGallery"
-                      - $ref: "#/components/schemas/CenterpageTeaserVideo"
-                      - $ref: "#/components/schemas/CenterpageTeaserPodcast"
-                      - $ref: "#/components/schemas/CenterpageTeaserAudio"
-                      - $ref: "#/components/schemas/CenterpageModuleHTML"
-                    discriminator:
-                      propertyName: type
-                      mapping:
-                        adplace: "#/components/schemas/CenterpageAdplace"
-                        teaser: "#/components/schemas/CenterpageTeaser"
-                        teaser-author: "#/components/schemas/CenterpageTeaserAuthor"
-                        teaser-gallery: "#/components/schemas/CenterpageTeaserGallery"
-                        teaser-video: "#/components/schemas/CenterpageTeaserVideo"
-                        teaser-podcast: "#/components/schemas/CenterpageTeaserPodcast"
-                        teaser-audio: "#/components/schemas/CenterpageTeaserAudio"
-                        html: "#/components/schemas/CenterpageModuleHTML"
-                trackingData:
-                  $ref: "#/components/schemas/TrackingData"
-      "400":
-        description: "Invalid query, see response body for details."
+                    type: array
+                    items:
+                      oneOf:
+                        - $ref: '#/components/schemas/CenterpageAdplace'
+                        - $ref: '#/components/schemas/CenterpageTeaser'
+                        - $ref: '#/components/schemas/CenterpageTeaserAuthor'
+                        - $ref: '#/components/schemas/CenterpageTeaserGallery'
+                        - $ref: '#/components/schemas/CenterpageTeaserVideo'
+                        - $ref: '#/components/schemas/CenterpageTeaserPodcast'
+                        - $ref: '#/components/schemas/CenterpageTeaserAudio'
+                        - $ref: '#/components/schemas/CenterpageModuleHTML'
+                      discriminator:
+                        propertyName: type
+                        mapping:
+                          adplace: '#/components/schemas/CenterpageAdplace'
+                          teaser: '#/components/schemas/CenterpageTeaser'
+                          teaser-author: '#/components/schemas/CenterpageTeaserAuthor'
+                          teaser-gallery: '#/components/schemas/CenterpageTeaserGallery'
+                          teaser-video: '#/components/schemas/CenterpageTeaserVideo'
+                          teaser-podcast: '#/components/schemas/CenterpageTeaserPodcast'
+                          teaser-audio: '#/components/schemas/CenterpageTeaserAudio'
+                          html: '#/components/schemas/CenterpageModuleHTML'
+                  trackingData:
+                    $ref: '#/components/schemas/TrackingData'
+        '400':
+          description: 'Invalid query, see response body for details.'
 
   /structure:
     get:
       tags:
         - structure
-      summary: "Returns tab and menu/submenu configuration for the app UI"
+      summary: 'Returns tab and menu/submenu configuration for the app UI'
       responses:
-        "200":
+        '200':
           # XXX description is required, but really already exists in ..summary
-          description: "Success"
+          description: 'Success'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Structure"
-              example: {tabs: [
-                {id: start, title: Start, type: tab-centerpage, icon: home, items: [
-                  {id: homepage, title: Aktuell, type: menu-item-web, url: "https://www.zeit.de/index"},
-                  {id: ressortPolitik, title: Politik, type: menu-item-native, source: "{urn:uuid:b4d1e3b1-aac4-4a80-b820-e4093fe24a36}"},
-                  {id: ressortGesellschaft, title: Gesellschaft, type: menu-item-native, source: "{urn:uuid:c92ad9be-67e0-497d-beee-6c2e063352cc}"},
-                  {id: ressortWirtschaft, title: Wirtschaft, type: menu-item-native, source: "{urn:uuid:ea13ef02-74f3-4010-8cd7-777327fb881a}"},
-                  {id: ressortWissen, title: Wissen, type: menu-item-native, source: "{urn:uuid:c84692ca-b0c9-4772-8c6b-85e2abc446e1}"},
-                  {id: ressortKultur, title: Kultur, type: menu-item-native, source: "{urn:uuid:49b109f0-bbad-495e-8a88-ad91ec1ef8f9}"}
-                ]},
-                {id: news, title: Schlagzeilen, type: tab-centerpage, icon: clock, items: [
-                  {id: newsAll, title: "Alle Schlagzeilen", type: menu-item-native, source: "{urn:uuid:08945d5e-483c-4e7b-9843-69a8f590ada9}"},
-                  {id: newsMostImportant, title: "Die wichtigsten Nachrichten", type: menu-item-native, source: "{urn:uuid:df60a52c-5f4d-4804-833d-ec31e24dbd43}"},
-                  {id: newsAnalysisAndReports, title: "Analysen und Hintergründe", type: menu-item-native, source: "{urn:uuid:d6913463-1804-466d-b6d0-34376ef21916}"}
-                ]},
-                {id: explore, title: Entdecken, type: tab-story, icon: compass, items: [
-                  {id: explore-all, title: Entdecken, type: menu-item-native, source: "{urn:uuid:99ae6607-fe0f-44ad-97fb-00dd0d852c30}"}
-                ]},
-                {id: zplus, title: Mein Abo, type: tab-centerpage, icon: zplus, items: [
-                  {id: exclusive, title: "Exklusive Artikel", type: menu-item-native, source: "{urn:uuid:0fd9480f-1b52-4fcb-942e-8089e378102e}"},
-                  {id: zeitPDFWebReader, title: "DIE ZEIT", type: menu-item-web, url: "https://epaper.zeit.de/abo/diezeit"},
-                  {id: wochenMarkt, title: "Wochenmarkt", type: menu-item-web, url: "https://www.zeit.de/wochenmarkt"}
-                ]},
-                {id: menu, title: Mehr, type: tab-menu, icon: avatar, items: [
-                  {id: user-menu, title: "Mein Bereich", items: [
-                    {id: reading-list, title: Merkliste, type: menu-item-app, targetId: native-reading-list},
-                    {id: reading-history, title: Verlauf, type: menu-item-app, targetId: native-reading-history},
-                    {id: comment-list, title: Kommentare, type: menu-item-web, url: "https://profile.zeit.de"}
-                  ]},
-                  {id: angebote, title: Angebote, items: [
-                    {id: anzeigen, title: Anzeigen, type: menu-item-submenu, items: [
-                      {id: ad1, title: Werbung, type: menu-item-web, url: "https://www.werbung.de"},
-                      {id: ad2, title: Anzeige, type: menu-item-web, url: "https://www.werbung.de"},
-                      {id: ad3, title: Promo, type: menu-item-web, url: "https://www.werbung.de"}
-                    ]}
-                  ]}
-                ]}
-              ]}
-        "400":
-          description: "Something was wrong with the request. Check the body for error messages."
+                $ref: '#/components/schemas/Structure'
+              example:
+                {
+                  tabs:
+                    [
+                      {
+                        id: start,
+                        title: Start,
+                        type: tab-centerpage,
+                        icon: home,
+                        items:
+                          [
+                            {
+                              id: homepage,
+                              title: Aktuell,
+                              type: menu-item-web,
+                              url: 'https://www.zeit.de/index',
+                            },
+                            {
+                              id: ressortPolitik,
+                              title: Politik,
+                              type: menu-item-native,
+                              source: '{urn:uuid:b4d1e3b1-aac4-4a80-b820-e4093fe24a36}',
+                            },
+                            {
+                              id: ressortGesellschaft,
+                              title: Gesellschaft,
+                              type: menu-item-native,
+                              source: '{urn:uuid:c92ad9be-67e0-497d-beee-6c2e063352cc}',
+                            },
+                            {
+                              id: ressortWirtschaft,
+                              title: Wirtschaft,
+                              type: menu-item-native,
+                              source: '{urn:uuid:ea13ef02-74f3-4010-8cd7-777327fb881a}',
+                            },
+                            {
+                              id: ressortWissen,
+                              title: Wissen,
+                              type: menu-item-native,
+                              source: '{urn:uuid:c84692ca-b0c9-4772-8c6b-85e2abc446e1}',
+                            },
+                            {
+                              id: ressortKultur,
+                              title: Kultur,
+                              type: menu-item-native,
+                              source: '{urn:uuid:49b109f0-bbad-495e-8a88-ad91ec1ef8f9}',
+                            },
+                          ],
+                      },
+                      {
+                        id: news,
+                        title: Schlagzeilen,
+                        type: tab-centerpage,
+                        icon: clock,
+                        items:
+                          [
+                            {
+                              id: newsAll,
+                              title: 'Alle Schlagzeilen',
+                              type: menu-item-native,
+                              source: '{urn:uuid:08945d5e-483c-4e7b-9843-69a8f590ada9}',
+                            },
+                            {
+                              id: newsMostImportant,
+                              title: 'Die wichtigsten Nachrichten',
+                              type: menu-item-native,
+                              source: '{urn:uuid:df60a52c-5f4d-4804-833d-ec31e24dbd43}',
+                            },
+                            {
+                              id: newsAnalysisAndReports,
+                              title: 'Analysen und Hintergründe',
+                              type: menu-item-native,
+                              source: '{urn:uuid:d6913463-1804-466d-b6d0-34376ef21916}',
+                            },
+                          ],
+                      },
+                      {
+                        id: explore,
+                        title: Entdecken,
+                        type: tab-story,
+                        icon: compass,
+                        items:
+                          [
+                            {
+                              id: explore-all,
+                              title: Entdecken,
+                              type: menu-item-native,
+                              source: '{urn:uuid:99ae6607-fe0f-44ad-97fb-00dd0d852c30}',
+                            },
+                          ],
+                      },
+                      {
+                        id: zplus,
+                        title: Mein Abo,
+                        type: tab-centerpage,
+                        icon: zplus,
+                        items:
+                          [
+                            {
+                              id: exclusive,
+                              title: 'Exklusive Artikel',
+                              type: menu-item-native,
+                              source: '{urn:uuid:0fd9480f-1b52-4fcb-942e-8089e378102e}',
+                            },
+                            {
+                              id: zeitPDFWebReader,
+                              title: 'DIE ZEIT',
+                              type: menu-item-web,
+                              url: 'https://epaper.zeit.de/abo/diezeit',
+                            },
+                            {
+                              id: wochenMarkt,
+                              title: 'Wochenmarkt',
+                              type: menu-item-web,
+                              url: 'https://www.zeit.de/wochenmarkt',
+                            },
+                          ],
+                      },
+                      {
+                        id: menu,
+                        title: Mehr,
+                        type: tab-menu,
+                        icon: avatar,
+                        items:
+                          [
+                            {
+                              id: user-menu,
+                              title: 'Mein Bereich',
+                              items:
+                                [
+                                  {
+                                    id: reading-list,
+                                    title: Merkliste,
+                                    type: menu-item-app,
+                                    targetId: native-reading-list,
+                                  },
+                                  {
+                                    id: reading-history,
+                                    title: Verlauf,
+                                    type: menu-item-app,
+                                    targetId: native-reading-history,
+                                  },
+                                  {
+                                    id: comment-list,
+                                    title: Kommentare,
+                                    type: menu-item-web,
+                                    url: 'https://profile.zeit.de',
+                                  },
+                                ],
+                            },
+                            {
+                              id: angebote,
+                              title: Angebote,
+                              items:
+                                [
+                                  {
+                                    id: anzeigen,
+                                    title: Anzeigen,
+                                    type: menu-item-submenu,
+                                    items:
+                                      [
+                                        {
+                                          id: ad1,
+                                          title: Werbung,
+                                          type: menu-item-web,
+                                          url: 'https://www.werbung.de',
+                                        },
+                                        {
+                                          id: ad2,
+                                          title: Anzeige,
+                                          type: menu-item-web,
+                                          url: 'https://www.werbung.de',
+                                        },
+                                        {
+                                          id: ad3,
+                                          title: Promo,
+                                          type: menu-item-web,
+                                          url: 'https://www.werbung.de',
+                                        },
+                                      ],
+                                  },
+                                ],
+                            },
+                          ],
+                      },
+                    ],
+                }
+        '400':
+          description: 'Something was wrong with the request. Check the body for error messages.'
 
   /user:
     get:
@@ -683,46 +829,42 @@ paths:
         - cookieAuthTesting: []
       tags:
         - user
-      summary: "Returns information about the current user"
+      summary: 'Returns information about the current user'
       responses:
-        "200":
-          description: "Information about the currently logged in user"
+        '200':
+          description: 'Information about the currently logged in user'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/UserInfo"
-        "400":
-          description: "Something was wrong with the request. Check the body for error messages."
-        "401":
-          description: "The user is not logged in"
+                $ref: '#/components/schemas/UserInfo'
+        '400':
+          description: 'Something was wrong with the request. Check the body for error messages.'
+        '401':
+          description: 'The user is not logged in'
 
 components:
   requestBodies:
     AppStoreReceipt:
       content:
-        "text/plain": {
-          "schema": {
-            "$ref": "#/components/schemas/AppStoreReceipt"
-          }
-        }
+        'text/plain': { 'schema': { '$ref': '#/components/schemas/AppStoreReceipt' } }
 
   schemas:
     UUID:
       type: string
       pattern: "^((\\{urn:uuid:)?([a-f0-9]{8})(-[a-f0-9]{4}){3}(-[a-f0-9]{12})\\}?|[-a-z0-9/]+)$"
-      description: "CMS UUID that denotes a content object. For testing/development, a CMS path is also accepted."
-      example: "{urn:uuid:d995ba5a-a7fb-401a-bdc8-86cf2cbf0cda} or d995ba5a-a7fb-401a-bdc8-86cf2cbf0cda"
+      description: 'CMS UUID that denotes a content object. For testing/development, a CMS path is also accepted.'
+      example: '{urn:uuid:d995ba5a-a7fb-401a-bdc8-86cf2cbf0cda} or d995ba5a-a7fb-401a-bdc8-86cf2cbf0cda'
 
     UUIDList:
       type: array
       items:
-        $ref: "#/components/schemas/UUID"
+        $ref: '#/components/schemas/UUID'
 
     uuidfilter:
       type: string
       pattern: ^[eq\.]+(([a-f0-9]{8})(-[a-f0-9]{4}){3}(-[a-f0-9]{12})\\}?|[-a-z0-9/]+)$
       description: Postgrest equal filter function
-      example: "eq.d995ba5a-a7fb-401a-bdc8-86cf2cbf0cda"
+      example: 'eq.d995ba5a-a7fb-401a-bdc8-86cf2cbf0cda'
 
     bookmark:
       type: array
@@ -732,12 +874,12 @@ components:
         properties:
           created:
             type: string
-            example: "2022-11-25T16:18:37.124812+00:00"
+            example: '2022-11-25T16:18:37.124812+00:00'
           ssoid:
             type: integer
             example: 42
           uuid:
-            $ref: "#/components/schemas/UUID"
+            $ref: '#/components/schemas/UUID'
         required:
           - created
           - ssoid
@@ -747,7 +889,7 @@ components:
     BookmarkIds:
       type: object
       items:
-        $ref: "#/components/schemas/UUIDList"
+        $ref: '#/components/schemas/UUIDList'
 
     ContentEntitlements:
       type: array
@@ -769,85 +911,85 @@ components:
           type: array
           items:
             oneOf:
-              - $ref: "#/components/schemas/TabCenterpage"
-              - $ref: "#/components/schemas/TabMenu"
-              - $ref: "#/components/schemas/TabStory"
+              - $ref: '#/components/schemas/TabCenterpage'
+              - $ref: '#/components/schemas/TabMenu'
+              - $ref: '#/components/schemas/TabStory'
             discriminator:
               propertyName: type
               mapping:
-                tab-centerpage: "#/components/schemas/TabCenterpage"
-                tab-menu: "#/components/schemas/TabMenu"
-                tab-story: "#/components/schemas/TabStory"
+                tab-centerpage: '#/components/schemas/TabCenterpage'
+                tab-menu: '#/components/schemas/TabMenu'
+                tab-story: '#/components/schemas/TabStory'
         menus:
           type: array
           items:
             oneOf:
-              - $ref: "#/components/schemas/ContentMenu"
-              - $ref: "#/components/schemas/UserMenu"
+              - $ref: '#/components/schemas/ContentMenu'
+              - $ref: '#/components/schemas/UserMenu'
             discriminator:
               propertyName: type
               mapping:
-                content-menu: "#/components/schemas/ContentMenu"
-                user-menu: "#/components/schemas/UserMenu"
+                content-menu: '#/components/schemas/ContentMenu'
+                user-menu: '#/components/schemas/UserMenu'
 
     Centerpage:
       type: object
       properties:
         id:
-          $ref: "#/components/schemas/UUID"
+          $ref: '#/components/schemas/UUID'
         url:
           type: string
           # format: uri  XXX only supported in openapi-3.1
-          description: "Web URL for this CenterPage"
-          example: "https://www.zeit.de/politik/index"
+          description: 'Web URL for this CenterPage'
+          example: 'https://www.zeit.de/politik/index'
         pagetitle:
           type: string
         bookmarkable:
           type: boolean
           example: true
         adControllerPageInfo:
-          $ref: "#/components/schemas/AdControllerPageInfo"
+          $ref: '#/components/schemas/AdControllerPageInfo'
         trackingData:
-          $ref: "#/components/schemas/TrackingData"
+          $ref: '#/components/schemas/TrackingData'
         items:
           type: array
           items:
             oneOf:
-              - $ref: "#/components/schemas/CenterpageRegion"
-              - $ref: "#/components/schemas/CenterpageArea"
-              - $ref: "#/components/schemas/CenterpageTeaser"
-              - $ref: "#/components/schemas/CenterpageTeaserAuthor"
-              - $ref: "#/components/schemas/CenterpageTeaserGallery"
-              - $ref: "#/components/schemas/CenterpageTeaserVideo"
-              - $ref: "#/components/schemas/CenterpageTeaserPodcast"
-              - $ref: "#/components/schemas/CenterpageTeaserAudio"
-              - $ref: "#/components/schemas/CenterpageModuleHTML"
-              - $ref: "#/components/schemas/CenterpageAdplace"
-              - $ref: "#/components/schemas/CenterpageHeader"
-              - $ref: "#/components/schemas/CenterpageMarkup"
-              - $ref: "#/components/schemas/CenterpageExtra"
+              - $ref: '#/components/schemas/CenterpageRegion'
+              - $ref: '#/components/schemas/CenterpageArea'
+              - $ref: '#/components/schemas/CenterpageTeaser'
+              - $ref: '#/components/schemas/CenterpageTeaserAuthor'
+              - $ref: '#/components/schemas/CenterpageTeaserGallery'
+              - $ref: '#/components/schemas/CenterpageTeaserVideo'
+              - $ref: '#/components/schemas/CenterpageTeaserPodcast'
+              - $ref: '#/components/schemas/CenterpageTeaserAudio'
+              - $ref: '#/components/schemas/CenterpageModuleHTML'
+              - $ref: '#/components/schemas/CenterpageAdplace'
+              - $ref: '#/components/schemas/CenterpageHeader'
+              - $ref: '#/components/schemas/CenterpageMarkup'
+              - $ref: '#/components/schemas/CenterpageExtra'
             discriminator:
               propertyName: type
               mapping:
-                region: "#/components/schemas/CenterpageRegion"
-                area: "#/components/schemas/CenterpageArea"
-                teaser: "#/components/schemas/CenterpageTeaser"
-                teaser-author: "#/components/schemas/CenterpageTeaserAuthor"
-                teaser-gallery: "#/components/schemas/CenterpageTeaserGallery"
-                teaser-video: "#/components/schemas/CenterpageTeaserVideo"
-                teaser-podcast: "#/components/schemas/CenterpageTeaserPodcast"
-                teaser-audio: "#/components/schemas/CenterpageTeaserAudio"
-                html: "#/components/schemas/CenterpageModuleHTML"
-                adplace: "#/components/schemas/CenterpageAdplace"
-                header: "#/components/schemas/CenterpageHeader"
-                markup: "#/components/schemas/CenterpageMarkup"
-                cpextra: "#/components/schemas/CenterpageExtra"
+                region: '#/components/schemas/CenterpageRegion'
+                area: '#/components/schemas/CenterpageArea'
+                teaser: '#/components/schemas/CenterpageTeaser'
+                teaser-author: '#/components/schemas/CenterpageTeaserAuthor'
+                teaser-gallery: '#/components/schemas/CenterpageTeaserGallery'
+                teaser-video: '#/components/schemas/CenterpageTeaserVideo'
+                teaser-podcast: '#/components/schemas/CenterpageTeaserPodcast'
+                teaser-audio: '#/components/schemas/CenterpageTeaserAudio'
+                html: '#/components/schemas/CenterpageModuleHTML'
+                adplace: '#/components/schemas/CenterpageAdplace'
+                header: '#/components/schemas/CenterpageHeader'
+                markup: '#/components/schemas/CenterpageMarkup'
+                cpextra: '#/components/schemas/CenterpageExtra'
 
     CenterpageElementId:
       type: string
-      pattern: "^id-[-a-f0-9]+$"
-      description: "ID of the cp element"
-      example: "id-fcfd3deb-4c26-472b-8bdd-238372d5131b"
+      pattern: '^id-[-a-f0-9]+$'
+      description: 'ID of the cp element'
+      example: 'id-fcfd3deb-4c26-472b-8bdd-238372d5131b'
 
     CenterpageElementType:
       type: string
@@ -865,7 +1007,7 @@ components:
         - header
         - markup
         - cpextra
-      description: "Type of the cp element"
+      description: 'Type of the cp element'
 
     AdControllerPageInfo:
       type: object
@@ -873,25 +1015,25 @@ components:
         doc:
           type: string
           nullable: true
-          description: "page type"
+          description: 'page type'
           enum:
             - homepage
             - index
             - artikel
             - bildgal
             - null
-          example: "index"
+          example: 'index'
         level2:
-          description: "Level2 property ressort for adplacement"
+          description: 'Level2 property ressort for adplacement'
           type: string
-          example: "politik"
+          example: 'politik'
         level3:
-          description: "Level3 property subressort, name of podcast or series for adplacement"
+          description: 'Level3 property subressort, name of podcast or series for adplacement'
           type: string
-          example: "deutschland"
+          example: 'deutschland'
         keywords:
           type: string
-          example: "zeitonline,coronavirus,frankreich,lockdown"
+          example: 'zeitonline,coronavirus,frankreich,lockdown'
 
     Image:
       type: object
@@ -900,7 +1042,7 @@ components:
         baseUrl:
           type: string
           # format: uri
-          example: "https://img.zeit.de/2020-08/flightradar-4"
+          example: 'https://img.zeit.de/2020-08/flightradar-4'
           description: |
             The URL is a base URL, which needs to be modified with the following query parameters in order to produce an actual image:
 
@@ -928,7 +1070,7 @@ components:
         fillColor:
           type: string
           nullable: true
-          example: "8ed8a6"
+          example: '8ed8a6'
         visibleMobile:
           type: boolean
           example: false
@@ -938,148 +1080,148 @@ components:
       properties:
         contentId:
           type: string
-          description: "Content-ID containing [Unit].[Ressort].[Subressort].[Cluster].[Pagetype].[Sourcetype]|[URL without protocol]"
-          example: "redaktion.politik.deutschland..centerpage.zede|www.zeit.de/politik/deutschland/index"
+          description: 'Content-ID containing [Unit].[Ressort].[Subressort].[Cluster].[Pagetype].[Sourcetype]|[URL without protocol]'
+          example: 'redaktion.politik.deutschland..centerpage.zede|www.zeit.de/politik/deutschland/index'
         contentGroup:
-          $ref: "#/components/schemas/TrackingContentGroup"
+          $ref: '#/components/schemas/TrackingContentGroup'
         customParameter:
-          $ref: "#/components/schemas/TrackingCustomParameter"
+          $ref: '#/components/schemas/TrackingCustomParameter'
 
     TrackingContentGroup:
       type: object
-      description: "Content groups for aggregation"
+      description: 'Content groups for aggregation'
       properties:
         1:
           type: string
-          description: "Unit"
-          example: "redaktion"
+          description: 'Unit'
+          example: 'redaktion'
         2:
           type: string
-          description: "Pagetype"
-          example: "centerpage"
+          description: 'Pagetype'
+          example: 'centerpage'
         3:
           type: string
-          description: "Ressort"
-          example: "politik"
+          description: 'Ressort'
+          example: 'politik'
         4:
           type: string
-          description: "Sourcetype"
-          example: "zede"
+          description: 'Sourcetype'
+          example: 'zede'
         5:
           type: string
-          description: "Subressort"
-          example: "deutschland"
+          description: 'Subressort'
+          example: 'deutschland'
         6:
           type: string
-          description: "Cluster (series name)"
-          example: "allesgesagt?"
+          description: 'Cluster (series name)'
+          example: 'allesgesagt?'
         7:
           type: string
-          description: "Basename"
-          example: "index"
+          description: 'Basename'
+          example: 'index'
         8:
           type: string
-          description: "Banner-Channel"
-          example: "politik/deutschland/centerpage"
+          description: 'Banner-Channel'
+          example: 'politik/deutschland/centerpage'
         9:
           type: string
-          description: "Date first released"
-          example: "2019-06-12"
+          description: 'Date first released'
+          example: '2019-06-12'
 
     TrackingCustomParameter:
       type: object
-      description: "Custom page parameter"
+      description: 'Custom page parameter'
       properties:
         2:
           type: string
-          description: "IVW-Code"
-          example: "politik/deutschland/bild-text"
+          description: 'IVW-Code'
+          example: 'politik/deutschland/bild-text'
         3:
           type: string
-          description: "Pagination"
-          example: "1/1"
+          description: 'Pagination'
+          example: '1/1'
         4:
           type: string
-          description: "Keywords separated by semicolons"
-          example: "politik;deutschland"
+          description: 'Keywords separated by semicolons'
+          example: 'politik;deutschland'
         5:
           type: string
-          description: "Date last published"
-          example: "2019-06-12 15:21:44.350769+02:00"
+          description: 'Date last published'
+          example: '2019-06-12 15:21:44.350769+02:00'
         8:
           type: string
-          description: "Product-ID"
-          example: "zede"
+          description: 'Product-ID'
+          example: 'zede'
         9:
           type: string
-          description: "Banner-Channel"
-          example: "politik/deutschland/centerpage"
+          description: 'Banner-Channel'
+          example: 'politik/deutschland/centerpage'
         10:
           type: string
-          description: "Banner active (advertising enabled)"
+          description: 'Banner active (advertising enabled)'
           enum:
-            - "yes"
-            - "no"
-          example: "yes"
+            - 'yes'
+            - 'no'
+          example: 'yes'
         25:
           type: string
-          description: "Plattform"
-          example: "original"
+          description: 'Plattform'
+          example: 'original'
         26:
           type: string
-          description: "Detailed Content-Type"
-          example: "centerpage.centerpage"
+          description: 'Detailed Content-Type'
+          example: 'centerpage.centerpage'
         28:
           type: string
-          description: "Access"
+          description: 'Access'
           enum:
             - free
             - registration
             - dynamic
             - abo
-          example: "free"
+          example: 'free'
         29:
           type: string
-          description: "First Click Free"
+          description: 'First Click Free'
           enum:
-            - "yes"
-            - "no"
+            - 'yes'
+            - 'no'
             - unfeasible
-          example: "unfeasible"
+          example: 'unfeasible'
         30:
           type: string
-          description: "Paywall Status"
+          description: 'Paywall Status'
           enum:
             - open
             - register
             - metered
             - paid
-          example: "open"
+          example: 'open'
         38:
           type: string
-          description: "Channels separated by semicolons"
-          example: "podcast;kultur;film"
+          description: 'Channels separated by semicolons'
+          example: 'podcast;kultur;film'
 
     CustomClickParameter:
       type: object
-      description: "Custom click parameter"
+      description: 'Custom click parameter'
       properties:
         5:
           type: string
-          description: "Area"
-          example: "headed-zplus"
+          description: 'Area'
+          example: 'headed-zplus'
         6:
           type: string
-          description: "Row"
-          example: "1"
+          description: 'Row'
+          example: '1'
         7:
           type: string
-          description: "Column"
-          example: "4"
+          description: 'Column'
+          example: '4'
         8:
           type: string
-          description: "Subcolumn"
-          example: "zon-teaser-standard"
+          description: 'Subcolumn'
+          example: 'zon-teaser-standard'
 
     AudioConnection:
       type: object
@@ -1095,7 +1237,7 @@ components:
         url:
           type: string
           # format: uri
-          example: "https://podcasts.apple.com/podcast/id1279335230"
+          example: 'https://podcasts.apple.com/podcast/id1279335230'
 
     Audio:
       type: object
@@ -1108,37 +1250,37 @@ components:
         audioType:
           type: string
           enum: [custom, podcast, premium, tts]
-          description: "type of audio source"
+          description: 'type of audio source'
         access:
           type: string
           nullable: true
           enum: [abo, registration, dynamic, null]
-          description: "DEPRECATED use `entitlements` instead"
+          description: 'DEPRECATED use `entitlements` instead'
         entitlements:
-          $ref: "#/components/schemas/ContentEntitlements"
+          $ref: '#/components/schemas/ContentEntitlements'
         color:
           type: string
           nullable: true
-          example: "8ed8a6"
+          example: '8ed8a6'
         duration:
           type: integer
           nullable: true
-          description: "total duration of the audio in seconds"
+          description: 'total duration of the audio in seconds'
         url:
           type: string
           # format: uri
-          description: "URL directly to the audio source"
-          example: "https://injector.simplecastaudio.com/60989a9e-80b6-4f17-979a-fc949043cf6b/episodes/0d4af84d-a3b9-4373-8c99-c20fe3c16345/audio/128/default.mp3?awCollectionId=60989a9e-80b6-4f17-979a-fc949043cf6b&amp;awEpisodeId=0d4af84d-a3b9-4373-8c99-c20fe3c16345"
+          description: 'URL directly to the audio source'
+          example: 'https://injector.simplecastaudio.com/60989a9e-80b6-4f17-979a-fc949043cf6b/episodes/0d4af84d-a3b9-4373-8c99-c20fe3c16345/audio/128/default.mp3?awCollectionId=60989a9e-80b6-4f17-979a-fc949043cf6b&amp;awEpisodeId=0d4af84d-a3b9-4373-8c99-c20fe3c16345'
         ad-free-url:
           type: string
           nullable: true
           # format: uri
-          description: "Adfree URL directly to the audio source"
-          example: "https://cdn.simplecast.com/audio/60989a9e-80b6-4f17-979a-fc949043cf6b/episodes/0d4af84d-a3b9-4373-8c99-c20fe3c16345/audio/16a0ad94-096b-42b6-b7a2-c02f15fe9085/default_tc.mp3"
+          description: 'Adfree URL directly to the audio source'
+          example: 'https://cdn.simplecast.com/audio/60989a9e-80b6-4f17-979a-fc949043cf6b/episodes/0d4af84d-a3b9-4373-8c99-c20fe3c16345/audio/16a0ad94-096b-42b6-b7a2-c02f15fe9085/default_tc.mp3'
 
     PodcastAudio:
       type: object
-      description: "Legacy audio object for CenterpageTeaserPodcast"
+      description: 'Legacy audio object for CenterpageTeaserPodcast'
       nullable: true
       required:
         - duration
@@ -1147,25 +1289,25 @@ components:
         color:
           type: string
           nullable: true
-          example: "8ed8a6"
+          example: '8ed8a6'
         duration:
           type: string
-          example: "-00:05:23"
+          example: '-00:05:23'
         url:
           type: string
           # format: uri
-          description: "URL directly to the audio source"
-          example: "https://injector.simplecastaudio.com/60989a9e-80b6-4f17-979a-fc949043cf6b/episodes/0d4af84d-a3b9-4373-8c99-c20fe3c16345/audio/128/default.mp3?awCollectionId=60989a9e-80b6-4f17-979a-fc949043cf6b&amp;awEpisodeId=0d4af84d-a3b9-4373-8c99-c20fe3c16345"
+          description: 'URL directly to the audio source'
+          example: 'https://injector.simplecastaudio.com/60989a9e-80b6-4f17-979a-fc949043cf6b/episodes/0d4af84d-a3b9-4373-8c99-c20fe3c16345/audio/128/default.mp3?awCollectionId=60989a9e-80b6-4f17-979a-fc949043cf6b&amp;awEpisodeId=0d4af84d-a3b9-4373-8c99-c20fe3c16345'
         ad-free-url:
           type: string
           nullable: true
           # format: uri
-          description: "Adfree URL directly to the audio source"
-          example: "https://cdn.simplecast.com/audio/60989a9e-80b6-4f17-979a-fc949043cf6b/episodes/0d4af84d-a3b9-4373-8c99-c20fe3c16345/audio/16a0ad94-096b-42b6-b7a2-c02f15fe9085/default_tc.mp3"
+          description: 'Adfree URL directly to the audio source'
+          example: 'https://cdn.simplecast.com/audio/60989a9e-80b6-4f17-979a-fc949043cf6b/episodes/0d4af84d-a3b9-4373-8c99-c20fe3c16345/audio/16a0ad94-096b-42b6-b7a2-c02f15fe9085/default_tc.mp3'
         connections:
           type: array
           items:
-            $ref: "#/components/schemas/AudioConnection"
+            $ref: '#/components/schemas/AudioConnection'
 
     Volume:
       type: object
@@ -1176,15 +1318,15 @@ components:
         - number
       properties:
         volumeImage:
-          $ref: "#/components/schemas/Image"
+          $ref: '#/components/schemas/Image'
         volumeLabel:
           type: string
-          description: "label for for volume"
-          example: "DIE ZEIT 12/2023"
+          description: 'label for for volume'
+          example: 'DIE ZEIT 12/2023'
         volumeColor:
           type: string
-          description: "Hex value of background color of the volume without #"
-          example: "2e8b57"
+          description: 'Hex value of background color of the volume without #'
+          example: '2e8b57'
           minLength: 6
           maxLength: 6
           nullable: true
@@ -1192,30 +1334,30 @@ components:
           type: string
           nullable: true
           # format: uri
-          description: "An URL to the volume"
-          example: "https://www.zeit.de/2023/12/index"
+          description: 'An URL to the volume'
+          example: 'https://www.zeit.de/2023/12/index'
         year:
           type: integer
         number:
           type: integer
         datePublished:
           type: string
-          description: "Formatted date of publication"
-          example: "25. Januar 2024"
+          description: 'Formatted date of publication'
+          example: '25. Januar 2024'
 
     CenterpageElement:
       required:
         - type
       properties:
         id:
-          $ref: "#/components/schemas/CenterpageElementId"
+          $ref: '#/components/schemas/CenterpageElementId'
         type:
-          $ref: "#/components/schemas/CenterpageElementType"
+          $ref: '#/components/schemas/CenterpageElementType'
 
     CenterpageTeaserBase:
-      description: "A teaser module references/represents a content object (article, video, etc.)"
+      description: 'A teaser module references/represents a content object (article, video, etc.)'
       allOf:
-        - $ref: "#/components/schemas/CenterpageElement"
+        - $ref: '#/components/schemas/CenterpageElement'
         - required:
             - layout
             - title
@@ -1257,53 +1399,53 @@ components:
                 - zon-teaser-standard-compact
                 - zon-teaser-stripe
                 - zon-teaser-wide
-              description: "How to display this teaser (e.g large/small)"
+              description: 'How to display this teaser (e.g large/small)'
             title:
               type: string
-              description: "Main title of the article"
-              example: "My Article Title"
+              description: 'Main title of the article'
+              example: 'My Article Title'
             supertitle:
               type: string
               nullable: true
-              description: "The supertitle/kicker are 1-2 keywords that denote the context/topic of the article"
-              example: "Olympics"
+              description: 'The supertitle/kicker are 1-2 keywords that denote the context/topic of the article'
+              example: 'Olympics'
             text:
               type: string
               nullable: true
-              description: "Teaser text is a few sentences that summarize/introduce the article"
+              description: 'Teaser text is a few sentences that summarize/introduce the article'
               example: "This is the teaser text\nIt may contain line breaks."
             url:
               type: string
               # format: uri
-              example: "https://www.zeit.de/my/article"
+              example: 'https://www.zeit.de/my/article'
             uuid:
-              $ref: "#/components/schemas/UUID"
+              $ref: '#/components/schemas/UUID'
             image:
-              $ref: "#/components/schemas/Image"
+              $ref: '#/components/schemas/Image'
             authorImage:
-              $ref: "#/components/schemas/Image"
+              $ref: '#/components/schemas/Image'
             dateFirstPublished:
               type: string
               format: date-time
-              description: "Timestamp when the article was published initially"
-              example: "2019-12-31T13:12:00Z"
+              description: 'Timestamp when the article was published initially'
+              example: '2019-12-31T13:12:00Z'
             dateLastPublishedSemantic:
               type: string
               format: date-time
-              description: "Timestamp of the most recent semantic/relevant update to the article"
-              example: "2020-01-01T13:12:00Z"
+              description: 'Timestamp of the most recent semantic/relevant update to the article'
+              example: '2020-01-01T13:12:00Z'
             date:
               type: string
               nullable: true
-              description: "Human readable relative or absolute date"
-              example: "Vor 3 Stunden"
+              description: 'Human readable relative or absolute date'
+              example: 'Vor 3 Stunden'
             entitlements:
-              $ref: "#/components/schemas/ContentEntitlements"
+              $ref: '#/components/schemas/ContentEntitlements'
             byline:
               type: string
               nullable: true
-              description: "Ready-made string that contains the author names and maybe some more information like the article genre"
-              example: "Eine Glosse von August Weythershaußen, Erzgebirge"
+              description: 'Ready-made string that contains the author names and maybe some more information like the article genre'
+              example: 'Eine Glosse von August Weythershaußen, Erzgebirge'
             badges:
               type: array
               items:
@@ -1313,36 +1455,36 @@ components:
                   - livestream
                   - zplus
                   - zplus-spiele
-              description: "List of icon IDs that should be displayed for this teaser"
-              example: ["zplus"]
+              description: 'List of icon IDs that should be displayed for this teaser'
+              example: ['zplus']
             label:
               type: string
               # ZON-6127: disabled until the implementation catches up:
               # enum:
               #   - Anzeige
               #   - Verlagsangebot
-              description: "Additional label to mark teasers with corporate advertising"
-              example: "Verlagsangebot"
+              description: 'Additional label to mark teasers with corporate advertising'
+              example: 'Verlagsangebot'
             audioInfo:
-              $ref: "#/components/schemas/Audio"
+              $ref: '#/components/schemas/Audio'
             volume:
-              $ref: "#/components/schemas/Volume"
+              $ref: '#/components/schemas/Volume'
             comments:
               type: object
               properties:
                 count:
                   type: string
-                  description: "Count of comments for this article"
-                  example: "18.345"
+                  description: 'Count of comments for this article'
+                  example: '18.345'
                 label:
                   type: string
-                  description: "Descriptive label for count of comments for this article"
-                  example: "18.345 Kommentare"
+                  description: 'Descriptive label for count of comments for this article'
+                  example: '18.345 Kommentare'
                 url:
                   type: string
                   # format: uri
-                  description: "URL directly to the comment area of the article"
-                  example: "https://www.zeit.de/my/article#comments"
+                  description: 'URL directly to the comment area of the article'
+                  example: 'https://www.zeit.de/my/article#comments'
             bookmarkable:
               type: boolean
               example: true
@@ -1350,7 +1492,7 @@ components:
               type: object
               properties:
                 customClickParameter:
-                  $ref: "#/components/schemas/CustomClickParameter"
+                  $ref: '#/components/schemas/CustomClickParameter'
             liveblogPosts:
               nullable: true
               type: array
@@ -1359,34 +1501,34 @@ components:
                 properties:
                   title:
                     type: string
-                    description: "Title of the liveblog entry"
-                    example: "Ereignisse haben stattgefunden"
+                    description: 'Title of the liveblog entry'
+                    example: 'Ereignisse haben stattgefunden'
                   url:
                     type: string
                     # format: uri
-                    description: "URL directly to the liveblog entry"
-                    example: "https://www.zeit.de/politik/ausland/2023-12/news-live#tickaroo_event_id=xxx"
+                    description: 'URL directly to the liveblog entry'
+                    example: 'https://www.zeit.de/politik/ausland/2023-12/news-live#tickaroo_event_id=xxx'
                   date:
                     type: string
-                    description: "A nice description of the datetime the liveblog entry was posted"
-                    example: "Gestern, 16:45 Uhr"
-              description: "List of liveblog posts that should be displayed for this teaser"
+                    description: 'A nice description of the datetime the liveblog entry was posted'
+                    example: 'Gestern, 16:45 Uhr'
+              description: 'List of liveblog posts that should be displayed for this teaser'
 
     CenterpageTeaser:
-      description: "A teaser module references/represents an article content object"
+      description: 'A teaser module references/represents an article content object'
       allOf:
-        - $ref: "#/components/schemas/CenterpageTeaserBase"
+        - $ref: '#/components/schemas/CenterpageTeaserBase'
         - properties:
             type:
               type: string
               enum:
                 - teaser
-              example: "teaser"
+              example: 'teaser'
 
     CenterpageTeaserGallery:
-      description: "A teaser module references/represents a gallery content object"
+      description: 'A teaser module references/represents a gallery content object'
       allOf:
-        - $ref: "#/components/schemas/CenterpageTeaserBase"
+        - $ref: '#/components/schemas/CenterpageTeaserBase'
         - required:
             - gallery
           properties:
@@ -1394,19 +1536,19 @@ components:
               type: string
               enum:
                 - teaser-gallery
-              example: "teaser-gallery"
+              example: 'teaser-gallery'
             gallery:
               type: object
               properties:
                 label:
                   type: string
-                  description: "Label to display gallery content"
-                  example: "18 Bilder"
+                  description: 'Label to display gallery content'
+                  example: '18 Bilder'
 
     CenterpageTeaserVideo:
-      description: "A teaser module references/represents a video content object"
+      description: 'A teaser module references/represents a video content object'
       allOf:
-        - $ref: "#/components/schemas/CenterpageTeaserBase"
+        - $ref: '#/components/schemas/CenterpageTeaserBase'
         - required:
             - video
           properties:
@@ -1414,13 +1556,13 @@ components:
               type: string
               enum:
                 - teaser-video
-              example: "teaser-video"
+              example: 'teaser-video'
             video:
               type: object
               properties:
                 id:
                   type: string
-                  example: "6194436097001"
+                  example: '6194436097001'
                 hasAdvertisement:
                   type: boolean
                 # provider: "brightcove"
@@ -1429,9 +1571,9 @@ components:
                 # series: serienname
 
     CenterpageTeaserPodcast:
-      description: "A teaser module references/represents an article content object with audio (simplecast podcast)"
+      description: 'A teaser module references/represents an article content object with audio (simplecast podcast)'
       allOf:
-        - $ref: "#/components/schemas/CenterpageTeaserBase"
+        - $ref: '#/components/schemas/CenterpageTeaserBase'
         - required:
             - audio
             - audioInfo
@@ -1440,24 +1582,24 @@ components:
               type: string
               enum:
                 - teaser-podcast
-              example: "teaser-podcast"
+              example: 'teaser-podcast'
             audio:
-              $ref: "#/components/schemas/PodcastAudio"
+              $ref: '#/components/schemas/PodcastAudio'
             audioInfo:
-              $ref: "#/components/schemas/Audio"
+              $ref: '#/components/schemas/Audio'
             episodeImage:
-              $ref: "#/components/schemas/Image"
+              $ref: '#/components/schemas/Image'
             seriesImage:
-              $ref: "#/components/schemas/Image"
+              $ref: '#/components/schemas/Image'
             seriesUrl:
               type: string
-              example: "https://www.zeit.de/serie/alles-gesagt"
-              description: "An URL to the series if podcast is episode of it"
+              example: 'https://www.zeit.de/serie/alles-gesagt'
+              description: 'An URL to the series if podcast is episode of it'
 
     CenterpageTeaserAudio:
-      description: "A teaser module references/represents an article content object with premium audio"
+      description: 'A teaser module references/represents an article content object with premium audio'
       allOf:
-        - $ref: "#/components/schemas/CenterpageTeaserBase"
+        - $ref: '#/components/schemas/CenterpageTeaserBase'
         - required:
             - audioInfo
           properties:
@@ -1465,16 +1607,16 @@ components:
               type: string
               enum:
                 - teaser-audio
-              example: "teaser-audio"
+              example: 'teaser-audio'
             audioInfo:
-              $ref: "#/components/schemas/Audio"
+              $ref: '#/components/schemas/Audio'
             volume:
-              $ref: "#/components/schemas/Volume"
+              $ref: '#/components/schemas/Volume'
 
     CenterpageModuleHTML:
-      description: "A non-native module that should be displayed via a web view"
+      description: 'A non-native module that should be displayed via a web view'
       allOf:
-        - $ref: "#/components/schemas/CenterpageElement"
+        - $ref: '#/components/schemas/CenterpageElement'
         - required:
             - content
           properties:
@@ -1482,16 +1624,16 @@ components:
               type: string
               enum:
                 - html
-              example: "html"
+              example: 'html'
             content:
               type: string
               format: html
-              example: "<embed>Anything can happen here.</embed>"
+              example: '<embed>Anything can happen here.</embed>'
 
     CenterpageTeaserAuthor:
-      description: "A teaser module references/represents an author content object"
+      description: 'A teaser module references/represents an author content object'
       allOf:
-        - $ref: "#/components/schemas/CenterpageTeaserBase"
+        - $ref: '#/components/schemas/CenterpageTeaserBase'
         - properties:
             type:
               type: string
@@ -1499,9 +1641,9 @@ components:
                 - teaser-author
 
     CenterpageAreaBase:
-      description: "CenterPages contain areas, which in turn contain modules"
+      description: 'CenterPages contain areas, which in turn contain modules'
       allOf:
-        - $ref: "#/components/schemas/CenterpageElement"
+        - $ref: '#/components/schemas/CenterpageElement'
         - required:
             - layout
             - items
@@ -1512,33 +1654,33 @@ components:
               type: string
               nullable: true
               # format: uri
-              description: "A section often links to topic pages etc."
-              example: "https://www.zeit.de/thema/hamburg"
+              description: 'A section often links to topic pages etc.'
+              example: 'https://www.zeit.de/thema/hamburg'
             linkedUuid:
-              $ref: "#/components/schemas/UUID"
-              description: "The UUID of the link, if given"
-              example: "977ff669-b044-4a1b-b444-00c1d717905f"
+              $ref: '#/components/schemas/UUID'
+              description: 'The UUID of the link, if given'
+              example: '977ff669-b044-4a1b-b444-00c1d717905f'
             title:
               type: string
               nullable: true
-              example: "This is a simple title"
+              example: 'This is a simple title'
             supertitle:
               type: string
               nullable: true
-              example: "Das Beste aus Z+"
+              example: 'Das Beste aus Z+'
             items:
               type: array
             topiclinks:
               nullable: true
               items:
-                $ref: "#/components/schemas/CenterpageAreaTopicLink"
+                $ref: '#/components/schemas/CenterpageAreaTopicLink'
             readmore:
               type: string
               nullable: true
-              example: "Mehr zum Thema Simple Title"
+              example: 'Mehr zum Thema Simple Title'
 
     CenterpageAreaTopicLink:
-      description: "Links to topicpage"
+      description: 'Links to topicpage'
       type: object
       required:
         - label
@@ -1546,20 +1688,20 @@ components:
       properties:
         label:
           type: string
-          example: "Hongkong"
+          example: 'Hongkong'
         link:
           type: string
           example: https://www.zeit.de/schlagworte/orte/hongkong/index"
 
     CenterpageRegion:
       allOf:
-        - $ref: "#/components/schemas/CenterpageAreaBase"
+        - $ref: '#/components/schemas/CenterpageAreaBase'
         - properties:
             type:
               type: string
               enum:
                 - region
-              example: "region"
+              example: 'region'
             layout:
               type: string
               enum:
@@ -1570,17 +1712,17 @@ components:
             items:
               type: array
               items:
-                $ref: "#/components/schemas/CenterpageArea"
+                $ref: '#/components/schemas/CenterpageArea'
 
     CenterpageArea:
       allOf:
-        - $ref: "#/components/schemas/CenterpageAreaBase"
+        - $ref: '#/components/schemas/CenterpageAreaBase'
         - properties:
             type:
               type: string
               enum:
                 - area
-              example: "area"
+              example: 'area'
             layout:
               type: string
               enum:
@@ -1604,63 +1746,63 @@ components:
               type: array
               items:
                 oneOf:
-                  - $ref: "#/components/schemas/CenterpageTeaser"
-                  - $ref: "#/components/schemas/CenterpageTeaserAuthor"
-                  - $ref: "#/components/schemas/CenterpageTeaserGallery"
-                  - $ref: "#/components/schemas/CenterpageTeaserVideo"
-                  - $ref: "#/components/schemas/CenterpageTeaserPodcast"
-                  - $ref: "#/components/schemas/CenterpageTeaserAudio"
-                  - $ref: "#/components/schemas/CenterpageModuleHTML"
-                  - $ref: "#/components/schemas/CenterpageExtra"
+                  - $ref: '#/components/schemas/CenterpageTeaser'
+                  - $ref: '#/components/schemas/CenterpageTeaserAuthor'
+                  - $ref: '#/components/schemas/CenterpageTeaserGallery'
+                  - $ref: '#/components/schemas/CenterpageTeaserVideo'
+                  - $ref: '#/components/schemas/CenterpageTeaserPodcast'
+                  - $ref: '#/components/schemas/CenterpageTeaserAudio'
+                  - $ref: '#/components/schemas/CenterpageModuleHTML'
+                  - $ref: '#/components/schemas/CenterpageExtra'
                 discriminator:
                   propertyName: type
                   mapping:
-                    teaser: "#/components/schemas/CenterpageTeaser"
-                    teaser-author: "#/components/schemas/CenterpageTeaserAuthor"
-                    teaser-gallery: "#/components/schemas/CenterpageTeaserGallery"
-                    teaser-video: "#/components/schemas/CenterpageTeaserVideo"
-                    teaser-podcast: "#/components/schemas/CenterpageTeaserPodcast"
-                    teaser-audio: "#/components/schemas/CenterpageTeaserAudio"
-                    html: "#/components/schemas/CenterpageModuleHTML"
-                    cpextra: "#/components/schemas/CenterpageExtra"
+                    teaser: '#/components/schemas/CenterpageTeaser'
+                    teaser-author: '#/components/schemas/CenterpageTeaserAuthor'
+                    teaser-gallery: '#/components/schemas/CenterpageTeaserGallery'
+                    teaser-video: '#/components/schemas/CenterpageTeaserVideo'
+                    teaser-podcast: '#/components/schemas/CenterpageTeaserPodcast'
+                    teaser-audio: '#/components/schemas/CenterpageTeaserAudio'
+                    html: '#/components/schemas/CenterpageModuleHTML'
+                    cpextra: '#/components/schemas/CenterpageExtra'
             trackingData:
               type: object
               properties:
                 customClickParameter:
-                  $ref: "#/components/schemas/CustomClickParameter"
+                  $ref: '#/components/schemas/CustomClickParameter'
 
     CenterpageAdplace:
-      description: "Placeholder for advertisement"
+      description: 'Placeholder for advertisement'
       required:
         - device
         - tile
       properties:
-          type:
-            type: string
-            enum:
-              - adplace
-          tile:
-            description: "IQD ad tile number"
-            type: string
-          device:
-            type: string
-            enum:
-              - desktop
-              - mobile
+        type:
+          type: string
+          enum:
+            - adplace
+        tile:
+          description: 'IQD ad tile number'
+          type: string
+        device:
+          type: string
+          enum:
+            - desktop
+            - mobile
 
     CenterpageHeader:
-      description: "Header for native centerpages"
+      description: 'Header for native centerpages'
       required:
         - type
       properties:
         id:
-          $ref: "#/components/schemas/CenterpageElementId"
+          $ref: '#/components/schemas/CenterpageElementId'
         type:
           type: string
           enum:
             - header
         image:
-          $ref: "#/components/schemas/Image"
+          $ref: '#/components/schemas/Image'
         supertitle:
           type: string
           nullable: true
@@ -1669,13 +1811,13 @@ components:
           nullable: true
 
     CenterpageMarkup:
-      description: "A list of text"
+      description: 'A list of text'
       required:
         - type
         - text
       properties:
         id:
-          $ref: "#/components/schemas/CenterpageElementId"
+          $ref: '#/components/schemas/CenterpageElementId'
         type:
           type: string
           enum:
@@ -1686,19 +1828,19 @@ components:
           type: string
 
     CenterpageExtra:
-      description: "CPExtra: additional content block for centerpages that can contain anything"
+      description: 'CPExtra: additional content block for centerpages that can contain anything'
       required:
         - type
         - cpextra
       properties:
         id:
-          $ref: "#/components/schemas/CenterpageElementId"
+          $ref: '#/components/schemas/CenterpageElementId'
         type:
           type: string
           enum:
             - cpextra
         cpextra:
-          description: "The content type this CPExtra represents"
+          description: 'The content type this CPExtra represents'
           type: string
 
     TabBase:
@@ -1711,13 +1853,13 @@ components:
       properties:
         id:
           type: string
-          description: "ID of the tab"
-          example: "justsomeuniquestring"
+          description: 'ID of the tab'
+          example: 'justsomeuniquestring'
         title:
           type: string
           minLength: 1
           maxLength: 15
-          example: "Start"
+          example: 'Start'
         type:
           type: string
           enum:
@@ -1729,81 +1871,81 @@ components:
           properties:
             ios:
               type: string
-              description: "SF Symbol name"
-              example: "bookmark"
+              description: 'SF Symbol name'
+              example: 'bookmark'
             android:
               type: string
-              description: "Material Design Icon name"
-              example: "bookmarks"
+              description: 'Material Design Icon name'
+              example: 'bookmarks'
         visible-from:
           type: string
-          description: "Time when the tab becomes visible in the app"
-          example: "DAY=MO;TIME=00:00:00"
+          description: 'Time when the tab becomes visible in the app'
+          example: 'DAY=MO;TIME=00:00:00'
         visible-to:
           type: string
-          description: "Time when the tab becomes invisible in the app"
-          example: "DAY=FR;TIME=16:00:00"
+          description: 'Time when the tab becomes invisible in the app'
+          example: 'DAY=FR;TIME=16:00:00'
         menu-left:
           type: string
-          description: "The ID of the menu, which should be shown in the upper left of a tab."
-          example: "navigation_main"
+          description: 'The ID of the menu, which should be shown in the upper left of a tab.'
+          example: 'navigation_main'
         menu-right:
           type: string
-          description: "The ID of the menu, which should be shown in the upper right of a tab."
-          example: "navigation_account"
+          description: 'The ID of the menu, which should be shown in the upper right of a tab.'
+          example: 'navigation_account'
         items:
           type: array
 
     TabCenterpage:
       allOf:
-        - $ref: "#/components/schemas/TabBase"
+        - $ref: '#/components/schemas/TabBase'
         - properties:
             type:
               type: string
               enum:
                 - tab-centerpage
-              example: "tab-centerpage"
+              example: 'tab-centerpage'
             items:
               type: array
               items:
                 oneOf:
-                  - $ref: "#/components/schemas/MenuItemNative"
-                  - $ref: "#/components/schemas/MenuItemWeb"
-                  - $ref: "#/components/schemas/MenuItemTabStart"
+                  - $ref: '#/components/schemas/MenuItemNative'
+                  - $ref: '#/components/schemas/MenuItemWeb'
+                  - $ref: '#/components/schemas/MenuItemTabStart'
                 discriminator:
                   propertyName: type
                   mapping:
-                    menu-item-native: "#/components/schemas/MenuItemNative"
-                    menu-item-web: "#/components/schemas/MenuItemWeb"
-                    menu-item-tab-start: "#/components/schemas/MenuItemTabStart"
+                    menu-item-native: '#/components/schemas/MenuItemNative'
+                    menu-item-web: '#/components/schemas/MenuItemWeb'
+                    menu-item-tab-start: '#/components/schemas/MenuItemTabStart'
 
     TabStory:
       allOf:
-        - $ref: "#/components/schemas/TabBase"
+        - $ref: '#/components/schemas/TabBase'
         - properties:
             type:
               type: string
               enum:
                 - tab-story
-              example: "tab-story"
+              example: 'tab-story'
             items:
               type: array
               items:
-                $ref: "#/components/schemas/MenuItemNative"
+                $ref: '#/components/schemas/MenuItemNative'
 
     TabMenu:
       allOf:
-        - $ref: "#/components/schemas/TabBase"
+        - $ref: '#/components/schemas/TabBase'
         - properties:
             type:
               type: string
               enum:
                 - tab-menu
-              example: "tab-menu"
+              example: 'tab-menu'
             items:
               type: array
               items:
-                $ref: "#/components/schemas/MenuSection"
+                $ref: '#/components/schemas/MenuSection'
 
     MenuBase:
       required:
@@ -1815,11 +1957,11 @@ components:
       properties:
         id:
           type: string
-          description: "ID of the navigation"
-          example: "justsomeuniquestring"
+          description: 'ID of the navigation'
+          example: 'justsomeuniquestring'
         title:
           type: string
-          example: "Menü"
+          example: 'Menü'
         type:
           type: string
           enum:
@@ -1830,51 +1972,51 @@ components:
           properties:
             ios:
               type: string
-              description: "SF Symbol name"
-              example: "bookmark"
+              description: 'SF Symbol name'
+              example: 'bookmark'
             android:
               type: string
-              description: "Material Design Icon name"
-              example: "bookmarks"
+              description: 'Material Design Icon name'
+              example: 'bookmarks'
         items:
           type: array
 
     ContentMenu:
       allOf:
-        - $ref: "#/components/schemas/MenuBase"
+        - $ref: '#/components/schemas/MenuBase'
         - properties:
             type:
               type: string
               enum:
                 - content-menu
-              example: "content-menu"
+              example: 'content-menu'
             items:
               type: array
               items:
-                $ref: "#/components/schemas/MenuSection"
+                $ref: '#/components/schemas/MenuSection'
 
     UserMenu:
       allOf:
-        - $ref: "#/components/schemas/MenuBase"
+        - $ref: '#/components/schemas/MenuBase'
         - properties:
             type:
               type: string
               enum:
                 - user-menu
-              example: "user-menu"
+              example: 'user-menu'
             items:
               type: array
               items:
-                $ref: "#/components/schemas/MenuSection"
+                $ref: '#/components/schemas/MenuSection'
 
     MenuSection:
       properties:
         id:
           type: string
-          example: "menu-section-1"
+          example: 'menu-section-1'
         title:
           type: string
-          example: "My section"
+          example: 'My section'
         split:
           type: boolean
           example: false
@@ -1888,21 +2030,21 @@ components:
           type: array
           items:
             oneOf:
-              - $ref: "#/components/schemas/MenuItemNative"
-              - $ref: "#/components/schemas/MenuItemApp"
-              - $ref: "#/components/schemas/MenuItemWeb"
-              - $ref: "#/components/schemas/MenuItemBrowser"
-              - $ref: "#/components/schemas/MenuItemSubMenu"
-              - $ref: "#/components/schemas/MenuItemTabStart"
+              - $ref: '#/components/schemas/MenuItemNative'
+              - $ref: '#/components/schemas/MenuItemApp'
+              - $ref: '#/components/schemas/MenuItemWeb'
+              - $ref: '#/components/schemas/MenuItemBrowser'
+              - $ref: '#/components/schemas/MenuItemSubMenu'
+              - $ref: '#/components/schemas/MenuItemTabStart'
             discriminator:
               propertyName: type
               mapping:
-                menu-item-native: "#/components/schemas/MenuItemNative"
-                menu-item-app: "#/components/schemas/MenuItemApp"
-                menu-item-web: "#/components/schemas/MenuItemWeb"
-                menu-item-browser: "#/components/schemas/MenuItemBrowser"
-                menu-item-submenu: "#/components/schemas/MenuItemSubMenu"
-                menu-item-tab-start: "#/components/schemas/MenuItemTabStart"
+                menu-item-native: '#/components/schemas/MenuItemNative'
+                menu-item-app: '#/components/schemas/MenuItemApp'
+                menu-item-web: '#/components/schemas/MenuItemWeb'
+                menu-item-browser: '#/components/schemas/MenuItemBrowser'
+                menu-item-submenu: '#/components/schemas/MenuItemSubMenu'
+                menu-item-tab-start: '#/components/schemas/MenuItemTabStart'
 
     MenuItemBase:
       required:
@@ -1912,10 +2054,10 @@ components:
       properties:
         id:
           type: string
-          example: "menu-entry1"
+          example: 'menu-entry1'
         title:
           type: string
-          example: "Menu Entry Title"
+          example: 'Menu Entry Title'
         type:
           type: string
           enum:
@@ -1930,16 +2072,16 @@ components:
           properties:
             ios:
               type: string
-              description: "SF Symbol name"
-              example: "bookmark"
+              description: 'SF Symbol name'
+              example: 'bookmark'
             android:
               type: string
-              description: "Material Design Icon name"
-              example: "bookmarks"
+              description: 'Material Design Icon name'
+              example: 'bookmarks'
 
     MenuItemNative:
       allOf:
-        - $ref: "#/components/schemas/MenuItemBase"
+        - $ref: '#/components/schemas/MenuItemBase'
         - required:
             - source
           properties:
@@ -1947,13 +2089,13 @@ components:
               type: string
               enum:
                 - menu-item-native
-              example: "menu-item-native"
+              example: 'menu-item-native'
             source:
-              $ref: "#/components/schemas/UUID"
+              $ref: '#/components/schemas/UUID'
 
     MenuItemApp:
       allOf:
-        - $ref: "#/components/schemas/MenuItemBase"
+        - $ref: '#/components/schemas/MenuItemBase'
         - required:
             - targetId
           properties:
@@ -1961,62 +2103,62 @@ components:
               type: string
               enum:
                 - menu-item-app
-              example: "menu-item-app"
+              example: 'menu-item-app'
             targetId:
               type: string
-              example: "some-app-id"
+              example: 'some-app-id'
 
     MenuItemWeb:
       allOf:
-        - $ref: "#/components/schemas/MenuItemBase"
+        - $ref: '#/components/schemas/MenuItemBase'
         - required:
             - url
           properties:
             url:
               type: string
               # format: uri
-              example: "https://www.zeit.de/some/webviewurl"
+              example: 'https://www.zeit.de/some/webviewurl'
             type:
               type: string
               enum:
                 - menu-item-web
-              example: "menu-item-web"
+              example: 'menu-item-web'
 
     MenuItemBrowser:
       allOf:
-        - $ref: "#/components/schemas/MenuItemBase"
+        - $ref: '#/components/schemas/MenuItemBase'
         - required:
             - url
           properties:
             url:
               type: string
               # format: uri
-              example: "https://www.zeit.de/some/browserurl"
+              example: 'https://www.zeit.de/some/browserurl'
             type:
               type: string
               enum:
                 - menu-item-browser
-              example: "menu-item-browser"
+              example: 'menu-item-browser'
 
     MenuItemTabStart:
       allOf:
-        - $ref: "#/components/schemas/MenuItemBase"
+        - $ref: '#/components/schemas/MenuItemBase'
         - required:
             - url
           properties:
             url:
               type: string
               # format: uri
-              example: "https://www.zeit.de/some/webviewurl"
+              example: 'https://www.zeit.de/some/webviewurl'
             type:
               type: string
               enum:
                 - menu-item-tab-start
-              example: "menu-item-tab-start"
+              example: 'menu-item-tab-start'
 
     MenuItemSubMenu:
       allOf:
-        - $ref: "#/components/schemas/MenuItemBase"
+        - $ref: '#/components/schemas/MenuItemBase'
         - required:
             - items
           properties:
@@ -2028,17 +2170,17 @@ components:
               type: array
               items:
                 oneOf:
-                  - $ref: "#/components/schemas/MenuItemNative"
-                  - $ref: "#/components/schemas/MenuItemApp"
-                  - $ref: "#/components/schemas/MenuItemWeb"
-                  - $ref: "#/components/schemas/MenuItemBrowser"
+                  - $ref: '#/components/schemas/MenuItemNative'
+                  - $ref: '#/components/schemas/MenuItemApp'
+                  - $ref: '#/components/schemas/MenuItemWeb'
+                  - $ref: '#/components/schemas/MenuItemBrowser'
                 discriminator:
                   propertyName: type
                   mapping:
-                    menu-item-native: "#/components/schemas/MenuItemNative"
-                    menu-item-app: "#/components/schemas/MenuItemApp"
-                    menu-item-web: "#/components/schemas/MenuItemWeb"
-                    menu-item-browser: "#/components/schemas/MenuItemBrowser"
+                    menu-item-native: '#/components/schemas/MenuItemNative'
+                    menu-item-app: '#/components/schemas/MenuItemApp'
+                    menu-item-web: '#/components/schemas/MenuItemWeb'
+                    menu-item-browser: '#/components/schemas/MenuItemBrowser'
 
     AppStoreType:
       type: string
