@@ -59,8 +59,7 @@ paths:
         - cookieAuthProduction: []
         - cookieAuthStaging: []
       operationId: getBookmarks
-      description:
-        Returns list of bookmarks, optionally filtered by category.<br>
+      description: Returns list of bookmarks, optionally filtered by category.<br>
         Calling this endpoint without parameters returns all bookmarks.<br>
         To get only bookmarks by a given category, call this endpoint with the `category` parameter.
       parameters:
@@ -131,12 +130,11 @@ paths:
         - cookieAuthProduction: []
         - cookieAuthStaging: []
       operationId: deleteBookmark
-      description:
-        <dl>
-          <dt>Delete one bookmark:</dt>
-          <dd>If you want to delete one specific bookmark, you have to pass its UUID as a parameter.</dd>
-          <dt>Delete all bookmarks:</dt>
-          <dd>To delete all bookmarks, call this endpoint without parameters.</dd>
+      description: <dl>
+        <dt>Delete one bookmark:</dt>
+        <dd>If you want to delete one specific bookmark, you have to pass its UUID as a parameter.</dd>
+        <dt>Delete all bookmarks:</dt>
+        <dd>To delete all bookmarks, call this endpoint without parameters.</dd>
         </dl>
       tags:
         - bookmarks
@@ -396,18 +394,18 @@ paths:
       requestBody:
         required: true
         content:
-            application/json:
-              schema:
-                type: object
-                required:
-                  - content
-                  - path
-                properties:
-                  content:
-                    $ref: "#/components/schemas/UUID"
-                  path:
-                    type: string
-                    example: "/2023/33/lithium-vorkommen-deutschland-e-autos-vulcan-energy-resources"
+          application/json:
+            schema:
+              type: object
+              required:
+                - content
+                - path
+              properties:
+                content:
+                  $ref: "#/components/schemas/UUID"
+                path:
+                  type: string
+                  example: "/2023/33/lithium-vorkommen-deutschland-e-autos-vulcan-energy-resources"
       responses:
         "201":
           description: "Saved entry to freebies"
@@ -462,19 +460,19 @@ paths:
       requestBody:
         required: true
         content:
-            application/json:
-              schema:
-                type: object
-                required:
-                  - token
-                  - path
-                properties:
-                  token:
-                    type: string
-                    example: "8116c8ea"
-                  path:
-                    type: string
-                    example: "/2023/33/lithium-vorkommen-deutschland-e-autos-vulcan-energy-resources"
+          application/json:
+            schema:
+              type: object
+              required:
+                - token
+                - path
+              properties:
+                token:
+                  type: string
+                  example: "8116c8ea"
+                path:
+                  type: string
+                  example: "/2023/33/lithium-vorkommen-deutschland-e-autos-vulcan-energy-resources"
       responses:
         "200":
           content:
@@ -509,7 +507,7 @@ paths:
           in: query
           schema:
             type: string
-            pattern: '^eq.[-a-f0-9]+$'
+            pattern: "^eq.[-a-f0-9]+$"
       responses:
         "200":
           description: return summaries
@@ -517,7 +515,7 @@ paths:
             application/json:
               schema:
                 items:
-                  $ref: '#/components/schemas/summaries'
+                  $ref: "#/components/schemas/summaries"
 
   /summy/feedback:
     post:
@@ -532,9 +530,9 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/feedback'
+              $ref: "#/components/schemas/feedback"
       responses:
-        '201':
+        "201":
           description: Created.
 
   /iap/receipts/{platform}:
@@ -545,9 +543,7 @@ paths:
           required: true
           schema:
             $ref: "#/components/schemas/AppStoreType"
-      requestBody: {
-        $ref: "#/components/requestBodies/AppStoreReceipt"
-      }
+      requestBody: { $ref: "#/components/requestBodies/AppStoreReceipt" }
       security:
         - cookieAuthProduction: []
         - cookieAuthStaging: []
@@ -573,54 +569,54 @@ paths:
           description: "The payment server was not reachable."
 
   /search:
-   get:
-    tags:
-      - search
-    summary: "Main entry point for generic search."
-    parameters:
-      - in: query
-        name: q
-        schema:
-          type: string
-        required: true
-        description: "The term that should be searched for"
-    responses:
-      "200":
-        description: "Returns a list of results"
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                adControllerPageInfo:
-                  $ref: "#/components/schemas/AdControllerPageInfo"
-                items:
-                  type: array
+    get:
+      tags:
+        - search
+      summary: "Main entry point for generic search."
+      parameters:
+        - in: query
+          name: q
+          schema:
+            type: string
+          required: true
+          description: "The term that should be searched for"
+      responses:
+        "200":
+          description: "Returns a list of results"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  adControllerPageInfo:
+                    $ref: "#/components/schemas/AdControllerPageInfo"
                   items:
-                    oneOf:
-                      - $ref: "#/components/schemas/CenterpageAdplace"
-                      - $ref: "#/components/schemas/CenterpageTeaser"
-                      - $ref: "#/components/schemas/CenterpageTeaserAuthor"
-                      - $ref: "#/components/schemas/CenterpageTeaserGallery"
-                      - $ref: "#/components/schemas/CenterpageTeaserVideo"
-                      - $ref: "#/components/schemas/CenterpageTeaserPodcast"
-                      - $ref: "#/components/schemas/CenterpageTeaserAudio"
-                      - $ref: "#/components/schemas/CenterpageModuleHTML"
-                    discriminator:
-                      propertyName: type
-                      mapping:
-                        adplace: "#/components/schemas/CenterpageAdplace"
-                        teaser: "#/components/schemas/CenterpageTeaser"
-                        teaser-author: "#/components/schemas/CenterpageTeaserAuthor"
-                        teaser-gallery: "#/components/schemas/CenterpageTeaserGallery"
-                        teaser-video: "#/components/schemas/CenterpageTeaserVideo"
-                        teaser-podcast: "#/components/schemas/CenterpageTeaserPodcast"
-                        teaser-audio: "#/components/schemas/CenterpageTeaserAudio"
-                        html: "#/components/schemas/CenterpageModuleHTML"
-                trackingData:
-                  $ref: "#/components/schemas/TrackingData"
-      "400":
-        description: "Invalid query, see response body for details."
+                    type: array
+                    items:
+                      oneOf:
+                        - $ref: "#/components/schemas/CenterpageAdplace"
+                        - $ref: "#/components/schemas/CenterpageTeaser"
+                        - $ref: "#/components/schemas/CenterpageTeaserAuthor"
+                        - $ref: "#/components/schemas/CenterpageTeaserGallery"
+                        - $ref: "#/components/schemas/CenterpageTeaserVideo"
+                        - $ref: "#/components/schemas/CenterpageTeaserPodcast"
+                        - $ref: "#/components/schemas/CenterpageTeaserAudio"
+                        - $ref: "#/components/schemas/CenterpageModuleHTML"
+                      discriminator:
+                        propertyName: type
+                        mapping:
+                          adplace: "#/components/schemas/CenterpageAdplace"
+                          teaser: "#/components/schemas/CenterpageTeaser"
+                          teaser-author: "#/components/schemas/CenterpageTeaserAuthor"
+                          teaser-gallery: "#/components/schemas/CenterpageTeaserGallery"
+                          teaser-video: "#/components/schemas/CenterpageTeaserVideo"
+                          teaser-podcast: "#/components/schemas/CenterpageTeaserPodcast"
+                          teaser-audio: "#/components/schemas/CenterpageTeaserAudio"
+                          html: "#/components/schemas/CenterpageModuleHTML"
+                  trackingData:
+                    $ref: "#/components/schemas/TrackingData"
+        "400":
+          description: "Invalid query, see response body for details."
 
   /structure:
     get:
@@ -635,43 +631,193 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Structure"
-              example: {tabs: [
-                {id: start, title: Start, type: tab-centerpage, icon: home, items: [
-                  {id: homepage, title: Aktuell, type: menu-item-web, url: "https://www.zeit.de/index"},
-                  {id: ressortPolitik, title: Politik, type: menu-item-native, source: "{urn:uuid:b4d1e3b1-aac4-4a80-b820-e4093fe24a36}"},
-                  {id: ressortGesellschaft, title: Gesellschaft, type: menu-item-native, source: "{urn:uuid:c92ad9be-67e0-497d-beee-6c2e063352cc}"},
-                  {id: ressortWirtschaft, title: Wirtschaft, type: menu-item-native, source: "{urn:uuid:ea13ef02-74f3-4010-8cd7-777327fb881a}"},
-                  {id: ressortWissen, title: Wissen, type: menu-item-native, source: "{urn:uuid:c84692ca-b0c9-4772-8c6b-85e2abc446e1}"},
-                  {id: ressortKultur, title: Kultur, type: menu-item-native, source: "{urn:uuid:49b109f0-bbad-495e-8a88-ad91ec1ef8f9}"}
-                ]},
-                {id: news, title: Schlagzeilen, type: tab-centerpage, icon: clock, items: [
-                  {id: newsAll, title: "Alle Schlagzeilen", type: menu-item-native, source: "{urn:uuid:08945d5e-483c-4e7b-9843-69a8f590ada9}"},
-                  {id: newsMostImportant, title: "Die wichtigsten Nachrichten", type: menu-item-native, source: "{urn:uuid:df60a52c-5f4d-4804-833d-ec31e24dbd43}"},
-                  {id: newsAnalysisAndReports, title: "Analysen und Hintergründe", type: menu-item-native, source: "{urn:uuid:d6913463-1804-466d-b6d0-34376ef21916}"}
-                ]},
-                {id: explore, title: Entdecken, type: tab-story, icon: compass, items: [
-                  {id: explore-all, title: Entdecken, type: menu-item-native, source: "{urn:uuid:99ae6607-fe0f-44ad-97fb-00dd0d852c30}"}
-                ]},
-                {id: zplus, title: Mein Abo, type: tab-centerpage, icon: zplus, items: [
-                  {id: exclusive, title: "Exklusive Artikel", type: menu-item-native, source: "{urn:uuid:0fd9480f-1b52-4fcb-942e-8089e378102e}"},
-                  {id: zeitPDFWebReader, title: "DIE ZEIT", type: menu-item-web, url: "https://epaper.zeit.de/abo/diezeit"},
-                  {id: wochenMarkt, title: "Wochenmarkt", type: menu-item-web, url: "https://www.zeit.de/wochenmarkt"}
-                ]},
-                {id: menu, title: Mehr, type: tab-menu, icon: avatar, items: [
-                  {id: user-menu, title: "Mein Bereich", items: [
-                    {id: reading-list, title: Merkliste, type: menu-item-app, targetId: native-reading-list},
-                    {id: reading-history, title: Verlauf, type: menu-item-app, targetId: native-reading-history},
-                    {id: comment-list, title: Kommentare, type: menu-item-web, url: "https://profile.zeit.de"}
-                  ]},
-                  {id: angebote, title: Angebote, items: [
-                    {id: anzeigen, title: Anzeigen, type: menu-item-submenu, items: [
-                      {id: ad1, title: Werbung, type: menu-item-web, url: "https://www.werbung.de"},
-                      {id: ad2, title: Anzeige, type: menu-item-web, url: "https://www.werbung.de"},
-                      {id: ad3, title: Promo, type: menu-item-web, url: "https://www.werbung.de"}
-                    ]}
-                  ]}
-                ]}
-              ]}
+              example:
+                {
+                  tabs:
+                    [
+                      {
+                        id: start,
+                        title: Start,
+                        type: tab-centerpage,
+                        icon: home,
+                        items:
+                          [
+                            {
+                              id: homepage,
+                              title: Aktuell,
+                              type: menu-item-web,
+                              url: "https://www.zeit.de/index",
+                            },
+                            {
+                              id: ressortPolitik,
+                              title: Politik,
+                              type: menu-item-native,
+                              source: "{urn:uuid:b4d1e3b1-aac4-4a80-b820-e4093fe24a36}",
+                            },
+                            {
+                              id: ressortGesellschaft,
+                              title: Gesellschaft,
+                              type: menu-item-native,
+                              source: "{urn:uuid:c92ad9be-67e0-497d-beee-6c2e063352cc}",
+                            },
+                            {
+                              id: ressortWirtschaft,
+                              title: Wirtschaft,
+                              type: menu-item-native,
+                              source: "{urn:uuid:ea13ef02-74f3-4010-8cd7-777327fb881a}",
+                            },
+                            {
+                              id: ressortWissen,
+                              title: Wissen,
+                              type: menu-item-native,
+                              source: "{urn:uuid:c84692ca-b0c9-4772-8c6b-85e2abc446e1}",
+                            },
+                            {
+                              id: ressortKultur,
+                              title: Kultur,
+                              type: menu-item-native,
+                              source: "{urn:uuid:49b109f0-bbad-495e-8a88-ad91ec1ef8f9}",
+                            },
+                          ],
+                      },
+                      {
+                        id: news,
+                        title: Schlagzeilen,
+                        type: tab-centerpage,
+                        icon: clock,
+                        items:
+                          [
+                            {
+                              id: newsAll,
+                              title: "Alle Schlagzeilen",
+                              type: menu-item-native,
+                              source: "{urn:uuid:08945d5e-483c-4e7b-9843-69a8f590ada9}",
+                            },
+                            {
+                              id: newsMostImportant,
+                              title: "Die wichtigsten Nachrichten",
+                              type: menu-item-native,
+                              source: "{urn:uuid:df60a52c-5f4d-4804-833d-ec31e24dbd43}",
+                            },
+                            {
+                              id: newsAnalysisAndReports,
+                              title: "Analysen und Hintergründe",
+                              type: menu-item-native,
+                              source: "{urn:uuid:d6913463-1804-466d-b6d0-34376ef21916}",
+                            },
+                          ],
+                      },
+                      {
+                        id: explore,
+                        title: Entdecken,
+                        type: tab-story,
+                        icon: compass,
+                        items:
+                          [
+                            {
+                              id: explore-all,
+                              title: Entdecken,
+                              type: menu-item-native,
+                              source: "{urn:uuid:99ae6607-fe0f-44ad-97fb-00dd0d852c30}",
+                            },
+                          ],
+                      },
+                      {
+                        id: zplus,
+                        title: Mein Abo,
+                        type: tab-centerpage,
+                        icon: zplus,
+                        items:
+                          [
+                            {
+                              id: exclusive,
+                              title: "Exklusive Artikel",
+                              type: menu-item-native,
+                              source: "{urn:uuid:0fd9480f-1b52-4fcb-942e-8089e378102e}",
+                            },
+                            {
+                              id: zeitPDFWebReader,
+                              title: "DIE ZEIT",
+                              type: menu-item-web,
+                              url: "https://epaper.zeit.de/abo/diezeit",
+                            },
+                            {
+                              id: wochenMarkt,
+                              title: "Wochenmarkt",
+                              type: menu-item-web,
+                              url: "https://www.zeit.de/wochenmarkt",
+                            },
+                          ],
+                      },
+                      {
+                        id: menu,
+                        title: Mehr,
+                        type: tab-menu,
+                        icon: avatar,
+                        items:
+                          [
+                            {
+                              id: user-menu,
+                              title: "Mein Bereich",
+                              items:
+                                [
+                                  {
+                                    id: reading-list,
+                                    title: Merkliste,
+                                    type: menu-item-app,
+                                    targetId: native-reading-list,
+                                  },
+                                  {
+                                    id: reading-history,
+                                    title: Verlauf,
+                                    type: menu-item-app,
+                                    targetId: native-reading-history,
+                                  },
+                                  {
+                                    id: comment-list,
+                                    title: Kommentare,
+                                    type: menu-item-web,
+                                    url: "https://profile.zeit.de",
+                                  },
+                                ],
+                            },
+                            {
+                              id: angebote,
+                              title: Angebote,
+                              items:
+                                [
+                                  {
+                                    id: anzeigen,
+                                    title: Anzeigen,
+                                    type: menu-item-submenu,
+                                    items:
+                                      [
+                                        {
+                                          id: ad1,
+                                          title: Werbung,
+                                          type: menu-item-web,
+                                          url: "https://www.werbung.de",
+                                        },
+                                        {
+                                          id: ad2,
+                                          title: Anzeige,
+                                          type: menu-item-web,
+                                          url: "https://www.werbung.de",
+                                        },
+                                        {
+                                          id: ad3,
+                                          title: Promo,
+                                          type: menu-item-web,
+                                          url: "https://www.werbung.de",
+                                        },
+                                      ],
+                                  },
+                                ],
+                            },
+                          ],
+                      },
+                    ],
+                }
         "400":
           description: "Something was wrong with the request. Check the body for error messages."
 
@@ -700,11 +846,7 @@ components:
   requestBodies:
     AppStoreReceipt:
       content:
-        "text/plain": {
-          "schema": {
-            "$ref": "#/components/schemas/AppStoreReceipt"
-          }
-        }
+        "text/plain": { "schema": { "$ref": "#/components/schemas/AppStoreReceipt" } }
 
   schemas:
     UUID:
@@ -1635,18 +1777,18 @@ components:
         - device
         - tile
       properties:
-          type:
-            type: string
-            enum:
-              - adplace
-          tile:
-            description: "IQD ad tile number"
-            type: string
-          device:
-            type: string
-            enum:
-              - desktop
-              - mobile
+        type:
+          type: string
+          enum:
+            - adplace
+        tile:
+          description: "IQD ad tile number"
+          type: string
+        device:
+          type: string
+          enum:
+            - desktop
+            - mobile
 
     CenterpageHeader:
       description: "Header for native centerpages"
