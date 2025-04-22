@@ -9,4 +9,14 @@ const zonPrettierConfig = require('@zeitonline/prettier-config');
  */
 module.exports = {
 	...zonPrettierConfig,
+	overrides: [
+		{
+			files: ['*.{yaml,yml}'],
+			options: {
+				singleQuote: false,
+				useTabs: false,
+				tabWidth: 2,
+			},
+		},
+	],
 };
