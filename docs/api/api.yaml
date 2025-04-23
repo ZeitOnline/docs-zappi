@@ -2233,6 +2233,11 @@ components:
             type: string
             enum:
               - adfree
+              - audio_dz
+              - audio_zw
+              - epaper_dz
+              - epaper_zc
+              - epaper_zw
               - podcast
               - registration
               - spiele
