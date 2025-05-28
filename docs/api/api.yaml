@@ -1855,6 +1855,10 @@ components:
           type: string
           description: "ID of the tab"
           example: "justsomeuniquestring"
+        logo:
+          type: string
+          description: "reference to the svg in the app's bundle"
+          example: "logo.zeit"
         title:
           type: string
           minLength: 1
@@ -2078,6 +2082,10 @@ components:
               type: string
               description: "Material Design Icon name"
               example: "bookmarks"
+        logo:
+          type: string
+          description: "reference to the svg in the app's bundle"
+          example: "logo.zeit"
 
     MenuItemNative:
       allOf:
