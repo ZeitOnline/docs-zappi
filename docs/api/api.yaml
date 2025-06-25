@@ -1373,6 +1373,7 @@ components:
                 - audio-poster-l
                 - audio-tile-s-collapsed
                 - audio-tile-m-collapsed
+                - audio-listitem-xs-cover
                 - audio-listitem-s-expanded
                 - audio-listitem-m-expanded
                 - audio-moderation
