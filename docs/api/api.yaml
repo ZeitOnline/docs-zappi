@@ -947,6 +947,11 @@ components:
         bookmarkable:
           type: boolean
           example: true
+        followType:
+          type: string
+          enum:
+            - podcast
+            - bookmark
         adControllerPageInfo:
           $ref: "#/components/schemas/AdControllerPageInfo"
         trackingData:
