@@ -1732,6 +1732,7 @@ components:
             layout:
               type: string
               enum:
+                - audio-filters
                 - dossier
                 - duo
                 - headed
