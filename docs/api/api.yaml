@@ -893,11 +893,27 @@ components:
             enum:
               - bookmark
               - podcast
+          followings:
+            type: array
+            items:
+              $ref: "#/components/schemas/following"
         required:
           - created
           - ssoid
           - uuid
         additionalProperties: false
+    following:
+      type: object
+      properties:
+        uuid:
+          $ref: "#/components/schemas/UUID"
+        parent_uuid:
+          $ref: "#/components/schemas/UUID"
+        created:
+          type: string
+          format: date-time
+          example: "2022-11-25T16:18:37.124812+00:00"
+      additionalProperties: false
 
     BookmarkIds:
       type: object
