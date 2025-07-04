@@ -105,6 +105,12 @@ paths:
               properties:
                 uuid:
                   $ref: "#/components/schemas/UUID"
+                following_type:
+                  description: Set to 'podcast' when following a podcast on the Podcast-Series-CP. In all other cases, set to 'bookmark'. If set to null, it defaults to 'bookmark'.
+                  type: string
+                  enum:
+                    - following
+                    - podcast
               required:
                 - uuid
               additionalProperties: false
@@ -880,11 +886,34 @@ components:
             example: 42
           uuid:
             $ref: "#/components/schemas/UUID"
+          following_type:
+            description: Set to 'podcast' when following a podcast on the Podcast-Series-CP. In all other cases, set to 'bookmark'. If set to null, it defaults to 'bookmark'.
+            type: string
+            example: 'bookmark'
+            enum:
+              - bookmark
+              - podcast
+          followings:
+            type: array
+            items:
+              $ref: "#/components/schemas/following"
         required:
           - created
           - ssoid
           - uuid
         additionalProperties: false
+    following:
+      type: object
+      properties:
+        uuid:
+          $ref: "#/components/schemas/UUID"
+        parent_uuid:
+          $ref: "#/components/schemas/UUID"
+        created:
+          type: string
+          format: date-time
+          example: "2022-11-25T16:18:37.124812+00:00"
+      additionalProperties: false
 
     BookmarkIds:
       type: object
