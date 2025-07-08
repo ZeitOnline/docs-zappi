@@ -64,6 +64,55 @@ paths:
         To get only bookmarks by a given category, call this endpoint with the `category` parameter.
       parameters:
         - in: query
+          name: order
+          description: Specifies the column to sort the results by.
+          required: false
+          schema:
+            type: string
+          examples:
+            created:
+              value: created.desc
+              summary: Sort by the most recently created bookmarks.
+        - in: query
+          name: limit
+          description: Limits the number of bookmarks returned.
+          required: false
+          schema:
+            type: integer
+          examples:
+            ten:
+              value: 10
+              summary: Return a maximum of 10 bookmarks.
+        - in: query
+          name: select
+          description: Defines the fields to include in the response.
+          required: false
+          schema:
+            type: string
+            description: Specifies the fields to be returned in the response.
+          examples:
+            get_uuid_followings:
+              value: uuid,followings(uuid)
+              summary: Retrieve the `uuid` (bookmarks) and the `uuid` of all newest followings for the bookmarks.
+            get_uuid_and_created:
+              value: uuid,created
+              summary: Retrieve the `uuid` and `created` of bookmarks.
+        - in: query
+          name: following_type
+          required: false
+          schema:
+            type: string
+            description: Following Type
+            example: "eq.podcast"
+          description: Filter the bookmarks based on `following_type`
+          examples:
+            only_bookmarks:
+              value: eq.bookmark
+              summary: Only retrieve `following_type` = `bookmarks` (normal bookmarks). This is also the default value.
+            only_podcast:
+              value: eq.podcast
+              summary: Only retrieve `following_type` = `podcast` (follows for podcast series)
+        - in: query
           name: category
           required: false
           schema:
