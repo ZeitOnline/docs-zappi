@@ -158,7 +158,7 @@ paths:
                   description: Set to 'podcast' when following a podcast on the Podcast-Series-CP. In all other cases, set to 'bookmark'. If set to null, it defaults to 'bookmark'.
                   type: string
                   enum:
-                    - following
+                    - bookmark
                     - podcast
               required:
                 - uuid
