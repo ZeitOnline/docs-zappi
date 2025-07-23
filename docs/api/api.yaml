@@ -1030,6 +1030,15 @@ components:
           enum:
             - podcast
             - bookmark
+        type:
+          type: string
+          enum:
+            - podcast
+        metadata:
+          type: object
+          oneOf:
+            - $ref: "#/components/schemas/CenterpageMetadataPodcast"
+
         adControllerPageInfo:
           $ref: "#/components/schemas/AdControllerPageInfo"
         trackingData:
@@ -1091,6 +1100,33 @@ components:
         - markup
         - cpextra
       description: "Type of the cp element"
+
+    CenterpageMetadataPodcast:
+      type: object
+      properties:
+        title:
+          type: string
+          nullable: true
+          example: "Was jetzt?"
+        supertitle:
+          type: string
+          nullable: true
+          example: "Der Nachrichtenpodcast"
+        text:
+          type: string
+          nullable: true
+          example: "Morgens um 6 Uhr und nachmittags um 17 Uhr besprechen wir die Themen des Tages."
+        releaseFrequency:
+          type: string
+          nullable: true
+          example: "täglich"
+        image:
+          $ref: "#/components/schemas/Image"
+        color:
+          type: string
+          nullable: true
+          description: "Color of the podcast"
+          example: "f0f0f0"
 
     AdControllerPageInfo:
       type: object
