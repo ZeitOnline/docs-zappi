@@ -1030,6 +1030,23 @@ components:
           enum:
             - podcast
             - bookmark
+        type:
+          description: "Type of the CP, redundant to the metadata.type"
+          type: string
+          enum:
+            - podcast-series
+            - other
+        metadata:
+          type: object
+          oneOf:
+            - $ref: "#/components/schemas/CenterpageMetadataBase"
+            - $ref: "#/components/schemas/CenterpageMetadataPodcastSeries"
+          discriminator:
+            propertyName: type
+            mapping:
+              other: "#/components/schemas/CenterpageMetadataBase"
+              podcast-series: "#/components/schemas/CenterpageMetadataPodcastSeries"
+
         adControllerPageInfo:
           $ref: "#/components/schemas/AdControllerPageInfo"
         trackingData:
@@ -1091,6 +1108,47 @@ components:
         - markup
         - cpextra
       description: "Type of the cp element"
+
+    CenterpageMetadataBase:
+      description: "Common metadata for all Centerpages, might include additional fields for specific CP types"
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - other
+            - podcast-series
+          description: "Type of the Centerpage, used as discriminator for Centerpage metadata"
+          example: "podcast-series"
+        title:
+          type: string
+          nullable: false
+          example: "Was jetzt?"
+        supertitle:
+          type: string
+          nullable: true
+          example: "Der Nachrichtenpodcast"
+        text:
+          type: string
+          nullable: true
+          example: "Morgens um 6 Uhr und nachmittags um 17 Uhr besprechen wir die Themen des Tages."
+        image:
+          $ref: "#/components/schemas/Image"
+        color:
+          type: string
+          nullable: true
+          example: "f0f0f0"
+
+    CenterpageMetadataPodcastSeries:
+      description: "Metadata for Podcast Series Centerpages (podcast-series)"
+      allOf:
+        - $ref: "#/components/schemas/CenterpageMetadataBase"
+        - type: object
+          properties:
+            releaseFrequency:
+              type: string
+              nullable: true
+              example: "Täglich um 16 Uhr"
 
     AdControllerPageInfo:
       type: object
