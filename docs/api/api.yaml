@@ -1033,11 +1033,13 @@ components:
         type:
           type: string
           enum:
-            - podcast
+            - podcast-series
+            - other
         metadata:
           type: object
           oneOf:
-            - $ref: "#/components/schemas/CenterpageMetadataPodcast"
+            - $ref: "#/components/schemas/CenterpageMetadataBase"
+            - $ref: "#/components/schemas/CenterpageMetadataPodcastSeries"
 
         adControllerPageInfo:
           $ref: "#/components/schemas/AdControllerPageInfo"
@@ -1101,7 +1103,8 @@ components:
         - cpextra
       description: "Type of the cp element"
 
-    CenterpageMetadataPodcast:
+    CenterpageMetadataBase:
+      description: "Common metadata for all Centerpages, might include additional fields for specific CP types"
       type: object
       properties:
         title:
@@ -1116,17 +1119,23 @@ components:
           type: string
           nullable: true
           example: "Morgens um 6 Uhr und nachmittags um 17 Uhr besprechen wir die Themen des Tages."
-        releaseFrequency:
-          type: string
-          nullable: true
-          example: "täglich"
         image:
           $ref: "#/components/schemas/Image"
         color:
           type: string
           nullable: true
-          description: "Color of the podcast"
           example: "f0f0f0"
+
+    CenterpageMetadataPodcastSeries:
+      description: "Metadata for Podcast Series Centerpages (podcast-series)"
+      allOf:
+        - $ref: "#/components/schemas/CenterpageMetadataBase"
+        - type: object
+          properties:
+            releaseFrequency:
+              type: string
+              nullable: true
+              example: "Täglich um 16 Uhr"
 
     AdControllerPageInfo:
       type: object
