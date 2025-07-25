@@ -1031,6 +1031,7 @@ components:
             - podcast
             - bookmark
         type:
+          description: "Type of the CP, redundant to the metadata.type"
           type: string
           enum:
             - podcast-series
@@ -1040,6 +1041,11 @@ components:
           oneOf:
             - $ref: "#/components/schemas/CenterpageMetadataBase"
             - $ref: "#/components/schemas/CenterpageMetadataPodcastSeries"
+          discriminator:
+            propertyName: type
+            mapping:
+              other: "#/components/schemas/CenterpageMetadataBase"
+              podcast-series: "#/components/schemas/CenterpageMetadataPodcastSeries"
 
         adControllerPageInfo:
           $ref: "#/components/schemas/AdControllerPageInfo"
@@ -1107,9 +1113,16 @@ components:
       description: "Common metadata for all Centerpages, might include additional fields for specific CP types"
       type: object
       properties:
+        type:
+          type: string
+          enum:
+            - other
+            - podcast-series
+          description: "Type of the Centerpage, used as discriminator for Centerpage metadata"
+          example: "podcast-series"
         title:
           type: string
-          nullable: true
+          nullable: false
           example: "Was jetzt?"
         supertitle:
           type: string
