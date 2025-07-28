@@ -1466,6 +1466,7 @@ components:
                 - audio-playlist-m-cover
                 - audio-playlist-tile-l
                 - audio-playlist-tile-l-cover
+                - zon-teaser-cell
                 - zon-teaser-classic
                 - zon-teaser-cover
                 - zon-teaser-panorama
