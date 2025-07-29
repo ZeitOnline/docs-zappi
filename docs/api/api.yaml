@@ -1025,11 +1025,6 @@ components:
         bookmarkable:
           type: boolean
           example: true
-        followType:
-          type: string
-          enum:
-            - podcast
-            - bookmark
         type:
           description: "Type of the CP, redundant to the metadata.type"
           type: string
@@ -1118,8 +1113,15 @@ components:
           enum:
             - other
             - podcast-series
-          description: "Type of the Centerpage, used as discriminator for Centerpage metadata"
+          description: "Type of the Centerpage, also used as discriminator for the polymorphic metadata object"
           example: "podcast-series"
+        followType:
+          type: string
+          enum:
+            - podcast
+            - bookmark
+          description: "Follow type of the Centerpage"
+          example: "bookmark"
         title:
           type: string
           nullable: false
@@ -1145,6 +1147,12 @@ components:
         - $ref: "#/components/schemas/CenterpageMetadataBase"
         - type: object
           properties:
+            followType:
+              type: string
+              enum:
+                - podcast
+              description: "Always 'podcast' for podcast series"
+              example: "podcast"
             releaseFrequency:
               type: string
               nullable: true
