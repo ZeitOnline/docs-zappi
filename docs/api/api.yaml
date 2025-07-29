@@ -1025,12 +1025,6 @@ components:
         bookmarkable:
           type: boolean
           example: true
-        type:
-          description: "Type of the CP, redundant to the metadata.type"
-          type: string
-          enum:
-            - podcast-series
-            - other
         metadata:
           type: object
           oneOf:
