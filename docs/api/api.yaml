@@ -1025,11 +1025,17 @@ components:
         bookmarkable:
           type: boolean
           example: true
-        followType:
-          type: string
-          enum:
-            - podcast
-            - bookmark
+        metadata:
+          type: object
+          oneOf:
+            - $ref: "#/components/schemas/CenterpageMetadataBase"
+            - $ref: "#/components/schemas/CenterpageMetadataPodcastSeries"
+          discriminator:
+            propertyName: type
+            mapping:
+              other: "#/components/schemas/CenterpageMetadataBase"
+              podcast-series: "#/components/schemas/CenterpageMetadataPodcastSeries"
+
         adControllerPageInfo:
           $ref: "#/components/schemas/AdControllerPageInfo"
         trackingData:
@@ -1091,6 +1097,60 @@ components:
         - markup
         - cpextra
       description: "Type of the cp element"
+
+    CenterpageMetadataBase:
+      description: "Common metadata for all Centerpages, might include additional fields for specific CP types"
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - other
+            - podcast-series
+          description: "Type of the Centerpage, also used as discriminator for the polymorphic metadata object"
+          example: "podcast-series"
+        followType:
+          type: string
+          enum:
+            - podcast
+            - bookmark
+          description: "Follow type of the Centerpage"
+          example: "bookmark"
+        title:
+          type: string
+          nullable: false
+          example: "Was jetzt?"
+        supertitle:
+          type: string
+          nullable: true
+          example: "Der Nachrichtenpodcast"
+        text:
+          type: string
+          nullable: true
+          example: "Morgens um 6 Uhr und nachmittags um 17 Uhr besprechen wir die Themen des Tages."
+        image:
+          $ref: "#/components/schemas/Image"
+        color:
+          type: string
+          nullable: true
+          example: "f0f0f0"
+
+    CenterpageMetadataPodcastSeries:
+      description: "Metadata for Podcast Series Centerpages (podcast-series)"
+      allOf:
+        - $ref: "#/components/schemas/CenterpageMetadataBase"
+        - type: object
+          properties:
+            followType:
+              type: string
+              enum:
+                - podcast
+              description: "Always 'podcast' for podcast series"
+              example: "podcast"
+            releaseFrequency:
+              type: string
+              nullable: true
+              example: "Täglich um 16 Uhr"
 
     AdControllerPageInfo:
       type: object
