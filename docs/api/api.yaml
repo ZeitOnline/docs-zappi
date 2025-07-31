@@ -1360,6 +1360,11 @@ components:
           # format: uri
           description: "Adfree URL directly to the audio source"
           example: "https://cdn.simplecast.com/audio/60989a9e-80b6-4f17-979a-fc949043cf6b/episodes/0d4af84d-a3b9-4373-8c99-c20fe3c16345/audio/16a0ad94-096b-42b6-b7a2-c02f15fe9085/default_tc.mp3"
+        mediasyncId:
+          type: integer
+          nullable: true
+          description: "MediasyncID for premium audio"
+          example: 1007447
 
     PodcastAudio:
       type: object
