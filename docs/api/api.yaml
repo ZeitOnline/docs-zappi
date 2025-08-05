@@ -160,6 +160,7 @@ paths:
                   enum:
                     - bookmark
                     - podcast
+                    - series
               required:
                 - uuid
               additionalProperties: false
@@ -942,6 +943,7 @@ components:
             enum:
               - bookmark
               - podcast
+              - series
           followings:
             type: array
             items:
@@ -1034,6 +1036,7 @@ components:
             propertyName: type
             mapping:
               other: "#/components/schemas/CenterpageMetadataBase"
+              series: "#/components/schemas/CenterpageMetadataBase"
               podcast-series: "#/components/schemas/CenterpageMetadataPodcastSeries"
 
         adControllerPageInfo:
@@ -1107,6 +1110,7 @@ components:
           enum:
             - other
             - podcast-series
+            - series
           description: "Type of the Centerpage, also used as discriminator for the polymorphic metadata object"
           example: "podcast-series"
         followType:
@@ -1114,6 +1118,7 @@ components:
           enum:
             - podcast
             - bookmark
+            - series
           description: "Follow type of the Centerpage"
           example: "bookmark"
         title:
