@@ -1036,7 +1036,6 @@ components:
             propertyName: type
             mapping:
               other: "#/components/schemas/CenterpageMetadataBase"
-              series: "#/components/schemas/CenterpageMetadataBase"
               podcast-series: "#/components/schemas/CenterpageMetadataPodcastSeries"
 
         adControllerPageInfo:
@@ -1110,7 +1109,6 @@ components:
           enum:
             - other
             - podcast-series
-            - series
           description: "Type of the Centerpage, also used as discriminator for the polymorphic metadata object"
           example: "podcast-series"
         followType:
