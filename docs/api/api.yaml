@@ -160,6 +160,7 @@ paths:
                   enum:
                     - bookmark
                     - podcast
+                    - series
               required:
                 - uuid
               additionalProperties: false
@@ -942,6 +943,7 @@ components:
             enum:
               - bookmark
               - podcast
+              - series
           followings:
             type: array
             items:
@@ -1114,6 +1116,7 @@ components:
           enum:
             - podcast
             - bookmark
+            - series
           description: "Follow type of the Centerpage"
           example: "bookmark"
         title:
