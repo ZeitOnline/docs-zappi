@@ -1036,8 +1036,7 @@ components:
             propertyName: type
             mapping:
               podcast_serienseite: "#/components/schemas/CenterpageMetadataPodcastSeries"
-              homepage: "#/components/schemas/CenterpageMetadataBase"
-
+              other: "#/components/schemas/CenterpageMetadataBase"
         adControllerPageInfo:
           $ref: "#/components/schemas/AdControllerPageInfo"
         trackingData:
@@ -1107,7 +1106,7 @@ components:
         type:
           type: string
           enum:
-            - homepage
+            - other
             - podcast_serienseite
           description: "Type of the Centerpage, also used as discriminator for the polymorphic metadata object"
           example: "podcast_serienseite"
