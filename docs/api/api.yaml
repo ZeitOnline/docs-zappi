@@ -667,8 +667,8 @@ paths:
                           teaser-gallery: "#/components/schemas/CenterpageTeaserGallery"
                           teaser-video: "#/components/schemas/CenterpageTeaserVideo"
                           teaser-podcast: "#/components/schemas/CenterpageTeaserPodcast"
+                          teaser-podcast_serienseite: "#/components/schemas/CenterpageTeaser"
                           teaser-audio: "#/components/schemas/CenterpageTeaserAudio"
-                          podcast_serienseite: "#/components/schemas/CenterpageTeaser"
                           html: "#/components/schemas/CenterpageModuleHTML"
                   trackingData:
                     $ref: "#/components/schemas/TrackingData"
@@ -1069,8 +1069,8 @@ components:
                 teaser-gallery: "#/components/schemas/CenterpageTeaserGallery"
                 teaser-video: "#/components/schemas/CenterpageTeaserVideo"
                 teaser-podcast: "#/components/schemas/CenterpageTeaserPodcast"
+                teaser-podcast_serienseite: "#/components/schemas/CenterpageTeaser"
                 teaser-audio: "#/components/schemas/CenterpageTeaserAudio"
-                podcast_serienseite: "#/components/schemas/CenterpageTeaser"
                 html: "#/components/schemas/CenterpageModuleHTML"
                 adplace: "#/components/schemas/CenterpageAdplace"
                 header: "#/components/schemas/CenterpageHeader"
@@ -1094,8 +1094,8 @@ components:
         - teaser-gallery
         - teaser-video
         - teaser-podcast
+        - teaser-podcast_serienseite
         - teaser-audio
-        - podcast_serienseite
         - html
         - header
         - markup
@@ -1679,7 +1679,7 @@ components:
               type: string
               enum:
                 - teaser
-                - podcast_serienseite
+                - teaser-podcast_serienseite
               example: "teaser"
 
     CenterpageTeaserGallery:
@@ -1921,6 +1921,7 @@ components:
                     teaser-gallery: "#/components/schemas/CenterpageTeaserGallery"
                     teaser-video: "#/components/schemas/CenterpageTeaserVideo"
                     teaser-podcast: "#/components/schemas/CenterpageTeaserPodcast"
+                    teaser-podcast_serienseite: "#/components/schemas/CenterpageTeaser"
                     teaser-audio: "#/components/schemas/CenterpageTeaserAudio"
                     html: "#/components/schemas/CenterpageModuleHTML"
                     cpextra: "#/components/schemas/CenterpageExtra"
