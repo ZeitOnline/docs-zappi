@@ -667,6 +667,7 @@ paths:
                           teaser-gallery: "#/components/schemas/CenterpageTeaserGallery"
                           teaser-video: "#/components/schemas/CenterpageTeaserVideo"
                           teaser-podcast: "#/components/schemas/CenterpageTeaserPodcast"
+                          teaser-podcast_serienseite: "#/components/schemas/CenterpageTeaser"
                           teaser-audio: "#/components/schemas/CenterpageTeaserAudio"
                           html: "#/components/schemas/CenterpageModuleHTML"
                   trackingData:
@@ -1059,23 +1060,24 @@ components:
               - $ref: "#/components/schemas/CenterpageMarkup"
               - $ref: "#/components/schemas/CenterpageExtra"
               - $ref: "#/components/schemas/CenterpagePodcastMetadata"
-                discriminator:
-                  propertyName: type
-                  mapping:
-                    region: "#/components/schemas/CenterpageRegion"
-                    area: "#/components/schemas/CenterpageArea"
-                    teaser: "#/components/schemas/CenterpageTeaser"
-                    teaser-author: "#/components/schemas/CenterpageTeaserAuthor"
-                    teaser-gallery: "#/components/schemas/CenterpageTeaserGallery"
-                    teaser-video: "#/components/schemas/CenterpageTeaserVideo"
-                    teaser-podcast: "#/components/schemas/CenterpageTeaserPodcast"
-                    teaser-audio: "#/components/schemas/CenterpageTeaserAudio"
-                    html: "#/components/schemas/CenterpageModuleHTML"
-                    adplace: "#/components/schemas/CenterpageAdplace"
-                    header: "#/components/schemas/CenterpageHeader"
-                    markup: "#/components/schemas/CenterpageMarkup"
-                    cpextra: "#/components/schemas/CenterpageExtra"
-                    podcastmetadata: "#/components/schemas/CenterpagePodcastMetadata"
+            discriminator:
+              propertyName: type
+              mapping:
+                region: "#/components/schemas/CenterpageRegion"
+                area: "#/components/schemas/CenterpageArea"
+                teaser: "#/components/schemas/CenterpageTeaser"
+                teaser-author: "#/components/schemas/CenterpageTeaserAuthor"
+                teaser-gallery: "#/components/schemas/CenterpageTeaserGallery"
+                teaser-video: "#/components/schemas/CenterpageTeaserVideo"
+                teaser-podcast: "#/components/schemas/CenterpageTeaserPodcast"
+                teaser-podcast_serienseite: "#/components/schemas/CenterpageTeaser"
+                teaser-audio: "#/components/schemas/CenterpageTeaserAudio"
+                html: "#/components/schemas/CenterpageModuleHTML"
+                adplace: "#/components/schemas/CenterpageAdplace"
+                header: "#/components/schemas/CenterpageHeader"
+                markup: "#/components/schemas/CenterpageMarkup"
+                cpextra: "#/components/schemas/CenterpageExtra"
+                podcastmetadata: "#/components/schemas/CenterpagePodcastMetadata"
 
     CenterpageElementId:
       type: string
@@ -1094,6 +1096,7 @@ components:
         - teaser-gallery
         - teaser-video
         - teaser-podcast
+        - teaser-podcast_serienseite
         - teaser-audio
         - html
         - header
@@ -1675,6 +1678,7 @@ components:
               type: string
               enum:
                 - teaser
+                - teaser-podcast_serienseite
               example: "teaser"
 
     CenterpageTeaserGallery:
@@ -1917,6 +1921,7 @@ components:
                     teaser-gallery: "#/components/schemas/CenterpageTeaserGallery"
                     teaser-video: "#/components/schemas/CenterpageTeaserVideo"
                     teaser-podcast: "#/components/schemas/CenterpageTeaserPodcast"
+                    teaser-podcast_serienseite: "#/components/schemas/CenterpageTeaser"
                     teaser-audio: "#/components/schemas/CenterpageTeaserAudio"
                     html: "#/components/schemas/CenterpageModuleHTML"
                     cpextra: "#/components/schemas/CenterpageExtra"
