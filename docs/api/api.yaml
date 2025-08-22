@@ -940,7 +940,7 @@ components:
           following_type:
             description: Set to 'podcast' when following a podcast on the Podcast-Series-CP. In all other cases, set to 'bookmark'. If set to null, it defaults to 'bookmark'.
             type: string
-            example: 'bookmark'
+            example: "bookmark"
             enum:
               - bookmark
               - podcast
@@ -1059,6 +1059,7 @@ components:
               - $ref: "#/components/schemas/CenterpageHeader"
               - $ref: "#/components/schemas/CenterpageMarkup"
               - $ref: "#/components/schemas/CenterpageExtra"
+              - $ref: "#/components/schemas/CenterpagePodcastMetadata"
             discriminator:
               propertyName: type
               mapping:
@@ -1076,6 +1077,7 @@ components:
                 header: "#/components/schemas/CenterpageHeader"
                 markup: "#/components/schemas/CenterpageMarkup"
                 cpextra: "#/components/schemas/CenterpageExtra"
+                podcastmetadata: "#/components/schemas/CenterpagePodcastMetadata"
 
     CenterpageElementId:
       type: string
@@ -1100,6 +1102,7 @@ components:
         - header
         - markup
         - cpextra
+        - podcastmetadata
       description: "Type of the cp element"
 
     CenterpageMetadataBase:
@@ -1152,10 +1155,6 @@ components:
                 - podcast
               description: "Always 'podcast' for podcast series"
               example: "podcast"
-            releaseFrequency:
-              type: string
-              nullable: true
-              example: "Täglich um 16 Uhr"
 
     AdControllerPageInfo:
       type: object
@@ -1913,6 +1912,7 @@ components:
                   - $ref: "#/components/schemas/CenterpageTeaserAudio"
                   - $ref: "#/components/schemas/CenterpageModuleHTML"
                   - $ref: "#/components/schemas/CenterpageExtra"
+                  - $ref: "#/components/schemas/CenterpagePodcastMetadata"
                 discriminator:
                   propertyName: type
                   mapping:
@@ -1925,6 +1925,7 @@ components:
                     teaser-audio: "#/components/schemas/CenterpageTeaserAudio"
                     html: "#/components/schemas/CenterpageModuleHTML"
                     cpextra: "#/components/schemas/CenterpageExtra"
+                    podcastmetadata: "#/components/schemas/CenterpagePodcastMetadata"
             trackingData:
               type: object
               properties:
@@ -2002,6 +2003,121 @@ components:
         cpextra:
           description: "The content type this CPExtra represents"
           type: string
+
+    CenterpagePodcastMetadata:
+      description: "A block containing various metadata for a podcast series."
+      allOf:
+        - $ref: "#/components/schemas/CenterpageElement"
+        - type: object
+          properties:
+            type:
+              type: string
+              enum:
+                - podcastmetadata
+            title:
+              type: string
+            items:
+              type: array
+              description: "A list of metadata blocks. The order is determined by the backend."
+              items:
+                oneOf:
+                  - $ref: "#/components/schemas/PodcastMetadataDescription"
+                  - $ref: "#/components/schemas/PodcastMetadataDistributionChannels"
+                  - $ref: "#/components/schemas/PodcastMetadataReleaseFrequency"
+                  - $ref: "#/components/schemas/PodcastMetadataContactEmail"
+                discriminator:
+                  propertyName: type
+                  mapping:
+                    description: "#/components/schemas/PodcastMetadataDescription"
+                    distribution_channels: "#/components/schemas/PodcastMetadataDistributionChannels"
+                    release_frequency: "#/components/schemas/PodcastMetadataReleaseFrequency"
+                    contact_email: "#/components/schemas/PodcastMetadataContactEmail"
+
+    PodcastMetadataBase:
+      type: object
+      required:
+        - type
+        - title
+      properties:
+        type:
+          type: string
+          description: "Discriminator for the podcast metadata block type"
+        title:
+          type: string
+
+    PodcastMetadataDescription:
+      allOf:
+        - $ref: "#/components/schemas/PodcastMetadataBase"
+        - type: object
+          required:
+            - content
+          properties:
+            type:
+              type: string
+              enum: [description]
+            content:
+              type: string
+
+    PodcastMetadataDistributionChannels:
+      allOf:
+        - $ref: "#/components/schemas/PodcastMetadataBase"
+        - type: object
+          required:
+            - channels
+          properties:
+            type:
+              type: string
+              enum: [distribution_channels]
+            channels:
+              type: array
+              items:
+                $ref: "#/components/schemas/PodcastMetadataDistributionChannel"
+
+    PodcastMetadataDistributionChannel:
+      type: object
+      required:
+        - id
+        - url
+        - title
+      properties:
+        id:
+          type: string
+          example: "spotify"
+        url:
+          type: string
+          format: uri
+          example: "https://example.com/spotify"
+        title:
+          type: string
+          example: "Spotify"
+
+    PodcastMetadataReleaseFrequency:
+      allOf:
+        - $ref: "#/components/schemas/PodcastMetadataBase"
+        - type: object
+          required:
+            - content
+          properties:
+            type:
+              type: string
+              enum: [release_frequency]
+            content:
+              type: string
+              example: "Täglich um 16 Uhr"
+
+    PodcastMetadataContactEmail:
+      allOf:
+        - $ref: "#/components/schemas/PodcastMetadataBase"
+        - type: object
+          required:
+            - content
+          properties:
+            type:
+              type: string
+              enum: [contact_email]
+            content:
+              type: string
+              example: "podcast@zeit.de"
 
     TabBase:
       required:
