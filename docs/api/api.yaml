@@ -2016,7 +2016,7 @@ components:
                 - podcastmetadata
             title:
               type: string
-            items:
+            rows:
               type: array
               description: "A list of metadata blocks. The order is determined by the backend."
               items:
