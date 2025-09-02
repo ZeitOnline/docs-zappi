@@ -949,10 +949,6 @@ components:
             type: array
             items:
               $ref: "#/components/schemas/following"
-        required:
-          - created
-          - ssoid
-          - uuid
         additionalProperties: false
     following:
       type: object
