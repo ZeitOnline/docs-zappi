@@ -43,6 +43,7 @@ paths:
                   - $ref: "#/components/schemas/CenterpageTeaserVideo"
                   - $ref: "#/components/schemas/CenterpageTeaserPodcast"
                   - $ref: "#/components/schemas/CenterpageTeaserAudio"
+                  - $ref: "#/components/schemas/CenterpageTeaserAuthor"
           description: "Success"
         "400":
           description: "Something was wrong. Check the body for error messages."
