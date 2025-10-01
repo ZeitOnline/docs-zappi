@@ -946,6 +946,8 @@ components:
               - bookmark
               - podcast
               - series
+              - author
+              - recipe_category
           followings:
             type: array
             items:
