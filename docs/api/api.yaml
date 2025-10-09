@@ -162,6 +162,7 @@ paths:
                     - bookmark
                     - podcast
                     - series
+                    - recipe_category
               required:
                 - uuid
               additionalProperties: false
@@ -1121,6 +1122,7 @@ components:
             - podcast
             - bookmark
             - series
+            - recipe_category
           description: "Following type of the Centerpage"
           example: "bookmark"
         title:
