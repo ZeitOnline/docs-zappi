@@ -162,6 +162,7 @@ paths:
                     - bookmark
                     - podcast
                     - series
+                    - recipe_category
               required:
                 - uuid
               additionalProperties: false
@@ -1121,6 +1122,7 @@ components:
             - podcast
             - bookmark
             - series
+            - recipe_category
           description: "Following type of the Centerpage"
           example: "bookmark"
         title:
@@ -1213,6 +1215,13 @@ components:
 
             Note that simply calling the base url itself will return a 404 to avoid careless, accidental retrieval of the original image sizes
 
+        accentColor:
+          type: string
+          description: "Hex value of the dominant color inside the image, without #"
+          example: "b18a01"
+          minLength: 6
+          maxLength: 6
+          nullable: true
         fillColor:
           type: string
           nullable: true
