@@ -928,6 +928,7 @@ components:
         - series
         - author
         - recipe_category
+        - volume
 
     bookmark:
       type: array
