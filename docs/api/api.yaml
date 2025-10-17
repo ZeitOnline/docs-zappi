@@ -380,6 +380,18 @@ paths:
             $ref: "#/components/schemas/UUID"
           required: true
           description: "UUID from CMS that identifies a CenterPage content object"
+        - in: query
+          name: view
+          required: false
+          schema:
+            type: string
+            enum:
+            - audio
+          description: |
+            Triggers another view (output manipulation) of the same content.
+            * The "view=audio" does two things: 
+              * It filters out all non-audio teasers.
+              * It changes the teaser-layouts to "audio-listitem-m-expanded"
 
       tags:
         - cp
