@@ -389,7 +389,7 @@ paths:
             - audio
           description: |
             Triggers another view (output manipulation) of the same content.
-            * The "view=audio" does two things: 
+            * The "view=audio" does two things:
               * It filters out all non-audio teasers.
               * It changes the teaser-layouts to "audio-listitem-m-expanded"
 
@@ -932,7 +932,7 @@ components:
       example: "eq.d995ba5a-a7fb-401a-bdc8-86cf2cbf0cda"
 
     following_type:
-      description: Set to 'podcast' when following a podcast on the Podcast-Series-CP. In all other cases, set to 'bookmark'. If set to null, it defaults to 'bookmark'.
+      description: The content type that is being followed (e.g. "podcast" for a podcast series CP)
       type: string
       enum:
         - bookmark
