@@ -156,13 +156,7 @@ paths:
                 uuid:
                   $ref: "#/components/schemas/UUID"
                 following_type:
-                  description: Set to 'podcast' when following a podcast on the Podcast-Series-CP. In all other cases, set to 'bookmark'. If set to null, it defaults to 'bookmark'.
-                  type: string
-                  enum:
-                    - bookmark
-                    - podcast
-                    - series
-                    - recipe_category
+                  $ref: "#/components/schemas/following_type"
               required:
                 - uuid
               additionalProperties: false
@@ -386,6 +380,18 @@ paths:
             $ref: "#/components/schemas/UUID"
           required: true
           description: "UUID from CMS that identifies a CenterPage content object"
+        - in: query
+          name: view
+          required: false
+          schema:
+            type: string
+            enum:
+            - audio
+          description: |
+            Triggers another view (output manipulation) of the same content.
+            * The "view=audio" does two things: 
+              * It filters out all non-audio teasers.
+              * It changes the teaser-layouts to "audio-listitem-m-expanded"
 
       tags:
         - cp
@@ -925,6 +931,17 @@ components:
       description: Postgrest equal filter function
       example: "eq.d995ba5a-a7fb-401a-bdc8-86cf2cbf0cda"
 
+    following_type:
+      description: Set to 'podcast' when following a podcast on the Podcast-Series-CP. In all other cases, set to 'bookmark'. If set to null, it defaults to 'bookmark'.
+      type: string
+      enum:
+        - bookmark
+        - podcast
+        - series
+        - author
+        - recipe_category
+        - volume
+
     bookmark:
       type: array
       description: Describes a bookmark item
@@ -940,15 +957,7 @@ components:
           uuid:
             $ref: "#/components/schemas/UUID"
           following_type:
-            description: Set to 'podcast' when following a podcast on the Podcast-Series-CP. In all other cases, set to 'bookmark'. If set to null, it defaults to 'bookmark'.
-            type: string
-            example: "bookmark"
-            enum:
-              - bookmark
-              - podcast
-              - series
-              - author
-              - recipe_category
+            $ref: '#/components/schemas/following_type'
           followings:
             type: array
             items:
@@ -1037,6 +1046,7 @@ components:
             propertyName: type
             mapping:
               podcast_serienseite: "#/components/schemas/CenterpageMetadataPodcastSeries"
+              volume: "#/components/schemas/CenterpageMetadataBase"
               other: "#/components/schemas/CenterpageMetadataBase"
         adControllerPageInfo:
           $ref: "#/components/schemas/AdControllerPageInfo"
@@ -1114,17 +1124,11 @@ components:
           enum:
             - other
             - podcast_serienseite
+            - volume
           description: "Type of the Centerpage, also used as discriminator for the polymorphic metadata object"
           example: "podcast_serienseite"
         followingType:
-          type: string
-          enum:
-            - podcast
-            - bookmark
-            - series
-            - recipe_category
-          description: "Following type of the Centerpage"
-          example: "bookmark"
+          $ref: "#/components/schemas/following_type"
         title:
           type: string
           nullable: false
