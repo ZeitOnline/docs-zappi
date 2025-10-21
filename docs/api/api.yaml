@@ -75,6 +75,16 @@ paths:
               value: created.desc
               summary: Sort by the most recently created bookmarks.
         - in: query
+          name: offset
+          description: Skips a number of bookmarks before returning results; use with limit for paging
+          required: false
+          schema:
+            type: integer
+          examples:
+            five:
+              value: 5
+              summary: Skip the first 5 bookmarks
+        - in: query
           name: limit
           description: Limits the number of bookmarks returned.
           required: false
