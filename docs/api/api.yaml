@@ -76,7 +76,7 @@ paths:
               summary: Sort by the most recently created bookmarks.
         - in: query
           name: offset
-          description: Skips a number of bookmarks before returning results; use with limit for paging
+          description: Skips a number of bookmarks before returning results; e.g. use with limit for batching
           required: false
           schema:
             type: integer
