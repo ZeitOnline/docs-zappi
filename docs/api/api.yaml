@@ -1763,8 +1763,6 @@ components:
               example: "teaser-podcast"
             audio:
               $ref: "#/components/schemas/PodcastAudio"
-            audioInfo:
-              $ref: "#/components/schemas/Audio"
             episodeImage:
               $ref: "#/components/schemas/Image"
             seriesImage:
@@ -1786,10 +1784,6 @@ components:
               enum:
                 - teaser-audio
               example: "teaser-audio"
-            audioInfo:
-              $ref: "#/components/schemas/Audio"
-            volume:
-              $ref: "#/components/schemas/Volume"
 
     CenterpageModuleHTML:
       description: "A non-native module that should be displayed via a web view"
