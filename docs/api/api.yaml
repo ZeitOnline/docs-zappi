@@ -1495,7 +1495,7 @@ components:
           $ref: "#/components/schemas/Image"
         volumeLabel:
           type: string
-          description: "label for for volume"
+          description: "Issue (archive label) of the volume"
           example: "DIE ZEIT 12/2023"
         volumeColor:
           type: string
@@ -1504,6 +1504,10 @@ components:
           minLength: 6
           maxLength: 6
           nullable: true
+        title:
+          type: string
+          description: "Headline of the volume with a fallback to the volumeLabel (issue)"
+          example: "Die aufregendste Familie Deutschlands"
         url:
           type: string
           nullable: true
