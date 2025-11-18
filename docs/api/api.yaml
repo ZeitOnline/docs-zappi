@@ -951,6 +951,7 @@ components:
         - author
         - recipe_category
         - volume
+        - volume_audio
 
     bookmark:
       type: array
