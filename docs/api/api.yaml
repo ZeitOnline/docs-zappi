@@ -952,6 +952,7 @@ components:
         - recipe_category
         - volume
         - volume_audio
+        - volume_zwe
 
     bookmark:
       type: array
