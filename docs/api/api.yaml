@@ -1141,6 +1141,8 @@ components:
           example: "podcast_serienseite"
         followingType:
           $ref: "#/components/schemas/following_type"
+        followingUuid:
+          $ref: "#/components/schemas/UUID"
         title:
           type: string
           nullable: false
