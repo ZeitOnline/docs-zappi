@@ -951,6 +951,8 @@ components:
         - author
         - recipe_category
         - volume
+        - volume_audio
+        - volume_zwe
 
     bookmark:
       type: array
@@ -1139,6 +1141,8 @@ components:
           example: "podcast_serienseite"
         followingType:
           $ref: "#/components/schemas/following_type"
+        followingUuid:
+          $ref: "#/components/schemas/UUID"
         title:
           type: string
           nullable: false
