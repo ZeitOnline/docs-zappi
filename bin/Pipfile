@@ -7,7 +7,7 @@ name = "pypi"
 # Keep in sync with ZeitOnline/friedbert-deployment,
 # so our test/validation behaviour matches that of the runtime.
 pyramid_openapi3 = "==0.21.0"
-openapi_core = "==0.19.5"
+openapi_core = "==0.21.0"
 openapi_schema_validator = "==0.6.3"
 openapi_spec_validator = "==0.7.2"
 
