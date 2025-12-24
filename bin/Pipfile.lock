@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "0e8febb6c0a8b80c9f48dbf51a96fb612a5d7ce61e8b011509534191cfc77b73"
+            "sha256": "0f255243c0048aa3b3d1d4840fefb0371fbde7a4085834b290a157e6ed0d2610"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -362,12 +362,12 @@
         },
         "openapi-core": {
             "hashes": [
-                "sha256:a9e378fafbf3708a2ca827608388bb3d46d7ba07f9758b78244ffee6503a772e",
-                "sha256:ef1605ed661fdd548f0c037b92e8b1dfb6052b3ad3e93247f2896c8bdb7d4974"
+                "sha256:8fb7c325f2db4ef6c60584b1870f90eeb3183aa47e30643715c5003b7677a149",
+                "sha256:b30490dfa74e3aac2276105525590135212352f5dd7e5acf8f62f6a89ed6f2d0"
             ],
             "index": "pypi",
             "markers": "python_full_version >= '3.9.0' and python_full_version < '4.0.0'",
-            "version": "==0.21.0"
+            "version": "==0.22.0"
         },
         "openapi-schema-validator": {
             "hashes": [
