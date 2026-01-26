@@ -396,7 +396,7 @@ paths:
           schema:
             type: string
             enum:
-            - audio
+              - audio
           description: |
             Triggers another view (output manipulation) of the same content.
             * The "view=audio" does two things:
@@ -969,7 +969,7 @@ components:
           uuid:
             $ref: "#/components/schemas/UUID"
           following_type:
-            $ref: '#/components/schemas/following_type'
+            $ref: "#/components/schemas/following_type"
           followings:
             type: array
             items:
