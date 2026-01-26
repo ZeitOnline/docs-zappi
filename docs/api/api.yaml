@@ -2106,7 +2106,11 @@ components:
       properties:
         id:
           type: string
-          example: "spotify"
+          # See zeit.content.audio.interfaces.DistributionChannelSource
+          enum:
+            - deezer
+            - itunes
+            - spotify
         url:
           type: string
           format: uri
