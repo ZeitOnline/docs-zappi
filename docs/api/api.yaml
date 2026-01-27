@@ -1174,6 +1174,9 @@ components:
                 - podcast
               description: "Always 'podcast' for podcast series"
               example: "podcast"
+            releaseFrequency:
+              type: string
+              example: "Täglich um 16 Uhr"
 
     AdControllerPageInfo:
       type: object
