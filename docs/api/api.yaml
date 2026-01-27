@@ -1177,6 +1177,8 @@ components:
             releaseFrequency:
               type: string
               example: "Täglich um 16 Uhr"
+            podcast:
+              $ref: "#/components/schemas/UUID"
 
     AdControllerPageInfo:
       type: object
