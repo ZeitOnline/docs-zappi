@@ -440,6 +440,32 @@ paths:
         "404":
           description: "No podcast found for the given uuid"
 
+  /podcast/{uuid}/episodes:
+    get:
+      parameters:
+        - in: path
+          name: uuid
+          schema:
+            $ref: "#/components/schemas/UUID"
+          required: true
+          description: "UUID from CMS that identifies a Podcast content object"
+      summary: "Returns articles belonging to podcast episodes"
+      responses:
+        "200":
+          description: "Success"
+          content:
+            application/json:
+              schema:
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/CenterpageTeaserPodcast"
+        "400":
+          description: "Something was wrong with the request. Check the body for error messages."
+        "404":
+          description: "No podcast found for the given uuid"
+
   /freebies/freebies:
     get:
       security:
