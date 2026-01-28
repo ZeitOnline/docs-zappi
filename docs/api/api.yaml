@@ -418,6 +418,28 @@ paths:
         "404":
           description: "No centerpage found for the given uuid"
 
+  /podcast/{uuid}:
+    get:
+      parameters:
+        - in: path
+          name: uuid
+          schema:
+            $ref: "#/components/schemas/UUID"
+          required: true
+          description: "UUID from CMS that identifies a Podcast content object"
+      summary: "Returns podcast metadata"
+      responses:
+        "200":
+          description: "Success"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Podcast"
+        "400":
+          description: "Something was wrong with the request. Check the body for error messages."
+        "404":
+          description: "No podcast found for the given uuid"
+
   /freebies/freebies:
     get:
       security:
@@ -2149,6 +2171,51 @@ components:
             content:
               type: string
               example: "podcast@zeit.de"
+
+    Podcast:
+      type: object
+      properties:
+        id:
+          $ref: "#/components/schemas/UUID"
+        title:
+          type: string
+        subtitle:
+          type: string
+          nullable: true
+        claim:
+          type: string
+          nullable: true
+        category:
+          type: string
+          nullable: true
+          description: "See the 'programming' values in https://podcasters.apple.com/support/1691-apple-podcasts-categories"
+          example: "TV &amp; Film"
+        format:
+          type: string
+          nullable: true
+          enum:
+            - null
+            - serial
+            - episodic
+            - episodic_seasons
+        releaseFrequency:
+          type: string
+          nullable: true
+        contactEmail:
+          type: string
+          nullable: true
+        dateFirstPublished:
+          type: string
+          format: date
+          description: "Launch date of this podcast. Manually edited, not a technical timestamp."
+          example: "2019-12-31"
+          nullable: true
+        image:
+          $ref: "#/components/schemas/Image"
+        distributionChannels:
+          type: array
+          items:
+            $ref: "#/components/schemas/PodcastMetadataDistributionChannel"
 
     TabBase:
       required:
