@@ -465,6 +465,26 @@ paths:
             type: integer
             minimum: 0
             default: 0
+        - name: sort
+          description: "field to sort items by"
+          required: false
+          in: query
+          schema:
+            type: string
+            enum:
+              - date_first_released
+              - date_last_published_semantic
+            default: date_first_released
+        - name: order
+          description: "direction to sort items in"
+          required: false
+          in: query
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+            default: desc
       summary: "Returns articles belonging to podcast episodes"
       responses:
         "200":
