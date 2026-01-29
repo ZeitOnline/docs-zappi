@@ -449,6 +449,22 @@ paths:
             $ref: "#/components/schemas/UUID"
           required: true
           description: "UUID from CMS that identifies a Podcast content object"
+        - name: limit
+          description: "number of items to return"
+          required: false
+          in: query
+          schema:
+            type: integer
+            minimum: 0
+            default: 10
+        - name: offset
+          description: "number of items to skip before starting to return items"
+          required: false
+          in: query
+          schema:
+            type: integer
+            minimum: 0
+            default: 0
       summary: "Returns articles belonging to podcast episodes"
       responses:
         "200":
@@ -457,6 +473,9 @@ paths:
             application/json:
               schema:
                 properties:
+                  total_hits:
+                    type: integer
+                    description: "total available items, regardless of the given `limit`"
                   items:
                     type: array
                     items:
