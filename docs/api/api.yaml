@@ -2042,6 +2042,11 @@ components:
                     html: "#/components/schemas/CenterpageModuleHTML"
                     cpextra: "#/components/schemas/CenterpageExtra"
                     podcastmetadata: "#/components/schemas/CenterpagePodcastMetadata"
+            allItemsLink:
+              type: string
+              nullable: true
+              description: "zappi path to an endpoint where all items for this area can be retrieved, maybe using pagination"
+              example: "/podcast/b4d1e3b1-aac4-4a80-b820-e4093fe24a36/episodes"
             trackingData:
               type: object
               properties:
