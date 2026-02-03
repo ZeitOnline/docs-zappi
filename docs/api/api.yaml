@@ -440,6 +440,71 @@ paths:
         "404":
           description: "No podcast found for the given uuid"
 
+  /podcast/{uuid}/episodes:
+    get:
+      parameters:
+        - in: path
+          name: uuid
+          schema:
+            $ref: "#/components/schemas/UUID"
+          required: true
+          description: "UUID from CMS that identifies a Podcast content object"
+        - name: limit
+          description: "number of items to return"
+          required: false
+          in: query
+          schema:
+            type: integer
+            minimum: 0
+            default: 10
+        - name: offset
+          description: "number of items to skip before starting to return items"
+          required: false
+          in: query
+          schema:
+            type: integer
+            minimum: 0
+            default: 0
+        - name: sort
+          description: "field to sort items by"
+          required: false
+          in: query
+          schema:
+            type: string
+            enum:
+              - date_first_released
+              - date_last_published_semantic
+            default: date_first_released
+        - name: order
+          description: "direction to sort items in"
+          required: false
+          in: query
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+            default: desc
+      summary: "Returns articles belonging to podcast episodes"
+      responses:
+        "200":
+          description: "Success"
+          content:
+            application/json:
+              schema:
+                properties:
+                  total_hits:
+                    type: integer
+                    description: "total available items, regardless of the given `limit`"
+                  items:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/CenterpageTeaserPodcast"
+        "400":
+          description: "Something was wrong with the request. Check the body for error messages."
+        "404":
+          description: "No podcast found for the given uuid"
+
   /freebies/freebies:
     get:
       security:
