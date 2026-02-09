@@ -257,6 +257,95 @@ paths:
         "503":
           description: "Service unavailable (when getting categories)"
 
+  /merkl/followings:
+    get:
+      security:
+        - cookieAuthProduction: [ ]
+        - cookieAuthStaging: [ ]
+      operationId: getFollowings
+      description: Return the newest `followings` for a user as a flat array
+      tags:
+        - followings
+      parameters:
+        - in: query
+          name: type
+          required: false
+          schema:
+            type: string
+            description: "Der Typ des zu gefolgten Inhaltes"
+          description: "Filtert die Ergebnisse nach dem `type`."
+          examples:
+            only_podcast:
+              value: "eq.podcast"
+              summary: "Neueste Podcasts abrufen"
+            only_volume:
+              value: "eq.volume"
+              summary: "Neueste Ausgaben abrufen"
+            only_author:
+              value: "eq.author"
+              summary: "Neueste Inhalte eines Autors abrufen"
+        - in: query
+          name: parent_uuid
+          required: false
+          schema:
+            $ref: "#/components/schemas/uuidfilter"
+          description: "Filtert nach einer bestimmten übergeordneten UUID (z. B. einer Podcast-Serie)"
+          examples:
+            for_specific_podcast:
+              value: "eq.4a4a2c91-fa55-4762-8ee0-babb6b82cc18"
+              summary: "Neueste Folgen für den Podcast 'Was jetzt?' abrufen"
+        - in: query
+          name: limit
+          required: false
+          schema:
+            type: integer
+            default: 10
+          description: "Begrenzt die Anzahl der zurückgegebenen Ergebnisse"
+          examples:
+            ten:
+              value: 10
+              summary: "Maximal 10 Ergebnisse zurückgeben"
+        - in: query
+          name: offset
+          required: false
+          schema:
+            type: integer
+          description: "Überspringt eine Anzahl von Ergebnissen, nützlich für die Paginierung"
+          examples:
+            page2:
+              value: 10
+              summary: "Die ersten 10 Ergebnisse überspringen (Seite 2, wenn Limit 10 ist)"
+        - in: query
+          name: order
+          required: false
+          schema:
+            type: string
+          description: "Gibt die Spalte an, nach der die Ergebnisse sortiert werden sollen"
+          examples:
+            created_desc:
+              value: "created.desc"
+              summary: "Nach den neuesten Inhalten sortieren"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  allOf:
+                    - $ref: "#/components/schemas/following"
+                    - type: object
+                      properties:
+                        type:
+                          $ref: "#/components/schemas/following_type"
+          description: "Success getting each category name with count of its bookmarks"
+        "400":
+          description: "Something went wrong with the request to get followings. Check the body for error messages."
+        "401":
+          description: "Unauthorized (to get followings)"
+        "503":
+          description: "Service unavailable (when getting followings)"
+
   /bookmarks:
     get:
       security:
