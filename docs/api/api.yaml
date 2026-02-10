@@ -260,8 +260,8 @@ paths:
   /merkl/followings:
     get:
       security:
-        - cookieAuthProduction: [ ]
-        - cookieAuthStaging: [ ]
+        - cookieAuthProduction: []
+        - cookieAuthStaging: []
       operationId: getFollowings
       description: Return the newest `followings` for a user as a flat array
       tags:
@@ -338,7 +338,7 @@ paths:
                       properties:
                         type:
                           $ref: "#/components/schemas/following_type"
-          description: "Success getting each category name with count of its bookmarks"
+          description: "Successfully retrieved the newest followings for the user as a flat array"
         "400":
           description: "Something went wrong with the request to get followings. Check the body for error messages."
         "401":
