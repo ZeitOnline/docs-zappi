@@ -332,12 +332,7 @@ paths:
               schema:
                 type: array
                 items:
-                  allOf:
-                    - $ref: "#/components/schemas/following"
-                    - type: object
-                      properties:
-                        type:
-                          $ref: "#/components/schemas/following_type"
+                  $ref: "#/components/schemas/following"
           description: "Successfully retrieved the newest followings for the user as a flat array"
         "400":
           description: "Something went wrong with the request to get followings. Check the body for error messages."
@@ -1162,6 +1157,8 @@ components:
           type: string
           format: date-time
           example: "2022-11-25T16:18:37.124812+00:00"
+        type:
+          $ref: "#/components/schemas/following_type"
       additionalProperties: false
 
     BookmarkIds:
