@@ -13,6 +13,6 @@
 		"format": "prettier --write ."
 	},
 	"devDependencies": {
-		"@zeitonline/prettier-config": "^1.1.0"
+		"@zeitonline/prettier-config": "^2.0.0"
 	}
 }
