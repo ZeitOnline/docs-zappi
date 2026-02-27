@@ -1,0 +1,6 @@
+[project]
+name = "docs-zappi"
+version = "0.0.1"
+dependencies = [
+    "openapi-spec-validator"
+]
