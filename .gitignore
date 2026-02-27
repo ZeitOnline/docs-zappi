@@ -1,5 +1,5 @@
 .DS_Store
 **/htdocs/
 **/.npm.success
-**/.pipenv.success
+**/.uv.success
 **/node_modules/

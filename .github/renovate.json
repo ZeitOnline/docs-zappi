@@ -3,7 +3,14 @@
 	"dependencyDashboard": true,
 	"commitMessagePrefix": "MAINT: ",
 	"schedule": ["before 8am on wednesday"],
-	"enabledManagers": ["github-actions", "npm", "pipenv"],
+	"enabledManagers": ["github-actions", "npm", "pep621"],
+	"lockFileMaintenance": {
+		"enabled": true,
+		"schedule": [
+			"before 8am on wednesday"
+		],
+		"commitMessageAction": "Update dependencies"
+	},
 	"packageRules": [
 		{
 			"groupName": "All minor github-actions changes",
@@ -16,8 +23,8 @@
 			"matchUpdateTypes": ["minor", "patch"]
 		},
 		{
-			"groupName": "All minor pipenv changes",
-			"matchManagers": ["pipenv"],
+			"groupName": "All minor python changes",
+			"matchManagers": ["pep621"],
 			"matchUpdateTypes": ["minor", "patch"]
 		}
 	]

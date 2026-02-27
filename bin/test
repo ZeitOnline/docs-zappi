@@ -4,10 +4,10 @@ set -e
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-cd $DIR
-if [[ Pipfile.lock -nt .pipenv.success ]]; then
-    pipenv install
-    touch .pipenv.success
+cd $DIR/..
+if [[ uv.lock -nt .uv.success ]]; then
+    uv sync
+    touch .uv.success
 fi
 
 cd $DIR/../docs/api
@@ -19,5 +19,4 @@ fi
 cd $DIR/..
 bin/swagger-cli validate $DIR/../docs/api/api.yaml
 
-cd $DIR
-pipenv run openapi-spec-validator $DIR/../docs/api/api.yaml
+.venv/bin/openapi-spec-validator $DIR/../docs/api/api.yaml
