@@ -176,7 +176,7 @@ paths:
         "204":
           description: "Saved entry to bookmarks (without returning it)"
         "400":
-          description: "Something went wrong with the request to save bookmark. Check the body for error messages."
+          description: "Something went wrong with the request to save bookmark. This can occur if the `following_type` does not match the content type of the provided UUID. Check the body for error messages."
         "401":
           description: "Unauthorized (to save bookmark)"
         "403":
