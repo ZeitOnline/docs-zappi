@@ -1852,6 +1852,10 @@ components:
             bookmarkable:
               type: boolean
               example: true
+            followingType:
+              $ref: "#/components/schemas/following_type"
+            followingUuid:
+              $ref: "#/components/schemas/UUID"
             trackingData:
               type: object
               properties:
