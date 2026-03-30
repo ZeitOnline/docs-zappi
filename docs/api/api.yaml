@@ -1753,6 +1753,8 @@ components:
                 - zon-teaser-list
                 - zon-teaser-podcast-small
                 - zon-teaser-podcast-small-plus
+                - zon-teaser-poster
+                - zon-teaser-poster-pictorial
                 - zon-teaser-printbox
                 - zon-teaser-upright
                 - zon-teaser-small
