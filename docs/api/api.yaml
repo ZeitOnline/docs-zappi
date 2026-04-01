@@ -1121,6 +1121,7 @@ components:
         - series
         - author
         - recipe_category
+        - recipe_ingredient
         - volume
         - volume_audio
         - volume_zwe
