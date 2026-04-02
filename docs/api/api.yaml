@@ -1116,6 +1116,7 @@ components:
       description: The content type that is being followed (e.g. "podcast" for a podcast series CP)
       type: string
       enum:
+        - ""
         - bookmark
         - podcast
         - series
@@ -1304,6 +1305,12 @@ components:
     CenterpageMetadataBase:
       description: "Common metadata for all Centerpages, might include additional fields for specific CP types"
       type: object
+      # in theory iOS currently requires followingType here,
+      # but I don't wanna mark this required before easter in case
+      # we need to roll back :)
+      # required:
+      #   - followingType
+      #   - followingUuid
       properties:
         type:
           type: string
