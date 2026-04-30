@@ -144,9 +144,13 @@ paths:
         "400":
           description: "Something went wrong with the request to get bookmarks. Check the body for error messages."
         "401":
-          description: "Unauthorized (to get bookmarks)"
+          description: "Unauthorized"
+        "500":
+          description: "Internal server error"
+        "502":
+          description: "Internal server error"
         "503":
-          description: "Service unavailable (when getting bookmarks)"
+          description: "Service unavailable"
     post:
       security:
         - cookieAuthProduction: []
@@ -178,15 +182,17 @@ paths:
         "400":
           description: "Something went wrong with the request to save bookmark. This can occur if the `following_type` does not match the content type of the provided UUID. Check the body for error messages."
         "401":
-          description: "Unauthorized (to save bookmark)"
+          description: "Unauthorized"
         "403":
-          description: "Forbidden (to save bookmark)"
+          description: "Forbidden"
         "409":
           description: "Bookmark already exists. You can't bookmark the same document twice."
+        "500":
+          description: "Internal server error"
         "502":
-          description: "Bad gateway (when saving bookmark)"
+          description: "Bad gateway"
         "503":
-          description: "Service unavailable (when saving bookmark)"
+          description: "Service unavailable"
     delete:
       security:
         - cookieAuthProduction: []
@@ -213,13 +219,15 @@ paths:
         "400":
           description: "Something went wrong with the request to delete a bookmark. Check the body for error messages."
         "401":
-          description: "Unauthorized (to delete bookmark)"
+          description: "Unauthorized"
         "403":
-          description: "Forbidden (to delete bookmark)"
+          description: "Forbidden"
+        "500":
+          description: "Internal server error"
         "502":
-          description: "Bad gateway (when deleting bookmark)"
+          description: "Bad gateway"
         "503":
-          description: "Service unavailable (when deleting bookmarks)"
+          description: "Service unavailable"
 
   /merkl/categories:
     get:
@@ -253,9 +261,13 @@ paths:
         "400":
           description: "Something went wrong with the request to get categories. Check the body for error messages."
         "401":
-          description: "Unauthorized (to get categories)"
+          description: "Unauthorized"
+        "500":
+          description: "Internal server error"
+        "502":
+          description: "Bad gateway"
         "503":
-          description: "Service unavailable (when getting categories)"
+          description: "Service unavailable"
 
   /merkl/followings:
     get:
@@ -337,9 +349,13 @@ paths:
         "400":
           description: "Something went wrong with the request to get followings. Check the body for error messages."
         "401":
-          description: "Unauthorized (to get followings)"
+          description: "Unauthorized"
+        "500":
+          description: "Internal server error"
+        "502":
+          description: "Bad gateway"
         "503":
-          description: "Service unavailable (when getting followings)"
+          description: "Service unavailable"
 
   /bookmarks:
     get:
@@ -628,6 +644,12 @@ paths:
           description: "Bad Request"
         "401":
           description: "Unauthorized"
+        "500":
+          description: "Internal server error"
+        "502":
+          description: "Bad gateway"
+        "503":
+          description: "Service unavailable"
     post:
       security:
         - cookieAuthProduction: []
@@ -662,6 +684,12 @@ paths:
           description: "Forbidden"
         "429":
           description: "Monthly limit exceeded"
+        "500":
+          description: "Internal server error"
+        "502":
+          description: "Bad gateway"
+        "503":
+          description: "Service unavailable"
 
   /freebies/allowance:
     get:
@@ -695,6 +723,12 @@ paths:
           description: "Bad Request"
         "401":
           description: "Unauthorized"
+        "500":
+          description: "Internal server error"
+        "502":
+          description: "Bad gateway"
+        "503":
+          description: "Service unavailable"
 
   /freebies/rpc/check:
     post:
@@ -738,6 +772,12 @@ paths:
           description: "Bad Request"
         "404":
           description: "Expired or non-existing freebie"
+        "500":
+          description: "Internal server error"
+        "502":
+          description: "Bad gateway"
+        "503":
+          description: "Service unavailable"
 
   /summy/summaries:
     get:
@@ -761,6 +801,12 @@ paths:
               schema:
                 items:
                   $ref: "#/components/schemas/summaries"
+        "500":
+          description: "Internal server error"
+        "502":
+          description: "Bad gateway"
+        "503":
+          description: "Service unavailable"
 
   /summy/feedback:
     post:
@@ -779,6 +825,12 @@ paths:
       responses:
         "201":
           description: Created.
+        "500":
+          description: "Internal server error"
+        "502":
+          description: "Bad gateway"
+        "503":
+          description: "Service unavailable"
 
   /iap/receipts/{platform}:
     post:
