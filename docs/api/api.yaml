@@ -2156,6 +2156,7 @@ components:
                 - duo
                 - headed
                 - headed-carousel
+                - headed-carousel-poster-tiny
                 - headed-grid
                 - headed-light
                 - headed-fixed-height
