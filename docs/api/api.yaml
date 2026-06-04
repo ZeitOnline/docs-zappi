@@ -2520,12 +2520,14 @@ components:
                   - $ref: "#/components/schemas/MenuItemNative"
                   - $ref: "#/components/schemas/MenuItemWeb"
                   - $ref: "#/components/schemas/MenuItemTabStart"
+                  - $ref: "#/components/schemas/MenuItemVideoFeed"
                 discriminator:
                   propertyName: type
                   mapping:
                     menu-item-native: "#/components/schemas/MenuItemNative"
                     menu-item-web: "#/components/schemas/MenuItemWeb"
                     menu-item-tab-start: "#/components/schemas/MenuItemTabStart"
+                    menu-item-video-feed: "#/components/schemas/MenuItemVideoFeed"
 
     TabStory:
       allOf:
@@ -2675,6 +2677,7 @@ components:
             - menu-item-browser
             - menu-item-submenu
             - menu-item-tab-start
+            - menu-item-video-feed
         icon:
           type: object
           properties:
@@ -2702,6 +2705,20 @@ components:
               enum:
                 - menu-item-native
               example: "menu-item-native"
+            source:
+              $ref: "#/components/schemas/UUID"
+
+    MenuItemVideoFeed:
+      allOf:
+        - $ref: "#/components/schemas/MenuItemBase"
+        - required:
+            - source
+          properties:
+            type:
+              type: string
+              enum:
+                - menu-item-video-feed
+              example: "menu-item-video-feed"
             source:
               $ref: "#/components/schemas/UUID"
 
