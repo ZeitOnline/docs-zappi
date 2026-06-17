@@ -1213,7 +1213,8 @@ components:
           example: "2022-11-25T16:18:37.124812+00:00"
         type:
           $ref: "#/components/schemas/following_type"
-      additionalProperties: false
+      additionalProperties:
+        type: array
 
     BookmarkIds:
       type: object
