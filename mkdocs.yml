@@ -1,7 +1,6 @@
 INHERIT: /zon/common_config.yaml
 nav:
 - index.md
-- overview.md
 - onboarding.md
 - codingstyle.md
 - operations.md
