@@ -139,7 +139,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/bookmark"
+                $ref: "#/components/schemas/bookmarks"
           description: "Return list of bookmarks, optionally filtered by category"
         "400":
           description: "Something went wrong with the request to get bookmarks. Check the body for error messages."
@@ -1164,11 +1164,47 @@ components:
       description: Postgrest equal filter function
       example: "eq.d995ba5a-a7fb-401a-bdc8-86cf2cbf0cda"
 
+
+    bookmarks:
+      type: array
+      description: Describes a bookmark item
+      items:
+        $ref: "#/components/schemas/bookmark"
+    parent_bookmark:
+      type: object
+      properties:
+        created:
+          type: string
+          format: date-time
+          example: "2022-11-25T16:18:37.124812+00:00"
+        ssoid:
+          type: integer
+          example: 42
+        uuid:
+          $ref: "#/components/schemas/UUID"
+        following_type:
+          $ref: "#/components/schemas/following_type"
+      required:
+        - uuid
+    parent_bookmarks:
+      type: array
+      description: Describes bookmark items without followings object
+      items:
+        $ref: "#/components/schemas/parent_bookmark"
+    bookmark:
+      allOf:
+        - $ref: "#/components/schemas/parent_bookmark"
+        - type: object
+          properties:
+            followings:
+              type: array
+              items:
+                $ref: "#/components/schemas/followings"
     following_type:
       description: The content type that is being followed (e.g. "podcast" for a podcast series CP)
       type: string
+      example: 'bookmark'
       enum:
-        - ""
         - bookmark
         - podcast
         - series
@@ -1178,28 +1214,12 @@ components:
         - volume
         - volume_audio
         - volume_zwe
-
-    bookmark:
+        - game
+    types:
+      description: Describes an array of following types
       type: array
-      description: Describes a bookmark item
       items:
-        type: object
-        properties:
-          created:
-            type: string
-            example: "2022-11-25T16:18:37.124812+00:00"
-          ssoid:
-            type: integer
-            example: 42
-          uuid:
-            $ref: "#/components/schemas/UUID"
-          following_type:
-            $ref: "#/components/schemas/following_type"
-          followings:
-            type: array
-            items:
-              $ref: "#/components/schemas/following"
-        additionalProperties: false
+        $ref: "#/components/schemas/following_type"
     following:
       type: object
       properties:
@@ -1213,8 +1233,14 @@ components:
           example: "2022-11-25T16:18:37.124812+00:00"
         type:
           $ref: "#/components/schemas/following_type"
-      additionalProperties:
-        type: array
+        types:
+          $ref: "#/components/schemas/types"
+        parents:
+          $ref: "#/components/schemas/parent_bookmarks"
+    followings:
+      description: Describes a following
+      items:
+        $ref: "#/components/schemas/following"
 
     BookmarkIds:
       type: object
