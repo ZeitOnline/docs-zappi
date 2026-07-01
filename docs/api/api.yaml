@@ -1410,6 +1410,7 @@ components:
               example: "podcast"
             releaseFrequency:
               type: string
+              nullable: True
               example: "Täglich um 16 Uhr"
             podcast:
               $ref: "#/components/schemas/UUID"
@@ -2387,6 +2388,7 @@ components:
               enum: [release_frequency]
             content:
               type: string
+              nullable: True
               example: "Täglich um 16 Uhr"
 
     PodcastMetadataContactEmail:
