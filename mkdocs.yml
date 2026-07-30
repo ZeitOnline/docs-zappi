@@ -5,6 +5,7 @@ nav:
 - codingstyle.md
 - operations.md
 - validation.md
+- includes.md
 - API: api.md
 repo_url: https://github.com/ZeitOnline/docs-zappi
 site_name: zappi
