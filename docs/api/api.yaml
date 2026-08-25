@@ -1979,7 +1979,7 @@ components:
                   example: "18 Bilder"
 
     CenterpageTeaserVideo:
-      description: "A teaser module references/represents a video content object"
+      description: "A teaser module references/represents a video article, i.e. an article whose header is a video"
       allOf:
         - $ref: "#/components/schemas/CenterpageTeaserBase"
         - required:
