@@ -1904,10 +1904,6 @@ components:
                   type: string
                   description: "Count of comments for this article"
                   example: "18.345"
-                label:
-                  type: string
-                  description: "Descriptive label for count of comments for this article"
-                  example: "18.345 Kommentare"
                 url:
                   type: string
                   # format: uri
