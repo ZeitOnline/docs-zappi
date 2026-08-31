@@ -913,6 +913,8 @@ paths:
                           html: "#/components/schemas/CenterpageModuleHTML"
                   trackingData:
                     $ref: "#/components/schemas/TrackingData"
+                  trackingEntities:
+                    $ref: "#/components/schemas/TrackingEntities"
         "400":
           description: "Invalid query, see response body for details."
 
@@ -1292,6 +1294,8 @@ components:
           $ref: "#/components/schemas/AdControllerPageInfo"
         trackingData:
           $ref: "#/components/schemas/TrackingData"
+        trackingEntities:
+          $ref: "#/components/schemas/TrackingEntities"
         items:
           type: array
           items:
@@ -1487,6 +1491,87 @@ components:
         visibleMobile:
           type: boolean
           example: false
+
+    TrackingEntities:
+      type: object
+      properties:
+        page:
+          $ref: "#/components/schemas/TrackingEntityPage"
+        teaser:
+          $ref: "#/components/schemas/TrackingEntityTeaser"
+        audio:
+          $ref: "#/components/schemas/TrackingEntityAudio"
+
+    TrackingEntityPage:
+      type: object
+      properties:
+        category:
+          type: string
+          description: "Describes the category of a viewed page (centerpage, article, video etc.)"
+          nullable: true
+        ivw_code:
+          type: string
+          description: "Page code which is transmitted to IVW"
+          nullable: true
+        pagination_page:
+          type: integer
+          description: "Number of page in pagination"
+          nullable: true
+        pagination_total_pages:
+          type: integer
+          description: "Number of pages pagination"
+          nullable: true
+        pagination_is_full_view:
+          type: boolean
+          description: "User reads the paginated page on one page"
+          nullable: true
+        ivw_device_layout:
+          type: string
+          description: "Differentiation between the different IVW offers that apply to the respective layout of the page."
+        vivi_page_uuid:
+          $ref: "#/components/schemas/UUID"
+          description: "The UUID of the page"
+          nullable: true
+        screen_url:
+          type: string
+          description: "For native mobile events this contains the url of the screen which corresponds to the page url from the web (vivi)"
+          nullable: true
+
+    TrackingEntityTeaser:
+      type: object
+      properties:
+        linked_page_url:
+          type: string
+          description: "The page_url that is linked to the teaser. At least one of the properties linked_page_uuid or linked_page_url should be filled."
+          nullable: true
+        linked_page_uuid:
+          $ref: "#/components/schemas/UUID"
+          description: "The page_uuid that is linked to the teaser. At least one of the properties linked_page_uuid or linked_page_url should be filled."
+          nullable: true
+        teaser_layout:
+          type: string
+          description: "The layout of the teaser, e.g. zon-teaser-square-compact"
+          nullable: true
+        area_layout:
+          type: string
+          description: "The layout of the area in which the teaser was clicked, e.g. headed-fixed-height"
+          nullable: true
+        cp_position:
+          type: string
+          description: "Teaser position on the CP"
+          nullable: true
+        area_position:
+          type: string
+          description: "Teaser position in the area"
+          nullable: true
+
+    TrackingEntityAudio:
+      type: object
+      properties:
+        audio_uuid:
+          $ref: "#/components/schemas/UUID"
+          description: "Unique identifier of audio content from vivi"
+          nullable: true
 
     TrackingData:
       type: object
@@ -1922,6 +2007,8 @@ components:
               properties:
                 customClickParameter:
                   $ref: "#/components/schemas/CustomClickParameter"
+            trackingEntities:
+              $ref: "#/components/schemas/TrackingEntities"
             liveblogPosts:
               nullable: true
               type: array
