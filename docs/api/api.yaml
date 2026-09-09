@@ -1529,9 +1529,9 @@ components:
           type: string
           description: "Differentiation between the different IVW offers that apply to the respective layout of the page."
         vivi_page_uuid:
-          $ref: "#/components/schemas/UUID"
           description: "The UUID of the page"
-          nullable: true
+          allOf:
+            - $ref: "#/components/schemas/UUID"
         screen_url:
           type: string
           description: "For native mobile events this contains the url of the screen which corresponds to the page url from the web (vivi)"
@@ -1545,9 +1545,9 @@ components:
           description: "The page_url that is linked to the teaser. At least one of the properties linked_page_uuid or linked_page_url should be filled."
           nullable: true
         linked_page_uuid:
-          $ref: "#/components/schemas/UUID"
           description: "The page_uuid that is linked to the teaser. At least one of the properties linked_page_uuid or linked_page_url should be filled."
-          nullable: true
+          allOf:
+            - $ref: "#/components/schemas/UUID"
         teaser_layout:
           type: string
           description: "The layout of the teaser, e.g. zon-teaser-square-compact"
@@ -1569,9 +1569,9 @@ components:
       type: object
       properties:
         audio_uuid:
-          $ref: "#/components/schemas/UUID"
           description: "Unique identifier of audio content from vivi"
-          nullable: true
+          allOf:
+            - $ref: "#/components/schemas/UUID"
 
     TrackingData:
       type: object
