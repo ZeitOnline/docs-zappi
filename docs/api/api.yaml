@@ -1515,7 +1515,7 @@ components:
           nullable: true
         pagination_page:
           type: integer
-          description: "Number of page in pagination"
+          description: "Page number in the pagination"
           nullable: true
         pagination_total_pages:
           type: integer
