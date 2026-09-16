@@ -7,8 +7,8 @@ Der Deployment Prozess folgt ab da, dem regulären Deployment von zeit.web.
 
 ## Monitoring/Observability
 
-- [Dashboard](https://grafana.ops.zeit.de/d/6pGBoElMz/zappi?orgId=1&from=now-24h&to=now)
+- [Dashboard](https://grafana.ops.zeit.de/d/IesWjbTGz/friedbert-appserver?from=now-1h&to=now&timezone=browser)
 - [Honeycomb](https://ui.honeycomb.io/zeit-online/environments/production/datasets/fastly.zappi)
     `service.name == fastly.zappi`
-- [Kibana](https://kibana.ops.zeit.de/app/r/s/GkTB1)
-    `dataview=gke-main-production` und `kubernetes.labels.app == zappi`
+- [Kibana]([https://kibana.ops.zeit.de/app/r/s/GkTB1](https://ec58528dccc64561807e8a3c2dc88805.europe-west3.gcp.cloud.es.io/app/r/s/hDD2R))
+    `dataview=gke-main-production-25-01` und `kubernetes.labels.app == zappi`
