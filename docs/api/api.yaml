@@ -145,6 +145,8 @@ paths:
           description: "Something went wrong with the request to get bookmarks. Check the body for error messages."
         "401":
           description: "Unauthorized"
+        "429":
+          description: "Too many requests"
         "500":
           description: "Internal server error"
         "502":
@@ -262,6 +264,8 @@ paths:
           description: "Something went wrong with the request to get categories. Check the body for error messages."
         "401":
           description: "Unauthorized"
+        "429":
+          description: "Too many requests"
         "500":
           description: "Internal server error"
         "502":
@@ -350,6 +354,8 @@ paths:
           description: "Something went wrong with the request to get followings. Check the body for error messages."
         "401":
           description: "Unauthorized"
+        "429":
+          description: "Too many requests"
         "500":
           description: "Internal server error"
         "502":
