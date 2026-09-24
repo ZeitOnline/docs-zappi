@@ -189,6 +189,8 @@ paths:
           description: "Forbidden"
         "409":
           description: "Bookmark already exists. You can't bookmark the same document twice."
+        "429":
+          description: "Too many requests"
         "500":
           description: "Internal server error"
         "502":
@@ -224,6 +226,8 @@ paths:
           description: "Unauthorized"
         "403":
           description: "Forbidden"
+        "429":
+          description: "Too many requests"
         "500":
           description: "Internal server error"
         "502":
