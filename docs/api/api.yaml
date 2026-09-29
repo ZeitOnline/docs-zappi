@@ -1546,6 +1546,19 @@ components:
           type: string
           description: "For native mobile events this contains the url of the screen which corresponds to the page url from the web (vivi)"
           nullable: true
+        page_uuid:
+          description: "The UUID of the page"
+          allOf:
+            - $ref: "#/components/schemas/UUID"
+        wall_status:
+          type: string
+          description: "Paywall Status"
+          enum:
+            - open
+            - register
+            - paid
+        entitlements:
+          $ref: "#/components/schemas/ContentEntitlements"
 
     TrackingEntityTeaser:
       type: object
