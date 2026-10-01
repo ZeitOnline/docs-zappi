@@ -1521,8 +1521,9 @@ components:
           nullable: true
         ivw_code:
           type: string
-          description: "Page code which is transmitted to IVW"
+          description: "Page code which is transmitted to IVW (deprecated)"
           nullable: true
+          deprecated: true
         pagination_page:
           type: integer
           description: "Page number in the pagination"
@@ -1535,17 +1536,28 @@ components:
           type: boolean
           description: "User reads the paginated page on one page"
           nullable: true
-        ivw_device_layout:
-          type: string
-          description: "Differentiation between the different IVW offers that apply to the respective layout of the page."
         vivi_page_uuid:
-          description: "The UUID of the page"
+          description: "The UUID of the page (deprecated, use page_uuid instead)"
+          deprecated: true
           allOf:
             - $ref: "#/components/schemas/UUID"
         screen_url:
           type: string
           description: "For native mobile events this contains the url of the screen which corresponds to the page url from the web (vivi)"
           nullable: true
+        page_uuid:
+          description: "The UUID of the page"
+          allOf:
+            - $ref: "#/components/schemas/UUID"
+        wall_status:
+          type: string
+          description: "Paywall Status"
+          enum:
+            - open
+            - register
+            - paid
+        entitlements:
+          $ref: "#/components/schemas/ContentEntitlements"
 
     TrackingEntityTeaser:
       type: object
