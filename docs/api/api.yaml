@@ -2301,6 +2301,13 @@ components:
               $ref: "#/components/schemas/following_type"
             followingUuid:
               $ref: "#/components/schemas/UUID"
+            image:
+              $ref: "#/components/schemas/Image"
+              description: "Image of the area header: set on the area in vivi, otherwise the image of the referenced CP. For podcast series pages, fillColor is the podcast color."
+            referencedType:
+              type: string
+              description: "Type of the CP referenced by the area. Podcast series pages are always `podcast_serienseite`, e.g. to omit podcast covers on the teasers."
+              example: "podcast_serienseite"
             trackingData:
               type: object
               properties:
