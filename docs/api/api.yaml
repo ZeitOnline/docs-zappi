@@ -1535,9 +1535,6 @@ components:
           type: boolean
           description: "User reads the paginated page on one page"
           nullable: true
-        ivw_device_layout:
-          type: string
-          description: "Differentiation between the different IVW offers that apply to the respective layout of the page."
         vivi_page_uuid:
           description: "The UUID of the page"
           allOf:
