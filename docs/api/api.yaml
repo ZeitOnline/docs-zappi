@@ -1521,8 +1521,9 @@ components:
           nullable: true
         ivw_code:
           type: string
-          description: "Page code which is transmitted to IVW"
+          description: "Page code which is transmitted to IVW (deprecated)"
           nullable: true
+          deprecated: true
         pagination_page:
           type: integer
           description: "Page number in the pagination"
@@ -1536,7 +1537,8 @@ components:
           description: "User reads the paginated page on one page"
           nullable: true
         vivi_page_uuid:
-          description: "The UUID of the page"
+          description: "The UUID of the page (deprecated, use page_uuid instead)"
+          deprecated: true
           allOf:
             - $ref: "#/components/schemas/UUID"
         screen_url:
