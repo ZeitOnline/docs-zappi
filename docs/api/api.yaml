@@ -1387,9 +1387,7 @@ components:
             - podcast_serienseite
             - volume
             - video
-          description: |
-            Type of the Centerpage, also used as discriminator for the polymorphic metadata object.
-            `video` marks a video feed CP; the app shows the video feed UI for it.
+          description: "Type of the Centerpage, also used as discriminator for the polymorphic metadata object"
           example: "podcast_serienseite"
         followingType:
           $ref: "#/components/schemas/following_type"
