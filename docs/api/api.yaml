@@ -2104,6 +2104,36 @@ components:
                   example: "6194436097001"
                 hasAdvertisement:
                   type: boolean
+                textPrimary:
+                  type: string
+                  description: "Primary info text of the player overlay"
+                  example: "Haushalt 2027"
+                textSecondary:
+                  type: string
+                  description: "Secondary info text of the player overlay"
+                  example: "Einigung in der Nacht"
+                textDescription:
+                  type: string
+                  description: "Description text of the player overlay"
+                  example: "Nach zwölf Stunden Verhandlung steht der Haushalt. Was die Koalition bei Rente und Bürgergeld vereinbart hat."
+                link:
+                  type: object
+                  description: "Link in the player overlay"
+                  required:
+                    - url
+                    - label
+                    - collapsed
+                  properties:
+                    url:
+                      type: string
+                      format: uri
+                      example: "https://www.zeit.de/politik/deutschland/2026-11/haushalt-2027-koalition-einigung"
+                    label:
+                      type: string
+                      example: "Alles zur Einigung"
+                    collapsed:
+                      type: boolean
+                      description: "Show the link while the description text is collapsed"
                 # provider: "brightcove"
                 # product-id:
                 # page-url:
