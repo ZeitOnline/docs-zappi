@@ -1299,6 +1299,7 @@ components:
             mapping:
               podcast_serienseite: "#/components/schemas/CenterpageMetadataPodcastSeries"
               volume: "#/components/schemas/CenterpageMetadataBase"
+              video: "#/components/schemas/CenterpageMetadataBase"
               other: "#/components/schemas/CenterpageMetadataBase"
         adControllerPageInfo:
           $ref: "#/components/schemas/AdControllerPageInfo"
@@ -1385,6 +1386,7 @@ components:
             - other
             - podcast_serienseite
             - volume
+            - video
           description: "Type of the Centerpage, also used as discriminator for the polymorphic metadata object"
           example: "podcast_serienseite"
         followingType:
