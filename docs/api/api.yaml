@@ -2026,6 +2026,16 @@ components:
               $ref: "#/components/schemas/following_type"
             followingUuid:
               $ref: "#/components/schemas/UUID"
+            extension:
+              description: "Only for layout zon-teaser-poster-extension: teaser of the author or podcast series to follow, displayed below the poster"
+              oneOf:
+                - $ref: "#/components/schemas/CenterpageTeaserAuthor"
+                - $ref: "#/components/schemas/CenterpageTeaser"
+              discriminator:
+                propertyName: type
+                mapping:
+                  teaser-author: "#/components/schemas/CenterpageTeaserAuthor"
+                  teaser-podcast_serienseite: "#/components/schemas/CenterpageTeaser"
             trackingData:
               type: object
               properties:
